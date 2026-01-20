@@ -1,0 +1,41 @@
+﻿<form method="post" accept-charset="UTF-8" class="contact-form" id="contact_form">
+    <div class="row" id="contact_Form">
+        <div class="col-sm-4">
+            <p class="contact-form-author">
+                <input type="text" required="required" size="30" value=""
+                       name="FullName" placeholder="Họ và tên">
+            </p>
+        </div>
+        <div class="col-sm-4">
+            <p class="contact-form-email">
+                <input type="text" required="required" size="30" value=""
+                       name="PhoneNumber"
+                       placeholder="Số điện thoại">
+            </p>
+        </div>
+        <div class="col-sm-4">
+            <p class="contact-form-email">
+                <input type="email" size="30" value=""
+                       name="Email"
+                       pattern="[a-z0-9._%+-]+@@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Địa chỉ email">
+            </p>
+        </div>
+        <div class="col-sm-12">
+            @if (Model != null)
+            {
+                <input type="hidden" name="ProductId" value="@Model" />
+            }
+            <p class="contact-form-message">
+                <textarea required="required" rows="3" cols="45"
+                          name="content" placeholder="Nội dung liên hệ"></textarea>
+            </p>
+            <p class="form-submit button">
+                <button class="hvr-rectangle-out" type="submit" id="submit"
+                        name="submit">
+                    Gửi liên hệ
+                </button>
+            </p>
+        </div>
+    </div>
+    <div role="alert" class="alert"></div>
+</form>

@@ -1,0 +1,265 @@
+﻿@using CaoGiaConstruction.WebClient.Const
+@model ProductVM;
+@{
+    var relatedProducts = ViewBag.ProductRelateds as IEnumerable<ProductNoContentVM>;
+}
+
+@if(Model != null)
+{
+    <div class="main-content">
+        <div class="page-header">
+            <div class="wrap-content">
+                @{
+                    var routeName = Model.ProductCategory.ProductMainCategory.Code?.ToString()?.ToLower();
+                    var breadcrumbItems = new List<BreadcrumbDto>
+            {
+            new BreadcrumbDto { Url = "home", Title = "Trang chủ", IsActive = false },
+            new BreadcrumbDto { Url = routeName, Title = Model.ProductCategory.ProductMainCategory.Title, IsActive = false },
+            new BreadcrumbDto { Url =  $"{routeName}-cate", Title = Model.ProductCategory.Title, Code =Model.ProductCategory?.Code, IsActive = false },
+            new BreadcrumbDto { Url = string.Empty, Title = Model.Title, IsActive = true },
+            };
+                }
+                @await Component.InvokeAsync(nameof(vcBreadcrumb), breadcrumbItems)
+            </div>
+        </div>
+        <section class="section details-product">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="left-pro w-clear">
+                            <div class="product-image-block relative">
+                                @if (Model.ImageList != null)
+                                {
+                                    <div class="swiper gallery-top">
+                                        <div class="swiper-wrapper" id="lightgallery">
+                                            @foreach (var item in Model.ImageList.SplitToText(";"))
+                                            {
+                                                <a class="swiper-slide"
+                                                   href="@item.Text.ToHostImage()"
+                                                   data-fancybox="gallery"
+                                                   title="@Model.Title">
+                                                    <img src="@item.Text.ToHostImage()?w=600"
+                                                         alt="@Model.Title"
+                                                         class="img-responsive" />
+                                                </a>
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="swiper gallery-thumbs">
+                                        <div class="swiper-wrapper">
+                                            @foreach (var item in Model.ImageList.SplitToText(";"))
+                                            {
+                                                <div class="swiper-slide" data-hash="0">
+                                                    <img src="@item.Text.ToHostImage()?w=600"
+                                                         alt="@Model.Title" />
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="swiper-container gallery-top">
+                                        <div class="swiper-wrapper" id="lightgallery">
+                                            <a class="swiper-slide"
+                                               href="#"
+                                               data-fancybox="gallery"
+                                               title="@Model.Title">
+                                                <img src="~/Client/assets/img/icons/loading.svg"
+                                                     alt="@Model.Title"
+                                                     class="img-responsive mx-auto d-block swiper-lazy lazy" />
+                                                <div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-container gallery-thumbs">
+                                        <div class="swiper-wrapper">
+                                            <div class="swiper-slide" data-hash="0">
+                                                <img src="~/Client/assets/img/icons/loading.svg"
+                                                     alt="@Model.Title"
+                                                     class="swiper-lazy lazy" />
+                                                <div class="swiper-lazy-preloader swiper-lazy-preloader-black"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="right-pro w-clear">
+                            <h1 class="title-pro-detail">@Model.Title</h1>
+                            <div class="desc-pro-detail">
+                                <p><em>@Model.Description</em></p>
+                            </div>
+                            @if (Model.ProductProperties.Any())
+                            {
+                                <div class="prop-pro-detail rounded-sm">
+                                    <h3 class="prop-pro-detail__heading rounded-sm d-inline-flex align-items-center">
+                                        Thông số kỹ thuật
+                                    </h3>
+                                    <ul class="promotion-box">
+                                        @foreach (var item in Model.ProductProperties)
+                                        {
+                                            <li class="w-clear">
+                                                <label class="attr-label-pro-detail">@item.Properties.Title:</label>
+                                                <div class="attr-content-pro-detail">@item.Value</div>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+                            <ul class="attr-pro-detail">
+                                @if (Model.Price != null)
+                                {
+                                    <li class="w-clear">
+                                        <label class="attr-label-pro-detail">Giá:</label>
+                                        <div class="attr-content-pro-detail">
+                                            <span class="price-new-pro-detail">@Model.Price.ToString("0,00đ", true)</span>
+                                            <span class="price-old-pro-detail">@Model.OldPrice.ToString("0,00đ", true)</span>
+                                        </div>
+                                    </li>
+                                }
+                                @if (Model.Brand != null)
+                                {
+                                    <li class="w-clear">
+                                        <label class="attr-label-pro-detail">Thương hiệu:</label>
+                                        <div class="attr-content-pro-detail">@Model.Brand</div>
+                                    </li>
+                                }
+                                @if (Model.Producer != null)
+                                {
+                                    <li class="w-clear">
+                                        <label class="attr-label-pro-detail">Nhà sản xuất:</label>
+                                        <div class="attr-content-pro-detail">@Model.Producer</div>
+                                    </li>
+                                }
+                                @if (Model.Origin != null)
+                                {
+                                    <li class="w-clear">
+                                        <label class="attr-label-pro-detail">Xuất xứ:</label>
+                                        <div class="attr-content-pro-detail">@Model.Origin</div>
+                                    </li>
+                                }
+                            </ul>
+                            <div class="cart-pro-detail">
+                                <a class="transition addnow text-decoration-none product-contact">
+                                    <i class="fas fa-shopping-bag"></i><span>Liên hệ</span>
+                                </a>
+                            </div>
+                            <div class="tags-pro-detail w-clear">
+                                <a class="transition text-decoration-none w-clear" asp-route="@routeName-cate" title="@Model?.ProductCategory?.Title">
+                                    <i class="fa fa-tags"></i>@Model?.ProductCategory?.Title
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="tabs-pro-detail">
+                            <ul class="nav nav-tabs ul-tabs-pro-detail w-clear">
+                                <li class="nav-item active" data-tabs="info-pro-detail">Thông tin sản phẩm</li>
+                                <li class="nav-item" data-tabs="commentfb-pro-detail">Gửi thông tin liên hệ</li>
+                            </ul>
+                            <div class="content-tabs-pro-detail info-pro-detail active">
+                                <div class="content-pro-detail fancybox-content-custom">
+                                    @Html.Raw(Model.Content)
+                                </div>
+                                <div class="gradient"></div>
+                                <div class="show-more">
+                                    <a class="btn btn--view-more">
+                                        <span class="more-text">
+                                            Xem thêm <i class="fa fa-chevron-down hvr-icon"></i>
+                                        </span>
+                                        <span class="less-text">
+                                            Thu gọn <i class="fa fa-chevron-up hvr-icon"></i>
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="content-tabs-pro-detail commentfb-pro-detail">
+                                @await Html.PartialAsync("_ContactForm", Model.Id)
+                            </div>
+                        </div>
+                    </div>
+
+                    @if (relatedProducts != null && relatedProducts.Any())
+                    {
+                        <div class="col-md-12">
+                            <div class="wrap-main">
+                                <h1 class="title line-title title-main">
+                                    Sản phẩm cùng loại<i class="fa">&#xf111;</i>
+                                </h1>
+                                <div class="content-main w-clear">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="related-product-wrapper owl-carousel owl-theme owl-loaded">
+                                                <div class="owl-stage-outer">
+                                                    <div class="owl-stage">
+                                                        @foreach (var product in relatedProducts)
+                                                        {
+                                                            <div class="owl-item">
+                                                                @await Html.PartialAsync("_ProductItem", product)
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </section>
+    </div>
+}
+
+@section styles {
+    <link href="~/Client/lib/swiper/swiper-bundle.min.css" rel="stylesheet" />
+    <link href="~/Client/css/product-detail.css" rel="stylesheet" />
+}
+
+@section scripts {
+    <script src="~/Client/lib/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Swiper JS -->
+    <script type="text/javascript">
+        const galleryThumbs = new Swiper(".gallery-thumbs", {
+            spaceBetween: 5,
+            slidesPerView: 10,
+            lazy: true,
+            hashNavigation: false,
+            navigation: false,
+            watchSlidesVisibility: true,
+            watchSlidesProgress: true,
+            direction: "vertical",
+            loop: true,
+            loopAdditionalSlides: 0,
+            breakpoints: {
+                300: { slidesPerView: 4, spaceBetween: 10, direction: "horizontal" },
+                500: { slidesPerView: 4, spaceBetween: 10, direction: "horizontal" },
+                640: { slidesPerView: 5, spaceBetween: 10, direction: "horizontal" },
+                768: { slidesPerView: 4, spaceBetween: 10, direction: "horizontal" },
+                1024: { slidesPerView: 5, spaceBetween: 10 },
+            },
+        });
+
+        const galleryTop = new Swiper(".gallery-top", {
+            spaceBetween: 0,
+            centeredSlides: true,
+            lazy: true,
+            loop: true,
+            hashNavigation: false,
+            navigation: false,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+            thumbs: { swiper: galleryThumbs },
+        });
+    </script>
+}

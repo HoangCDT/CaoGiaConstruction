@@ -1,0 +1,37 @@
+﻿@using CaoGiaConstruction.WebClient.Const;
+@model List<Branches>
+@inject ISlideService _slideService;
+@{
+    var slides = await _slideService.GetAllAsync(x => x.IsDeleted != true
+                && x.Status == StatusEnum.Active
+                && x.SlideCategory.Code == SlideCategoryCodeDefine.HOME_SLIDE_BRANCHES);
+    var slide = slides?.FirstOrDefault();
+}
+<section id="services" class="section services"
+         style="background-image: url(@slide?.Avatar); background-repeat: no-repeat; background-position: center top; background-size: 100% auto;">
+    <div class="container">
+        @if (Model.Any())
+        {
+            <ul id="services-item">
+                @foreach (var branche in Model)
+                {
+                    <li class="service">
+                        <aside>
+
+                            <div class="service-inner">
+                                <h3>
+                                    <i class="fa fa-map-marker"></i>&nbsp;
+                                    <a asp-route="branche" title="@branche.Title">@branche.Title</a>
+                                </h3>
+                                <p>
+                                    @branche.Description
+                                </p>
+                            </div>
+                        </aside>
+                        <em class="animated animation infinite bullets"></em>
+                    </li>
+                }
+            </ul>
+        }
+    </div>
+</section>

@@ -1,0 +1,32 @@
+﻿@using CaoGiaConstruction.WebClient.Const;
+@inject ISlideService _slideService;
+@{
+    var slides = await _slideService.GetAllAsync(x => x.Status == StatusEnum.Active && x.SlideCategory.Code == SlideCategoryCodeDefine.HOME_SLIDE_TOP);
+}
+
+@if (slides.Any())
+{
+    <div id="banner">
+        <div class="slider-wrapper">
+            <div class="nivoSlider">
+                @foreach (var slide in slides.OrderBy(x => x.SortOrder))
+                {
+                    <img src="@slide.Avatar.ToHostImage()?w=1500" alt="@slide.Title" title="#caogia-@slide.Id" />
+                }
+            </div>
+            @foreach (var slide in slides.OrderBy(x => x.SortOrder))
+            {
+                <div id="caogia-@slide.Id" class="nivo-html-caption">
+                    <div class="nivo-caption-content">
+                        <h2 class="line-title title animated animation-delay-75" data-animate="fadeInUp">
+                            @slide.Title <i class="fa">&#xf111;</i>
+                        </h2>
+                        <p class="desc animated animation-delay-100" data-animate="fadeInUp">
+                            @slide.Description
+                        </p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}

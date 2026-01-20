@@ -1,0 +1,37 @@
+﻿@model List<Feedback>
+
+@if (Model.Any())
+{
+    <section class="section feedback_section">
+        <div class="container">
+            <div>
+                <div class="section-heading with-gray">
+                    <h2 class="h2-index animated" data-animate="fadeInDown"><span>Cảm nhận</span></h2>
+                    <h2 class="animated" data-animate="fadeInUp">Khách hàng</h2>
+                </div>
+            </div>
+            <div class="row feedback">
+                <div class="clearfix feedback-owl owl-carousel owl-theme owl-loaded animated" data-animate="fadeInUp">
+                    <div class="owl-stage-outer">
+                        <div class="owl-stage">
+                            @foreach (var item in Model.OrderBy(x => x.SortOrder))
+                            {
+                                <div class="owl-item">
+                                    <div class="feedback-item item clearfix">
+                                        <div class="feedback-img">
+                                            <img src="@item.Avatar.ToHostImage()?w=600" alt="@item.FullName">
+                                        </div>
+                                        <div class="name-text">
+                                            <h3>@item.FullName</h3>
+                                            <p>@item.Description</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

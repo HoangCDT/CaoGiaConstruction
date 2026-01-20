@@ -1,0 +1,59 @@
+﻿@inject IPropertiesService _propertiesService;
+@{
+    var properties = await _propertiesService.GetAllAsync(x => x.Status == StatusEnum.Active);
+}
+
+<div class="modal fade" id="modal-product-properties" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div id="form-product-properties">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myLargeModalLabel">Thêm / Chỉnh sửa thuộc tính</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div clsass="col-12">
+                            <div class="mb-3"><i>Lưu ý: </i>(<span class="text-danger">*</span>) là trường bắt
+                                buộc nhập</div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="mb-3 form-select-validate">
+                                <label for="billing-first-name" class="form-label">Thuộc tính <span
+                                        class="text-danger">*</span></label>
+                                <select class="form-control select2" name="propertyId" id="propertyId"
+                                    data-toggle="select2">
+                                    <option value="0">---Tất cả---</option>
+                                    @foreach (var property in properties)
+                                    {
+                                        <option value="@property.Id">
+                                            @property.Title</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label for="billing-first-name" class="form-label">
+                                    Giá trị<span class="text-danger">*</span></label>
+                                <input class="form-control" name="value" type="text" placeholder="Vui lòng nhập">
+                            </div>
+                        </div>
+                    </div> <!-- end row -->
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-success ladda-button" id="btn-product-property-save"
+                        data-style="expand-right">
+                        <i class="mdi mdi-content-save"></i>
+                        Lưu lại
+                    </button>
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div>
+    </div><!-- /.modal-dialog -->
+</div>

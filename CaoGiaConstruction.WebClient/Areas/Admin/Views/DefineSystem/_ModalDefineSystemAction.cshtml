@@ -1,0 +1,86 @@
+﻿<div class="modal fade" id="modal-define-system" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <form id="form-define-system">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myLargeModalLabel">Thêm / Chỉnh sửa </h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="mb-3"><i>Lưu ý: </i>(<span class="text-danger">*</span>) là trường bắt
+                                        buộc nhập</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="billing-first-name" class="form-label">Loại tham số<span
+                                                class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name="code" placeholder="Loại tham số">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="billing-first-name" class="form-label">Tiêu đề<span
+                                                class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name="title" placeholder="Tiêu đề">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="billing-first-name" class="form-label">Giá trị<span
+                                                class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name="value" placeholder="Giá trị">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="billing-first-name" class="form-label">Mô tả</label>
+                                        <input class="form-control" type="text" name="description" placeholder="Mô tả">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label for="billing-first-name" class="form-label">Sắp xếp<span
+                                                class="text-danger">*</span></label>
+                                        <input class="form-control" type="number" name="sortOrder"
+                                            placeholder="Sắp xếp">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="mb-3">
+                                        <label for="billing-email-address" class="form-label">Trạng thái:
+                                            &nbsp;</label>
+                                        <br />
+                                        <div>
+                                            <input type="checkbox" id="status-active" checked name="status"
+                                                class="switch-status" data-switch="success">
+                                            <label for="status-active" data-on-label="Yes" data-off-label="No"
+                                                class="mb-0 d-block"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- end row -->
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-success ladda-button" id="btn-save" data-style="expand-right">
+                        <i class="mdi mdi-content-save"></i> Lưu lại
+                    </button>
+                </div>
+
+            </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal-dialog -->
+</div>

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ProductProperties>
+
+<div class="text-sm-end">
+    <a id="btn-add-new-property" class="btn btn-success mb-2 me-2">
+        <i class="mdi mdi-plus-circle"></i>&nbsp;
+        Thêm mới
+    </a>
+    <a href="javascript:window.location.reload();" class="btn btn-light mb-2">
+        <i class="mdi mdi-sync"></i>&nbsp;
+        Làm mới
+    </a>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-centered w-100 dt-responsive nowrap" id="table-product-properties">
+        <thead class="table-light">
+            <tr>
+                <th class="all" style="width: 20px;">
+                    ID
+                </th>
+                <th class="all">Thuộc tính</th>
+                <th>Giá trị</th>
+                <th>Actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                int num = 0;
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="center middle" width="40">
+                            <strong> #@(++num)</strong>
+                        </td>
+                        <td class="center middle" data-property-id="@item.PropertyId">
+                            <strong> @item.Properties.Title</strong>
+                        </td>
+                        <td class="center middle" data-value="@item.Value">
+                            <strong> @item.Value</strong>
+                        </td>
+                        <td class="table-action text-nowrap" width="150">
+                            <a class="action-icon btn-edit" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Delete" data-bs-original-title="Edit" data-id="@item.Id">
+                                <i class="mdi mdi-square-edit-outline"></i>
+                            </a>
+                            <a href="javascript:void(0);" data-id="@item.Id" class="action-icon btn-delete" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Delete" data-bs-original-title="Delete">
+                                <i class="mdi mdi-delete"></i>
+                            </a>
+                        </td>
+
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="9">
+                        <div class="alert alert-warning w-50 m-auto text-center" role="alert">
+                            Không có dữ liệu trong danh mục này
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <partial name="~/Areas/Admin/Views/Product/_ModalProductPropertiesAction.cshtml" />
+
+</div>

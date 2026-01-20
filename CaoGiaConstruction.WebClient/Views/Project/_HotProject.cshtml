@@ -1,0 +1,30 @@
+﻿@using CaoGiaConstruction.WebClient.Context.Enums
+@inject IProjectService _service;
+@{
+    var projects = await _service.GetHotProjectsAsync(5);
+}
+@if (projects.Any())
+{
+    <div class="widget hot_blog">
+        <div class="widget-inner">
+            <h3 class="title">Dự án nổi bật</h3>
+            @foreach (var project in projects)
+            {
+                <div class="blog-item clearfix media  ">
+                    <a class="image-blog  text-center mr-3" asp-route="project" asp-route-code="@project.Code"
+                       asp-route-category="@project.Service.Code" title="@project.Title">
+                        <img class="img-fluid" src="@project.Avatar.ToHostImage()?w=600" alt="@project.Title">
+                    </a>
+
+                    <div class="content-blog media-body clearfix">
+                        <h3 class="mt-0">
+                            <a class="link" asp-route="project" asp-route-code="@project.Code"
+                               asp-route-category="@project.Service.Code" title="@project.Title">@project.Title</a>
+                        </h3>
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}

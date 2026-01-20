@@ -1,0 +1,64 @@
+﻿@model HomeVM;
+
+<section class="section info-recipe">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7">
+                @if (Model.HomeBlogs.Any())
+                {
+                    @foreach (var blog in Model.HomeBlogs)
+                    {
+                        <div class="product-single-left bg-skin text-white animated" data-animate="fadeInLeft">
+                            <h2>@blog.Title</h2>
+                            <p> @blog.Description.Left(160, true, true)</p>
+                            <span class="icon">
+                                <img class="basic lazied" src="~/Client/icons/icon-cf.png" alt="@blog.Title">
+                            </span>
+                            <a class="btn-readmore" asp-route="blog-detail"
+                               asp-route-code="@blog.Code" asp-route-category="@blog.BlogCategory.Code"
+                               title="@blog.Title">Xem chi tiết</a>
+                        </div>
+                    }
+                }
+            </div>
+            <div class="col-sm-5">
+                @if (Model.HotBlogs.Any())
+                {
+                    <aside class="animated" data-animate="fadeInRight">
+                        <div class="hot-blog-wrapper owl-carousel owl-theme owl-loaded">
+                            <div class="owl-stage-outer">
+                                <div class="owl-stage">
+                                    @foreach (var hotBlog in Model.HotBlogs)
+                                    {
+                                        <div class="owl-item">
+                                            <div class="item_wrap_blog">
+                                                <div class="blog-img">
+                                                    <a asp-route="blog-detail" asp-route-category="@hotBlog.BlogCategory.Code" asp-route-code="@hotBlog.Code" title="@hotBlog.Title">
+                                                        <img src="@hotBlog.Avatar?.ToHostImage()?w=600" class="img-responsive basic" alt="@hotBlog.Title">
+                                                    </a>
+                                                </div>
+                                                <div class="wrap-content">
+                                                    <h3 class="h4">
+                                                        <a class="text2line" title="@hotBlog.Title" asp-route="blog-detail" asp-route-category="@hotBlog.BlogCategory.Code" asp-route-code="@hotBlog.Code">@hotBlog.Title</a>
+                                                    </h3>
+
+                                                    <span class="time_post f">
+                                                        <i class="fa fa-clock-o"></i>&nbsp;
+                                                        @hotBlog.CreatedDate.ToString("dd/MM/yyyy")
+                                                    </span>
+                                                    <p>
+                                                        @hotBlog.Description.Left(100, true, true)
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                }
+            </div>
+        </div>
+    </div>
+</section>

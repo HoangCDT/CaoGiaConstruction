@@ -1,0 +1,367 @@
+﻿@model AboutVM
+@{
+    ViewData["Title"] = "Chỉnh sửa thông tin công ty";
+}
+<div class="content">
+    <!-- Start Content-->
+    <div class="container-fluid">
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a asp-route="admin-default">Trang chủ</a></li>
+                            <li class="breadcrumb-item active">thông tin công ty</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">Thông tin thông tin công ty</h4>
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="form-about">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <ul class="nav nav-tabs nav-bordered mb-3 sticky-header-top">
+                                        <li class="nav-item">
+                                            <a href="#tab-info" data-bs-toggle="tab" aria-expanded="false"
+                                                class="nav-link active">
+                                                <i class="mdi mdi-home-variant d-md-none d-block"></i>
+                                                <span class="d-none d-md-block">Thông tin chung</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#tab-gallery" data-bs-toggle="tab" aria-expanded="true"
+                                                class="nav-link ">
+                                                <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                                                <span class="d-none d-md-block">Logo công ty</span>
+                                            </a>
+                                        </li>
+
+                                        <li class="nav-item">
+                                            <a href="#tab-content" data-bs-toggle="tab" aria-expanded="true"
+                                                class="nav-link ">
+                                                <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                                                <span class="d-none d-md-block">Nội dung chi tiết</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#tab-seo" data-bs-toggle="tab" aria-expanded="true"
+                                                class="nav-link ">
+                                                <i class="mdi mdi-account-circle d-md-none d-block"></i>
+                                                <span class="d-none d-md-block">SEO</span>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane show active" id="tab-info">
+                                            <div class="mb-3">
+                                                <i>Lưu ý: </i>(<span class="text-danger">*</span>) là
+                                                trường bắt buộc nhập
+                                            </div>
+                                            <input class="form-control" value="@Model.Id" id="aboutId" name="id"
+                                                type="hidden" placeholder="Vui lòng nhập">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label for="billing-first-name" class="form-label">
+                                                            Về chúng tôi
+                                                            <span class="text-danger">*</span>
+                                                        </label>
+                                                        <input type="text" class="form-control" value="@Model.AboutUs"
+                                                            name="aboutUs" placeholder="Vui lòng nhập">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label for="billing-first-name" class="form-label">
+                                                            Mô tả (Hiển
+                                                            thị lên trang chủ) <span class="text-danger">*</span>
+                                                        </label>
+                                                        <textarea class="form-control" name="description" rows="3"
+                                                            placeholder="Vui lòng nhập">@Model.Description</textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label for="billing-first-name" class="form-label">
+                                                            Nhúng Google Maps
+                                                            <span class="text-danger">*</span>
+                                                        </label>
+                                                        <textarea class="form-control" name="mapIFrame" rows="5"
+                                                            placeholder="(Truy cập https://www.google.com/maps để lấy link)">@Model.MapIFrame</textarea>
+                                                        <span class="help-block"><small>Truy cập
+                                                                https://www.google.com/maps để lấy link.</small></span>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label for="billing-first-name" class="form-label">
+                                                            Nhúng TikTok
+                                                            <span class="text-danger">*</span>
+                                                        </label>
+                                                        <textarea class="form-control" name="tiktokIFrame" rows="5"
+                                                            placeholder="(Truy cập https://www.tiktok.com/embed/?type=profile để lấy link)">@Model.TiktokIFrame</textarea>
+                                                        <span class="help-block"><small>Truy cập
+                                                                https://www.tiktok.com/embed/?type=profile để lấy
+                                                                link.</small></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <label for="billing-first-name" class="form-label">
+                                                            Số điện thoại
+                                                            <span class="text-danger">*</span>
+                                                        </label>
+                                                        <input type="text" class="form-control"
+                                                            value="@Model.PhoneNumber" name="phoneNumber"
+                                                            placeholder="Vui lòng nhập">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <label for="billing-first-name" class="form-label">
+                                                            Số điện thoại
+                                                            khác <span class="text-danger">*</span>
+                                                        </label>
+                                                        <input type="text" class="form-control"
+                                                            value="@Model.PhoneNumberOther" name="phoneNumberOther"
+                                                            placeholder="Vui lòng nhập">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <label for="billing-first-name" class="form-label">
+                                                            Email <span class="text-danger">*</span>
+                                                        </label>
+                                                        <input type="text" class="form-control" value="@Model.Email"
+                                                            name="email" placeholder="Vui lòng nhập">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <label for="billing-first-name" class="form-label">
+                                                            Tiktok Username
+                                                        </label>
+                                                        <input type="text" class="form-control" name="tiktokUsername"
+                                                            value="@Model.TiktokUsername"
+                                                            placeholder="Vd: @@hoangvinhcaphe" />
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label for="billing-first-name" class="form-label">
+                                                            Địa chỉ <span class="text-danger">*</span>
+                                                        </label>
+                                                        <input type="text" class="form-control" value="@Model.Address"
+                                                            name="address" placeholder="Vui lòng nhập">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="mb-3">
+                                                        <label for="billing-first-name" class="form-label">
+                                                            Copyright
+                                                            <span class="text-danger">*</span>
+                                                        </label>
+                                                        <input type="text" class="form-control" value="@Model.Copyright"
+                                                            name="copyright" placeholder="Vui lòng nhập">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="tab-pane" id="tab-gallery">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <div class="upload-file-wrap">
+                                                        <label class="form-label mb-2">Logo Phía Trên</label>
+                                                        <!-- File Upload -->
+                                                        <div class="upload-file">
+                                                            <div class="image-preview-wrap">
+                                                                @if (!Model.LogoTop.IsNullOrEmpty())
+                                                                {
+                                                                    <img src="~/@Model.LogoTop" class="image-preview" />
+                                                                }
+                                                                else
+                                                                {
+                                                                    <img src="~/Admin/assets/images/no_image.png"
+                                                                        class="image-preview" />
+                                                                }
+                                                                <input type="hidden" name="logoTop"
+                                                                    value="@Model.LogoTop" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="mt-3">
+                                                            <div class="input-group">
+                                                                <input name="fileLogoTop" type="file"
+                                                                    class="form-control select-file" accept="image/*" />
+                                                                <button class="btn btn-danger btn-delete-file"
+                                                                    type="button">
+                                                                    <i class="mdi mdi-trash-can"></i>
+                                                                </button>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-3">
+                                                    <div class="upload-file-wrap">
+                                                        <label class="form-label mb-2">Logo Phía Dưới</label>
+                                                        <!-- File Upload -->
+                                                        <div class="upload-file">
+                                                            <div class="image-preview-wrap">
+                                                                @if (!Model.LogoTop.IsNullOrEmpty())
+                                                                {
+                                                                    <img src="~/@Model.LogoBottom" class="image-preview" />
+                                                                }
+                                                                else
+                                                                {
+                                                                    <img src="~/Admin/assets/images/no_image.png"
+                                                                        class="image-preview" />
+                                                                }
+                                                                <input type="hidden" name="logoBottom"
+                                                                    value="@Model.LogoBottom" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="mt-3">
+                                                            <div class="input-group">
+                                                                <input name="fileLogoBottom" type="file"
+                                                                    class="form-control select-file" accept="image/*" />
+                                                                <button class="btn btn-danger btn-delete-file"
+                                                                    type="button">
+                                                                    <i class="mdi mdi-trash-can"></i>
+                                                                </button>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane" id="tab-content">
+                                            <textarea style="height: 100%; width: 100%" class="tinyeditor"
+                                                name="Content" data-folder="@Commons.FILE_UPLOAD/about/content">
+                                                @Model.Content
+                                            </textarea>
+
+                                        </div>
+
+                                        <div class="tab-pane" id="tab-seo">
+                                            <div class="tab-pane show active" id="tab-info">
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="mb-3">
+                                                            <label for="billing-first-name" class="form-label">
+                                                                Page Title (60 Ký tự)
+                                                            </label>
+                                                            <input class="form-control" value="@Model.SeoPageTitle"
+                                                                name="seoPageTitle" type="text"
+                                                                placeholder="Vui lòng nhập">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12">
+                                                        <div class="mb-3">
+                                                            <label for="billing-first-name" class="form-label">
+                                                                Alias (60 ký tự)
+                                                            </label>
+                                                            <input class="form-control" value="@Model.SeoAlias"
+                                                                name="seoAlias" type="text" placeholder="Vui lòng nhập">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12">
+                                                        <div class="mb-3">
+                                                            <label for="billing-first-name" class="form-label">
+                                                                Keywords (512 ký tự)
+                                                            </label>
+                                                            <textarea class="form-control" name="seoKeywords" rows="3"
+                                                                placeholder="Vui lòng nhập">@Model.SeoKeywords</textarea>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12">
+                                                        <div class="mb-3">
+                                                            <label for="billing-first-name" class="form-label">
+                                                                Description (512 ký tự)
+                                                            </label>
+                                                            <textarea class="form-control" name="seoDescription"
+                                                                rows="3"
+                                                                placeholder="Vui lòng nhập">@Model.SeoDescription</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-sm-6">
+                                </div> <!-- end col -->
+                                <div class="col-sm-6">
+                                    <div class="text-sm-end">
+                                        <button type="submit" class="btn btn-success ladda-button"
+                                            data-style="expand-right" id="btn-save">
+                                            <i class="mdi mdi-content-save"></i> Lưu lại
+                                        </button>
+                                    </div>
+                                </div> <!-- end col -->
+                            </div>
+                        </form>
+                    </div> <!-- end card-body-->
+                </div> <!-- end card-->
+            </div> <!-- end col -->
+        </div>
+        <!-- end row -->
+
+    </div> <!-- container -->
+
+</div> <!-- content -->
+@section styles {
+    <!-- validate css -->
+    <link href="~/Admin/assets/vendor/validation/js/jquery.validate.css" rel="stylesheet" />
+    <!-- Select2 css -->
+    <link href="~/Admin/assets/vendor/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <!-- ladda css -->
+    <link href="~/Admin/assets/vendor/ladda-master/dist/ladda.min.css" rel="stylesheet" />
+    <link href="~/Admin/assets/vendor/ladda-master/dist/ladda-themeless.min.css" rel="stylesheet" />
+    @* upload file single css *@
+    <link href="~/Admin/assets/js/commons/upload-file-single/upload-file-single.css" rel="stylesheet" />
+}
+
+@section scripts {
+    <!-- validate js -->
+    <script src="~/Admin/assets/vendor/validation/js/jquery.validate.min.js"></script>
+    <!--  Select2 Js -->
+    <script src="~/Admin/assets/vendor/select2/js/select2.min.js"></script>
+    @* tinyeditor *@
+    <script src="~/Admin/assets/vendor/tinyeditor/1.jquery.tinymce.min.js"></script>
+    <script src="~/Admin/assets/vendor/tinyeditor/2.tinymce.min.js"></script>
+    <script src="~/Admin/assets/vendor/tinyeditor/3.tinymce.customfunction.js"></script>
+    <script src="~/Admin/assets/vendor/tinyeditor/4.upload-file.js"></script>
+    <script src="~/Admin/assets/vendor/tinyeditor/dataconfig.js"></script>
+    <!-- ladda js -->
+    <script src="~/Admin/assets/vendor/ladda-master/dist/spin.min.js"></script>
+    <script src="~/Admin/assets/vendor/ladda-master/dist/ladda.jquery.min.js"></script>
+    @* upload file single js *@
+    <script src="~/Admin/assets/js/commons/upload-file-single/upload-file-single.js"></script>
+    @* about controller *@
+    <script src="~/Admin/assets/js/controllers/about-controller.js" asp-append-version="true"></script>
+}

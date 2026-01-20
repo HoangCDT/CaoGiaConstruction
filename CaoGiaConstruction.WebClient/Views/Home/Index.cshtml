@@ -1,0 +1,76 @@
+﻿<!-- Banner -->
+@await Html.PartialAsync("_SlideTopHome")
+
+<div class="main-content home-wrapper">
+    <div class="page-content">
+
+        @* Máy móc nổi bật *@
+        @await Component.InvokeAsync(nameof(vcHotMachine))
+
+        @* Sản phẩm nổi bật *@
+        @await Component.InvokeAsync(nameof(vcHotProduct))
+
+        @* About *@
+        @await Component.InvokeAsync(nameof(vcAboutHome))
+
+        @* TikTok Embed - Lazy Load *@
+        <div id="tiktok-embed-container"></div>
+          @* @await Html.PartialAsync("_TiktokEmbed") *@
+
+        @* Chi nhánh*@
+        @await Component.InvokeAsync(nameof(vcBranchesV2))
+
+        @* Dịch vụ *@
+        @await Component.InvokeAsync(nameof(vcService))
+
+        @* Blog Home *@
+        @await Component.InvokeAsync(nameof(vcBlogHome))
+
+        @* Video *@
+        @await Component.InvokeAsync(nameof(vcVideo))
+
+        @* Cảm nhận khách hàng *@
+        @await Component.InvokeAsync(nameof(vcFeedback))
+
+    </div>
+</div>
+
+@section styles {
+    <link rel="stylesheet" href="~/Client/css/nivo-slider.css">
+}
+
+@section scripts {
+    <script src="~/Client/js/vendor/jquery.nivo.slider.pack.js"></script>
+    <script>
+        // Lazy load TikTok embed sau khi trang đã load xong
+        $(document).ready(function() {
+            // Load TikTok embed sau một khoảng delay nhỏ để không chặn trang chính
+            setTimeout(function() {
+                loadTiktokEmbed();
+            }, 500); // Delay 500ms để đảm bảo trang chính đã render xong
+        });
+
+        function loadTiktokEmbed() {
+            const container = $('#tiktok-embed-container');
+            if (container.length === 0) {
+                return;
+            }
+
+            $.ajax({
+                url: '/api/tiktok-embed',
+                method: 'GET',
+                cache: false,
+                timeout: 10000 // 10 seconds timeout
+            })
+            .done(function(response) {
+                if (response && response.success && response.html) {
+                    container.html(response.html);
+                }
+            })
+            .fail(function(xhr, status, error) {
+                console.log('Failed to load TikTok embed:', error);
+                // Không hiển thị lỗi cho user, chỉ log để debug
+            });
+        }
+    </script>
+}

@@ -1,0 +1,184 @@
+﻿@model Pager<ProjectNoContentVM>
+@{
+    ViewData["Title"] = "Dự án";
+    
+    var paramSearch = ViewBag.ParamSearch as SearchKeywordPagination;
+}
+<div class="content">
+
+    <!-- Start Content-->
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a asp-route="admin-default">Trang chủ</a></li>
+                            <li class="breadcrumb-item active">Quản lý dự án</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">Quản lý dự án</h4>
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row mb-2">
+                            <div class="col-xl-9 app-search">
+                                <form asp-route="admin-project" method="get" class="row gy-2 gx-2 align-items-center justify-content-xl-start justify-content-between">
+                                    <div class="col-auto">
+                                        @await Html.PartialAsync("_AppSearch", @paramSearch.Keyword)
+                                    </div>
+                                  
+                                </form>
+                            </div>
+                            <div class="col-xl-3">
+                                <div class="text-sm-end">
+                                    <a asp-route="admin-project-action-add" class="btn btn-success mb-2 me-2">
+                                        <i class="mdi mdi-plus-circle"></i>&nbsp;
+                                        Thêm mới
+                                    </a>
+                                    <a href="javascript:window.location.reload();" class="btn btn-light mb-2">
+                                        <i class="mdi mdi-sync"></i>&nbsp;
+                                        Làm mới
+                                    </a>
+                                </div>
+                            </div><!-- end col-->
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-centered w-100 dt-responsive nowrap" id="table-project">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="all" style="width: 20px;">
+                                            STT
+                                        </th>
+                                        <th>Ảnh đại diện</th>
+                                        <th class="all">Tên dự án</th>
+                                        <th class="all">Địa chỉ</th>
+                                        <th class="all">Mô tả</th>
+                                        <th>Người tạo/Ngày tạo</th>
+                                        <th>Người cập nhật/Ngày cập nhật</th>
+                                        <th>Trạng thái</th>
+                                        <th style="width: 85px;">#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.Result.Any())
+                                    {
+                                        int num = 0;
+                                        foreach (var item in Model.Result)
+                                        {
+                                            <tr>
+                                                <td class="center middle" width="20">
+                                                    <strong> #@(((Model.CurrentPage - 1) * Model.PageSize + num) + 1)</strong>
+                                                </td>
+                                                <td>
+                                                    @{
+                                                        var imageUrl = !string.IsNullOrEmpty(item.Avatar?.ToHostImage())
+                                                        ? item.Avatar.ToHostImage()
+                                                        : item.ImageList?.ToHostImage(true);
+
+                                                        if (!string.IsNullOrEmpty(imageUrl))
+                                                        {
+                                                            <a data-fancybox="gallery" href="@imageUrl">
+                                                                <img src="@imageUrl" alt="@item.Title" title="@item.Title" class="rounded me-3" height="48" />
+                                                            </a>
+                                                        }
+                                                    }
+                                                </td>
+                                                 <td  width="150">
+                                                    <p class="m-0 d-inline-block align-middle font-13">
+                                                        <a target="_blank"
+                                                           asp-route="project-detail" asp-route-code="@item.Code"
+                                                           asp-route-category="@item?.Service?.Code" title="@item.Title"
+                                                           class="text-body"> @item.Title</a>
+                                                    </p>
+                                                </td>
+                                                   <td  width="300">
+                                                    <address class="mb-2 font-13">@item.Address</address>
+                                                </td>
+                                                   <td class="text-nowrap" width="300">
+                                                    <h5 class="mb-2 font-13">@item.Description</h5>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <h5 class="mb-2 font-13">@item.UserCreated?.FullName</h5>
+                                                    <p class="mb-0 font-13 txt-muted">
+                                                        @item.CreatedDate.ToString("dd/MM/yyyy")
+                                                    </p>
+                                                    <small class="text-muted">@item.CreatedDate.ToString("HH:mm")</small>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <h5 class="mb-2 font-13">@item.UserModified?.FullName</h5>
+                                                    <p class="mb-0 font-13 txt-muted"> @item.ModifiedDate.ToString("dd/MM/yyyy")&nbsp;&nbsp;</p>
+                                                    <small class="text-muted">&nbsp;&nbsp;@item.ModifiedDate.ToString("HH:mm")</small>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <input type="checkbox" id="stauts@(item.Id)" data-id="@item.Id" @(item.Status == StatusEnum.Active ? "checked" : "") class="switch-status" data-switch="success">
+                                                        <label for="stauts@(item.Id)" data-on-label="Yes" data-off-label="No" class="mb-0 d-block"></label>
+                                                    </div>
+                                                </td>
+
+                                                <td class="table-action text-nowrap">
+                                                    <a asp-route="admin-project-action" asp-route-id="@item.Id" data-id="@item.Id" class="action-icon btn-edit" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Delete" data-bs-original-title="Edit">
+                                                        <i class="mdi mdi-square-edit-outline"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" data-id="@item.Id" class="action-icon btn-delete" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Delete" data-bs-original-title="Delete">
+                                                        <i class="mdi mdi-delete"></i>
+                                                    </a>
+                                                      <a asp-route="admin-project-action" asp-route-id="@item.Id"
+                                                        asp-route-type="copy" data-id="@item.Id" class="action-icon btn-copy"
+                                                        data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy"
+                                                        data-bs-original-title="Copy">
+                                                        <i class="mdi mdi-content-copy"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            num++;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="9">
+                                                <div class="alert alert-warning w-50 m-auto text-center" role="alert">
+                                                    Không có dữ liệu trong danh mục này
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            @await Component.InvokeAsync(nameof(vcPagingAdmin), Model)
+                        </div>
+                    </div> <!-- end card-body-->
+                </div> <!-- end card-->
+            </div> <!-- end col -->
+        </div>
+        <!-- end row -->
+
+    </div> <!-- container -->
+
+</div> <!-- content -->
+@section styles {
+    <!-- Select2 css -->
+    <link href="~/Admin/assets/vendor/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+
+}
+
+@section scripts {
+    <!--  Select2 Js -->
+    <script src="~/Admin/assets/vendor/select2/js/select2.min.js"></script>
+    <!-- Datatable js -->
+    <script src="~/Admin/assets/js/controllers/project-controller.js" asp-append-version="true"></script>
+
+
+
+}

@@ -1,0 +1,36 @@
+﻿@model BlogNoContentVM;
+@inject IBlogService _service;
+@{
+    var blogs = await _service.GetHotBlogsAsync(3, (BlogTypeEnum)Model.BlogCategory.Type);
+    var routeName = Model.BlogCategory.Type == BlogTypeEnum.KNOWLEDGE ? "know-detail" :
+    (Model.BlogCategory.Type == BlogTypeEnum.NEWSEVENT ? "blog-detail" : "formula-detail");
+    var cateTitle = Model.BlogCategory.Type == BlogTypeEnum.KNOWLEDGE ? "Kiến thức nổi bật"
+    : (Model.BlogCategory.Type == BlogTypeEnum.NEWSEVENT ? "Tin tức nổi bật" : "Công thức nổi bật");
+}
+@if (blogs.Any())
+{
+    <div class="widget hot_blog">
+    <div class="widget-inner">
+        <h3 class="title">@cateTitle</h3>
+        @foreach (var blog in blogs)
+            {
+                string canonicalUrl = Url.RouteUrl(routeName, new { category = Model.BlogCategory.Code, code = Model.Code });
+                <div class="blog-item clearfix media  ">
+                    <link rel="canonical" href="@canonicalUrl" />
+                    <a class="image-blog  text-center mr-3" asp-route="@routeName" asp-route-code="@blog.Code"
+                        asp-route-category="@blog.BlogCategory.Code" title="@blog.Title">
+                        <img class="img-fluid" src="@blog.Avatar.ToHostImage()?w=600" alt="@blog.Title">
+                    </a>
+
+                    <div class="content-blog media-body clearfix">
+                        <h3 class="mt-0">
+                            <a class="link" asp-route="@routeName" asp-route-code="@blog.Code"
+                                asp-route-category="@blog.BlogCategory.Code" title="@blog.Title">@blog.Title</a>
+                        </h3>
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}

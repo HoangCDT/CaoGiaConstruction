@@ -1,0 +1,38 @@
+﻿@using CaoGiaConstruction.WebClient.Const;
+@model string;
+@inject IProductCategoryService _service;
+@{
+    var productCategories = await _service.GetByProductMainCodeAsyncAsync(Model);
+    var routeName = Model.ToString().ToLower();
+}
+<div class="widget categories-box">
+    <a asp-route="@routeName-cate" asp-route-code="all" class="nav-link" title="Xem tất cả">
+        <h3 class="title">Xem tất cả</h3>
+    </a>
+</div>
+@if (productCategories != null)
+{
+    @foreach (var productCategory in productCategories)
+    {
+        <div class="widget categories-box">
+    <h3 class="title">@productCategory.MainTitle.Left(35, true, true)</h3>
+    @if (productCategory.Categories.Any())
+            {
+                <ul class="main">
+                    @foreach (var item in productCategory.Categories)
+                    {
+                        routeName = item.ProductMainCategory?.Code?.ToString()?.ToLower();
+                        string canonicalUrl = Url.RouteUrl(routeName + "-cate", new { code = item.Code });
+
+                        <li class="nav-item nav-items">
+                            <link rel="canonical" href="@canonicalUrl" />
+                            <a asp-route="@routeName-cate" asp-route-code="@item?.Code" class="nav-link" title=" @item.Title">
+                                @item.Title.Left(35, true, true)
+                            </a>
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
+    }
+}

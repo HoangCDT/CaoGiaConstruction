@@ -1,0 +1,34 @@
+﻿.nav-tabs.nav-bordered li:first-child a {
+    padding-left: 0 !important;
+}
+
+.nav-tabs .nav-item .nav-link {
+    font-weight: bold;
+}
+
+.minw-100 {
+    min-width: 100px;
+    display: inline-block;
+}
+
+.sticky-header-top {
+    position: sticky;
+    top: 70px;
+    z-index: 1020;
+    background-color: #fff;
+}
+
+.bg-setting {
+    display: block;
+    width: 60px;
+    height: 15px;
+    border-radius: 2px;
+}
+
+.leftside-menu menuitem-active {
+    background: rgb(31 42 63) !important;
+}
+
+ .bg-primary {
+    background-color: rgb(234 171 52) !important;
+} 

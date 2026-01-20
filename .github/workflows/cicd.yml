@@ -1,0 +1,51 @@
+name: CI/CD with Docker Compose.
+
+on:
+  push:
+    branches:
+      - prod
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set IMAGE_TAG
+        run: echo "IMAGE_TAG=v.${{ github.run_number }}" >> $GITHUB_ENV
+
+      - name: Install Docker Compose
+        run: |
+          sudo apt-get install apt-utils
+          sudo apt-get update
+          sudo apt-get install -y docker-compose
+          sudo apt-get install -y libfontconfig1
+          sudo apt-get -qq -y install libgdiplus
+      - name: Build and Push Docker Images
+        run: |
+          docker-compose -f docker-compose.yml build
+          BUILD_STATUS=$?
+          if [ $BUILD_STATUS -eq 0 ]; then
+            echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+            docker-compose -f docker-compose.yml push
+          else
+            echo "Build failed. Deployment will be skipped."
+            exit $BUILD_STATUS
+          fi
+      - name: SSH into Linux Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          sync: true
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          port: ${{ secrets.SSH_PORT }}
+          envs: IMAGE_TAG
+          script: |
+            cd ${{ secrets.DEPLOY_PATH }}
+            docker-compose -f docker-compose.yml stop
+            docker-compose -f docker-compose.yml rm -f
+            docker-compose -f docker-compose.yml pull --parallel
+            docker-compose -f docker-compose.yml up -d

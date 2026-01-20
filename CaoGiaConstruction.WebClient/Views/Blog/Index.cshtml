@@ -1,0 +1,35 @@
+﻿@model Pager<BlogNoContentVM>
+<div class="main-content">
+    <div class="page-header">
+        <!-- <div class="page-about"> -->
+        @{
+            var breadcrumbItems = new List<BreadcrumbDto>
+        {
+        new BreadcrumbDto { Url = "home", Title = "Trang chủ", IsActive = false },
+        new BreadcrumbDto { Url =  "blog", Title = "Tin tức", IsActive = true },
+        };
+        }
+        @await Component.InvokeAsync(nameof(vcBreadcrumb), breadcrumbItems)
+    </div>
+    <div class="page-content">
+        <div class="container">
+            @if (Model.Result.Count() > 0)
+            {
+                foreach (var blog in Model.Result)
+                {
+                    @await Html.PartialAsync("_BlogItem", blog)
+                }
+                <!-- End Post -->
+                @await Component.InvokeAsync(nameof(vcPaging), Model)
+            }
+            else
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        @await Html.PartialAsync("_AlertMessage", "Tin tức đang được cập nhật.")
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

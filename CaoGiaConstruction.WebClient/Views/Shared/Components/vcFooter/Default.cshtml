@@ -1,0 +1,173 @@
+﻿@model SystemDto;
+
+@inject IBranchesService _brachesService;
+@inject IProductCategoryService _productCategoryService;
+@{
+    var braches = await _brachesService.GetAllAsync(x => x.IsDeleted != true && x.Status == StatusEnum.Active);
+    var productCates = await _productCategoryService.GetAllAsync(x => x.IsDeleted != true && x.Status == StatusEnum.Active);
+}
+
+<footer id="footer" style="background-color: @Model?.Setting?.FooterBackgroundColor">
+    <div class="footer-info">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <aside class="widget">
+                        <div class="logo-wrapper">
+                            <a asp-route="home" title="@Model?.About.AboutUs">
+                                <img class="img-fluid" src="@Model?.About.LogoBottom.ToHostImage()?w=600" alt="@Model?.About.AboutUs">
+                            </a>
+                        </div>
+                        <div class="widget-content contact-us">
+                            <p>
+                                <a href="mailto:@Model?.About.Email">
+                                    <i class="fa fa-envelope"></i>
+                                    <span>@Model?.About.Email</span>
+                                </a>
+                            </p>
+                            <p>
+                                <a href="tel:+@Model?.About.PhoneNumber">
+                                    <i class="fa fa-phone"></i>
+                                    <span>@Model?.About.PhoneNumber</span>
+                                </a>
+                            </p>
+                            <p>
+                                <i class="fa fa-map-marker"></i>
+                                <span>
+                                    @Model?.About.Address
+                                </span>
+                            </p>
+                        </div>
+                    </aside>
+                </div>
+                <div class="col-sm-3">
+                    <aside class="widget">
+                        <h3 class="title">Hệ thống chi nhánh</h3>
+                        @if (braches.Any())
+                        {
+                            <div class="widget-content">
+                                <ul>
+                                    @foreach (var brache in braches)
+                                    {
+                                        <li><a href="@brache.MapIFrame" target="_blank">@brache.Title</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        }
+
+                    </aside>
+                </div>
+                @* <div class="col-sm-3">
+                    <aside class="widget">
+                        <h3 class="title">Sản phẩm</h3>
+                        @if (braches.Any())
+                        {
+                            <div class="widget-content">
+                                <ul>
+                                    @foreach (var cate in productCates)
+                                    {
+                                        <li><a href="#" target="_blank">@cate.Title</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        }
+
+                    </aside>
+                </div> *@
+                <div class="col-sm-3">
+    <aside class="widget">
+        <h3 class="title">Sản phẩm</h3>
+
+        @if (productCates != null && productCates.Any())
+        {
+            <div class="widget-content">
+                <ul id="productCateList">
+                    @foreach (var cate in productCates)
+                    {
+                        <li class="product-cate-item">
+                            <a href="#" target="_blank">@cate.Title</a>
+                        </li>
+                    }
+                </ul>
+
+             <a href="javascript:void(0)" id="btnToggleList" class="btn btn-sm btn-outline-secondary mt-2">
+    Xem thêm ...
+</a>
+
+            </div>
+        }
+        else
+        {
+            <p>Không có sản phẩm nào.</p>
+        }
+    </aside>
+</div>
+                <div class="col-sm-3">
+                    <aside class="widget">
+                        <h3 class="title">Theo dõi</h3>
+                        <div class="widget-content">
+                            <p>Hãy theo dõi chúng tôi để nhận được thông tin ưu đãi sớm nhất.</p>
+                            <ul class="social">
+                                <li>
+                                    <a href="@Model?.About.FacebookUrl" class="hvr-rectangle-out" target="_blank">
+                                        <img src="~/Client/icons/facebook.png" alt="Facebook Icon" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@Model?.About.YoutubeUrl" class="hvr-rectangle-out" target="_blank">
+                                        <img src="~/Client/icons/youtube.png" alt="Youtube Icon" />
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.tiktok.com/@Model?.About.TiktokUsername" class="hvr-rectangle-out" target="_blank">
+                                        <img src="~/Client/icons/tiktok.png" alt="Tiktok Icon" />
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <div class="container">
+            <p>
+                @Model?.About.Copyright
+                <strong>
+                    <a asp-route="home">@Model?.About.AboutUs</a>
+                </strong>.
+            </p>
+        </div>
+    </div>
+</footer>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const items = document.querySelectorAll("#productCateList .product-cate-item");
+            const btn = document.getElementById("btnToggleList");
+            const maxVisible = 5;
+
+            if (items.length > maxVisible) {
+                // Ẩn bớt item sau vị trí thứ 5
+                items.forEach((item, i) => {
+                    if (i >= maxVisible) item.style.display = "none";
+                });
+
+                let expanded = false;
+
+                btn.addEventListener("click", () => {
+                    expanded = !expanded;
+
+                    items.forEach((item, i) => {
+                        item.style.display = expanded || i < maxVisible ? "list-item" : "none";
+                    });
+
+                    btn.textContent = expanded ? "Thu gọn" : "Xem thêm ...";
+                });
+            } else {
+                btn.style.display = "none"; // Không đủ 5 item → ẩn nút
+            }
+        });
+    </script>

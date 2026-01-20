@@ -1,0 +1,32 @@
+﻿@inject IServiceCaoGiaService _service;
+@{
+
+	var services = await _service.GetTopServiceHomeAsync(5);
+}
+@if (services.Any())
+{
+	<div class="hot-blog">
+	<h2 class="h2_sidebar_blog">
+		<a href="service" title="Các dịch vụ">Các dịch vụ</a>
+	</h2>
+	<div class="blog-content">
+		@foreach (var item in services)
+			{
+				<div class="item clearfix">
+					<div class="post-thumb">
+						<a class="image-blog scale_hover" asp-route="service-detail"
+							asp-route-category="@item.ServiceCategory.Code" asp-route-code="@item.Code" title="@item.Title">
+							<img width="600" height="380" class="img_blog lazyload loaded" src="@item.Avatar.ToHostImage()"
+								alt="@item.Title">
+						</a>
+					</div>
+					<div class="contentright">
+						<h3><a title="@item.Title" asp-route="service-detail" asp-route-category="@item.ServiceCategory.Code"
+								asp-route-code="@item.Code">@item.Title.Left(55, true, true)</a>
+						</h3>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+}

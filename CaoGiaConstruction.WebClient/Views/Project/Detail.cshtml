@@ -1,0 +1,174 @@
+﻿@using CaoGiaConstruction.WebClient.Context.Enums
+@model ProjectVM
+@{
+    var projectRelateds = ViewBag.ProjectRelateds as IEnumerable<ProjectNoContentVM>;
+}
+<div class="main-content">
+    <div class="page-header">
+        <!-- <div class="page-about"> -->
+        @{
+            var breadcrumbItems = new List<BreadcrumbDto>
+        {
+        new BreadcrumbDto { Url = "home", Title = "Trang chủ", IsActive = false },
+        new BreadcrumbDto { Url = "project", Title = "Dự án", IsActive = false },
+        new BreadcrumbDto { Url = $"project-cate", Title = Model.Service.Title,Code = Model.Service.Code, IsActive = false },
+        new BreadcrumbDto { Url = string.Empty, Title = Model.Title, IsActive = true },
+        };
+        }
+        @await Component.InvokeAsync(nameof(vcBreadcrumb), breadcrumbItems)
+    </div>
+    <div class="page-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8">
+                    @if (Model.ImageList != null)
+                    {
+                        <div class="article-image-block relative">
+                            <div class="swiper-container gallery-top">
+                                <div class="swiper-wrapper" id="lightgallery">
+                                    @foreach (var item in Model.ImageList.SplitToText(";"))
+                                    {
+                                        <a class="swiper-slide" href="@item.Text.ToHostImage()?w=1270"
+                                          data-fancybox="gallery"
+                                           title="@Model.Title" style="width: 1270px;">
+                                            <img src="@item.Text.ToHostImage()?w=1270" alt="@Model.Title" class="img-responsive mx-auto d-block swiper-lazy">
+                                        </a>
+                                    }
+                                </div>
+                            </div>
+                            <div class="swiper-container gallery-thumbs">
+                                <div class="swiper-wrapper">
+                                    @foreach (var item in Model.ImageList.SplitToText(";"))
+                                    {
+                                        <div class="swiper-slide">
+                                            <div class="p-100">
+                                                <img src="@item.Text.ToHostImage()?w=600" alt="@Model.Title" class="swiper-lazy swiper-lazy-loaded">
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                                <div class="swiper-button-next">
+                                </div>
+                                <div class="swiper-button-prev swiper-button-disabled">
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <div class="content-detail fancybox-content-custom">
+                        <h1 class="title-detail">
+                            @Model.Title
+                        </h1>
+                        <div class="publish-date">
+                            <i class="fa fa-calendar"></i>
+                            @Model.CreatedDate.ToString("dd/MM/yyyy")
+                        </div>
+                        @Html.Raw(Model.Content)
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="sidebar">
+                        @await Html.PartialAsync("_ProjectCategoriesCounts")
+
+                        @await Html.PartialAsync("_HotProject")
+                    </div>
+                </div>
+
+                @if (projectRelateds != null && projectRelateds.Any())
+                {
+                    <div class="col-md-12">
+                        <div class="wrap-main">
+                            <h3 class="title line-title title-main">
+                                Dự án tương tự<i class="fa">&#xf111;</i>
+                            </h3>
+                            <div class="content-main w-clear">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="related-blog-wrapper owl-carousel owl-theme owl-loaded">
+                                            <div class="owl-stage-outer">
+                                                <div class="owl-stage">
+                                                    @foreach (var blog in projectRelateds)
+                                                    {
+                                                        <div class="owl-item">
+                                                            @await Html.PartialAsync("_ProjectItem", blog)
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section styles {
+    <link href="~/Client/lib/swiper/swiper-bundle.min.css" rel="stylesheet" />
+    <link href="~/Client/css/project-detail.css" rel="stylesheet" />
+}
+
+@section scripts {
+    <script src="~/Client/lib/swiper/swiper-bundle.min.js"></script>
+
+    <!-- Swiper JS -->
+    <script type="text/javascript">
+        var galleryThumbs = new Swiper('.gallery-thumbs', {
+            spaceBetween: 5,
+            slidesPerView: 20,
+            freeMode: true,
+            lazy: true,
+            watchSlidesVisibility: true,
+            watchSlidesProgress: true,
+            hashNavigation: true,
+            slideToClickedSlide: true,
+            breakpoints: {
+                300: {
+                    slidesPerView: 3,
+                    spaceBetween: 10,
+                },
+                500: {
+                    slidesPerView: 3,
+                    spaceBetween: 10,
+                },
+                640: {
+                    slidesPerView: 4,
+                    spaceBetween: 10,
+                },
+                768: {
+                    slidesPerView: 5,
+                    spaceBetween: 10,
+                },
+                1024: {
+                    slidesPerView: 5,
+                    spaceBetween: 10,
+                },
+                1199: {
+                    slidesPerView: 5,
+                    spaceBetween: 10,
+                },
+            },
+            navigation: {
+                nextEl: '.gallery-thumbs .swiper-button-next',
+                prevEl: '.gallery-thumbs .swiper-button-prev',
+            },
+        });
+        var galleryTop = new Swiper('.gallery-top', {
+            spaceBetween: 0,
+            lazy: true,
+            hashNavigation: true,
+            thumbs: {
+                swiper: galleryThumbs
+            }
+        });
+        $(document).ready(function () {
+            $("#lightgallery").lightGallery({
+                thumbnail: false
+            });
+        });
+
+    </script>
+}

@@ -1,0 +1,291 @@
+﻿@inject IProductCategoryService productCategoryService
+@inject IAboutService aboutService
+@inject ISettingService _settingService;
+@{
+  var about = await aboutService.GetAboutCacheAsync() ?? new AboutVM();
+  var setting = await _settingService.GetSettingCacheAsync() ?? new SettingVM();
+
+  var systemDto = new SystemDto
+      {
+        About = about,
+        Setting = setting
+      };
+}
+
+<!DOCTYPE html>
+<html class="no-js" lang="vi">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/favicon.ico">
+
+  @if (ViewBag.Header == null || ViewBag.Header == string.Empty)
+  {
+    <title>Cao Gia Construction</title>
+  }
+  else
+  {
+    @Html.Raw(ViewBag.Header)
+  }
+  <link href="~/Client/css/full-css-import.css" rel="stylesheet" />
+
+  <script src="~/Client/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+
+  @await RenderSectionAsync("styles", required: false)
+
+  <meta name="google-site-verification" content="KbQjLW_5peo1b0uUjMksSmjN1QiR62PSEGy4r3oJWsU" />
+  <meta name="google-site-verification" content="gBe_m4aY5WzLw8Eg_w0Ko4mb_wmoh6nNXXDjKBXX5EM" />
+  @* Google Tag Manager*@
+  <script>
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-MK8K9GN9');</script>
+  @* End Google Tag Manager *@
+
+  @* SEO Schema-Markup *@
+  <script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@@type": "LocalBusiness",
+  "name": "Cao Gia Construction",
+  "image": "https://caogiaconstruction.vn/Client/icons/logo.jpg?w=600",
+  "description": "Cao Gia Construction là nơi chuyên về cà phê. Cà phê được sử dụng tại Cao Gia Construction là những quả cà phê chín được chọn lọc, sơ chế kiểm soát kỹ lưỡng...",
+  "url": "https://caogiaconstruction.vn",
+  "telephone": "+84-985-607-979",
+  "address": {
+    "@@type": "PostalAddress",
+    "streetAddress": "750 Lê Hồng Phong",
+    "addressLocality": "Thủ Dầu Một",
+    "addressRegion": "Bình Dương",
+    "postalCode": "75000",
+    "addressCountry": "VN"
+  },
+  "geo": {
+    "@@type": "GeoCoordinates",
+    "latitude": 10.9646778,
+    "longitude": 106.6810246
+  },
+  "openingHoursSpecification": [
+    {
+      "@@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "opens": "06:00",
+      "closes": "22:00"
+    }
+  ],
+  "sameAs": [
+    "",
+    "",
+    "https://www.google.com/maps/place/Cao Gia Construction+Roastery/"
+  ]
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@@type": "WebPage",
+  "name": "Thế giới cà phê nguyên chất",
+  "url": "https://caogiaconstruction.vn",
+  "description": "Khám phá thế giới cà phê nguyên chất với Cao Gia Construction. Chúng tôi mang đến cà phê rang xay chất lượng cao và các thức uống sáng tạo.",
+  "publisher": {
+    "@@type": "Organization",
+    "name": "Cao Gia Construction",
+    "url": "https://caogiaconstruction.vn",
+    "logo": {
+      "@@type": "ImageObject",
+      "url": "https://caogiaconstruction.vn/Client/icons/logo.jpg?w=600"
+    }
+  }
+}
+</script>
+
+  <script type="application/ld+json">
+{
+  "@@context": "https://schema.org",
+  "@@type": "BreadcrumbList",
+  "itemListElement": [
+  {
+    "@@type": "ListItem",
+    "position": 1,
+    "name": "LIÊN HỆ Cao Gia Construction COFFEE",
+    "item": "https://caogiaconstruction.vn/lien-he",
+    "description": "Liên hệ Cao Gia Construction - Kết nối với chúng tôi..."
+  },
+  {
+    "@@type": "ListItem",
+    "position": 2,
+    "name": "VỀ CHÚNG TÔI",
+    "item": "https://caogiaconstruction.vn/ve-chung-toi",
+    "description": "Tìm hiểu về Cao Gia Construction - nơi mang đến cà phê rang xay..."
+  },
+  {
+    "@@type": "ListItem",
+    "position": 3,
+    "name": "DỊCH VỤ",
+    "item": "https://caogiaconstruction.vn/dich-vu",
+    "description": "Khám phá các dịch vụ tại Cao Gia Construction, bao gồm các sản phẩm..."
+  },
+  {
+    "@@type": "ListItem",
+    "position": 4,
+    "name": "MÁY PHA CÀ PHÊ",
+    "item": "https://caogiaconstruction.vn/may-moc-dung-cu",
+    "description": "Danh mục máy móc và dụng cụ pha chế cà phê chuyên nghiệp..."
+  },
+  {
+    "@@type": "ListItem",
+    "position": 5,
+    "name": "CÀ PHÊ",
+    "item": "https://caogiaconstruction.vn/san-pham",
+    "description": "Các loại cà phê chất lượng cao của Cao Gia Construction..."
+  },
+  {
+    "@@type": "ListItem",
+    "position": 6,
+    "name": "KIẾN THỨC VỀ CÀ PHÊ",
+    "item": "https://caogiaconstruction.vn/kien-thuc",
+    "description": "Các bài viết chia sẻ kiến thức chuyên sâu về cà phê..."
+  },
+  {
+    "@@type": "ListItem",
+    "position": 7,
+    "name": "CÔNG THỨC PHA CHẾ CÀ PHÊ",
+    "item": "https://caogiaconstruction.vn/cong-thuc",
+    "description": "Hướng dẫn và công thức pha chế các loại đồ uống từ cà phê..."
+  },
+  {
+    "@@type": "ListItem",
+    "position": 8,
+    "name": "TIN TỨC CÀ PHÊ MỚI NHẤT",
+    "item": "https://caogiaconstruction.vn/tin-tuc",
+    "description": "Tin tức và xu hướng mới nhất trong ngành cà phê..."
+  }
+]
+}
+</script>
+
+
+  @*End SEO Schema-Markup *@
+
+    <script type="application/ld+json">
+        {
+              "@@context":"http://schema.org",
+              "@@type":"ItemList",
+              "itemListElement":[
+                    {
+                "@@type": "SiteNavigationElement",
+                "position": 1,
+                "name": "LIÊN HỆ Cao Gia Construction COFFEE",
+                "url": "https://caogiaconstruction.vn/lien-he",
+                "description": "Liên hệ Cao Gia Construction - Kết nối với chúng tôi..."
+              },
+              {
+                "@@type": "SiteNavigationElement",
+                "position": 2,
+                "name": "VỀ CHÚNG TÔI",
+                "url": "https://caogiaconstruction.vn/ve-chung-toi",
+                "description": "Tìm hiểu về Cao Gia Construction - nơi mang đến cà phê rang xay..."
+              },
+              {
+                "@@type": "SiteNavigationElement",
+                "position": 3,
+                "name": "DỊCH VỤ",
+                "item": "https://caogiaconstruction.vn/dich-vu",
+                "description": "Khám phá các dịch vụ tại Cao Gia Construction, bao gồm các sản phẩm..."
+              },
+              {
+                "@@type": "SiteNavigationElement",
+                "position": 4,
+                "name": "MÁY PHA CÀ PHÊ",
+                "url": "https://caogiaconstruction.vn/may-moc-dung-cu",
+                "description": "Danh mục máy móc và dụng cụ pha chế cà phê chuyên nghiệp..."
+              },
+              {
+                "@@type": "SiteNavigationElement",
+                "position": 5,
+                "name": "CÀ PHÊ",
+                "url": "https://caogiaconstruction.vn/san-pham",
+                "description": "Các loại cà phê chất lượng cao của Cao Gia Construction..."
+              },
+              {
+                "@@type": "SiteNavigationElement",
+                "position": 6,
+                "name": "KIẾN THỨC VỀ CÀ PHÊ",
+                "url": "https://caogiaconstruction.vn/kien-thuc",
+                "description": "Các bài viết chia sẻ kiến thức chuyên sâu về cà phê..."
+              },
+              {
+                "@@type": "SiteNavigationElement",
+                "position": 7,
+                "name": "CÔNG THỨC PHA CHẾ CÀ PHÊ",
+                "url": "https://caogiaconstruction.vn/cong-thuc",
+                "description": "Hướng dẫn và công thức pha chế các loại đồ uống từ cà phê..."
+              },
+              {
+                "@@type": "SiteNavigationElement",
+                "position": 8,
+                "name": "TIN TỨC CÀ PHÊ MỚI NHẤT",
+                "url": "https://caogiaconstruction.vn/tin-tuc",
+                "description": "Tin tức và xu hướng mới nhất trong ngành cà phê..."
+              }
+              ]
+            }</script>
+
+</head>
+
+<body class="loadpage home style-v2" style="font-family: @setting.FontFamily">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MK8K9GN9" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <div id="wrap">
+    @* Header *@
+    @await Component.InvokeAsync(nameof(vcHeader), systemDto)
+
+    @RenderBody()
+
+    @* Footer *@
+    @await Component.InvokeAsync(nameof(vcFooter), systemDto)
+  </div>
+
+  @* Contact Fixed Sidebar *@
+  @await Html.PartialAsync("_ContactSidebar", about)
+
+  <div class="scrollToTop" style="display: block;" tooltip="Quay về đầu trang" flow="left" title="Quay về đầu trang">
+    <img src="~/Client/icons/top.png" alt="Quay về đầu trang" />
+  </div>
+
+  <script src="~/Client/js/vendor/jquery-1.11.2.min.js"></script>
+  <script src="~/Client/js/vendor/bootstrap.min.js"></script>
+  <script src="~/Client/js/vendor/imagesloaded.pkgd.min.js"></script>
+  <script src="~/Client/js/vendor/flickity.pkgd.min.js"></script>
+  <script src="~/Client/js/vendor/jquery.waypoints.min.js"></script>
+  <script src="~/Client/js/vendor/sticky.min.js"></script>
+  <script src="~/Client/js/main.js" asp-append-version="true"></script>
+  <script src="~/Client/lib/owlcarousel/owl.carousel.js"></script>
+  <script src="~/Client/lib/fancybox/fancybox.umd.js"></script>
+  <script src="~/Client/js/my-script.js" asp-append-version="true"></script>
+
+  @await RenderSectionAsync("scripts", required: false)
+</body>
+
+</html>

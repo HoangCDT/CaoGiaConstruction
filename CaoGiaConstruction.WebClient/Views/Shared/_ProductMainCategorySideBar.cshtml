@@ -1,0 +1,38 @@
+﻿@inject IProductCategoryService _service;
+@{
+    var productMainCategories = await _service.GetWithProductMainCategoryGroupAsync();
+}
+
+@if (productMainCategories.Any())
+{
+    <div class="widget categories-box">
+        <h3 class="title">Danh mục sản phẩm</h3>
+        <ul class="main">
+            @foreach (var main in productMainCategories)
+            {
+                <li class="nav-item nav-items">
+                    <a href="#" class="nav-link" title="@main.MainCategory.Title">
+                        @main.MainCategory.Title?.Left(35, true, true)
+                    </a>
+                    <span class="open-close">
+                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                    </span>
+                    @if (main.Categories.Any())
+                    {
+                        <ul class="cate">
+                            @foreach (var cate in main.Categories)
+                            {
+                                <li>
+                                    <a class="nav-link" asp-route="product-cate" asp-route-code="@cate?.Code" title="@cate.Title">
+                                        @cate.Title?.Left(35, true, true)
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                </li>
+            }
+
+        </ul>
+    </div>
+}

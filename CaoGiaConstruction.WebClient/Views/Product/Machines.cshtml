@@ -1,0 +1,71 @@
+﻿@using CaoGiaConstruction.WebClient.Const
+@model IEnumerable<ProductGroupByCategoryVM>
+@{
+    var productCategoires = ViewBag.ProductCategories as IEnumerable<ProductCategoryWithCountDto>;
+    var param = ViewBag.Param as SearchProductClientDto;
+    string routeName = "product";
+}
+
+<div  class="main-content">
+    <div class="page-header">
+        <!-- <div class="page-about"> -->
+        @{
+            var breadcrumbItems = new List<BreadcrumbDto>
+        {
+        new BreadcrumbDto { Url = "home", Title = "Trang chủ", IsActive = false },
+        new BreadcrumbDto { Url =routeName, Title = "Máy móc & dụng cụ", IsActive = true },
+        };
+        }
+        @await Component.InvokeAsync(nameof(vcBreadcrumb), breadcrumbItems)
+    </div>
+
+    <div class="page-content">
+        <div class="container">
+            <div class="row d-flex flex-wrap">
+                <div class="col-sm-4">
+                    <aside class="sidebar">
+                        @await Html.PartialAsync("_SearchForm", new SearchFormDto { Placeholder = "Tìm máy móc tại đây...", SearchAction = routeName, Value = param.Keyword })
+
+                        @await Html.PartialAsync("_ProductCategorySideBar", ProductMainCategoryCodeDefine.MACHINES)
+
+                        @await Html.PartialAsync("_FilterSidebar", new FilterSideBarDto { SearchParams = param, RouteValues = routeName })
+                    </aside>
+                </div>
+                <div class="col-sm-8">
+                    @if (Model.Any())
+                    {
+                        @foreach (var cate in Model)
+                        {
+                            <div>
+                                <h3 class="title line-title text-left mb-3">
+                                    <span>@cate.ProductCategory.Title<i class="fa">&#xf111;</i></span>
+                                </h3>
+                                <div class="content-main w-clear">
+                                    <div class="grid-page">
+                                        @foreach (var product in cate.Products)
+                                        {
+                                            @await Html.PartialAsync("_ProductItem", product)
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        @await Html.PartialAsync("_AlertMessage", "Máy móc & dụng cụ đang được cập nhật.")
+                    }
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section styles {
+    <link href="~/Client/css/product-list.css" rel="stylesheet" />
+}
+@section scripts {
+    <script src="~/Client/js/sidebar-filter-controller.js" asp-append-version="true"></script>
+}

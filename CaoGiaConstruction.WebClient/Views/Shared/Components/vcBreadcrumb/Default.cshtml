@@ -1,0 +1,36 @@
+﻿@model List<BreadcrumbDto>
+
+<div class="breadCrumbs">
+    <div class="wrap-content">
+        <div>
+            <figure class="post-thumbnail">
+                <img alt="@ViewBag.ActiveItemTitle" src="~/Client/images/about/about.jpg">
+            </figure>
+            @if (ViewBag.ActiveItemTitle != null)
+            {
+                <h2 class="title"><span class="line-title">@ViewBag.ActiveItemTitle<i class="fa">&#xf111;</i></span></h2>
+            }
+        </div>
+        <ol class="breadcrumb">
+            @foreach (var item in Model)
+            {
+                if (item.IsActive)
+                {
+                    <li class="breadcrumb-item active">
+                        <a class="text-decoration-none">
+                            <span>@item.Title</span>
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="breadcrumb-item">
+                        <a class="text-decoration-none" asp-route="@item.Url" asp-route-code="@item.Code">
+                            <span>@item.Title</span>
+                        </a>
+                    </li>
+                }
+            }
+        </ol>
+    </div>
+</div>

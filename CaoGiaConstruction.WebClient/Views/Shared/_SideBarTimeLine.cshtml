@@ -1,0 +1,23 @@
+﻿@inject ITimeLineService _service;
+@{
+    var timeLines = await _service.GetAllAsync(x => x.Status == StatusEnum.Active);
+}
+@if (timeLines.Any())
+{
+    <div class="widget recent-post">
+    <div class="widget-inner">
+        <h3 class="title">Lịch sử hình thành & phát triển</h3>
+        <ul>
+            @foreach (var time in timeLines)
+                {
+                    <li>
+                        <span class="archive-count" style="width: unset; height: unset; float: left;">
+                            &nbsp; @time.EventDate &nbsp;
+                        </span>
+                        <a href="#"> - @time.Description</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+}

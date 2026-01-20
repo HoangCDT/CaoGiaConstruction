@@ -1,0 +1,68 @@
+﻿<div class="modal fade" id="modal-timeline" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <form id="form-timeline">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myLargeModalLabel">Thêm / Chỉnh sửa </h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="mb-3"><i>Lưu ý: </i>(<span class="text-danger">*</span>) là trường bắt
+                                        buộc nhập</div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label for="billing-first-name" class="form-label">Thời gian<span
+                                                class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name="eventDate"
+                                            placeholder="Thời gian">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label for="billing-first-name" class="form-label">Sự kiện<span
+                                                class="text-danger">*</span></label>
+                                        <textarea class="form-control" name="description" rows="3"
+                                            placeholder="Vui lòng nhập"></textarea>
+                                    </div>
+                                </div>
+
+                            </div> <!-- end row -->
+
+                            <div class="row ">
+                                <div class="col-12">
+                                    <div class="mb-3">
+                                        <label for="billing-email-address" class="form-label">Trạng thái: &nbsp;</label>
+                                        <br />
+                                        <div>
+                                            <input type="checkbox" id="status-active" checked name="status"
+                                                class="switch-status" data-switch="success">
+                                            <label for="status-active" data-on-label="Yes" data-off-label="No"
+                                                class="mb-0 d-block"></label>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-success ladda-button" id="btn-save" data-style="expand-right">
+                        <i class="mdi mdi-content-save"></i> Lưu lại
+                    </button>
+                </div>
+
+            </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal-dialog -->
+</div>

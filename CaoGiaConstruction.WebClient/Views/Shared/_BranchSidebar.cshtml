@@ -1,0 +1,38 @@
+﻿@inject IBranchesService _service;
+@{
+    var branches = await _service.GetAllAsync(x => x.Status == StatusEnum.Active);
+}
+@if (branches.Any())
+{
+    <div class="widget">
+        <div class="widget-inner branches-post">
+            <h3 class="title">Hệ thống chi nhánh</h3>
+
+            <ul class="news-list">
+                @foreach (var item in branches)
+                {
+                    <li>
+                        <a href="#"
+                           title="@item.Title">
+                            <div class="img-news">
+                                <img alt="@item.Title" height="74" src="@item.Avatar.ToHostImage()">
+                            </div>
+                            <h3>
+                                @item.Title
+                                @if (item.FoundingDate.HasValue)
+                                {
+                                    <span>(@item.FoundingDate.Value.ToString("dd/MM/yyyy"))</span>
+                                }
+                            </h3>
+                            <p>
+                                <address>
+                                    @item.Address
+                                </address>
+                            </p>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+}

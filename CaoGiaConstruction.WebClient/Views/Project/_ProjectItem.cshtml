@@ -1,0 +1,27 @@
+﻿@model ProjectNoContentVM;
+<div class=" know-post-tb-body">
+    <div class="know-blog-item">
+        <article class="know-post-card know-post-card-4">
+            <figure class="know-post-thumb">
+                <a asp-route="project-detail" asp-route-code="@Model.Code"
+                    asp-route-category="@Model.Service.Code"
+                   class="scale-img hover_zoom">
+                    <img width="600" height="400"
+                         src="@Model.Avatar.ToHostImage()?w=600"
+                         alt="@Model.Title"
+                         title="@Model.Title">
+                </a>
+            </figure>
+            <div class="know-blog-content">
+                <h4 class="know-post-title">
+                    <a asp-route="project-detail" asp-route-code="@Model.Code" asp-route-category="@Model.Service.Code">
+                        @Model.Title
+                    </a>
+                </h4>
+                <div class="know-post-desc">
+                    @Model.Description.Left(150, true, true)
+                </div>
+            </div>
+        </article>
+    </div>
+</div>

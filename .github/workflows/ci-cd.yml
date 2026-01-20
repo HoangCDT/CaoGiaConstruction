@@ -1,0 +1,167 @@
+name: CI/CD Pipeline
+# Hoạt động trên VPS 86
+on:
+  push:
+    branches:
+      - master # Khi có push lên nhánh master -> Deploy UAT
+    tags:
+      - "*" # Khi có tag được tạo -> Deploy Production
+
+env:
+  api_host_path: ./CaoGiaConstruction.WebClient
+  dockerfile_path: ./CaoGiaConstruction.WebClient/Dockerfile
+  docker_image_name: hoangcdt/cao-gia-construction
+  TAG_NAME: 1.0
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Bước 1: Checkout mã nguồn
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Bước 2: Thiết lập .NET SDK
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      # Bước 3: Restore dependencies
+      - name: Restore dependencies
+        run: dotnet restore CaoGiaConstruction.WebClient.sln
+
+      # Bước 4: Build ứng dụng .NET
+      - name: Build .NET app
+        run: |
+          dotnet build CaoGiaConstruction.WebClient.sln --configuration Release --no-restore
+
+      # Bước 5: Run tests (nếu có)
+      - name: Run tests
+        run: dotnet test CaoGiaConstruction.WebClient.sln --configuration Release --no-build --verbosity normal || true
+
+  deploy-uat:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master' # Điều kiện chỉ chạy khi push lên nhánh master (UAT)
+
+    steps:
+      # Bước 1: Checkout mã nguồn
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Bước 2: Set up Docker Buildx
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # Bước 3: Đăng nhập vào Docker Hub
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # Bước 4: Build Docker image cho UAT với tag `latest`
+      - name: Build and push Docker image (UAT)
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ${{ env.dockerfile_path }}
+          push: true
+          tags: ${{ env.docker_image_name }}:latest
+          cache-from: type=registry,ref=${{ env.docker_image_name }}:buildcache
+          cache-to: type=registry,ref=${{ env.docker_image_name }}:buildcache,mode=max
+          build-args: |
+            BUILD_CONFIGURATION=Release
+
+      # Bước 5: SSH và triển khai lên UAT
+      - name: Deploy to UAT
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SSH_HOST_UAT }}
+          username: ${{ secrets.SSH_USERNAME_UAT }}
+          key: ${{ secrets.SSH_KEY_UAT }}
+          port: ${{ secrets.SSH_PORT_UAT }}
+          script: |
+            cd /home/github-actions/docker-deploys/cao-gia-construction-uat
+            docker-compose pull
+            docker-compose up -d
+
+      # Bước 6: Dọn dẹp các Docker images UAT cũ không sử dụng
+      - name: Cleanup unused UAT Docker images
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SSH_HOST_UAT }}
+          username: ${{ secrets.SSH_USERNAME_UAT }}
+          key: ${{ secrets.SSH_KEY_UAT }}
+          port: ${{ secrets.SSH_PORT_UAT }}
+          script: |
+            docker images --filter=reference='${{ env.docker_image_name }}*' --format "{{.Repository}}:{{.Tag}}" | xargs -r docker rmi -f || true
+            docker system prune -f
+
+  deploy-prod:
+    needs: build
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/') # Điều kiện chỉ chạy khi tạo tag (Production)
+
+    steps:
+      # Bước 1: Checkout mã nguồn
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Bước 2: Lấy tên tag từ GitHub ref
+      - name: Extract tag name
+        id: extract_tag
+        run: echo "TAG_NAME=${GITHUB_REF##*/}" >> $GITHUB_ENV
+
+      # Bước 3: Set up Docker Buildx
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # Bước 4: Đăng nhập vào Docker Hub
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # Bước 5: Build Docker image với tag là tên tag từ GitHub
+      - name: Build and push Docker image (Production)
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ${{ env.dockerfile_path }}
+          push: true
+          tags: |
+            ${{ env.docker_image_name }}:${{ env.TAG_NAME }}
+            ${{ env.docker_image_name }}:latest
+          cache-from: type=registry,ref=${{ env.docker_image_name }}:buildcache
+          cache-to: type=registry,ref=${{ env.docker_image_name }}:buildcache,mode=max
+          build-args: |
+            BUILD_CONFIGURATION=Release
+
+      # Bước 6: SSH và triển khai lên Production
+      - name: Deploy to Production
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SSH_HOST_PROD }}
+          username: ${{ secrets.SSH_USERNAME_PROD }}
+          key: ${{ secrets.SSH_KEY_PROD }}
+          port: ${{ secrets.SSH_PORT_PROD }}
+          script: |
+            cd /home/github-actions/docker-deploys/cao-gia-construction-prod
+            export IMAGE_TAG=${{ env.TAG_NAME }}
+            docker-compose pull
+            docker-compose up -d
+
+      # Bước 7: Dọn dẹp các Docker images không dùng nữa trên Production
+      - name: Cleanup unused Production Docker images
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SSH_HOST_PROD }}
+          username: ${{ secrets.SSH_USERNAME_PROD }}
+          key: ${{ secrets.SSH_KEY_PROD }}
+          port: ${{ secrets.SSH_PORT_PROD }}
+          script: |
+            docker images --filter=reference='${{ env.docker_image_name }}*' --format "{{.Repository}}:{{.Tag}}" | xargs -r docker rmi -f || true
+            docker system prune -f

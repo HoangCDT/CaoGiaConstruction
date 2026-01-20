@@ -1,0 +1,123 @@
+﻿@using CaoGiaConstruction.WebClient.Const
+@model FilterSideBarDto
+@inject IProductCategoryService _service;
+@{
+    var productCates = await _service.GetAllAsync(x => x.Status == StatusEnum.Active);
+}
+<div class="widget">
+    <h3 class="title">Bộ lọc</h3>
+    <!-- #region Sắp xếp theo -->
+    <aside class="aside-item sort-order">
+        <div class="module-title">
+            <h4 class="title-head"><span>Sắp xếp theo</span></h4>
+        </div>
+        <select class="form-control" id="select-sort">
+            <option value="@SortOrderConst.PriceAscending" selected="@(Model.SearchParams.OrderBy ==SortOrderConst.PriceAscending)">Giá tăng dần</option>
+            <option value="@SortOrderConst.PriceDescending" selected="@(Model.SearchParams.OrderBy ==SortOrderConst.PriceDescending)">Giá giảm dần</option>
+            <option value="@SortOrderConst.CreatedDateDescending" selected="@(Model.SearchParams.OrderBy ==SortOrderConst.CreatedDateDescending)">Mới trước</option>
+            <option value="@SortOrderConst.CreatedDateAscending" selected="@(Model.SearchParams.OrderBy ==SortOrderConst.CreatedDateAscending)">Cũ trước</option>
+        </select>
+    </aside>
+    <!-- #endregion -->
+    <!-- #region Giá -->
+    <aside class="aside-item filter-price">
+        <div class="module-title">
+            <h4 class="title-head margin-top-0"><span>Giá sản phẩm</span></h4>
+        </div>
+        <form method="get" asp-route="@Model.RouteValues" id="form-price">
+            <div class="aside-content filter-group">
+                <ul>
+                    <li class="filter-item">
+                        <span>
+                            <label>
+                                <input type="radio" value="100000" name="productPrice"
+                                @((Model.SearchParams.PriceTo > 0 && Model.SearchParams.PriceFrom == 0) ? "checked" : "")>
+                                Giá dưới 100.000đ
+                            </label>
+                        </span>
+                    </li>
+                    <li class="filter-item">
+                        <span>
+                            <label>
+                                <input type="radio" value="100000-200000" name="productPrice"
+                                @((Model.SearchParams.PriceFrom == 100000 && Model.SearchParams.PriceTo == 200000) ? "checked" : "")>
+                                100.000đ - 200.000đ
+                            </label>
+                        </span>
+                    </li>
+                    <li class="filter-item">
+                        <span>
+                            <label>
+                                <input type="radio" value="200000-300000" name="productPrice"
+                                @((Model.SearchParams.PriceFrom == 200000 && Model.SearchParams.PriceTo == 300000) ? "checked" : "")>
+                                200.000đ - 300.000đ
+                            </label>
+                        </span>
+                    </li>
+                    <li class="filter-item">
+                        <span>
+                            <label>
+                                <input type="radio" value="300000-500000" name="productPrice"
+                                @((Model.SearchParams.PriceFrom == 300000 && Model.SearchParams.PriceTo == 500000) ? "checked" : "")>
+                                300.000đ - 500.000đ
+                            </label>
+                        </span>
+                    </li>
+                    <li class="filter-item">
+                        <span>
+                            <label>
+                                <input type="radio" value="300000-500000" name="productPrice"
+                                @((Model.SearchParams.PriceFrom == 500000 && Model.SearchParams.PriceTo == 1000000) ? "checked" : "")>
+                                500.000đ - 1.000.000đ
+                            </label>
+                        </span>
+                    </li>
+                    <li class="filter-item">
+                        <span>
+                            <label>
+                                <input type="radio" value="1000000" name="productPrice"
+                                @((Model.SearchParams.PriceTo == 0 && Model.SearchParams.PriceFrom >= 1000000) ? "checked" : "")>
+                                Giá trên 1.000.000đ
+                            </label>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </form>
+    </aside>
+    <!-- #endregion -->
+    <!-- #region Loại -->
+    @* @if (productCates.Any())
+    {
+        <aside class="aside-item filter-type">
+            <div class="module-title">
+                <h4 class="title-head margin-top-0"><span>Danh mục sản phẩm</span></h4>
+            </div>
+            <form method="get" asp-route="@Model.RouteValues" id="form-category">
+                <div class="aside-content filter-group">
+                    <ul>
+                        @foreach (var item in productCates)
+                        {
+                            <li class="filter-item">
+                                <span>
+                                    <label>
+                                        <input type="radio" name="productCategory" value="@item.Code" @(Model.SearchParams.Code == item.Code ? "checked" : "") />
+                                        @item.Title
+                                    </label>
+                                </span>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </form>
+        </aside>
+    } *@
+
+    <aside class="aside-item">
+        <a class="btn btn-block btn-default btn-clear-filter" asp-route="@Model.RouteValues">
+            <i class="fa fa-trash-alt"></i><span>Hủy lọc</span>
+        </a>
+    </aside>
+
+    <!-- #endregion -->
+</div>

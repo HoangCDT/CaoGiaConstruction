@@ -1,0 +1,164 @@
+﻿@model Pager<Contact>
+@{
+    ViewData["Title"] = "Danh mục thư liên hệ";
+    string keyword = ViewBag.Keyword as string;
+
+}
+<div class="content">
+
+    <!-- Start Content-->
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a asp-route="admin-default">Trang chủ</a></li>
+                            <li class="breadcrumb-item active">Danh mục thư liên hệ</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">Danh mục thư liên hệ</h4>
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row mb-2">
+                            <div class="col-sm-8 app-search">
+                                <form asp-route="admin-contact" class="row gy-2 gx-2 align-items-center justify-content-xl-start justify-content-between">
+                                    <div class="col-auto">
+                                        @await Html.PartialAsync("_AppSearch", keyword)
+                                    </div>
+
+                                </form>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="text-sm-end">
+                                    <a href="javascript:window.location.reload();" class="btn btn-light mb-2">
+                                        <i class="mdi mdi-sync"></i>&nbsp;
+                                        Làm mới
+                                    </a>
+                                </div>
+                            </div><!-- end col-->
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-hover  table-centered w-100 dt-responsive nowrap" id="table-contact">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="center">STT</th>
+                                        <th>Người liên hệ</th>
+                                        <th>SĐT</th>
+                                        <th>Email</th>
+                                        <th class="all">Nội dung</th>
+                                        <th>Ngày gửi</th>
+                                        <th>Trạng thái</th>
+                                        <th style="width: 85px;">#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.Result.Any())
+                                    {
+                                        int num = 0;
+                                        foreach (var item in Model.Result)
+                                        {
+                                            <tr>
+                                                <td class="center middle" width="20">
+                                                    <strong> #@(((Model.CurrentPage - 1) * Model.PageSize + num) + 1)</strong>
+                                                </td>
+
+                                                <td class="text-nowrap">
+                                                    @item.FullName
+                                                </td>
+                                                <td>@item.PhoneNumber</td>
+                                                <td>@item.Email</td>
+                                                <td>@item.Content?.Left(20, true, true)</td>
+                                                <td>
+                                                    <p class="mb-0 font-13 txt-muted">
+                                                        @item.CreatedDate.ToString("dd/MM/yyyy")
+                                                    </p>
+                                                    <small class="text-muted">@item.CreatedDate.ToString("HH:mm")</small>
+                                                </td>
+                                                <td>
+                                                    @{
+                                                        if (item.Status == StatusEnum.Active)
+                                                        {
+                                                            <span class="badge bg-success">Đã xem</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span class="badge bg-warning">Chưa xem</span>
+                                                        }
+                                                    }
+                                                </td>
+
+                                                <td class="table-action text-nowrap">
+                                                    @{
+                                                        if (item.Status != StatusEnum.Active)
+                                                        {
+                                                            <a href="javascript:void(0);" data-id="@item.Id" class="action-icon btn-seen-contact">
+                                                                <i class="mdi mdi-eye"></i>
+                                                            </a>
+                                                        }
+                                                    }
+                                                    <a href="javascript:void(0);" data-id="@item.Id" class="action-icon btn-edit"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Delete" data-bs-original-title="Detail">
+                                                        <i class="mdi mdi-square-edit-outline"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0);" data-id="@item.Id" class="action-icon btn-delete"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Delete" data-bs-original-title="Delete">
+                                                        <i class="mdi mdi-delete"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            num++;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="8">
+                                                <div class="alert alert-warning w-50 m-auto text-center" role="alert">
+                                                    Không có dữ liệu trong danh mục này
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+
+                            </table>
+
+                            @await Component.InvokeAsync(nameof(vcPagingAdmin), Model)
+                        </div>
+                    </div> <!-- end card-body-->
+                </div> <!-- end card-->
+            </div> <!-- end col -->
+        </div>
+        <!-- end row -->
+
+    </div> <!-- container -->
+
+</div> <!-- content -->
+@* Modal banner *@
+<partial name="~/Areas/Admin/Views/Contact/_ModalContact.cshtml" />
+
+@section styles {
+    <!-- ladda css -->
+    <link href="~/Admin/assets/vendor/ladda-master/dist/ladda.min.css" rel="stylesheet" />
+    <link href="~/Admin/assets/vendor/ladda-master/dist/ladda-themeless.min.css" rel="stylesheet" />
+
+}
+
+@section scripts {
+    <!-- ladda js -->
+    <script src="~/Admin/assets/vendor/ladda-master/dist/spin.min.js"></script>
+    <script src="~/Admin/assets/vendor/ladda-master/dist/ladda.jquery.min.js"></script>
+    <!-- Datatable js -->
+    <script src="~/Admin/assets/js/controllers/contact-controller.js" asp-append-version="true"></script>
+}

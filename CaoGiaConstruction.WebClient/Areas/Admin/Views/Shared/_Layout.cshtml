@@ -1,0 +1,86 @@
+﻿@inject IAboutService _aboutService;
+@{
+    var about = await _aboutService.GetAboutCacheAsync();
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>
+        @ViewData["Title"]  - CaoGiaConstruction
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Coderthemes" name="author" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="~/favicon.ico">
+
+    <link href="~/Admin/assets/css/full-css-import.css" rel="stylesheet" />
+
+    <!-- Theme Config Js -->
+    <script src="~/Admin/assets/js/hyper-config.js"></script>
+    @RenderSection("styles", required: false)
+
+    <!-- App css -->
+    <link href="~/Admin/assets/css/app-saas.min.css" rel="stylesheet" type="text/css" id="app-style" />
+    <link href="~/Admin/assets/css/custom.css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+    <!-- Begin page -->
+    <div class="wrapper">
+
+        <!-- ========== Topbar Start ========== -->
+        <partial name="~/Areas/Admin/Views/Shared/_TopBarMenu.cshtml" model="about" />
+        <!-- ========== Topbar End ========== -->
+        <!-- ========== Left Sidebar Start ========== -->
+        <partial name="~/Areas/Admin/Views/Shared/_LeftSideMenu.cshtml" />
+        <!-- ========== Left Sidebar End ========== -->
+        <!-- ============================================================== -->
+        <!-- Start Page Content here -->
+        <!-- ============================================================== -->
+        <div class="content-page">
+            @RenderBody()
+            <!-- Footer Start -->
+            <partial name="~/Areas/Admin/Views/Shared/_Footer.cshtml" model="about"/>
+            <!-- end Footer -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page content -->
+        <!-- ============================================================== -->
+        <!-- Footer Start -->
+        <!-- end Footer -->
+    </div>
+    <!-- END wrapper -->
+    <partial name="~/Areas/Admin/Views/Shared/_ThemeSetting.cshtml" />
+
+
+    <!-- #region js -->
+    <!-- Vendor js -->
+    <script src="~/Admin/assets/js/jquery-3.0.0.js"></script>
+    <script src="~/Admin/assets/js/vendor.min.js"></script>
+
+    <!-- Toastr Demo js -->
+    <script src="~/Admin/assets/vendor/jquery-toast-plugin/jquery.toast.min.js"></script>
+    <!-- confirm js -->
+    <script src="~/Admin/assets/vendor/jquery-confirm/jquery-confirm.min.js"></script>
+    <!-- fancybox js -->
+    <script src="~/Admin/assets/vendor/fancybox/jquery.fancybox.min.js"></script>
+
+    <!-- commons-utility -->
+    <script src="~/Admin/assets/js/commons/commons-utility.js"></script>
+    @* render section script *@
+    @RenderSection("scripts", required: false)
+
+    <!-- Product Demo App js -->
+    <!-- App js -->
+    <script src="~/Admin/assets/js/app.min.js"></script>
+
+    <!-- #endregion -->
+
+</body>
+
+</html> 

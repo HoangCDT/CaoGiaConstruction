@@ -1,0 +1,39 @@
+﻿@model Dictionary<int, string>
+@{
+    if (ViewBag.TotalPage > 1)
+    {
+        <nav class="pagination mt-3">
+            <ul class="page-item" @(ViewBag.TotalPage <= 1 ? "d-none" : "")>
+                <li><a class="prev page-item" href="@ViewBag.PageFirstUrl">«</a></li>
+                <li><a class="prev page-item" href="@ViewBag.PageBackUrl">‹</a></li>
+
+                @if (Model.First().Key > 1)
+                {
+                    <li>
+                        <a class="page-item disabled" href="#">...</a>
+                    </li>
+                }
+                @foreach (var item in Model)
+                {
+                    <li>
+                        <a class='@(ViewBag.CurrentPage== item.Key ? "page-item active" : "page-item")' href="@item.Value">@item.Key</a>
+                    </li>
+                }
+
+                @if (Model.Last().Key < ViewBag.TotalPage)
+                {
+                    <li>
+                        <a class="page-item disabled" href="#">...</a>
+                    </li>
+                }
+
+                <li>
+                    <a class="next page-item" href="@ViewBag.PageNextUrl">
+                        ›
+                    </a>
+                </li>
+                <li><a class="next page-item" href="@ViewBag.PageLastUrl"> »</a></li>
+            </ul>
+        </nav>
+    }
+}

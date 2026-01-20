@@ -1,0 +1,7 @@
+﻿@model string;
+@{
+    string message = Model.IsNullOrEmptyOrWhileSpace() ? "Rất tiếc, chúng tôi không tìm thấy kết quả phù hợp" : Model;
+}
+<div class="alert alert-warning" role="alert">
+    @message
+</div>

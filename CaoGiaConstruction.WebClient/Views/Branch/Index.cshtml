@@ -1,0 +1,53 @@
+﻿@model List<Branches>
+@{
+    var initialMapIFrame = Model.OrderBy(x => x.SortOrder).FirstOrDefault();
+}
+
+<div class="main-content branches-wrapper">
+    <div class="page-header">
+        @{
+            var breadcrumbItems = new List<BreadcrumbDto>
+        {
+        new BreadcrumbDto { Url = "home", Title = "Trang chủ", IsActive = false },
+        new BreadcrumbDto { Url = "branches", Title = "Hệ thống chi nhánh", IsActive = true },
+        };
+        }
+        @await Component.InvokeAsync(nameof(vcBreadcrumb), breadcrumbItems)
+    </div>
+
+    <div class="page-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4" style="margin-bottom: 50px;">
+                    <div class="branch-list">
+                        @foreach (var branch in Model.OrderBy(x => x.SortOrder))
+                        {
+                            <div class="item-branch @(initialMapIFrame.Id == branch.Id? "active": null)"
+                                data-id="@branch.Id" data-map="@branch.MapIFrame">
+
+                                <h3 class="branch-title"> @branch.Title</h3>
+                                @if (branch.PhoneNumber != null && branch.PhoneNumber != "")
+                                {
+                                    <p class="branch-phone">
+                                        <b><i class="fa fa-phone"></i> Điện thoại:</b>
+                                        @branch.PhoneNumber
+                                    </p>
+                                }
+                                <p class="branch-address">
+                                    <b><i class="fa fa-map"></i> Địa chỉ:</b>
+                                    @branch.Address
+                                </p>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="map">
+                        <iframe id="branchMapFrame" src="@initialMapIFrame.MapIFrame" width="100%" height="420px"
+                            style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

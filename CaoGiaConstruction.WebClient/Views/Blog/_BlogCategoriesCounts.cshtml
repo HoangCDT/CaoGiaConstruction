@@ -1,0 +1,31 @@
+﻿@using CaoGiaConstruction.WebClient.Context.Enums
+@model BlogTypeEnum
+@inject IBlogCategoryService _service;
+@{
+    var blogCategoriesWithCounts = await _service.GetBlogCategoriesWithCountsAsync(Model);
+    var routeName = Model == BlogTypeEnum.KNOWLEDGE ? "know-cate" : Model == BlogTypeEnum.NEWSEVENT ? "blog-cate" :
+    "formula-cate";
+    var titleCate = Model == BlogTypeEnum.KNOWLEDGE ? "Kiến Thức" : Model == BlogTypeEnum.NEWSEVENT ? "Tin tức - Sự kiện" :
+    "Công Thức Pha Chế";
+}
+@if (blogCategoriesWithCounts.Any())
+{
+    <div class="widget recent-post">
+    <div class="widget-inner">
+        <h3 class="title">Danh Mục @titleCate</h3>
+
+        <ul>
+            @foreach (var item in blogCategoriesWithCounts)
+                {
+                    string canonicalUrl = Url.RouteUrl(routeName, new { code = item.Categories.Code });
+                    <li>
+                        <link rel="canonical" href="@canonicalUrl" />
+                        <a asp-route="@routeName" asp-route-code="@item.Categories.Code">@item.Categories.Title.Left(35, true,
+                    true)</a>
+                        <span class="archive-count"> @item.CountCategory </span>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+}

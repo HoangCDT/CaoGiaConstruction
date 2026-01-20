@@ -1,0 +1,146 @@
+﻿<div class="modal fade" id="modal-branches" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <form id="form-branches">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myLargeModalLabel">Thêm / Chỉnh sửa </h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-7">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="mb-3"><i>Lưu ý: </i>(<span class="text-danger">*</span>) là trường bắt
+                                        buộc nhập</div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label for="billing-first-name" class="form-label">Tên chi nhánh<span
+                                                class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name="title"
+                                            placeholder="Tên chi nhánh">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="billing-first-name" class="form-label">Mã chi nhánh<span
+                                                class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name="code" placeholder="Mã chi nhánh">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="billing-first-name" class="form-label">Số điện thoại chi
+                                            nhánh</label>
+                                        <input class="form-control" type="text" name="phoneNumber"
+                                            placeholder="Số điện thoại chi nhánh">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="billing-first-name" class="form-label">Vĩ độ</label>
+                                        <input class="form-control" type="text" name="latitude"
+                                            placeholder="Vĩ độ chi nhánh">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="billing-first-name" class="form-label">Kinh độ chi nhánh</label>
+                                        <input class="form-control" type="text" name="longitude"
+                                            placeholder="Kinh độ chi nhánh">
+                                    </div>
+                                </div>
+
+                            </div> <!-- end row -->
+
+                        </div>
+
+                        <div class="col-5">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="upload-file-wrap">
+                                        <label class="form-label mb-2">Ảnh đại diện</label>
+                                        <!-- File Upload -->
+                                        <div class="upload-file">
+                                            <div class="image-preview-wrap">
+                                                <img src="~/Admin/assets/images/no_image.png" class="image-preview" />
+                                                <input type="hidden" name="avatar" value="" />
+                                            </div>
+                                        </div>
+                                        <div class="mt-3">
+                                            <div class="input-group">
+                                                <input name="file" type="file" class="form-control select-file"
+                                                    accept="image/*" />
+                                                <button class="btn btn-danger btn-delete-file" type="button"><i
+                                                        class="mdi mdi-trash-can"></i></button>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="row">
+
+                                <div class="col-md-10">
+                                    <div class="mb-3">
+                                        <label for="billing-first-name" class="form-label">Địa chỉ</label>
+                                        <input class="form-control" type="text" name="address"
+                                            placeholder="Địa chỉ chi nhánh">
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="mb-3">
+                                        <label for="billing-email-address" class="form-label">Trạng thái:
+                                            &nbsp;</label>
+                                        <br />
+                                        <div>
+                                            <input type="checkbox" id="status-active" checked name="status"
+                                                class="switch-status" data-switch="success">
+                                            <label for="status-active" data-on-label="Yes" data-off-label="No"
+                                                class="mb-0 d-block"></label>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label for="billing-first-name" class="form-label">Nhúng Google Maps
+                                            <span class="text-danger">*</span></label>
+                                        <textarea class="form-control" name="mapIFrame" rows="5"
+                                                  placeholder="Truy cập https://www.google.com/maps để lấy link."></textarea>
+                                        <span class="help-block"><small>Truy cập https://www.google.com/maps để lấy link.</small></span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label for="billing-first-name" class="form-label">Mô tả</label>
+                                        <textarea class="form-control" name="description" rows="3"
+                                            placeholder="Mô tả"></textarea>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-success ladda-button" id="btn-save" data-style="expand-right">
+                        <i class="mdi mdi-content-save"></i> Lưu lại
+                    </button>
+                </div>
+
+            </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal-dialog -->
+</div>

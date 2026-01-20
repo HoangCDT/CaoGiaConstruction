@@ -1,0 +1,34 @@
+﻿@model ServiceNoContentVM;
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-fix">
+    <div class="item-blog">
+        <div class="block-thumb">
+            <a class="thumb" asp-route="service-detail"
+               asp-route-category="@Model.ServiceCategory.Code"
+               asp-route-code="@Model.Code" title="@Model.Title">
+                <img width="600" height="380" class="lazyload loaded" src="@Model.Avatar.ToHostImage()?w=600" alt="@Model.Title">
+            </a>
+        </div>
+        <div class="block-content">
+            <h3>
+                <a asp-route="service-detail"
+                   asp-route-category="@Model.ServiceCategory.Code"
+                   asp-route-code="@Model.Code"
+                   title="@Model.Title" title="@Model.Title">@Model.Title</a>
+            </h3>
+            <p class="justify">
+                @Model.Description.Left(350,true, true)
+            </p>
+            <p class="time-post">
+                <a class="see_more" asp-route="service-detail"
+                   asp-route-category="@Model.ServiceCategory.Code"
+                   asp-route-code="@Model.Code" title="Đọc tiếp @Model.Title">
+                    Đọc tiếp
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="17" viewBox="0 0 26 17" fill="none">
+                        <path d="M2.01746 9.81882H21.9292L18.1988 14.0002C17.1272 15.2012 18.7345 17.0026 19.8061 15.8016L23.2035 11.9877L25.4714 9.44161C25.9109 8.946 25.9109 8.14557 25.4714 7.64996L19.8061 1.29244C19.5905 1.04418 19.2938 0.904877 18.9847 0.907759C17.9643 0.907903 17.4636 2.30096 18.1988 3.09405L21.938 7.2754H1.95879C0.3873 7.36279 0.504637 9.9065 2.01746 9.81882Z" fill="black"></path>
+                    </svg>
+                </a>
+                <span> @Model.CreatedDate.ToString("dd/MM/yyyy")</span>
+            </p>
+        </div>
+    </div>
+</div>

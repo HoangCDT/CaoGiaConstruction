@@ -1,0 +1,23 @@
+﻿@inject IProjectService _service;
+@{
+    var projectCategoriesWithCounts = await _service.GetProjectCategoriesWithCountsAsync();
+}
+@if (projectCategoriesWithCounts.Any())
+{
+    <div class="widget recent-post categories-box">
+        <div class="widget-inner">
+            <h3 class="title">Danh mục dự án</h3>
+
+            <ul>
+                @foreach (var item in projectCategoriesWithCounts)
+                {
+                    <li>
+                        <a asp-route="project-cate"
+                           asp-route-code="@item.Categories.Code">@item.Categories.Title.Left(35, true, true)</a>
+                        <span class="archive-count"> @item.CountCategory </span>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+}

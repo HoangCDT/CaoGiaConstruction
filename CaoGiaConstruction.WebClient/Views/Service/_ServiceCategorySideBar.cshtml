@@ -1,0 +1,31 @@
+﻿@inject IServiceCategoryService _service;
+@{
+    var serviceCates = await _service.GetTopAsync(5);
+}
+@if (serviceCates.Any())
+{
+    <div class="hot-blog">
+        <h2 class="h2_sidebar_blog">
+            <a asp-route="service" title="Các gói dịch vụ">Các gói dịch vụ</a>
+        </h2>
+        <div class="blog-content">
+            @foreach (var cate in serviceCates)
+            {
+                <div class="item clearfix">
+                    <div class="post-thumb">
+                        <a class="image-blog scale_hover" asp-route="service-cate" asp-route-code="@cate.Code" title="@cate.Title">
+                            <img width="600" height="380" class="img_blog lazyload loaded"
+                                 src="@cate.Avatar.ToHostImage()?w=600"
+                                 alt="@cate.Title">
+                        </a>
+                    </div>
+                    <div class="contentright">
+                        <h3>
+                            <a title="@cate.Title" asp-route="service-cate" asp-route-code="@cate.Code">@cate.Title.Left(55, true, true)</a>
+                        </h3>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}

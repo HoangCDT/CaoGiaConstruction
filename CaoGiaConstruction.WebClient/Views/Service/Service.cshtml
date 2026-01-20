@@ -1,0 +1,58 @@
+﻿@using CaoGiaConstruction.WebClient.Const
+@model Pager<ServiceNoContentVM>
+@{
+    var param = ViewBag.Param as SearchPaginationDto;
+}
+<div class="main-content service-wrapper">
+    <div class="page-header">
+        @{
+            var breadcrumbItems = new List<BreadcrumbDto>
+        {
+        new BreadcrumbDto { Url = "home", Title = "Trang chủ", IsActive = false },
+        new BreadcrumbDto { Url =  "service", Title = "Dịch vụ", IsActive = true },
+        };
+        }
+        @await Component.InvokeAsync(nameof(vcBreadcrumb), breadcrumbItems)
+    </div>
+    <div class="page-content">
+        <div class="container">
+            <div class="row d-flex flex-wrap">
+                <div class="col-sm-8">
+                    @if (Model.Result.Count() > 0)
+                    {
+                        <div class="row">
+                            @foreach (var know in Model.Result)
+                            {
+                                @await Html.PartialAsync("_ServiceItem", know)
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        @await Html.PartialAsync("_AlertMessage", "Dịch vụ đang được cập nhật.")
+                    }
+                </div>
+				<div class="blog_left_base col-lg-3 col-12">
+					<div class="aside-blog-right">
+						<div class="search-blog">
+							@await Html.PartialAsync("_SearchForm", new SearchFormDto { Placeholder = "Tìm kiếm dịch vụ tại đây...",
+							SearchAction = "service", Value = param.Keyword })
+
+						</div>
+                        @* @await Html.PartialAsync("_NewServiceSideBar") *@
+
+                        @await Html.PartialAsync("_ServiceCategorySideBar")
+					</div>
+				</div>
+                
+                <div class="col-md-12">
+                    @await Component.InvokeAsync(nameof(vcPaging), Model)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section styles{
+    <link href="~/Client/css/services.css" rel="stylesheet" />
+}

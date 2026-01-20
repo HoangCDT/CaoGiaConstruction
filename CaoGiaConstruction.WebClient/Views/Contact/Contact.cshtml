@@ -1,0 +1,68 @@
+﻿@model AboutVM
+
+<div class="main-content about-wrapper">
+    <div class="page-header">
+        @{
+            var breadcrumbItems = new List<BreadcrumbDto>
+        {
+        new BreadcrumbDto { Url = "home", Title = "Trang chủ", IsActive = false },
+        new BreadcrumbDto { Url = string.Empty, Title = "Liên hệ", IsActive = true },
+        };
+        }
+        @await Component.InvokeAsync(nameof(vcBreadcrumb), breadcrumbItems)
+    </div>
+    <div class="page-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-push-9">
+                    <div class="sidebar">
+                        <div class="widget">
+                            <div class="widget-inner">
+                                <h3 class="title">Thông tin liên hệ</h3>
+                                <div class="widget-text">
+                                    <p>@Model.AboutUs</p>
+                                    <p>
+                                        Email: <a href="mailto:@Model.Email">@Model.Email</a><br>
+                                        Phone: <a href="tel:@Model.PhoneNumber">@Model.PhoneNumber</a>
+                                    </p>
+                                    <p>
+                                        <address>
+                                            @Model.Address
+                                        </address>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8 col-md-pull-3">
+                    <div class="contact-content">
+                        <h3 class="title contact-title">
+                            Liên Hệ Với Chúng Tôi
+                        </h3>
+                        <p class="contact-desc">
+                            Cảm ơn bạn đã ghé thăm website
+                            <em>
+                                <strong>
+                                    <a asp-route="home" title="@Model.AboutUs">
+                                        @Model.AboutUs
+                                    </a>
+                                </strong>
+                            </em>. Nếu bạn muốn biết thêm thông tin về chúng tôi,
+                            vui lòng liên hệ theo thông tin bên dưới.
+                        </p>
+                        @await Html.PartialAsync("_ContactForm")
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="maps">
+            <iframe title="Google maps"
+                    src="@Model.MapIFrame" width="100%" height="450" frameborder="0" style="border: 0"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>
+</div>
+
+

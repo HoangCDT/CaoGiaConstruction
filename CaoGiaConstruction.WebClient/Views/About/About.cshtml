@@ -1,0 +1,32 @@
+﻿@model AboutVM
+
+<div  class="main-content">
+    <div class="page-header">
+        <!-- <div class="page-about"> -->
+        @{
+            var breadcrumbItems = new List<BreadcrumbDto>
+        {
+        new BreadcrumbDto { Url = "home", Title = "Trang chủ", IsActive = false },
+        new BreadcrumbDto { Url = string.Empty, Title = "Về chúng tôi ", IsActive = true },
+        };
+        }
+        @await Component.InvokeAsync(nameof(vcBreadcrumb), breadcrumbItems)
+    </div>
+    <section class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="content-detail">
+                        @Html.Raw(Model.Content)
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="sidebar">
+                        @await Html.PartialAsync("_SideBarTimeLine")
+                        @await Html.PartialAsync("_BranchSidebar")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

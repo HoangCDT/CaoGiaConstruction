@@ -1,0 +1,25 @@
+version: '3'
+
+#NETWORK
+networks: 
+  docker-net:
+    external: true
+
+#SERVICES
+services:
+  cao-gia-construction:
+    container_name: cao-gia-construction
+    build:
+        context: ./
+        dockerfile: ./CaoGiaConstruction.WebClient/Dockerfile
+    image: ngocsonit95/cao-gia-construction:${IMAGE_TAG}
+    hostname: cao-gia-construction
+    restart: always
+    networks: 
+      - docker-net
+    volumes:
+       - /home/backup/cao-gia-construction/fileuploads:/app/wwwroot/fileuploads
+    environment:
+       CONNECT_STRING_API: Host=postgres.hqsolutions.vn;Port=5432;Database=CAOGIACONSTRUCTION_DEV;User ID=hqs;Password=Hqs@##8443;
+       IMAGE_TAG: ${IMAGE_TAG}
+       TZ: Asia/Ho_Chi_Minh

@@ -1,0 +1,57 @@
+﻿@model Pager<ProjectNoContentVM>
+@{
+    var param = ViewBag.Param as SearchPaginationDto;
+}
+<div class="main-content">
+    <div class="page-header">
+        @{
+            var breadcrumbItems = new List<BreadcrumbDto>
+        {
+        new BreadcrumbDto { Url = "home", Title = "Trang chủ", IsActive = false },
+        new BreadcrumbDto { Url =  "project", Title = "Dự án", IsActive = true },
+        };
+        }
+        @await Component.InvokeAsync(nameof(vcBreadcrumb), breadcrumbItems)
+    </div>
+    <div class="page-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="sidebar">
+                        @await Html.PartialAsync("_SearchForm", new SearchFormDto
+                   {
+                       Placeholder = "Tìm kiếm dự án tại đây...",
+                       SearchAction = "project",
+                       Value = param.Keyword
+                   })
+
+                        @await Html.PartialAsync("_ProjectCategoriesCounts")
+
+                        @await Html.PartialAsync("_HotProject")
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    @if (Model != null && Model.Result.Count() > 0)
+                    {
+                        <div class="row">
+                            @foreach (var know in Model.Result)
+                            {
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @await Html.PartialAsync("_ProjectItem", know)
+                                </div>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        @await Html.PartialAsync("_AlertMessage", "Dự án đang được cập nhật.")
+                    }
+
+                </div>
+                <div class="col-md-12">
+                    @await Component.InvokeAsync(nameof(vcPaging), Model)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

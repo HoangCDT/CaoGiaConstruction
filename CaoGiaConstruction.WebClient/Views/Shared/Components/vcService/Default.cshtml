@@ -1,0 +1,66 @@
+﻿@model ServiceHomeDto
+
+<section class="section latest">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7 animated" data-animate="fadeInLeft animation animation-delay-25">
+                <h1 class="title line-title">
+                    Dịch vụ Cao Gia Construction<i class="fa">&#xf111;</i>
+                </h1>
+                @if (Model != null && Model.Services.Any())
+                {
+                    <ul class="posts_list">
+                        @foreach (var item in Model.Services)
+                        {
+                            <li>
+                                <figure>
+                                    <a asp-route="service-detail" asp-route-category="@item.ServiceCategory.Code"
+                                       asp-route-code="@item.Code">
+                                        <img alt="@item.Title"
+                                             src="@(item.Avatar != null ? $"{item.Avatar.ToHostImage()}?w=600" :
+                                             $"{item.ImageList.ToHostImage(true)}?w=600"))">
+                                    </a>
+                                </figure>
+                                <aside>
+                                    <h4 class="title">
+                                        <a asp-route="service-detail" asp-route-category="@item.ServiceCategory.Code"
+                                           asp-route-code="@item.Code">
+                                            @item.Title
+                                        </a>
+                                    </h4>
+                                    <p>
+                                        @item.Description.Left(512, true)
+                                    </p>
+                                </aside>
+                            </li>
+                        }
+                    </ul>
+                }
+            </div>
+            @if (Model != null && Model.Projects != null && !string.IsNullOrEmpty(Model.Projects.ImageList))
+            {
+                <div class="col-sm-5">
+                    <div class="widget-gallery">
+                        <ul>
+                            @foreach (var item in Model.Projects.ImageList.SplitToText(";"))
+                            {
+                                <li>
+                                    <a class="gallery-ajax" asp-route="project-detail" asp-route-code="@Model.Projects.Code"
+                                       asp-route-category="@Model.Projects.Service.Code" title="@Model.Projects.Title">
+                                        <figure>
+                                            <img class="animated" data-animate="zoomIn animation" alt="@Model.Projects.Title"
+                                                 title="@Model.Projects.Title"
+                                                 src="@item.Text.ToHostImage()">
+                                            <figcaption>
+                                            </figcaption>
+                                        </figure>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

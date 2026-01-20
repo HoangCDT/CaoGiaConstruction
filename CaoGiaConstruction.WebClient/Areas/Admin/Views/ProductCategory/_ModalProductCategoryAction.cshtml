@@ -1,0 +1,138 @@
+﻿@inject IPropertiesService _propertiesService
+@inject IProductMainCategoryService _mainCategoryAction
+@{
+    var propertiesList = await _propertiesService.GetAllAsync(x => x.Status == StatusEnum.Active);
+    var mainCategory = await _mainCategoryAction.GetAllAsync();
+}
+<div class="modal fade" id="modal-product-cat" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <form id="form-product-category">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myLargeModalLabel">Thêm / Chỉnh sửa</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-7">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="mb-3"><i>Lưu ý: </i>(<span class="text-danger">*</span>) là trường bắt
+                                        buộc nhập</div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-3 form-select-validate">
+                                        <label for="billing-first-name" class="form-label">Loại sản phẩm <span
+                                                class="text-danger">*</span></label>
+                                        <select class="form-control select2" name="productMainCategoryId"
+                                            data-toggle="select2">
+                                            @foreach (var item in mainCategory)
+                                            {
+                                                    <option value="@item.Id">
+                                                    @item.Title</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label for="billing-first-name" class="form-label">Tên danh mục <span
+                                                class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name="title"
+                                            placeholder="Vui lòng nhập">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label for="billing-first-name" class="form-label">Mô tả ngắn </label>
+                                        <textarea class="form-control" name="description" rows="3"
+                                            placeholder="Vui lòng nhập"></textarea>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="billing-first-name" class="form-label">Vị trí sắp xếp </label>
+                                        <input class="form-control" type="number" name="sortOrder"
+                                            placeholder="Vui lòng nhập">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="billing-email-address" class="form-label">Trạng thái: &nbsp;</label>
+                                        <br />
+                                        <div>
+                                            <input type="checkbox" id="status-active" checked name="status"
+                                                class="switch-status" data-switch="success">
+                                            <label for="status-active" data-on-label="Yes" data-off-label="No"
+                                                class="mb-0 d-block"></label>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="upload-file-wrap">
+                                        <label class="form-label mb-2">Ảnh đại diện</label>
+                                        <!-- File Upload -->
+                                        <div class="upload-file">
+                                            <div class="image-preview-wrap">
+                                                <img src="~/Admin/assets/images/no_image.png" class="image-preview" />
+                                                <input type="hidden" name="avatar" value="" />
+                                            </div>
+                                        </div>
+                                        <div class="mt-3">
+                                            <div class="input-group">
+                                                <input name="file" type="file" class="form-control select-file"
+                                                    accept="image/*" />
+                                                <button class="btn btn-danger btn-delete-file" type="button"><i
+                                                        class="mdi mdi-trash-can"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label for="billing-email-address" class="form-label">Thuộc tính</label>:
+                                    &nbsp;</label>
+                                    <br />
+                                    <div>
+                                        <select class="form-select select2" id="multiple-select-field"
+                                            name="productCategoryProperties" data-placeholder="Chọn thuộc tính"
+                                            multiple>
+                                            @foreach (var item in propertiesList)
+                                            {
+                                                    <option value="@item.Id">
+                                                    @item.Title</option>
+                                            }
+                                        </select>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-success ladda-button" id="btn-save"
+                        data-style="expand-right"><i class="mdi mdi-content-save"></i> Lưu lại</button>
+                </div>
+
+            </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal-dialog -->
+</div>

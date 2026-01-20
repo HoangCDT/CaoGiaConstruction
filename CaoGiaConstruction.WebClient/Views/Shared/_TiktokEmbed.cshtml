@@ -1,0 +1,16 @@
+﻿@inject IAboutService _service;
+@{
+    var about = await _service.GetAboutCacheAsync();
+}
+
+@if (about != null && about.TiktokIFrame != null)
+{
+    <section class="section_tiktok">
+    <div class="container-fluid">
+        <div class="col-md-12">
+            @Html.Raw(about.TiktokIFrame)
+        </div>
+    </div>
+</section>
+
+}

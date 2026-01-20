@@ -1,0 +1,34 @@
+﻿@model AboutHomeVM;
+<section class="section infoUs section_about">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="module_left a-center animated" data-animate="fadeInLeft animation animation-delay-25">
+                    <div class="heading">
+                        <h2 class="large_title">Chúng tôi là</h2>
+                        <span class="mini_title">@Model?.About?.AboutUs</span>
+                    </div>
+                    @* <div class="day_time">
+                    Tất cả các ngày trong tuần từ <b>6:30am - 21:00pm</b> <span class="hidden-xs">|</span>
+                    Hotline:
+                    <a href="tel:@Model.About.PhoneNumber">@Model.About.PhoneNumber</a>
+                    </div> *@
+                    <span class="about-description">
+                        @Model?.About?.Description
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-6 module_right">
+                <div class="img-about animated" data-animate="fadeInRight animation animation-delay-25">
+                    <figure>
+                        <a src="@Model.Banner?.Avatar?.ToHostImage()" data-fancybox="gallery"
+                            data-caption="@Model.Banner?.Title" title="@Model.Banner.Title">
+                            <img alt="@Model?.Banner?.Title" src="@Model.Banner?.Avatar?.ToHostImage()?w=600"
+                                class="animated" data-animate="fadeInRight animation animation-delay-25">
+                        </a>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

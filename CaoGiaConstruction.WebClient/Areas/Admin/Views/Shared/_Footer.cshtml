@@ -1,0 +1,19 @@
+﻿@model AboutVM;
+
+<footer class="footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                @Model.Copyright - Cung cấp bởi <a target="_blank" href="https://hqsoftsolution.com/">HQSolutions</a>
+            </div>
+            <div class="col-md-4">
+                @if (Environment.GetEnvironmentVariable("IMAGE_TAG") != null)
+                {
+                    <div class="text-md-end footer-links d-none d-md-block">
+                        <a href="javascript: void(0);"><strong>Phiên bản</strong> @Environment.GetEnvironmentVariable("IMAGE_TAG")</a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</footer>

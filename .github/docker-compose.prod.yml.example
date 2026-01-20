@@ -1,0 +1,27 @@
+version: '3'
+
+# Docker Compose file cho Production Environment
+# Copy file này lên server Production tại: /home/github-actions/docker-deploys/cao-gia-construction-prod/docker-compose.yml
+
+networks: 
+  docker-net:
+    external: true
+
+services:
+  cao-gia-construction-prod:
+    container_name: cao-gia-construction-prod
+    image: hoangcdt/cao-gia-construction:${IMAGE_TAG:-latest}
+    hostname: cao-gia-construction-prod
+    restart: always
+    networks: 
+      - docker-net
+    volumes:
+       - /home/backup/cao-gia-construction-prod/fileuploads:/app/wwwroot/fileuploads
+    environment:
+       CONNECT_STRING_API: Host=postgres.hqsolutions.vn;Port=5432;Database=CAOGIACONSTRUCTION_PROD;User ID=hqs;Password=YOUR_PASSWORD;
+       ASPNETCORE_ENVIRONMENT: Production
+       TZ: Asia/Ho_Chi_Minh
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+

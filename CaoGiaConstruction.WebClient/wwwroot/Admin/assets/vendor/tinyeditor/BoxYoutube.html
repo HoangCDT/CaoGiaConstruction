@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>TinyUpload</title>
+    <!-- Bootstrap 3.3.7 -->
+    <link href="/~/Client/Admin/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/~/Client/Admin/bower_components/font-awesome/css/font-awesome.min.css" />
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="/~/Client/Admin/bower_components/Ionicons/css/ionicons.min.css" />
+    <!-- Theme style -->
+    <link href="/~/Client/Admin/css/AdminLTE.min.css" rel="stylesheet" />
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link href="/~/Client/Admin/css/skins/_all-skins.min.css" rel="stylesheet" />
+    <link href="/~/Client/Admin/css/style.css" rel="stylesheet" />
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="/~/Client/Admin/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" />
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="/~/Client/Admin/bower_components/bootstrap-daterangepicker/daterangepicker.css" />
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link rel="stylesheet" href="/~/Client/Admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <link href="/~/Client/Admin/plugins/Alert/jquery-confirm.min.css" rel="stylesheet" />
+    <link href="/~/Client/Admin/plugins/fancybox-master/dist/jquery.fancybox.css" rel="stylesheet" />
+    <link href="/~/Client/Admin/plugins/CropJS/cropper.min.css" rel="stylesheet" />
+</head>
+<body style="background-image: url(/~/Client/Admin/dist/images/bg-banner.png);background-repeat: repeat;">
+    <div class="container">
+        <div class="row clearfix form-group" style="margin-top:25px">
+            <div class="col-xs-2">
+                Url Video:
+            </div>
+            <div class="col-xs-10">
+                <input class="form-control" type="text" id="txtUrl" />
+            </div>
+        </div>
+        <div class="row clearfix form-group">
+            <div class="col-xs-2">
+                Width:
+            </div>
+            <div class="col-xs-10">
+                <input class="form-control" type="text" id="txtWidth" placeholder="Width" value="500" />
+            </div>
+        </div>
+        <div class="row clearfix form-group">
+            <div class="col-xs-2">
+                Height:
+            </div>
+            <div class="col-xs-10">
+                <input class="form-control" type="text" id="txtHeight" placeholder="Height" value="300" />
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row clearfix form-group">
+            <div class="span2">
+                <div class="col-xs-2">
+                    Video Preview:
+                </div>
+                <div class="col-xs-10">
+                    <iframe class="form-control" style="height:300px;width:100%" id="ifram"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="row-form clearfix">
+            <div class="span12">
+                <div class="pull-right">
+                    <button class="btn btn-success" type="button" id="insert-video" onclick="InsertYoutube()">
+                        Chèn video
+                    </button>
+                    <button class="btn btn-danger" onclick="parent.tinyMCEClose(); return false;" type="button">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery 3 -->
+    <script src="/~/Client/Admin/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="/~/Client/Admin/bower_components/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button);
+    </script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="/~/Client/Admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Sparkline -->
+    <script src="/~/Client/Admin/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="/~/Client/Admin/bower_components/moment/min/moment.min.js"></script>
+    <script src="/~/Client/Admin/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- datepicker -->
+    <script src="/~/Client/Admin/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="/~/Client/Admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <!-- Slimscroll -->
+    <script src="/~/Client/Admin/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="/~/Client/Admin/bower_components/fastclick/lib/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/~/Client/Admin/Scripts/adminlte.min.js"></script>
+
+    <script src="/~/Client/Admin/plugins/fancybox-master/dist/jquery.fancybox.js"></script>
+
+    <script src="/~/Client/Admin/plugins/Alert/jquery-confirm.min.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="/~/Client/Admin/Scripts/pages/dashboard.js"></script>
+    <script src="/~/Client/Admin/Scripts/Commons.js"></script>
+
+    <script src="/~/Client/Admin/Scripts/scripts.js"></script>
+    <script src="/~/Client/Admin/plugins/CropJS/cropper.min.js"></script>
+    <script src="/~/Client/Admin/plugins/CropJS/CustomerCrop.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var urlDefault = "https://www.youtube.com/watch?v=hK0w6joXqW4&fbclid";
+            setDefaultUrl(urlDefault);
+
+            $("#txtUrl").blur(function () {
+                var urlInput = $(this).val();
+                $("#ifram").attr("src", urlEmbed(urlInput));
+            });
+
+        });
+
+        function setDefaultUrl(url) {
+            $("#txtUrl").val(url);
+            $("#ifram").attr("src", urlEmbed(url));
+        }
+
+        function urlEmbed(urlYtb) {
+            var idVideo = getParameterByName("v", urlYtb);
+            return "https://www.youtube.com/embed/" + idVideo;
+        }
+
+        function InsertYoutube() {
+            var urlVideo = $("#txtUrl").val();
+            var width = $("#txtWidth").val();
+            var height = $("#txtHeight").val();
+
+            if ($.trim(urlVideo) === "") {
+                alert("Vui lòng nhập url video");
+                return;
+            }
+
+            if ($.trim(width) === "") {
+                width = 500;
+            }
+            if ($.trim(height) === "") {
+                height = 300;
+            }
+
+            var tempIfram = `<iframe width="{0}" height="{1}" src="{2}"></iframe>`;
+            tempIfram = tempIfram.replace("{0}", width);
+            tempIfram = tempIfram.replace("{1}", height);
+            tempIfram = tempIfram.replace("{2}", urlEmbed(urlVideo));
+
+            parent.tinyMCE.activeEditor.selection.setContent(tempIfram);
+            parent.tinyMCE.activeEditor.windowManager.close();
+        }
+
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+    </script>
+</body>
+</html>

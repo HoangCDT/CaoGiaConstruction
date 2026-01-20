@@ -1,0 +1,107 @@
+@model List<Branches>
+@{
+    var branches = Model?.OrderBy(x => x.SortOrder).ToList();
+}
+
+@if (branches != null && branches.Any())
+{
+    <!-- ===== HỆ THỐNG CHI NHÁNH ===== -->
+    <section id="branches" class="branch-section">
+        <div class="container">
+            <h2 class="section-title">Hệ thống chi nhánh</h2>
+            <p class="section-subtitle">Khám phá không gian cà phê Cao Gia Construction gần bạn</p>
+
+            <div class="swiper branch-slider" data-branch-count="@branches.Count">
+                <div class="swiper-wrapper">
+                    @foreach (var branch in branches)
+                    {
+                        <div class="swiper-slide branch-card">
+                            <div class="branch-img">
+                                @if (!string.IsNullOrEmpty(branch.Avatar))
+                                {
+                                    <img src="@branch.Avatar" alt="@branch.Title">
+                                }
+                                else
+                                {
+                                    <img src="~/Client/images/placeholder.jpg" alt="@branch.Title">
+                                }
+                                @if (!string.IsNullOrEmpty(branch.MapIFrame))
+                                {
+                                    <div class="overlay">
+                                        <a href="javascript:void(0)" class="btn-map" data-map="@branch.MapIFrame">Xem bản đồ</a>
+                                    </div>
+                                }
+                            </div>
+                            <div class="branch-content">
+                                <h3>@branch.Title</h3>
+                                @if (!string.IsNullOrEmpty(branch.Address))
+                                {
+                                    <p><strong>Địa chỉ:</strong> @branch.Address</p>
+                                }
+                                @if (!string.IsNullOrEmpty(branch.PhoneNumber))
+                                {
+                                    <p><strong>Điện thoại:</strong> @branch.PhoneNumber</p>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+                <!-- Pagination + Nav -->
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+    </section>
+
+    <link rel="stylesheet" href="~/Client/lib/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="~/Client/css/branches-v2.css" />
+
+    <script src="~/Client/lib/swiper/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sliderElement = document.querySelector('.branch-slider');
+            if (sliderElement) {
+                const branchCount = parseInt(sliderElement.getAttribute('data-branch-count')) || 0;
+                
+                const swiper = new Swiper('.branch-slider', {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                    loop: branchCount > 3,
+                    grabCursor: true,
+                    centeredSlides: true,
+                    autoplay: {
+                        delay: 3500,
+                        disableOnInteraction: false
+                    },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    breakpoints: {
+                        1024: { slidesPerView: 3 },
+                        768: { slidesPerView: 2 },
+                        480: { slidesPerView: 1 },
+                    },
+                });
+
+                // Xử lý click nút "Xem bản đồ"
+                document.querySelectorAll('.btn-map').forEach(function(btn) {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const mapUrl = this.getAttribute('data-map');
+                        if (mapUrl) {
+                            // Mở bản đồ trong cửa sổ mới
+                            window.open(mapUrl, '_blank');
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+}
+

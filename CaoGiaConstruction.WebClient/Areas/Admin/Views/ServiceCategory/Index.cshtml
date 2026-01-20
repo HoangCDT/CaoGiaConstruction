@@ -1,0 +1,184 @@
+﻿@model Pager<ServiceCategory>
+@{
+    ViewData["Title"] = "Danh mục dịch vụ";
+    var keyword = ViewBag.Keyword as string;
+}
+<div class="content">
+    <!-- Start Content-->
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a asp-route="admin-default">Trang chủ</a></li>
+                            <li class="breadcrumb-item active">Danh mục dịch vụ</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">Danh mục dịch vụ</h4>
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row mb-2">
+                            <div class="col-sm-8 app-search">
+                                <form asp-route="admin-service-cat"
+                                    class="row gy-2 gx-2 align-items-center justify-content-xl-start justify-content-between">
+                                    <div class="col-auto">
+                                        @await Html.PartialAsync("_AppSearch", keyword)
+                                    </div>
+
+                                </form>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="text-sm-end">
+                                    <button type="button" class="btn btn-success btn-add mb-2 me-2">
+                                        <i class="mdi mdi-plus-circle"></i>&nbsp;
+                                        Thêm mới
+                                    </button>
+                                    <a href="javascript:window.location.reload();" class="btn btn-light mb-2">
+                                        <i class="mdi mdi-sync"></i>&nbsp;
+                                        Làm mới
+                                    </a>
+                                </div>
+                            </div><!-- end col-->
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-hover  table-centered w-100 dt-responsive nowrap"
+                                id="table-service-cat">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="center">STT</th>
+                                        <th>Ảnh đại diện</th>
+                                        <th class="all">Tên danh mục</th>
+                                        <th>Sắp xếp</th>
+                                        <th>Người tạo/Ngày tạo</th>
+                                        <th>Ngày cập nhật</th>
+                                        <th>Trạng thái</th>
+                                        <th style="width: 85px;">#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.Result.Any())
+                                    {
+                                        int num = 0;
+                                        foreach (var item in Model.Result)
+                                        {
+                                            <tr>
+                                                <td class="center middle" width="20">
+                                                    <strong> #@(((Model.CurrentPage - 1) * Model.PageSize + num) + 1)</strong>
+                                                </td>
+                                                <td>
+                                                    <a data-fancybox="gallery" href="@item.Avatar.ToHostImage()">
+                                                        <img src="@item.Avatar.ToHostImage()" alt="@item.Title" title="@item.Title" class="rounded me-3" height="48" />
+                                                    </a>
+
+                                                </td>
+                                                <td>
+                                                    <p class="m-0 d-inline-block align-middle font-13">
+                                                        <a asp-route="service-cate" asp-route-code="@item.Code" target="_blank"
+                                                            class="text-body">
+                                                            @item.Title
+                                                        </a>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    @item.SortOrder
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <h5 class="mb-2 font-13">@item.UserCreated?.FullName</h5>
+                                                   <p class="mb-0 font-13 txt-muted">
+                                                        @item.CreatedDate.ToString("dd/MM/yyyy")
+                                                        <small class="text-muted">@item.CreatedDate.ToString("HH:mm")</small>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p class="mb-0 font-13 txt-muted"> @item.ModifiedDate.ToString("dd/MM/yyyy")&nbsp;&nbsp;</p>
+                                                    <small class="text-muted">&nbsp;&nbsp;@item.ModifiedDate.ToString("HH:mm")</small>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <input type="checkbox" id="stauts@(item.Id)" data-id="@item.Id"
+                                                        @(item.Status == StatusEnum.Active ? "checked" : "")
+                                                            class="switch-status" data-switch="success">
+                                                        <label for="stauts@(item.Id)" data-on-label="Yes" data-off-label="No"
+                                                            class="mb-0 d-block"></label>
+                                                    </div>
+                                                </td>
+
+                                                <td class="table-action text-nowrap">
+                                                    <a href="javascript:void(0);" data-id="@item.Id"
+                                                        class="action-icon btn-edit" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Delete" data-bs-original-title="Edit"> <i
+                                                            class="mdi mdi-square-edit-outline"></i></a>
+                                                    <a href="javascript:void(0);" data-id="@item.Id"
+                                                        class="action-icon btn-delete" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Delete" data-bs-original-title="Delete"> <i class="mdi mdi-delete"></i></a>
+                                                </td>
+                                            </tr>
+                                            num++;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="9">
+                                                <div class="alert alert-warning w-50 m-auto text-center" role="alert">
+                                                    Không có dữ liệu trong danh mục này
+                                                </div>
+                                            </td>
+                                        </tr>
+
+
+                                    }
+
+                                </tbody>
+
+                            </table>
+
+                            @await Component.InvokeAsync(nameof(vcPagingAdmin), Model)
+                        </div>
+                    </div> <!-- end card-body-->
+                </div> <!-- end card-->
+            </div> <!-- end col -->
+        </div>
+        <!-- end row -->
+
+    </div> <!-- container -->
+
+</div> <!-- content -->
+@* Modal banner *@
+<partial name="~/Areas/Admin/Views/ServiceCategory/_ModalServiceCategoryAction.cshtml" />
+@section styles {
+    <!-- Select2 css -->
+    <link href="~/Admin/assets/vendor/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <!-- upload-file-single -->
+    <link href="~/Admin/assets/js/commons/upload-file-single/upload-file-single.css" rel="stylesheet"
+        asp-append-version="true" />
+    <!-- validate css -->
+    <link href="~/Admin/assets/vendor/validation/js/jquery.validate.css" rel="stylesheet" />
+    <!-- ladda css -->
+    <link href="~/Admin/assets/vendor/ladda-master/dist/ladda.min.css" rel="stylesheet" />
+    <link href="~/Admin/assets/vendor/ladda-master/dist/ladda-themeless.min.css" rel="stylesheet" />
+
+}
+
+@section scripts {
+    <!-- validate js -->
+    <script src="~/Admin/assets/vendor/validation/js/jquery.validate.min.js"></script>
+    <!-- ladda js -->
+    <script src="~/Admin/assets/vendor/ladda-master/dist/spin.min.js"></script>
+    <script src="~/Admin/assets/vendor/ladda-master/dist/ladda.jquery.min.js"></script>
+    <!--  Select2 Js -->
+    <script src="~/Admin/assets/vendor/select2/js/select2.min.js"></script>
+    <!-- upload-file-single -->
+    <script src="~/Admin/assets/js/commons/upload-file-single/upload-file-single.js" asp-append-version="true"></script>
+    <!-- Datatable js -->
+    <script src="~/Admin/assets/js/controllers/service-category-controller.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,80 @@
+﻿@model BlogVM
+@{
+    var blogRelateds = ViewBag.BlogRelateds as IEnumerable<BlogNoContentVM>;
+}
+<div class="main-content">
+    <div class="page-header">
+        <!-- <div class="page-about"> -->
+        @{
+            string titleCate = Model.BlogCategory.Type == BlogTypeEnum.KNOWLEDGE ? "Kiến thức" :
+            (Model.BlogCategory.Type == BlogTypeEnum.NEWSEVENT ? "Tin tức" : "Công thức");
+            var routeName = Model.BlogCategory.Type == BlogTypeEnum.KNOWLEDGE ? "know" :
+            (Model.BlogCategory.Type == BlogTypeEnum.NEWSEVENT ? "blog" : "formula");
+
+            var breadcrumbItems = new List<BreadcrumbDto>
+        {
+        new BreadcrumbDto { Url = "home", Title = "Trang chủ", IsActive = false },
+        new BreadcrumbDto { Url = routeName, Title = titleCate, IsActive = false },
+        new BreadcrumbDto { Url = $"{routeName}-cate", Title = Model.BlogCategory.Title,Code = Model.BlogCategory.Code,
+        IsActive = false },
+        new BreadcrumbDto { Url = string.Empty, Title = Model.Title, IsActive = true },
+        };
+        }
+        @await Component.InvokeAsync(nameof(vcBreadcrumb), breadcrumbItems)
+    </div>
+    <div class="page-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="content-detail fancybox-content-custom">
+                        <h1 class="title-detail">
+                            @Model.Title
+                        </h1>
+                        <div class="publish-date">
+                            <i class="fa fa-calendar"></i>
+                            @Model.CreatedDate.ToString("dd/MM/yyyy")
+                        </div>
+                        @Html.Raw(Model.Content)
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="sidebar">
+                        @await Html.PartialAsync("_BlogCategoriesCounts", Model.BlogCategory.Type)
+
+                        @await Html.PartialAsync("_HotBlog", Model)
+                    </div>
+                </div>
+
+                @if (blogRelateds != null && blogRelateds.Any())
+                {
+                    <div class="col-md-12">
+                        <div class="wrap-main">
+                            <h3 class="title line-title title-main">
+                                Bài viết tương tự<i class="fa">&#xf111;</i>
+                            </h3>
+                            <div class="content-main w-clear">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="related-blog-wrapper owl-carousel owl-theme owl-loaded">
+                                            <div class="owl-stage-outer">
+                                                <div class="owl-stage">
+                                                    @foreach (var blog in blogRelateds)
+                                                    {
+                                                        <div class="owl-item">
+                                                            @await Html.PartialAsync("_KnowItem", blog)
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+</div>

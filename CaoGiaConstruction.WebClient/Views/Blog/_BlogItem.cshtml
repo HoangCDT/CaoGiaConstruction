@@ -1,0 +1,42 @@
+﻿@model BlogNoContentVM
+@{
+    string canonicalUrl = Url.RouteUrl("blog-detail", new { category = Model.BlogCategory.Code, code = Model.Code });
+
+
+}
+<article class="post">
+    <div class="row">
+        <div class="col-md-6">
+            <figure class="post-thumbnail">
+
+                <img alt="@Model.Title" src="@Model.Avatar.ToHostImage()?w=600">
+                <link rel="canonical" href="@canonicalUrl" />
+
+                <a asp-route="blog-detail" asp-route-code="@Model.Code"
+                    asp-route-category="@Model.BlogCategory.Code"></a>
+            </figure>
+        </div>
+        <div class="col-md-6">
+            <div class="entry">
+                <div class="entry-date">@Model.CreatedDate.ToString("dd")<small>
+                        /@Model.CreatedDate.ToString("MMM")</small></div>
+                <h3 class="title entry-title">
+                    <a asp-route="blog-detail" asp-route-code="@Model.Code"
+                        asp-route-category="@Model.BlogCategory.Code">@Model.Title</a>
+                </h3>
+                <div class="entry-content">
+                    @Model.Description
+                </div>
+                <div class="entry-meta">
+                    <strong>Đăng bởi</strong> <span class="entry-meta-author">
+                        @Model.UserCreated?.FullName
+                    </span> /
+                    <a asp-route="blog-detail" asp-route-code="@Model.Code"
+                        asp-route-category="@Model.BlogCategory.Code">
+                        @Model?.BlogCategory?.Title
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</article> using System.Security;

@@ -1,0 +1,29 @@
+﻿/*#region upload file */
+
+.upload-file-wrap .upload-file {
+    border: 2px dashed var(--ct-border-color);
+    background: var(--ct-input-bg);
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+}
+
+    .upload-file-wrap .upload-file .image-preview-wrap {
+        width: 100%;
+        height: 100%;
+    }
+
+        .upload-file-wrap .upload-file .image-preview-wrap .image-preview {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+    .upload-file-wrap .upload-file i {
+        font-size: 50px;
+    }
+
+.upload-file-wrap .btn-delete-file {
+    box-shadow: none !important;
+}
+/*#endregion */

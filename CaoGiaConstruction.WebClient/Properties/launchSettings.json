@@ -1,0 +1,32 @@
+{
+  "profiles": {
+    "CaoGiaConstruction.WebClient": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "CONNECT_STRING_API": "Host=postgres.hqsolutions.vn;Port=5432;Database=CAOGIACONSTRUCTION_DEV;User ID=hqs;Password=Hqs@##8443;"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "https://localhost:7244;http://localhost:5244"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "environmentVariables": {
+        "ASPNETCORE_URLS": "https://+:443;http://+:80"
+      },
+      "publishAllPorts": true,
+      "useSSL": true
+    }
+  },
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:53688",
+      "sslPort": 44380
+    }
+  }
+}

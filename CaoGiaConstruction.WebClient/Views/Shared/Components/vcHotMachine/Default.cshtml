@@ -1,0 +1,54 @@
+﻿@model List<ProductNoContentVM>;
+
+@if (Model.Any())
+{
+    <section class="section section_product">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="carousel-title">
+                        <h2><span>MÁY PHA - DỤNG CỤ</span> NỔI BẬT</h2>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="machine-wrapper owl-carousel owl-theme owl-loaded animated" data-animate="fadeInUp">
+                        <div class="owl-stage-outer">
+                            <div class="owl-stage">
+                                @foreach (var item in Model)
+                                {
+                                    string canonicalUrl = Url.RouteUrl("product-detail", new { category = item.ProductCategory.Code, code = item.Code });
+                                    
+                                    <div class="owl-item">
+                                        <div class="item-product">
+                                            <div class="block-thumb">
+                                                <link rel="canonical" href="@canonicalUrl" />
+                                                <a class="thumb" asp-route="product-detail" asp-route-category="@item.ProductCategory.Code" asp-route-code="@item.Code"
+                                                   title="@item.Title">
+                                                    <img class="lazyload loaded" src="@(item.Avatar != null? $"{item.Avatar.ToHostImage()}?w=600" : $"{item.ImageList.ToHostImage(true)}?w=600")"
+                                                         alt="@item.Title" data-was-processed="true">
+                                                </a>
+                                            </div>
+                                            <div class="block-content">
+                                                <h3>
+                                                    <a asp-route="product-detail" asp-route-category="@item.ProductCategory.Code" asp-route-code="@item.Code"
+                                                       title="@item.Title">@item.Title</a>
+                                                </h3>
+                                                <p class="time-post">
+                                                    <span> @item.CreatedDate.ToString("dd/MM/yyyy")</span>
+                                                </p>
+                                                <p class="justify">
+                                                   @item.Description
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

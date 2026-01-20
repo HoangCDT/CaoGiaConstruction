@@ -1,0 +1,179 @@
+﻿@using CaoGiaConstruction.WebClient.Const
+@using CaoGiaConstruction.WebClient.Context.Enums
+@inject IBlogCategoryService _blogCategoryService;
+@inject IProductCategoryService _productCategoryService;
+@inject IServiceCategoryService _serviceCategoryService;
+@model SystemDto;
+@{
+    var blogCates = await _blogCategoryService.GetAllAsync(x => x.Status == StatusEnum.Active);
+    var productMainCates = await _productCategoryService.GetWithProductMainCategoryGroupAsync();
+    var serviceCates = await _serviceCategoryService.GetAllAsync(x => x.Status == StatusEnum.Active);
+
+    var routeParameterNames = new Dictionary<string, string>
+{
+    { ProductMainCategoryCodeDefine.PRODUCT, "product-cate" },
+    { ProductMainCategoryCodeDefine.MACHINES, "machines-cate" }
+};
+}
+
+<header class="header">
+    <div class="header-inner" style="background-color:@Model?.Setting?.HeaderBackgroundColor">
+        <div class="container">
+            <!-- Logo -->
+            <div id="logo" class="logo">
+                <a asp-route="default">
+                    <img alt="@Model?.About?.AboutUs" src="@Model?.About?.LogoTop.ToHostImage()?w=600">
+                </a>
+            </div>
+            <!-- Main Menu -->
+            <nav id="primary-navigation" class="navbar" role="navigation">
+                <div class="navbar-inner">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span> <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <h3 class="navbar-brand">Menu</h3>
+                    </div>
+
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="@CommonApp.ActiveMenu(Context.Request, Url.RouteUrl("about"))">
+                                <a asp-route="about">Về Cao Gia Construction</a>
+                                <span class="open-close hidden-lg hidden-md hidden-sm nav-item has-dropdown">
+                                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                </span>
+                                <div class="dropdown">
+                                    <ul class="sub-menu">
+                                        <li><a asp-route="about">Về chúng tôi</a></li>
+                                        <li><a asp-route="branch">Hệ thống chi nhánh</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="@CommonApp.ActiveMenu(Context.Request, Url.RouteUrl("service"))">
+                                <a asp-route="service">Dịch vụ</a>
+                                @{
+                                    var services = serviceCates.OrderBy(x => x.SortOrder);
+                                    if (services.Any())
+                                    {
+                                        <div class="dropdown">
+                                            <ul class="sub-menu">
+                                                @foreach (var service in services)
+                                                {
+                                                    <li class="@CommonApp.ActiveMenu(Context.Request, Url.RouteUrl(service.Code.ToLower()))">
+                                                        <a asp-route="service-cate" asp-route-code="@service.Code">@service.Title</a>
+                                                    </li>
+                                                }
+                                                <li><a asp-route="project">Dự án đã triển khai</a></li>
+                                            </ul>
+                                        </div>
+                                    }
+                                }
+                            </li>
+                            <li class="nav-item has-dropdown" class="@CommonApp.ActiveMenu(Context.Request, Url.RouteUrl("product"))
+                            @CommonApp.ActiveMenu(Context.Request, Url.RouteUrl("machines")) 
+                            @CommonApp.ActiveMenu(Context.Request, Url.RouteUrl("grinder"))">
+                                <a asp-route="machines-cate" asp-route-code="all">Sản phẩm</a>
+                                <span class="open-close hidden-lg hidden-md hidden-sm nav-item has-dropdown">
+                                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                </span>
+                                @{
+                                    var productMain = productMainCates.OrderBy(x => x.MainCategory.SortOrder);
+                                    if (productMain.Any())
+                                    {
+                                        <div class="dropdown">
+                                            <ul class="sub-menu">
+                                                @foreach (var main in productMainCates)
+                                                {
+                                                    <li class="@CommonApp.ActiveMenu(Context.Request, Url.RouteUrl(main.MainCategory.Code.ToLower()))">
+                                                        <a asp-route="@main.MainCategory.Code.ToLower()">@main.MainCategory.Title</a>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    }
+                                }
+                            </li>
+
+                            <li class="@CommonApp.ActiveMenu(Context.Request, Url.RouteUrl("know"))">
+                                <a asp-route="know">Kiến thức</a>
+                                @if (blogCates.Any())
+                                {
+                                    <span class="open-close hidden-lg hidden-md hidden-sm nav-item has-dropdown">
+                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                    </span>
+                                    var knowledges = blogCates.Where(x => x.Type == BlogTypeEnum.KNOWLEDGE);
+                                    if (knowledges.Any())
+                                    {
+                                        <div class="dropdown">
+                                            <ul class="sub-menu">
+                                                @foreach (var know in knowledges)
+                                                {
+                                                    <li>
+                                                        <a asp-route="know-cate" asp-route-code="@know.Code">@know.Title</a>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    }
+                                }
+                            </li>
+                            <li class="@CommonApp.ActiveMenu(Context.Request, Url.RouteUrl("formula"))">
+                                <a asp-route="formula">Công thức</a>
+                                @if (blogCates.Any())
+                                {
+                                    <span class="open-close hidden-lg hidden-md hidden-sm nav-item has-dropdown">
+                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                    </span>
+                                    var formulas = blogCates.Where(x => x.Type == BlogTypeEnum.FORMULA);
+                                    if (formulas.Any())
+                                    {
+                                        <div class="dropdown">
+                                            <ul class="sub-menu">
+                                                @foreach (var formula in formulas)
+                                                {
+                                                    <li>
+                                                        <a asp-route="formula-cate" asp-route-code="@formula.Code">@formula.Title</a>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    }
+                                }
+                            </li>
+                            <li class="@CommonApp.ActiveMenu(Context.Request, Url.RouteUrl("blog"))">
+                                <a asp-route="blog"> Tin tức</a>
+                                @if (blogCates.Any())
+                                {
+                                    <span class="open-close hidden-lg hidden-md hidden-sm nav-item has-dropdown">
+                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                    </span>
+                                    var blogs = blogCates.Where(x => x.Type == BlogTypeEnum.NEWSEVENT);
+                                    if (blogs.Any())
+                                    {
+                                        <div class="dropdown">
+                                            <ul class="sub-menu">
+                                                @foreach (var blogCate in blogs)
+                                                {
+                                                    <li>
+                                                        <a asp-route="blog-cate" asp-route-code="@blogCate.Code">@blogCate.Title</a>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    }
+                                }
+                            </li>
+                            <li class="@CommonApp.ActiveMenu(Context.Request, Url.RouteUrl("contact"))">
+                                <a asp-route="contact">Liên hệ</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--/.navbar-collapse -->
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
