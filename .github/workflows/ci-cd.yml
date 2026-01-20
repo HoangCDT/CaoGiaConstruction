@@ -10,7 +10,7 @@ on:
 env:
   api_host_path: ./CaoGiaConstruction.WebClient
   dockerfile_path: ./CaoGiaConstruction.WebClient/Dockerfile
-  docker_image_name: hoangcdt/cao-gia-construction
+  docker_image_name: hoangcdt7602119/cao-gia-construction
   TAG_NAME: 1.0
 
 jobs:

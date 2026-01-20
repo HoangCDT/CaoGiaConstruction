@@ -9,7 +9,7 @@ on:
         default: 'latest'
 
 env:
-  DOCKER_IMAGE: hoangcdt/cao-gia-construction
+  DOCKER_IMAGE: hoangcdt7602119/cao-gia-construction
 
 jobs:
   build-and-push:

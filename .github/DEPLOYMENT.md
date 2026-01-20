@@ -126,13 +126,13 @@ cd /path/to/deployment
 - Khi push code lên branch `master`
 - Build Docker image với tag `latest`
 - Deploy tự động lên server UAT
-- Image: `hoangcdt/cao-gia-construction:latest`
+- Image: `hoangcdt7602119/cao-gia-construction:latest`
 
 ### Production Environment
 - Khi tạo tag (ví dụ: `v1.0.0`, `v1.2.3`)
 - Build Docker image với tag là tên tag
 - Deploy tự động lên server Production
-- Image: `hoangcdt/cao-gia-construction:v1.0.0`
+- Image: `hoangcdt7602119/cao-gia-construction:v1.0.0`
 
 ### Tạo tag để deploy Production
 
