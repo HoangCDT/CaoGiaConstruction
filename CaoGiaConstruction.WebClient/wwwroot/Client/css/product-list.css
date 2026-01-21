@@ -1,4 +1,4 @@
-﻿/* Sản Phẩm */
+/* Sản Phẩm */
 .wrap-product {
     padding: 50px 0 3px 0;
     background: url(../images/nensp.jpg) no-repeat left bottom;
@@ -232,7 +232,7 @@
 
 .hove {
     position: relative;
-    border: 1px solid var(--caogia-primary-color)
+    border: 1px solid var(--caogia-secondary-color)
 }
 
     .hove span {
@@ -273,7 +273,7 @@
 
 .hove1 {
     position: relative;
-    border: 1px solid var(--caogia-primary-color);
+    border: 1px solid var(--caogia-secondary-color);
 }
 
     .hove1 span {

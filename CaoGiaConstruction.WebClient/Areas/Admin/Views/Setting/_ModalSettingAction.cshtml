@@ -1,4 +1,4 @@
-﻿<div class="modal fade" id="modal-setting" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+<div class="modal fade" id="modal-setting" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-scrollable">
         <form id="form-setting">
@@ -10,63 +10,168 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-12">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="mb-3"><i>Lưu ý: </i>(<span class="text-danger">*</span>) là trường bắt
-                                        buộc nhập</div>
+                            <div class="mb-3"><i>Lưu ý: </i>(<span class="text-danger">*</span>) là trường bắt buộc nhập</div>
+                            
+                            <!-- Nhóm Màu sắc -->
+                            <div class="card mb-3">
+                                <div class="card-header bg-light">
+                                    <h5 class="card-title mb-0"><i class="mdi mdi-palette"></i> Màu sắc chính</h5>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="billing-first-name" class="form-label">Màu header</label>
-                                        <input class="form-control" type="color" name="headerBackgroundColor"
-                                            placeholder="Header background color">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="billing-first-name" class="form-label">Màu footer </label>
-                                        <input class="form-control" type="color" name="footerBackgroundColor"
-                                            placeholder="Footer background color">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="billing-first-name" class="form-label">Font family</label>
-                                        <input class="form-control" type="text" name="fontFamily"
-                                            placeholder="Font family">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="billing-first-name" class="form-label">Font size </label>
-                                        <input class="form-control" type="text" name="fontSize" placeholder="Font size">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="mb-3">
-                                        <label for="billing-first-name" class="form-label">Mô tả ngắn </label>
-                                        <textarea class="form-control" name="description" rows="3"
-                                            placeholder="Vui lòng nhập"></textarea>
-                                    </div>
-                                </div>
-
-                            </div> <!-- end row -->
-
-                            <div class="row ">
-                                <div class="col-12">
-                                    <div class="mb-3">
-                                        <label for="billing-email-address" class="form-label">Trạng thái: &nbsp;</label>
-                                        <br />
-                                        <div>
-                                            <input type="checkbox" id="status-active" checked name="status"
-                                                class="switch-status" data-switch="success">
-                                            <label for="status-active" data-on-label="Yes" data-off-label="No"
-                                                class="mb-0 d-block"></label>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Màu chính (Primary Color)</label>
+                                                <input class="form-control" type="color" name="primaryColor"
+                                                    placeholder="Primary color">
+                                            </div>
                                         </div>
-
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Màu phụ (Secondary Color)</label>
+                                                <input class="form-control" type="color" name="secondaryColor"
+                                                    placeholder="Secondary color">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                            </div>
 
+                            <!-- Nhóm Header -->
+                            <div class="card mb-3">
+                                <div class="card-header bg-light">
+                                    <h5 class="card-title mb-0"><i class="mdi mdi-menu"></i> Cài đặt Header</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Màu text menu</label>
+                                                <input class="form-control" type="color" name="headerMenuTextColor"
+                                                    placeholder="Header menu text color">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Màu text menu (selected)</label>
+                                                <input class="form-control" type="color" name="headerMenuTextSelectedColor"
+                                                    placeholder="Header menu text selected color">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Màu hover menu</label>
+                                                <input class="form-control" type="color" name="headerMenuHoverColor"
+                                                    placeholder="Header menu hover color">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Nhóm Sub-menu -->
+                            <div class="card mb-3">
+                                <div class="card-header bg-light">
+                                    <h5 class="card-title mb-0"><i class="mdi mdi-menu-down"></i> Cài đặt Sub-menu</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Màu text sub-menu</label>
+                                                <input class="form-control" type="color" name="subMenuTextColor"
+                                                    placeholder="Sub menu text color">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Màu border top sub-menu</label>
+                                                <input class="form-control" type="color" name="subMenuBorderTopColor"
+                                                    placeholder="Sub menu border top color">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Nhóm Footer -->
+                            <div class="card mb-3">
+                                <div class="card-header bg-light">
+                                    <h5 class="card-title mb-0"><i class="mdi mdi-page-layout-footer"></i> Cài đặt Footer</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Màu nền footer</label>
+                                                <input class="form-control" type="color" name="footerBackgroundColor"
+                                                    placeholder="Footer background color">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Màu sub text footer</label>
+                                                <input class="form-control" type="color" name="footerSubTextColor"
+                                                    placeholder="Footer sub text color">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Nhóm Font -->
+                            <div class="card mb-3">
+                                <div class="card-header bg-light">
+                                    <h5 class="card-title mb-0"><i class="mdi mdi-format-font"></i> Cài đặt Font</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Font family</label>
+                                                <input class="form-control" type="text" name="fontFamily"
+                                                    placeholder="Ví dụ: Arial, sans-serif">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Font size</label>
+                                                <input class="form-control" type="text" name="fontSize" 
+                                                    placeholder="Ví dụ: 14px">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Nhóm khác -->
+                            <div class="card mb-3">
+                                <div class="card-header bg-light">
+                                    <h5 class="card-title mb-0"><i class="mdi mdi-information"></i> Thông tin khác</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Mô tả ngắn</label>
+                                                <textarea class="form-control" name="description" rows="3"
+                                                    placeholder="Vui lòng nhập mô tả"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Trạng thái: &nbsp;</label>
+                                                <br />
+                                                <div>
+                                                    <input type="checkbox" id="status-active" checked name="status"
+                                                        class="switch-status" data-switch="success">
+                                                    <label for="status-active" data-on-label="Kích hoạt" data-off-label="Tắt"
+                                                        class="mb-0 d-block"></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                         </div>

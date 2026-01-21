@@ -1689,7 +1689,7 @@ h3.widgettitle {
 .sidebar .widget .title {
     padding-left: 15px;
     padding-bottom: 8px;
-    border-bottom: 1px solid var(--caogia-main-color);
+    border-bottom: 1px solid var(--caogia-secondary-color);
     position: relative;
     font-size: 17px;
     text-transform: uppercase;

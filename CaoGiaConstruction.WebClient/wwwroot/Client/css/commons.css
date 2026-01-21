@@ -1,9 +1,9 @@
-﻿.text-center {
+.text-center {
     text-align: center !important;
 }
 
 :root {
     --caogia-text-color: #0c3133;
-    --caogia-main-color: #ebab33;
+    --caogia-secondary-color: #ebab33;
     --caogia-primary-color: #be8a60;
 }

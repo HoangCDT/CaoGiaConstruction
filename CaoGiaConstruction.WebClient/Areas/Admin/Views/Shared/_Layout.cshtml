@@ -1,6 +1,51 @@
-﻿@inject IAboutService _aboutService;
+@inject IAboutService _aboutService;
+@inject ISettingService _settingService;
+@using CaoGiaConstruction.Utilities
 @{
     var about = await _aboutService.GetAboutCacheAsync();
+    var setting = await _settingService.GetSettingCacheAsync();
+    var primaryColor = setting?.PrimaryColor ?? "#007bff";
+    var secondaryColor = setting?.SecondaryColor ?? "#6c757d";
+    
+    // Convert hex to RGB for CSS variables
+    string primaryRgb = "0, 123, 255"; // Default blue
+    string secondaryRgb = "108, 117, 125"; // Default gray
+    if (!string.IsNullOrEmpty(primaryColor) && primaryColor.StartsWith("#"))
+    {
+        try
+        {
+            var hex = primaryColor.TrimStart('#');
+            if (hex.Length == 6)
+            {
+                var r = Convert.ToInt32(hex.Substring(0, 2), 16);
+                var g = Convert.ToInt32(hex.Substring(2, 2), 16);
+                var b = Convert.ToInt32(hex.Substring(4, 2), 16);
+                primaryRgb = $"{r}, {g}, {b}";
+            }
+        }
+        catch
+        {
+            // Keep default if conversion fails
+        }
+    }
+    if (!string.IsNullOrEmpty(secondaryColor) && secondaryColor.StartsWith("#"))
+    {
+        try
+        {
+            var hex = secondaryColor.TrimStart('#');
+            if (hex.Length == 6)
+            {
+                var r = Convert.ToInt32(hex.Substring(0, 2), 16);
+                var g = Convert.ToInt32(hex.Substring(2, 2), 16);
+                var b = Convert.ToInt32(hex.Substring(4, 2), 16);
+                secondaryRgb = $"{r}, {g}, {b}";
+            }
+        }
+        catch
+        {
+            // Keep default if conversion fails
+        }
+    }
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +70,38 @@
     <!-- App css -->
     <link href="~/Admin/assets/css/app-saas.min.css" rel="stylesheet" type="text/css" id="app-style" />
     <link href="~/Admin/assets/css/custom.css" rel="stylesheet" />
+
+    <!-- Dynamic Primary Color from Setting -->
+    <style>
+        :root {
+            --ct-primary: @primaryColor !important;
+            --ct-primary-rgb: @primaryRgb !important;
+            --caogia-primary-color: @primaryColor !important;
+            --caogia-secondary-color: @secondaryColor !important;
+            --ct-menu-item-active-color: var(--caogia-secondary-color) !important;
+            --ct-menu-item-hover-color: var(--caogia-secondary-color) !important;
+            --ct-topbar-item-hover-color: var(--caogia-secondary-color) !important;
+            --ct-link-hover-color: var(--caogia-secondary-color) !important;
+        }
+        .bg-primary {
+            background-color: @primaryColor !important;
+        }
+        .text-primary {
+            color: @primaryColor !important;
+        }
+        .btn-primary {
+            background-color: @primaryColor !important;
+            border-color: @primaryColor !important;
+        }
+        .btn-primary:hover {
+            background-color: @primaryColor !important;
+            border-color: @primaryColor !important;
+            opacity: 0.9;
+        }
+        .border-primary {
+            border-color: @primaryColor !important;
+        }
+    </style>
 
 </head>
 

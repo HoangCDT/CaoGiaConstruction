@@ -2021,7 +2021,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: var(--caogia-main-color);
+        background: var(--caogia-secondary-color);
         -webkit-transform: scale(0);
         transform: scale(0);
         -webkit-transition-property: transform;

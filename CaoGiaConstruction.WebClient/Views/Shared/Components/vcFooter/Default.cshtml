@@ -1,4 +1,4 @@
-﻿@model SystemDto;
+@model SystemDto;
 
 @inject IBranchesService _brachesService;
 @inject IProductCategoryService _productCategoryService;
@@ -7,7 +7,18 @@
     var productCates = await _productCategoryService.GetAllAsync(x => x.IsDeleted != true && x.Status == StatusEnum.Active);
 }
 
-<footer id="footer" style="background-color: @Model?.Setting?.FooterBackgroundColor">
+<footer id="footer" style="background-color: @Model?.Setting?.FooterBackgroundColor; --footer-sub-text-color: @(Model?.Setting?.FooterSubTextColor ?? "#CCCCCC");">
+    <style>
+        #footer .widget-content,
+        #footer .widget-content p,
+        #footer .widget-content span,
+        #footer .widget-content a,
+        #footer .widget-content li,
+        #footer .copyright,
+        #footer .copyright p {
+            color: var(--footer-sub-text-color) !important;
+        }
+    </style>
     <div class="footer-info">
         <div class="container">
             <div class="row">
@@ -148,6 +159,11 @@
             const items = document.querySelectorAll("#productCateList .product-cate-item");
             const btn = document.getElementById("btnToggleList");
             const maxVisible = 5;
+
+            // Kiểm tra btn có tồn tại không
+            if (!btn) {
+                return; // Nếu không có btn thì không làm gì cả
+            }
 
             if (items.length > maxVisible) {
                 // Ẩn bớt item sau vị trí thứ 5

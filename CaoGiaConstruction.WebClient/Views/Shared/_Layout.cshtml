@@ -1,4 +1,4 @@
-﻿@inject IProductCategoryService productCategoryService
+@inject IProductCategoryService productCategoryService
 @inject IAboutService aboutService
 @inject ISettingService _settingService;
 @{
@@ -32,6 +32,14 @@
     @Html.Raw(ViewBag.Header)
   }
   <link href="~/Client/css/full-css-import.css" rel="stylesheet" />
+
+  <!-- Dynamic Color Variables from Setting -->
+  <style>
+    :root {
+      --caogia-primary-color: @(setting?.PrimaryColor ?? "#007bff");
+      --caogia-secondary-color: @(setting?.SecondaryColor ?? "#6c757d");
+    }
+  </style>
 
   <script src="~/Client/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 

@@ -1,4 +1,4 @@
-﻿.relative {
+.relative {
     position: relative;
 }
 
@@ -18,7 +18,7 @@
     width: 30px !important;
     height: 30px !important;
     border-radius: 5px;
-    border: 1px solid var(--caogia-primary-color);
+    border: 1px solid var(--caogia-secondary-color);
     transform: translate(0, -50%);
     margin-top: 0 !important;
 }
@@ -90,9 +90,9 @@
             }
 
         .gallery-thumbs .swiper-slide.swiper-slide-thumb-active {
-            border-color: var(--caogia-primary-color)
+            border-color: var(--caogia-secondary-color)
         }
 
         .gallery-thumbs .swiper-slide:hover {
-            border-color: var(--caogia-primary-color)
+            border-color: var(--caogia-secondary-color)
         }

@@ -1,26 +1,32 @@
-﻿@inject IReportService reportService
+@inject IReportService reportService
+@inject IAboutService _aboutService;
+@using CaoGiaConstruction.Utilities
 @{
     var resultCount = await reportService.GetCountSideBar();
+    var about = await _aboutService.GetAboutCacheAsync();
+    var logoUrl = !string.IsNullOrEmpty(about?.LogoTop) 
+        ? about.LogoTop.ToHostImage() 
+        : Url.Content("~/Admin/assets/images/logo.png");
 }
 <div class="leftside-menu">
 
     <!-- Brand Logo Light -->
     <a target="_blank" asp-route="home" class="logo logo-light">
         <span class="logo-lg">
-            <img src="~/Admin/assets/images/logo.png" alt="logo" style="height: 60px;border-radius: 5px;">
+            <img src="@logoUrl" alt="logo" style="height: 60px;border-radius: 5px;">
         </span>
         <span class="logo-sm">
-            <img src="~/Admin/assets/images/logo-sm.png" alt="small logo" style="height: 60px;border-radius: 5px;">
+            <img src="@logoUrl" alt="small logo" style="height: 60px;border-radius: 5px;">
         </span>
     </a>
 
     <!-- Brand Logo Dark -->
     <a target="_blank" asp-route="home" class="logo logo-dark">
         <span class="logo-lg">
-            <img src="~/Admin/assets/images/logo-dark.png" alt="dark logo" style="height: 60px;border-radius: 5px;">
+            <img src="@logoUrl" alt="dark logo" style="height: 60px;border-radius: 5px;">
         </span>
         <span class="logo-sm">
-            <img src="~/Admin/assets/images/logo-dark-sm.png" alt="small logo" style="height: 60px;border-radius: 5px;">
+            <img src="@logoUrl" alt="small logo" style="height: 60px;border-radius: 5px;">
         </span>
     </a>
 

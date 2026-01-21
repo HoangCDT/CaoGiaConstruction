@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using SkiaSharp;
 using System.Reflection;
@@ -88,6 +88,17 @@ namespace CaoGiaConstruction.WebClient.Middleware
                 fileInfo = new FileInfo(imagePath);
             }
 
+            // Log query string for debugging
+            var queryString = context.Request.QueryString.ToString();
+            var userAgent = context.Request.Headers.ContainsKey("User-Agent") ? context.Request.Headers["User-Agent"].ToString() : "N/A";
+            var referer = context.Request.Headers.ContainsKey("Referer") ? context.Request.Headers["Referer"].ToString() : "N/A";
+            _logger.LogInformation("Image request - Full URL: {Path}{QueryString}, Query params: {QueryParams}, User-Agent: {UserAgent}, Referer: {Referer}",
+                path.Value,
+                queryString,
+                string.Join(", ", context.Request.Query.Select(q => $"{q.Key}={q.Value}")),
+                userAgent,
+                referer);
+            
             // Get resize params
             var resizeParams = GetResizeParams(path, context.Request.Query, context.Request.Headers, fileInfo);
             

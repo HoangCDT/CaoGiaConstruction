@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
 
 Author: mTheme
 Author URI: http://themeforest.net/user/mtheme_market
@@ -78,7 +78,7 @@ body,
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
     transition: all .3s ease 0s;
-    border-top: 2px solid var(--caogia-primary-color);
+    border-top: 2px solid var(--caogia-secondary-color);
     -webkit-animation: scale-in-ver-top-exit .2s ease-in-out;
     animation: scale-in-ver-top-exit .2s ease-in-out;
     background: #fff;
@@ -212,7 +212,7 @@ input:focus,
 .comment-form textarea:focus,
 .contact-form input:focus,
 .contact-form textarea:focus {
-    border-color: var(--caogia-main-color);
+    border-color: var(--caogia-secondary-color);
     outline: none;
     border-radius: 3px;
 }
@@ -227,7 +227,7 @@ input:focus,
     .galleries .filter .button:hover,
     .menus .filter .button.active,
     .menus .filter .button:hover {
-        border-color: var(--caogia-main-color);
+        border-color: var(--caogia-secondary-color);
     }
 
 .comment-form input,
@@ -239,7 +239,7 @@ input:focus,
 }
 
 .contact-form button {
-    border: 1px solid var(--caogia-main-color);
+    border: 1px solid var(--caogia-secondary-color);
     border-radius: 3px;
 }
 

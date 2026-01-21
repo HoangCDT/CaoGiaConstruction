@@ -1,4 +1,4 @@
-﻿<!-- Banner -->
+<!-- Banner -->
 @await Html.PartialAsync("_SlideTopHome")
 
 <div class="main-content home-wrapper">
@@ -42,8 +42,45 @@
 @section scripts {
     <script src="~/Client/js/vendor/jquery.nivo.slider.pack.js"></script>
     <script>
-        // Lazy load TikTok embed sau khi trang đã load xong
+        // Debug: Log số lượng img elements trong slider
         $(document).ready(function() {
+            // Log sau khi Nivo Slider đã khởi tạo
+            setTimeout(function() {
+                const $slider = $('#banner .nivoSlider');
+                if ($slider.length > 0) {
+                    // Tất cả img trong slider (bao gồm cả .nivo-main-image và .nivo-slice)
+                    const allImgs = $slider.find('img');
+                    console.log('=== DEBUG SLIDER IMAGES ===');
+                    console.log('Tổng số img elements trong slider:', allImgs.length);
+                    
+                    // Nhóm theo src
+                    const imgGroups = {};
+                    allImgs.each(function(index) {
+                        const src = $(this).attr('src');
+                        const className = $(this).attr('class') || 'no-class';
+                        if (!imgGroups[src]) {
+                            imgGroups[src] = [];
+                        }
+                        imgGroups[src].push({
+                            index: index,
+                            class: className,
+                            src: src
+                        });
+                    });
+                    
+                    console.log('Nhóm theo src:');
+                    Object.keys(imgGroups).forEach(function(src) {
+                        console.log(`  ${src}: ${imgGroups[src].length} img(s)`);
+                        imgGroups[src].forEach(function(img) {
+                            console.log(`    - Index: ${img.index}, Class: ${img.class}`);
+                        });
+                    });
+                    
+                    // Log HTML source của slider
+                    console.log('HTML của slider:', $slider[0].outerHTML.substring(0, 500) + '...');
+                }
+            }, 2000); // Delay 2s để đảm bảo Nivo Slider đã khởi tạo xong
+            
             // Load TikTok embed sau một khoảng delay nhỏ để không chặn trang chính
             setTimeout(function() {
                 loadTiktokEmbed();

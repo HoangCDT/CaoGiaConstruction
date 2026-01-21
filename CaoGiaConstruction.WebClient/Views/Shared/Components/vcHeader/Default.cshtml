@@ -1,4 +1,4 @@
-﻿@using CaoGiaConstruction.WebClient.Const
+@using CaoGiaConstruction.WebClient.Const
 @using CaoGiaConstruction.WebClient.Context.Enums
 @inject IBlogCategoryService _blogCategoryService;
 @inject IProductCategoryService _productCategoryService;
@@ -17,7 +17,13 @@
 }
 
 <header class="header">
-    <div class="header-inner" style="background-color:@Model?.Setting?.HeaderBackgroundColor">
+    <div class="header-inner" style="--caogia-primary-color: @(Model?.Setting?.PrimaryColor ?? "#007bff"); --caogia-secondary-color: @(Model?.Setting?.SecondaryColor ?? "#6c757d"); background-color: var(--caogia-primary-color);">
+        <style>
+            :root {
+                --caogia-primary-color: @(Model?.Setting?.PrimaryColor ?? "#007bff");
+                --caogia-secondary-color: @(Model?.Setting?.SecondaryColor ?? "#6c757d");
+            }
+        </style>
         <div class="container">
             <!-- Logo -->
             <div id="logo" class="logo">
@@ -39,7 +45,45 @@
                     </div>
 
                     <div id="navbar" class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
+                        <ul class="nav navbar-nav" style="--header-menu-text-color: @(Model?.Setting?.HeaderMenuTextColor ?? "#333333"); --header-menu-selected-color: @(Model?.Setting?.HeaderMenuTextSelectedColor ?? "#007bff"); --header-menu-hover-color: @(Model?.Setting?.HeaderMenuHoverColor ?? "#007bff"); --sub-menu-text-color: @(Model?.Setting?.SubMenuTextColor ?? "#333333"); --sub-menu-border-top-color: @(Model?.Setting?.SubMenuBorderTopColor ?? "#cdcdcd");">
+                            <style>
+                                /* Màu text menu chính */
+                                .nav.navbar-nav > li > a {
+                                    color: var(--header-menu-text-color) !important;
+                                }
+                                
+                                /* Màu text menu khi active/selected */
+                                .nav.navbar-nav > li.active > a {
+                                    color: var(--header-menu-selected-color) !important;
+                                }
+                                
+                                /* Màu text menu khi hover */
+                                .nav.navbar-nav > li:hover > a {
+                                    color: var(--header-menu-hover-color) !important;
+                                }
+                                
+                                /* Màu border top của dropdown/sub-menu */
+                                .nav.navbar-nav > li .dropdown,
+                                .nav.navbar-nav > li .sub-menu {
+                                    border-top-color: var(--sub-menu-border-top-color) !important;
+                                }
+                                
+                                /* Màu text trong dropdown/sub-menu */
+                                .nav.navbar-nav > li .dropdown a,
+                                .nav.navbar-nav > li .dropdown li a,
+                                .nav.navbar-nav > li .sub-menu a,
+                                .nav.navbar-nav > li .sub-menu li a {
+                                    color: var(--sub-menu-text-color) !important;
+                                }
+                                
+                                /* Màu text khi hover trong dropdown/sub-menu */
+                                .nav.navbar-nav > li .dropdown a:hover,
+                                .nav.navbar-nav > li .dropdown li a:hover,
+                                .nav.navbar-nav > li .sub-menu a:hover,
+                                .nav.navbar-nav > li .sub-menu li a:hover {
+                                    color: var(--header-menu-hover-color) !important;
+                                }
+                            </style>
                             <li class="@CommonApp.ActiveMenu(Context.Request, Url.RouteUrl("about"))">
                                 <a asp-route="about">Về Cao Gia Construction</a>
                                 <span class="open-close hidden-lg hidden-md hidden-sm nav-item has-dropdown">
@@ -120,7 +164,7 @@
                                     }
                                 }
                             </li>
-                            <li class="@CommonApp.ActiveMenu(Context.Request, Url.RouteUrl("formula"))">
+                            @* <li class="@CommonApp.ActiveMenu(Context.Request, Url.RouteUrl("formula"))"></li>
                                 <a asp-route="formula">Công thức</a>
                                 @if (blogCates.Any())
                                 {
@@ -142,7 +186,7 @@
                                         </div>
                                     }
                                 }
-                            </li>
+                            </li> *@
                             <li class="@CommonApp.ActiveMenu(Context.Request, Url.RouteUrl("blog"))">
                                 <a asp-route="blog"> Tin tức</a>
                                 @if (blogCates.Any())

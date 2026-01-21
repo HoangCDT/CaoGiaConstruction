@@ -1,4 +1,4 @@
-﻿/*#region sidebar */
+/*#region sidebar */
 .news-list li {
 margin-bottom: 15px;
 clear: both;
@@ -90,7 +90,7 @@ display: -webkit-box;
 position: absolute;
 top: 10px;
 right: 10px;
-background: var(--caogia-main-color);
+background: var(--caogia-secondary-color);
 color: #fff;
 padding: 3px 10px;
 border-radius: 5px;
@@ -357,9 +357,9 @@ margin: 7px 0px;
 }
 
 .section_product .item-product .block-content .time-post span {
-background: var(--caogia-main-color);
+background: var(--caogia-secondary-color);
 padding: 0 5px;
-border: 1px solid var(--caogia-main-color);
+border: 1px solid var(--caogia-secondary-color);
 border-radius: 15px;
 font-size: 14px;
 line-height: 20px;
@@ -372,7 +372,7 @@ content: "";
 position: absolute;
 width: 100%;
 height: 1px;
-background-color: var(--caogia-main-color);
+background-color: var(--caogia-secondary-color);
 top: 50%;
 left: 0;
 right: 0;
@@ -417,7 +417,7 @@ height: 40px;
 line-height: 40px;
 width: 100%;
 padding: 0px 10px;
-border: 1px solid var(--caogia-primary-color);
+border: 1px solid var(--caogia-secondary-color);
 border-radius: 3px;
 -webkit-border-radius: 3px;
 -moz-border-radius: 3px;
@@ -515,7 +515,7 @@ nav.pagination ul li a:hover,
 nav.pagination ul li a.active {
 color: #fff;
 background-color: var(--caogia-primary-color);
-border-color: var(--caogia-primary-color);
+border-color: var(--caogia-secondary-color);
 }
 
 nav.pagination ul li .page-item {
@@ -706,7 +706,7 @@ padding-right: 20px;
 
 .categories-box .main li a:hover {
 text-decoration: none;
-color: var(--caogia-main-color);
+color: var(--caogia-secondary-color);
 }
 
 .sidebar .nav-item .open-close {
@@ -949,7 +949,7 @@ color: #353434;
 }
 
 .branches-wrapper .branch-list .item-branch.active {
-background-color: var(--caogia-main-color);
+background-color: var(--caogia-secondary-color);
 color: #fff;
 }
 
@@ -1347,7 +1347,7 @@ background-color: #F5F5F5;
 border-radius: 10px;
 -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
 -moz-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
-background-color: var(--caogia-main-color);
+background-color: var(--caogia-secondary-color);
 }
 
 ::-webkit-scrollbar-track {

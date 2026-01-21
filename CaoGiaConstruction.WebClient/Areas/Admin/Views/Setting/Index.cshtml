@@ -1,4 +1,4 @@
-﻿@model Pager<SettingVM>
+@model Pager<SettingVM>
 @{
     ViewData["Title"] = "Cấu hình hệ thống";
     string keyword = ViewBag.Keyword as string;
@@ -58,7 +58,8 @@
                                 <thead class="table-light">
                                     <tr>
                                         <th class="center">STT</th>
-                                        <th class="all">Background header</th>
+                                        <th class="all">Primary Color</th>
+                                        <th class="all">Secondary Color</th>
                                         <th class="all">Background footer</th>
                                         <th class="all">Font family</th>
                                         <th class="all">Font size</th>
@@ -81,7 +82,13 @@
                                                 <td>
                                                     <p class="m-0 d-inline-block align-middle font-13">
                                                         <span class="bg-setting"
-                                                            style="background-color: @item.HeaderBackgroundColor"></span>
+                                                            style="background-color: @item.PrimaryColor"></span>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p class="m-0 d-inline-block align-middle font-13">
+                                                        <span class="bg-setting"
+                                                            style="background-color: @item.SecondaryColor"></span>
                                                     </p>
                                                 </td>
                                                 <td>
@@ -136,7 +143,7 @@
                                     else
                                     {
                                         <tr>
-                                            <td colspan="9">
+                                            <td colspan="10">
                                                 <div class="alert alert-warning w-50 m-auto text-center" role="alert">
                                                     Không có dữ liệu trong danh mục này
                                                 </div>

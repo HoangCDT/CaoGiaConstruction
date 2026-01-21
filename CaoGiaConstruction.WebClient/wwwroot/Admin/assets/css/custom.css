@@ -1,4 +1,4 @@
-﻿.nav-tabs.nav-bordered li:first-child a {
+.nav-tabs.nav-bordered li:first-child a {
     padding-left: 0 !important;
 }
 
@@ -31,4 +31,11 @@
 
  .bg-primary {
     background-color: rgb(234 171 52) !important;
+}
+
+:root {
+    --ct-menu-item-active-color: var(--caogia-secondary-color) !important;
+    --ct-menu-item-hover-color: var(--caogia-secondary-color) !important;
+    --ct-topbar-item-hover-color: var(--caogia-secondary-color) !important;
+    --ct-link-hover-color: var(--caogia-secondary-color) !important;
 } 
