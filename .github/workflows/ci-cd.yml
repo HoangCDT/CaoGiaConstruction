@@ -74,11 +74,12 @@ jobs:
 
       # Bước 4: SSH và triển khai lên UAT
       - name: Deploy to UAT
-        uses: appleboy/ssh-action@v0.1.5
+        uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.SSH_HOST_UAT }}
           username: ${{ secrets.SSH_USERNAME_UAT }}
           key: ${{ secrets.SSH_KEY_UAT }}
+          port: 22
           script: |
             cd /home/github-actions/docker-deploys/cao-gia-construction-uat
             docker-compose pull
@@ -86,11 +87,12 @@ jobs:
 
       # Bước 5: Dọn dẹp các Docker images UAT cũ không sử dụng liên quan đến "cao-gia-construction"
       - name: Cleanup unused UAT Docker images
-        uses: appleboy/ssh-action@v0.1.5
+        uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.SSH_HOST_UAT }}
           username: ${{ secrets.SSH_USERNAME_UAT }}
           key: ${{ secrets.SSH_KEY_UAT }}
+          port: 22
           script: |
             docker images --filter=reference='cao-gia-construction*' --format "{{.Repository}}:{{.Tag}}" | xargs -r docker rmi -f
 
@@ -130,11 +132,12 @@ jobs:
 
       # Bước 5: SSH và triển khai lên Production
       - name: Deploy to Production
-        uses: appleboy/ssh-action@v0.1.5
+        uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.SSH_HOST_PROD }}
           username: ${{ secrets.SSH_USERNAME_PROD }}
           key: ${{ secrets.SSH_KEY_PROD }}
+          port: ${{ secrets.SSH_PORT_PROD }}
           script: |
             cd /home/github-actions/docker-deploys/cao-gia-construction-prod
             export TAG_NAME=${{ env.TAG_NAME }}
@@ -143,10 +146,11 @@ jobs:
 
       # Bước 6: Dọn dẹp các Docker images không dùng nữa trên Production
       - name: Cleanup unused Production Docker images
-        uses: appleboy/ssh-action@v0.1.5
+        uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.SSH_HOST_PROD }}
           username: ${{ secrets.SSH_USERNAME_PROD }}
           key: ${{ secrets.SSH_KEY_PROD }}
+          port: ${{ secrets.SSH_PORT_PROD }}
           script: |
             docker images --filter=reference='cao-gia-construction*' --format "{{.Repository}}:{{.Tag}}" | xargs -r docker rmi -f
