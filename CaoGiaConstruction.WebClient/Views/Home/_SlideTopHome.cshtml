@@ -1,10 +1,10 @@
-﻿@using CaoGiaConstruction.WebClient.Const;
+@using CaoGiaConstruction.WebClient.Const;
 @inject ISlideService _slideService;
 @{
     var slides = await _slideService.GetAllAsync(x => x.Status == StatusEnum.Active && x.SlideCategory.Code == SlideCategoryCodeDefine.HOME_SLIDE_TOP);
 }
 
-@if (slides.Any())
+@if (slides != null && slides.Any())
 {
     <div id="banner">
         <div class="slider-wrapper">

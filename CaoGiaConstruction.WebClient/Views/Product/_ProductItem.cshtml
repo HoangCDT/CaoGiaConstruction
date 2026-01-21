@@ -1,4 +1,4 @@
-﻿@model ProductNoContentVM
+@model ProductNoContentVM
 @{
     string canonicalUrl = Url.RouteUrl("product-detail", new { code = Model.Code, category = Model.ProductCategory.Code });
 }
@@ -12,16 +12,22 @@
     <div class="product">
     <div class="box-product">
         <a class="pic-product scale-img hover_zoom" asp-route="product-detail"
-            asp-route-category="@Model.ProductCategory.Code" asp-route-code="@Model.Code" title="@Model.Title">
+            asp-route-category="@Model.ProductCategory?.Code" asp-route-code="@Model.Code" title="@Model.Title">
             <img src="@imageUrl" alt="@Model.Title">
         </a>
         <h3 class="name-product">
-            <a asp-route="product-detail" asp-route-category="@Model.ProductCategory.Code" asp-route-code="@Model.Code"
+            <a asp-route="product-detail" asp-route-category="@Model.ProductCategory?.Code" asp-route-code="@Model.Code"
                 class="text-split text-decoration-none">@Model.Title</a>
         </h3>
         <p class="price-product">
-            <span class="price-new">@Model.Price.ToString("0,00đ", true)</span>
-            <span class="price-old">@Model.OldPrice.ToString("0,00đ", true)</span>
+            @if (Model.Price != null)
+            {
+                <span class="price-new">@Model.Price.ToString("0,00đ", true)</span>
+            }
+            @if (Model.OldPrice != null)
+            {
+                <span class="price-old">@Model.OldPrice.ToString("0,00đ", true)</span>
+            }
             @if (Model.Promotions != null)
                 {
                     <span class="price-per">-@(Model.Promotions)%</span>
@@ -31,7 +37,7 @@
         <p class="cart-product w-clear">
             <a class="cart-buy hove addcart transition"><span>Liên hệ</span></a>
             <a class="themsp hove1 text-decoration-none" asp-route="product-detail"
-                asp-route-category="@Model.ProductCategory.Code" asp-route-code="@Model.Code" title="@Model.Title"><span
+                asp-route-category="@Model.ProductCategory?.Code" asp-route-code="@Model.Code" title="@Model.Title"><span
                     class="text-uppercase">CHI TIẾT</span></a>
         </p>
     </div>

@@ -1,4 +1,4 @@
-﻿@using CaoGiaConstruction.WebClient.Context.Enums
+@using CaoGiaConstruction.WebClient.Context.Enums
 @model ProjectVM
 @{
     var projectRelateds = ViewBag.ProjectRelateds as IEnumerable<ProjectNoContentVM>;
@@ -11,7 +11,7 @@
         {
         new BreadcrumbDto { Url = "home", Title = "Trang chủ", IsActive = false },
         new BreadcrumbDto { Url = "project", Title = "Dự án", IsActive = false },
-        new BreadcrumbDto { Url = $"project-cate", Title = Model.Service.Title,Code = Model.Service.Code, IsActive = false },
+        new BreadcrumbDto { Url = $"project-cate", Title = Model.Service?.Title ?? "", Code = Model.Service?.Code, IsActive = false },
         new BreadcrumbDto { Url = string.Empty, Title = Model.Title, IsActive = true },
         };
         }

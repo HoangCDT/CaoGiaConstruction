@@ -1,4 +1,4 @@
-﻿@using CaoGiaConstruction.WebClient.Const
+@using CaoGiaConstruction.WebClient.Const
 @model ProductVM;
 @{
     var relatedProducts = ViewBag.ProductRelateds as IEnumerable<ProductNoContentVM>;
@@ -10,12 +10,12 @@
         <div class="page-header">
             <div class="wrap-content">
                 @{
-                    var routeName = Model.ProductCategory.ProductMainCategory.Code?.ToString()?.ToLower();
+                    var routeName = Model.ProductCategory?.ProductMainCategory?.Code?.ToString()?.ToLower();
                     var breadcrumbItems = new List<BreadcrumbDto>
             {
             new BreadcrumbDto { Url = "home", Title = "Trang chủ", IsActive = false },
-            new BreadcrumbDto { Url = routeName, Title = Model.ProductCategory.ProductMainCategory.Title, IsActive = false },
-            new BreadcrumbDto { Url =  $"{routeName}-cate", Title = Model.ProductCategory.Title, Code =Model.ProductCategory?.Code, IsActive = false },
+            new BreadcrumbDto { Url = routeName, Title = Model.ProductCategory?.ProductMainCategory?.Title ?? "", IsActive = false },
+            new BreadcrumbDto { Url =  $"{routeName}-cate", Title = Model.ProductCategory?.Title ?? "", Code =Model.ProductCategory?.Code, IsActive = false },
             new BreadcrumbDto { Url = string.Empty, Title = Model.Title, IsActive = true },
             };
                 }
@@ -93,7 +93,7 @@
                             <div class="desc-pro-detail">
                                 <p><em>@Model.Description</em></p>
                             </div>
-                            @if (Model.ProductProperties.Any())
+                            @if (Model.ProductProperties != null && Model.ProductProperties.Any())
                             {
                                 <div class="prop-pro-detail rounded-sm">
                                     <h3 class="prop-pro-detail__heading rounded-sm d-inline-flex align-items-center">
@@ -103,7 +103,7 @@
                                         @foreach (var item in Model.ProductProperties)
                                         {
                                             <li class="w-clear">
-                                                <label class="attr-label-pro-detail">@item.Properties.Title:</label>
+                                                <label class="attr-label-pro-detail">@item.Properties?.Title:</label>
                                                 <div class="attr-content-pro-detail">@item.Value</div>
                                             </li>
                                         }
@@ -117,7 +117,10 @@
                                         <label class="attr-label-pro-detail">Giá:</label>
                                         <div class="attr-content-pro-detail">
                                             <span class="price-new-pro-detail">@Model.Price.ToString("0,00đ", true)</span>
-                                            <span class="price-old-pro-detail">@Model.OldPrice.ToString("0,00đ", true)</span>
+                                            @if (Model.OldPrice != null)
+                                            {
+                                                <span class="price-old-pro-detail">@Model.OldPrice.ToString("0,00đ", true)</span>
+                                            }
                                         </div>
                                     </li>
                                 }

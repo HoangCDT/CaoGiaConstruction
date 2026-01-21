@@ -1,6 +1,6 @@
-﻿@model BlogNoContentVM
+@model BlogNoContentVM
 @{
-    string canonicalUrl = Url.RouteUrl("blog-detail", new { category = Model.BlogCategory.Code, code = Model.Code });
+    string canonicalUrl = Url.RouteUrl("blog-detail", new { category = Model.BlogCategory?.Code, code = Model.Code });
 
 
 }
@@ -13,7 +13,7 @@
                 <link rel="canonical" href="@canonicalUrl" />
 
                 <a asp-route="blog-detail" asp-route-code="@Model.Code"
-                    asp-route-category="@Model.BlogCategory.Code"></a>
+                    asp-route-category="@Model.BlogCategory?.Code"></a>
             </figure>
         </div>
         <div class="col-md-6">
@@ -22,7 +22,7 @@
                         /@Model.CreatedDate.ToString("MMM")</small></div>
                 <h3 class="title entry-title">
                     <a asp-route="blog-detail" asp-route-code="@Model.Code"
-                        asp-route-category="@Model.BlogCategory.Code">@Model.Title</a>
+                        asp-route-category="@Model.BlogCategory?.Code">@Model.Title</a>
                 </h3>
                 <div class="entry-content">
                     @Model.Description
@@ -32,7 +32,7 @@
                         @Model.UserCreated?.FullName
                     </span> /
                     <a asp-route="blog-detail" asp-route-code="@Model.Code"
-                        asp-route-category="@Model.BlogCategory.Code">
+                        asp-route-category="@Model.BlogCategory?.Code">
                         @Model?.BlogCategory?.Title
                     </a>
                 </div>

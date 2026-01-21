@@ -1,4 +1,4 @@
-﻿@using CaoGiaConstruction.WebClient.Const
+@using CaoGiaConstruction.WebClient.Const
 @model ServiceVM
 @{
     var serviceRelateds = ViewBag.ServiceRelateds as IEnumerable<BlogNoContentVM>;
@@ -13,7 +13,7 @@
         {
         new BreadcrumbDto { Url = "home", Title = "Trang chủ", IsActive = false },
         new BreadcrumbDto { Url =  "service", Title = "Dịch vụ", IsActive = false },
-        new BreadcrumbDto { Url =  "service-cate", Title = Model.ServiceCategory.Title,Code = Model.ServiceCategory.Code, IsActive = false },
+        new BreadcrumbDto { Url =  "service-cate", Title = Model.ServiceCategory?.Title ?? "", Code = Model.ServiceCategory?.Code, IsActive = false },
         new BreadcrumbDto { Url =  string.Empty, Title = Model.Title, IsActive = true },
         };
             }

@@ -1,4 +1,4 @@
-﻿@model ServiceHomeDto
+@model ServiceHomeDto
 
 <section class="section latest">
     <div class="container">
@@ -14,7 +14,7 @@
                         {
                             <li>
                                 <figure>
-                                    <a asp-route="service-detail" asp-route-category="@item.ServiceCategory.Code"
+                                    <a asp-route="service-detail" asp-route-category="@item.ServiceCategory?.Code"
                                        asp-route-code="@item.Code">
                                         <img alt="@item.Title"
                                              src="@(item.Avatar != null ? $"{item.Avatar.ToHostImage()}?w=600" :
@@ -23,7 +23,7 @@
                                 </figure>
                                 <aside>
                                     <h4 class="title">
-                                        <a asp-route="service-detail" asp-route-category="@item.ServiceCategory.Code"
+                                        <a asp-route="service-detail" asp-route-category="@item.ServiceCategory?.Code"
                                            asp-route-code="@item.Code">
                                             @item.Title
                                         </a>
@@ -46,7 +46,7 @@
                             {
                                 <li>
                                     <a class="gallery-ajax" asp-route="project-detail" asp-route-code="@Model.Projects.Code"
-                                       asp-route-category="@Model.Projects.Service.Code" title="@Model.Projects.Title">
+                                       asp-route-category="@Model.Projects.Service?.Code" title="@Model.Projects.Title">
                                         <figure>
                                             <img class="animated" data-animate="zoomIn animation" alt="@Model.Projects.Title"
                                                  title="@Model.Projects.Title"

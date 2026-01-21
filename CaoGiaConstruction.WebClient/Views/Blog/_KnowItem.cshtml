@@ -1,13 +1,13 @@
-﻿@model BlogNoContentVM;
+@model BlogNoContentVM;
 @{
-    string canonicalUrl = Url.RouteUrl("know-detail", new { category = Model.BlogCategory.Code, code = Model.Code });
+    string canonicalUrl = Url.RouteUrl("know-detail", new { category = Model.BlogCategory?.Code, code = Model.Code });
 }
 <div class=" know-post-tb-body">
     <div class="know-blog-item">
         <article class="know-post-card know-post-card-4">
             <figure class="know-post-thumb">
                 <link rel="canonical" href="@canonicalUrl" />
-                <a asp-route="know-detail" asp-route-code="@Model.Code" asp-route-category="@Model.BlogCategory.Code"
+                <a asp-route="know-detail" asp-route-code="@Model.Code" asp-route-category="@Model.BlogCategory?.Code"
                     class="scale-img hover_zoom">
                     <img width="600" height="400" src="@Model.Avatar.ToHostImage()?w=600" alt="@Model.Title"
                         title="@Model.Title">
@@ -16,7 +16,7 @@
             <div class="know-blog-content">
                 <h4 class="know-post-title">
                     <a asp-route="know-detail" asp-route-code="@Model.Code"
-                        asp-route-category="@Model.BlogCategory.Code">
+                        asp-route-category="@Model.BlogCategory?.Code">
                         @Model.Title
                     </a>
                 </h4>

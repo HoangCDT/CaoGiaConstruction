@@ -1,9 +1,9 @@
-﻿@model ServiceNoContentVM;
+@model ServiceNoContentVM;
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-fix">
     <div class="item-blog">
         <div class="block-thumb">
             <a class="thumb" asp-route="service-detail"
-               asp-route-category="@Model.ServiceCategory.Code"
+               asp-route-category="@Model.ServiceCategory?.Code"
                asp-route-code="@Model.Code" title="@Model.Title">
                 <img width="600" height="380" class="lazyload loaded" src="@Model.Avatar.ToHostImage()?w=600" alt="@Model.Title">
             </a>
@@ -11,7 +11,7 @@
         <div class="block-content">
             <h3>
                 <a asp-route="service-detail"
-                   asp-route-category="@Model.ServiceCategory.Code"
+                   asp-route-category="@Model.ServiceCategory?.Code"
                    asp-route-code="@Model.Code"
                    title="@Model.Title" title="@Model.Title">@Model.Title</a>
             </h3>
@@ -20,7 +20,7 @@
             </p>
             <p class="time-post">
                 <a class="see_more" asp-route="service-detail"
-                   asp-route-category="@Model.ServiceCategory.Code"
+                   asp-route-category="@Model.ServiceCategory?.Code"
                    asp-route-code="@Model.Code" title="Đọc tiếp @Model.Title">
                     Đọc tiếp
                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="17" viewBox="0 0 26 17" fill="none">
