@@ -80,10 +80,12 @@ jobs:
           username: ${{ secrets.SSH_USERNAME_UAT }}
           key: ${{ secrets.SSH_KEY_UAT }}
           port: 22
+          timeout: 30s
+          command_timeout: 10m
           script: |
             cd /home/github-actions/docker-deploys/cao-gia-construction-uat
-            docker-compose pull
-            docker-compose up -d
+            IMAGE_TAG=latest docker-compose pull
+            IMAGE_TAG=latest docker-compose up -d
 
       # Bước 5: Dọn dẹp các Docker images UAT cũ không sử dụng liên quan đến "cao-gia-construction"
       - name: Cleanup unused UAT Docker images
@@ -93,6 +95,8 @@ jobs:
           username: ${{ secrets.SSH_USERNAME_UAT }}
           key: ${{ secrets.SSH_KEY_UAT }}
           port: 22
+          timeout: 30s
+          command_timeout: 5m
           script: |
             docker images --filter=reference='cao-gia-construction*' --format "{{.Repository}}:{{.Tag}}" | xargs -r docker rmi -f
 
