@@ -81,7 +81,6 @@ jobs:
           host: ${{ secrets.SSH_HOST_UAT }}
           username: ${{ secrets.SSH_USERNAME_UAT }}
           key: ${{ secrets.SSH_KEY_UAT }}
-          port: ${{ secrets.SSH_PORT_UAT }}
           script: |
             cd /home/github-actions/docker-deploys/cao-gia-construction-uat
             docker-compose pull
@@ -94,7 +93,6 @@ jobs:
           host: ${{ secrets.SSH_HOST_UAT }}
           username: ${{ secrets.SSH_USERNAME_UAT }}
           key: ${{ secrets.SSH_KEY_UAT }}
-          port: ${{ secrets.SSH_PORT_UAT }}
           script: |
             docker images --filter=reference='${{ env.docker_image_name }}*' --format "{{.Repository}}:{{.Tag}}" | xargs -r docker rmi -f || true
             docker system prune -f
