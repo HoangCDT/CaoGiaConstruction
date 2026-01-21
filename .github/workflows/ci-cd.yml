@@ -69,7 +69,7 @@ jobs:
       # Bước 3: Build Docker images cho UAT với tag `latest`
       - name: Build and push Docker images (UAT)
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/cao-gia-construction:latest ${{ env.api_host_path }}
+          docker build -f ${{ env.dockerfile_path }} -t ${{ secrets.DOCKERHUB_USERNAME }}/cao-gia-construction:latest .
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/cao-gia-construction:latest
 
       # Bước 4: SSH và triển khai lên UAT
@@ -125,7 +125,7 @@ jobs:
       # Bước 4: Build Docker images với tag là tên tag từ GitHub
       - name: Build and push Docker images (Production)
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/cao-gia-construction-prod:${{ env.TAG_NAME }} ${{ env.api_host_path }}
+          docker build -f ${{ env.dockerfile_path }} -t ${{ secrets.DOCKERHUB_USERNAME }}/cao-gia-construction-prod:${{ env.TAG_NAME }} .
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/cao-gia-construction-prod:${{ env.TAG_NAME }}
 
       # Bước 5: SSH và triển khai lên Production
