@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using CaoGiaConstruction.Utilities;
 using CaoGiaConstruction.Utilities.Constants;
 using CaoGiaConstruction.WebClient.Context.Enums;
@@ -28,14 +28,14 @@ namespace CaoGiaConstruction.WebClient.Controllers
             var logo = await _aboutService.GetLogoTopCacheAsync();
             #region Seo Meta Tag
             var metaTag = BuildMetaTag(
-                        title: "Tin tức mới nhất về cà phê - Cao Gia Construction", // Title (Thêm tiêu đề trang chứa từ khóa chính)
-                        siteName: "Cao Gia Construction - Chuyên cà phê chất lượng cao", // SiteName (Tên trang web hoặc công ty)
+                        title: "Tin tức mới nhất về xây dựng - Cao Gia Construction", // Title (Thêm tiêu đề trang chứa từ khóa chính)
+                        siteName: "Cao Gia Construction - Chuyên xây dựng chất lượng cao", // SiteName (Tên trang web hoặc công ty)
                         pageType: "article", // PageType (Loại trang: product, article)
-                        description: "Cập nhật các tin tức và sự kiện mới nhất về cà phê, sản phẩm sáng tạo, và những thức uống đặc biệt tại Cao Gia Construction.", // Description
+                        description: "Cập nhật các tin tức và sự kiện mới nhất về xây dựng, công trình, và những dự án đặc biệt tại Cao Gia Construction.", // Description
                         imageUrl: logo, // Logo (Ảnh đại diện trang web)
-                        keywords: "cà phê, tin tức cà phê, Cao Gia Construction, cà phê sáng tạo, đồ uống đặc biệt", // Keywords,
+                        keywords: "xây dựng, tin tức xây dựng, Cao Gia Construction, công trình xây dựng, dự án xây dựng", // Keywords,
                         updateTime: null, // UpdateTime
-                        tag: "tin tức cà phê, sự kiện cà phê, sản phẩm cà phê" // Tag (Các thẻ liên quan)
+                        tag: "tin tức xây dựng, sự kiện xây dựng, công trình xây dựng" // Tag (Các thẻ liên quan)
                         );
 
             ViewBag.Header = SetMetaTags(metaTag);
@@ -51,14 +51,14 @@ namespace CaoGiaConstruction.WebClient.Controllers
             var logo = await _aboutService.GetLogoTopCacheAsync() ?? Commons.LOGO_TOP;
             #region Seo Meta Tag
             var metaTag = BuildMetaTag(
-                        title: "Kiến thức cà phê - Tìm hiểu mọi điều về cà phê | Cao Gia Construction", // Title (Thêm tiêu đề trang chứa từ khóa chính)
+                        title: "Kiến thức xây dựng - Tìm hiểu mọi điều về xây dựng | Cao Gia Construction", // Title (Thêm tiêu đề trang chứa từ khóa chính)
                         siteName: "Cao Gia Construction", // SiteName (Tên trang web hoặc công ty)
                         pageType: "knowledge", // PageType (Loại trang: product, article)
-                        description: "Khám phá mọi kiến thức về cà phê tại Cao Gia Construction. Chúng tôi chia sẻ những mẹo pha chế, sự thật thú vị về cà phê, và nhiều điều bổ ích.", // Description
+                        description: "Khám phá mọi kiến thức về xây dựng tại Cao Gia Construction. Chúng tôi chia sẻ những kinh nghiệm thi công, kỹ thuật xây dựng, và nhiều điều bổ ích.", // Description
                         imageUrl: logo, // Logo (Ảnh đại diện trang web)
-                        keywords: "kiến thức cà phê, mẹo pha chế cà phê, cà phê ngon", // Keywords,
+                        keywords: "kiến thức xây dựng, kỹ thuật xây dựng, kinh nghiệm thi công", // Keywords,
                         updateTime: null, // UpdateTime
-                        tag: "kiến thức, cà phê, mẹo pha chế" // Tag (Các thẻ liên quan)
+                        tag: "kiến thức, xây dựng, kỹ thuật thi công" // Tag (Các thẻ liên quan)
                         );
 
             ViewBag.Header = SetMetaTags(metaTag);
@@ -74,14 +74,14 @@ namespace CaoGiaConstruction.WebClient.Controllers
             var logo = await _aboutService.GetLogoTopCacheAsync() ?? Commons.LOGO_TOP;
             #region Seo Meta Tag
             var metaTag = BuildMetaTag(
-                        title: "Công Thức Pha Chế Cà Phê Ngon - Bí Quyết Độc Đáo | Cao Gia Construction", // Title (Thêm tiêu đề trang chứa từ khóa chính)
+                        title: "Công Thức Xây Dựng - Bí Quyết Tính Toán | Cao Gia Construction", // Title (Thêm tiêu đề trang chứa từ khóa chính)
                         siteName: "Cao Gia Construction", // SiteName (Tên trang web hoặc công ty)
                         pageType: "article", // PageType (Loại trang: product, article)
-                        description: "Khám phá công thức pha chế cà phê ngon và sáng tạo tại Cao Gia Construction. Cùng chúng tôi thực hiện những món đồ uống độc đáo để thỏa mãn niềm đam mê cà phê.", // Description
+                        description: "Khám phá công thức tính toán trong xây dựng và thi công tại Cao Gia Construction. Cùng chúng tôi tìm hiểu những phương pháp tính toán chính xác để đảm bảo chất lượng công trình.", // Description
                         imageUrl: logo, // Logo (Ảnh đại diện trang web)
-                        keywords: "công thức pha chế cà phê, pha chế cà phê ngon, bí quyết pha cà phê", // Keywords,
+                        keywords: "công thức xây dựng, tính toán xây dựng, bí quyết thi công", // Keywords,
                         updateTime: null, // UpdateTime (Có thể dùng thời gian cập nhật nếu có)
-                        tag: "công thức, pha chế, cà phê ngon" // Tag (Các thẻ liên quan)
+                        tag: "công thức, tính toán, xây dựng" // Tag (Các thẻ liên quan)
                     );
 
             ViewBag.Header = SetMetaTags(metaTag);
@@ -103,15 +103,15 @@ namespace CaoGiaConstruction.WebClient.Controllers
             }
             var logo = await _aboutService.GetLogoTopCacheAsync() ?? Commons.LOGO_TOP;
             // Từ khóa SEO mặc định
-            var defaultKeywords = "cà phê rang xay, cà phê nguyên chất, Cao Gia Construction, cà phê chất lượng cao, cà phê specialty";
+            var defaultKeywords = "xây dựng, thi công công trình, Cao Gia Construction, xây dựng chất lượng cao, công ty xây dựng uy tín";
             #region Seo Meta Tag
             var metaTag = BuildMetaTag(
-                          title: !string.IsNullOrEmpty(blog.Title) ? blog.Title : "Thưởng thức cà phê chất lượng tại Cao Gia Construction", // Title (Thêm tiêu đề trang chứa từ khóa chính)
+                          title: !string.IsNullOrEmpty(blog.Title) ? blog.Title : "Dịch vụ xây dựng chất lượng tại Cao Gia Construction", // Title (Thêm tiêu đề trang chứa từ khóa chính)
                           siteName: "Cao Gia Construction", // SiteName (Tên trang web hoặc công ty)
                           pageType: "article", // PageType (Loại trang: product, article)
                           description: !string.IsNullOrEmpty(blog.Description)
                             ? blog.Description
-                            : "Cao Gia Construction mang đến cà phê rang xay nguyên chất, chất lượng cao, kết hợp cùng các thức uống sáng tạo.", // Description
+                            : "Cao Gia Construction mang đến dịch vụ xây dựng chuyên nghiệp, chất lượng cao, kết hợp cùng các giải pháp thi công hiện đại.", // Description
                          imageUrl: logo, // Logo (Ảnh đại diện trang web)
                          keywords: !string.IsNullOrEmpty(blog.SeoKeywords) ? blog.SeoKeywords : defaultKeywords, // Keywords,
                          updateTime: blog.ModifiedDate?.ToString("yyyy-MM-ddTHH:mm:ssZ"), // UpdateTime

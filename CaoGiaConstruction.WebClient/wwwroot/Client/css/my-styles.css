@@ -156,7 +156,7 @@ text-transform: uppercase;
 font-size: 36px;
 font-weight: 700;
 margin: 0;
-color: #e7b45a;
+color: var(--caogia-secondary-color);
 text-align: center;
 }
 

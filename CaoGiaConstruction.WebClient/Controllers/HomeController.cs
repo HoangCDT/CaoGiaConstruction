@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using static CaoGiaConstruction.Utilities.SetMetaTagUtility;
 using CaoGiaConstruction.WebClient.Extensions;
 using CaoGiaConstruction.WebClient.Services;
@@ -26,14 +26,14 @@ namespace CaoGiaConstruction.WebClient.Controllers
 
             #region Seo Meta Tag
             var metaTag = BuildMetaTag(
-               title: "Cao Gia Construction - Chất lượng cà phê rang xay nguyên chất", // Title (Thêm tiêu đề trang chứa từ khóa chính)
+               title: "Cao Gia Construction", // Title (Thêm tiêu đề trang chứa từ khóa chính)
                siteName: "Cao Gia Construction", // SiteName (Tên trang web hoặc công ty)
                pageType: "home", // PageType (Loại trang: product, article)
-               description: "Khám phá cà phê rang xay nguyên chất tại Cao Gia Construction, kết hợp với các thức uống sáng tạo và dịch vụ tuyệt vời.", // Description
+               description: "Khám phá dịch vụ xây dựng chuyên nghiệp tại Cao Gia Construction, kết hợp với các giải pháp thi công hiện đại và dịch vụ uy tín.", // Description
                imageUrl: logo, // Logo (Ảnh đại diện trang web)
-               keywords: "cà phê, Cao Gia Construction, cà phê rang xay nguyên chất, thức uống sáng tạo", // Keywords,
+               keywords: "xây dựng, Cao Gia Construction, thi công công trình, xây dựng chất lượng cao, công ty xây dựng", // Keywords,
                updateTime: null, // UpdateTime
-               tag: "cà phê, Cao Gia Construction, cà phê rang xay nguyên chất, thức uống sáng tạo" // Tag (Các thẻ liên quan)
+               tag: "xây dựng, Cao Gia Construction, thi công công trình, xây dựng chất lượng cao" // Tag (Các thẻ liên quan)
             );
 
             ViewBag.Header = SetMetaTags(metaTag);

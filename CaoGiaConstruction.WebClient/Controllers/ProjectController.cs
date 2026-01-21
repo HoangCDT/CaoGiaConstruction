@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using CaoGiaConstruction.Utilities;
 using CaoGiaConstruction.Utilities.Constants;
 using CaoGiaConstruction.WebClient.Dtos;
@@ -36,11 +36,11 @@ namespace CaoGiaConstruction.WebClient.Controllers
                 title: "Dự án của Cao Gia Construction", // Dynamic title based on the product title
                 siteName: "Cao Gia Construction", // Site name
                 pageType: "project", // Page type: product-detail (for detailed product page)
-                description: "Danh sách các dự án của Cao Gia Construction, bao gồm các sản phẩm cà phê, máy pha cà phê và thức uống sáng tạo.", // Dynamic description
+                description: "Danh sách các dự án của Cao Gia Construction, bao gồm các công trình xây dựng, dự án thi công và giải pháp xây dựng chuyên nghiệp.", // Dynamic description
                 imageUrl: logo, // Image URL (avatar or first image in the list)
-                keywords: "Dự án Cao Gia Construction, dự án cà phê, máy pha cà phê, thức uống sáng tạo", // Dynamic keywords
+                keywords: "Dự án Cao Gia Construction, công trình xây dựng, dự án thi công, giải pháp xây dựng", // Dynamic keywords
                 updateTime: null, // Current update time in ISO format
-                tag: "Dự án, Cao Gia Construction, máy pha cà phê, sản phẩm cà phê, thức uống sáng tạo" // Tags related to the product
+                tag: "Dự án, Cao Gia Construction, công trình xây dựng, dự án thi công, giải pháp xây dựng" // Tags related to the product
             );
 
             // Set meta tags for the product detail page
@@ -70,11 +70,11 @@ namespace CaoGiaConstruction.WebClient.Controllers
                 siteName: "Cao Gia Construction", // Site name
                 pageType: "project-detail", // Page type: product-detail (for detailed product page)
                 description: !string.IsNullOrEmpty(project.Description) ? project.Description :
-                "Dự án của Cao Gia Construction, nơi bạn sẽ khám phá những sản phẩm cà phê sáng tạo và máy pha cà phê hiện đại.", // Dynamic description
+                "Dự án của Cao Gia Construction, nơi bạn sẽ khám phá những công trình xây dựng chất lượng và giải pháp thi công hiện đại.", // Dynamic description
                 imageUrl: project.Avatar, // Image URL (avatar or first image in the list)
-                keywords: !string.IsNullOrEmpty(project.SeoKeywords) ? project.SeoKeywords : "Dự án Cao Gia Construction, sản phẩm cà phê, máy pha cà phê, thức uống sáng tạo", // Dynamic keywords
+                keywords: !string.IsNullOrEmpty(project.SeoKeywords) ? project.SeoKeywords : "Dự án Cao Gia Construction, công trình xây dựng, dự án thi công, giải pháp xây dựng", // Dynamic keywords
                 updateTime: project.ModifiedDate?.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Current update time in ISO format
-                tag: !string.IsNullOrEmpty(project.SeoKeywords) ? project.SeoKeywords : "Dự án Cao Gia Construction, sản phẩm cà phê, máy pha cà phê, thức uống sáng tạo" // Tags related to the product
+                tag: !string.IsNullOrEmpty(project.SeoKeywords) ? project.SeoKeywords : "Dự án Cao Gia Construction, công trình xây dựng, dự án thi công, giải pháp xây dựng" // Tags related to the product
             );
             // Set meta tags for the product detail page
             ViewBag.Header = SetMetaTags(metaTag);

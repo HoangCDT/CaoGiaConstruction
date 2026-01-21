@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using CaoGiaConstruction.Utilities;
 using CaoGiaConstruction.Utilities.Constants;
 using CaoGiaConstruction.WebClient.Extensions;
@@ -13,8 +13,8 @@ public class BaseClientController : Controller
         string defaultLogo = Commons.LOGO_TOP; // Sử dụng logo mặc định nếu không có
 
         // Giá trị mặc định nếu không có dữ liệu từ `about`
-        string defaultDescription = "Cao Gia Construction - nơi mang đến cà phê rang xay nguyên chất, sáng tạo và chất lượng cao.";
-        string defaultKeywords = "Cao Gia Construction, cà phê rang xay, cà phê nguyên chất, thưởng thức cà phê, cà phê chất lượng cao";
+        string defaultDescription = "Cao Gia Construction - công ty xây dựng uy tín, chuyên nghiệp và chất lượng cao.";
+        string defaultKeywords = "Cao Gia Construction, xây dựng, thi công công trình, xây dựng chất lượng cao, công ty xây dựng uy tín";
         string defaultTitle = "Cao Gia Construction";
         string defaultPageType = "article";
 

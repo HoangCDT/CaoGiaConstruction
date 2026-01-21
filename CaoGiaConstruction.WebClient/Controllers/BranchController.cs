@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using CaoGiaConstruction.Utilities.Constants;
 using CaoGiaConstruction.WebClient.Context.Enums;
 using CaoGiaConstruction.WebClient.Services;
@@ -28,11 +28,11 @@ namespace CaoGiaConstruction.WebClient.Controllers
              title:  "Danh sách chi nhánh Cao Gia Construction trên toàn quốc", // Title (Thêm tiêu đề trang chứa từ khóa chính)
              siteName: "Cao Gia Construction", // SiteName (Tên trang web hoặc công ty)
              pageType: "branch", // PageType (Loại trang: product, article)
-             description: "Khám phá danh sách chi nhánh Cao Gia Construction trên toàn quốc. Thưởng thức cà phê nguyên chất và chất lượng cao tại các địa điểm gần bạn.", // Description
+             description: "Khám phá danh sách chi nhánh Cao Gia Construction trên toàn quốc. Tìm hiểu dịch vụ xây dựng chuyên nghiệp và chất lượng cao tại các địa điểm gần bạn.", // Description
              imageUrl: logo, // Logo (Ảnh đại diện trang web)
-             keywords: "Cao Gia Construction chi nhánh, địa điểm cà phê, cà phê nguyên chất, chi nhánh Cao Gia Construction toàn quốc", // Keywords,
+             keywords: "Cao Gia Construction chi nhánh, địa điểm xây dựng, dịch vụ xây dựng, chi nhánh Cao Gia Construction toàn quốc", // Keywords,
              updateTime: null, // UpdateTime
-             tag: "Cao Gia Construction chi nhánh, địa điểm cà phê, cà phê nguyên chất, chi nhánh Cao Gia Construction toàn quốc" // Tag (Các thẻ liên quan)
+             tag: "Cao Gia Construction chi nhánh, địa điểm xây dựng, dịch vụ xây dựng, chi nhánh Cao Gia Construction toàn quốc" // Tag (Các thẻ liên quan)
             );
 
             ViewBag.Header = SetMetaTags(metaTag);

@@ -337,7 +337,7 @@ namespace CaoGiaConstruction.WebClient.Context
                     {
                         Code = "knowledge-general",
                         Title = "Kiến Thức Chung",
-                        Description = "Các bài viết kiến thức chung về cà phê",
+                        Description = "Các bài viết kiến thức chung về xây dựng",
                         Type = BlogTypeEnum.KNOWLEDGE,
                         SortOrder = 1,
                         Status = StatusEnum.Active

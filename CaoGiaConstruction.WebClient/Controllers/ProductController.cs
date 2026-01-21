@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using CaoGiaConstruction.Utilities;
 using CaoGiaConstruction.WebClient.Const;
 using CaoGiaConstruction.WebClient.Dtos;
@@ -33,12 +33,12 @@ namespace CaoGiaConstruction.WebClient.Controllers
                siteName: "Cao Gia Construction", // SiteName (Tên trang web hoặc công ty)
                pageType: "product", // PageType (Loại trang: product, article)
                description:  string.IsNullOrEmpty(model.Keyword)
-                             ? "Khám phá các sản phẩm cà phê, trà và thức uống sáng tạo tại Cao Gia Construction."
-                             : $"Khám phá sản phẩm {model.Keyword} tại Cao Gia Construction, nơi chuyên cung cấp cà phê chất lượng và thức uống sáng tạo.", // Description
+                             ? "Khám phá các sản phẩm vật liệu xây dựng và thiết bị tại Cao Gia Construction."
+                             : $"Khám phá sản phẩm {model.Keyword} tại Cao Gia Construction, nơi chuyên cung cấp vật liệu xây dựng chất lượng và thiết bị chuyên nghiệp.", // Description
                imageUrl: null, // Logo (Ảnh đại diện trang web)
-               keywords: "Cao Gia Construction, sản phẩm cà phê, trà, thức uống sáng tạo, cà phê chất lượng, trà ngon", // Keywords,
+               keywords: "Cao Gia Construction, vật liệu xây dựng, thiết bị xây dựng, sản phẩm xây dựng chất lượng cao", // Keywords,
                updateTime:  null, // UpdateTime
-               tag: "Cao Gia Construction, sản phẩm cà phê, trà, thức uống sáng tạo" // Tag (Các thẻ liên quan)
+               tag: "Cao Gia Construction, vật liệu xây dựng, thiết bị xây dựng, sản phẩm xây dựng" // Tag (Các thẻ liên quan)
             );
 
             ViewBag.Header = SetMetaTags(metaTag);
@@ -62,12 +62,12 @@ namespace CaoGiaConstruction.WebClient.Controllers
                siteName:  "Cao Gia Construction", // SiteName (Tên trang web hoặc công ty)
                pageType: "product", // PageType (Loại trang: product, article)
                description: string.IsNullOrEmpty(model.Keyword)
-            ? "Khám phá các máy pha cà phê chất lượng cao tại Cao Gia Construction. Chúng tôi cung cấp các loại máy pha cà phê chuyên nghiệp phục vụ mọi nhu cầu."
-            : $"Khám phá máy pha {model.Keyword} tại Cao Gia Construction, nơi cung cấp các sản phẩm máy pha cà phê uy tín và chất lượng.", // Description
+            ? "Khám phá các máy móc và thiết bị xây dựng chất lượng cao tại Cao Gia Construction. Chúng tôi cung cấp các loại máy móc xây dựng chuyên nghiệp phục vụ mọi nhu cầu."
+            : $"Khám phá máy móc {model.Keyword} tại Cao Gia Construction, nơi cung cấp các sản phẩm máy móc xây dựng uy tín và chất lượng.", // Description
             imageUrl: null, // Logo (Ảnh đại diện trang web)
-            keywords: "Máy pha cà phê, máy móc dụng cụ, máy pha chuyên nghiệp, máy pha Cao Gia Construction, sản phẩm máy pha", // Keywords,
+            keywords: "Máy móc xây dựng, thiết bị xây dựng, máy móc chuyên nghiệp, máy móc Cao Gia Construction, sản phẩm máy móc", // Keywords,
             updateTime: null, // UpdateTime
-            tag: "Máy pha cà phê, máy móc dụng cụ, máy pha chuyên nghiệp, Cao Gia Construction" // Tag (Các thẻ liên quan)
+            tag: "Máy móc xây dựng, thiết bị xây dựng, máy móc chuyên nghiệp, Cao Gia Construction" // Tag (Các thẻ liên quan)
             );
 
             ViewBag.Header = SetMetaTags(metaTag);
@@ -88,16 +88,16 @@ namespace CaoGiaConstruction.WebClient.Controllers
 
             #region Seo Meta Tag
             var metaTag = BuildMetaTag(
-               title: string.IsNullOrEmpty(model.Keyword) ? "Máy xay cà phê của Cao Gia Construction" : $"{model.Keyword} - Cao Gia Construction", // Title (Thêm tiêu đề trang chứa từ khóa chính)
+               title: string.IsNullOrEmpty(model.Keyword) ? "Máy móc thiết bị của Cao Gia Construction" : $"{model.Keyword} - Cao Gia Construction", // Title (Thêm tiêu đề trang chứa từ khóa chính)
                siteName: "Cao Gia Construction", // SiteName (Tên trang web hoặc công ty)
                pageType: "product", // PageType (Loại trang: product, article)
                description: string.IsNullOrEmpty(model.Keyword)
-            ? "Khám phá các dòng máy xay cà phê chất lượng cao tại Cao Gia Construction. Sản phẩm đa dạng, phù hợp với cả nhu cầu gia đình và chuyên nghiệp. Mua ngay để trải nghiệm sự khác biệt!"
-            : $"Khám phá máy xay {model.Keyword} tại Cao Gia Construction,thiết kế hiện đại, xay mịn chuẩn vị. Cao Gia Construction cam kết sản phẩm uy tín và dịch vụ hàng đầu", // Description
+            ? "Khám phá các dòng máy móc và thiết bị xây dựng chất lượng cao tại Cao Gia Construction. Sản phẩm đa dạng, phù hợp với cả nhu cầu dân dụng và công nghiệp. Liên hệ ngay để được tư vấn!"
+            : $"Khám phá máy móc {model.Keyword} tại Cao Gia Construction, thiết kế hiện đại, chất lượng cao. Cao Gia Construction cam kết sản phẩm uy tín và dịch vụ hàng đầu", // Description
             imageUrl: null, // Logo (Ảnh đại diện trang web)
-            keywords: "Máy xay cà phê, máy xay cà phê chuyên nghiệp, máy xay cafe gia đình, máy xay hạt cafe, Cao Gia Construction, máy pha cà phê, dụng cụ pha chế", // Keywords,
+            keywords: "Máy móc xây dựng, thiết bị xây dựng, máy móc chuyên nghiệp, máy móc công nghiệp, Cao Gia Construction, thiết bị thi công, dụng cụ xây dựng", // Keywords,
             updateTime: null, // UpdateTime
-            tag: "Máy xay cà phê, máy xay cà phê chuyên nghiệp, máy xay cafe gia đình, máy xay hạt cafe, Cao Gia Construction, máy pha cà phê, dụng cụ pha chế" // Tag (Các thẻ liên quan)
+            tag: "Máy móc xây dựng, thiết bị xây dựng, máy móc chuyên nghiệp, máy móc công nghiệp, Cao Gia Construction, thiết bị thi công, dụng cụ xây dựng" // Tag (Các thẻ liên quan)
             );
 
             ViewBag.Header = SetMetaTags(metaTag);
@@ -127,9 +127,9 @@ namespace CaoGiaConstruction.WebClient.Controllers
                 pageType: "product-detail", // Page type: product-detail (for detailed product page)
                 description: product.Description ?? "Mô tả chi tiết sản phẩm từ Cao Gia Construction.", // Dynamic description
                 logo, // Image URL (avatar or first image in the list)
-                keywords: product.SeoKeywords ?? "Sản phẩm Cao Gia Construction, máy pha cà phê, sản phẩm cà phê, trà, thức uống sáng tạo", // Dynamic keywords
+                keywords: product.SeoKeywords ?? "Sản phẩm Cao Gia Construction, vật liệu xây dựng, thiết bị xây dựng, sản phẩm xây dựng chất lượng cao", // Dynamic keywords
                 updateTime: product.ModifiedDate?.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Current update time in ISO format
-                product.SeoKeywords ?? "Sản phẩm Cao Gia Construction, máy pha cà phê, sản phẩm cà phê" // Tags related to the product
+                product.SeoKeywords ?? "Sản phẩm Cao Gia Construction, vật liệu xây dựng, thiết bị xây dựng" // Tags related to the product
             );
 
             // Set meta tags for the product detail page

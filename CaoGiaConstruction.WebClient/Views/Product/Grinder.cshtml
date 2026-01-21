@@ -1,4 +1,4 @@
-﻿@using CaoGiaConstruction.WebClient.Const
+@using CaoGiaConstruction.WebClient.Const
 @model IEnumerable<ProductGroupByCategoryVM>
 @{
     var productCategoires = ViewBag.ProductCategories as IEnumerable<ProductCategoryWithCountDto>;
@@ -24,7 +24,7 @@
             <div class="row d-flex flex-wrap">
                 <div class="col-sm-4">
                     <aside class="sidebar">
-                        @await Html.PartialAsync("_SearchForm", new SearchFormDto { Placeholder = "Tìm máy xay cà phê tại đây...", SearchAction = routeName, Value = param.Keyword })
+                        @await Html.PartialAsync("_SearchForm", new SearchFormDto { Placeholder = "Tìm máy móc thiết bị tại đây...", SearchAction = routeName, Value = param.Keyword })
 
                         @await Html.PartialAsync("_ProductCategorySideBar", ProductMainCategoryCodeDefine.GRINDER)
 
@@ -53,7 +53,7 @@
                     }
                     else
                     {
-                        @await Html.PartialAsync("_AlertMessage", "Máy xay cà phê được cập nhật.")
+                        @await Html.PartialAsync("_AlertMessage", "Máy móc thiết bị được cập nhật.")
                     }
 
                 </div>
