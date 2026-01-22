@@ -3,9 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Npgsql;
 using System.Linq;
+using System.Text.Json;
 using CaoGiaConstruction.WebClient.Const;
 using CaoGiaConstruction.WebClient.Context.Entities;
 using CaoGiaConstruction.WebClient.Context.Enums;
+using CaoGiaConstruction.WebClient.Dtos;
 using static CaoGiaConstruction.WebClient.Const.ProductMainCategoryCodeDefine;
 
 namespace CaoGiaConstruction.WebClient.Context
@@ -405,6 +407,98 @@ namespace CaoGiaConstruction.WebClient.Context
                 };
 
                 await _context.Settings.AddAsync(setting);
+            }
+
+            if (!_context.MenuConfigs.Any())
+            {
+                var menuItems = new List<MenuConfigMenuItemDto>
+                {
+                    new MenuConfigMenuItemDto
+                    {
+                        Title = "Về Cao Gia Construction",
+                        RouteName = "about",
+                        Children = new List<MenuConfigMenuItemDto>
+                        {
+                            new MenuConfigMenuItemDto
+                            {
+                                Title = "Về chúng tôi",
+                                RouteName = "about"
+                            },
+                            new MenuConfigMenuItemDto
+                            {
+                                Title = "Hệ thống chi nhánh",
+                                RouteName = "branch"
+                            }
+                        }
+                    },
+                    new MenuConfigMenuItemDto
+                    {
+                        Title = "Dịch vụ",
+                        RouteName = "service",
+                        Children = new List<MenuConfigMenuItemDto>
+                        {
+                            new MenuConfigMenuItemDto
+                            {
+                                Title = "Dự án đã triển khai",
+                                RouteName = "project"
+                            }
+                        }
+                    },
+                    new MenuConfigMenuItemDto
+                    {
+                        Title = "Sản phẩm",
+                        Url = "/may-moc-dung-cu/all",
+                        Children = new List<MenuConfigMenuItemDto>
+                        {
+                            new MenuConfigMenuItemDto
+                            {
+                                Title = "Sản phẩm - Nguyên Liệu",
+                                RouteName = "product"
+                            },
+                            new MenuConfigMenuItemDto
+                            {
+                                Title = "Máy Móc - Thiết Bị - Dụng Cụ",
+                                RouteName = "machines"
+                            },
+                            new MenuConfigMenuItemDto
+                            {
+                                Title = "Máy Xay",
+                                RouteName = "grinder"
+                            }
+                        }
+                    },
+                    new MenuConfigMenuItemDto
+                    {
+                        Title = "Kiến thức",
+                        RouteName = "know"
+                    },
+                    new MenuConfigMenuItemDto
+                    {
+                        Title = "Tin tức",
+                        RouteName = "blog"
+                    },
+                    new MenuConfigMenuItemDto
+                    {
+                        Title = "Liên hệ",
+                        RouteName = "contact"
+                    }
+                };
+
+                var menuJson = JsonSerializer.Serialize(menuItems, new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                });
+
+                var menuConfig = new MenuConfig
+                {
+                    Name = "Menu chính",
+                    MenuKey = "header-main",
+                    MenuJson = menuJson,
+                    SortOrder = 1,
+                    Status = StatusEnum.Active
+                };
+
+                await _context.MenuConfigs.AddAsync(menuConfig);
             }
 
             try

@@ -1,19 +1,59 @@
 @using CaoGiaConstruction.WebClient.Const
 @using CaoGiaConstruction.WebClient.Context.Enums
+@using System.Text.Json
 @inject IBlogCategoryService _blogCategoryService;
 @inject IProductCategoryService _productCategoryService;
 @inject IServiceCategoryService _serviceCategoryService;
+@inject IMenuConfigService _menuConfigService;
 @model SystemDto;
 @{
     var blogCates = await _blogCategoryService.GetAllAsync(x => x.Status == StatusEnum.Active);
     var productMainCates = await _productCategoryService.GetWithProductMainCategoryGroupAsync();
     var serviceCates = await _serviceCategoryService.GetAllAsync(x => x.Status == StatusEnum.Active);
+    var activeMenu = await _menuConfigService.GetActiveAsync();
+    var menuItems = new List<MenuConfigMenuItemDto>();
+    if (!string.IsNullOrWhiteSpace(activeMenu?.MenuJson))
+    {
+        try
+        {
+            menuItems = JsonSerializer.Deserialize<List<MenuConfigMenuItemDto>>(activeMenu.MenuJson,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ?? new List<MenuConfigMenuItemDto>();
+        }
+        catch
+        {
+            menuItems = new List<MenuConfigMenuItemDto>();
+        }
+    }
 
     var routeParameterNames = new Dictionary<string, string>
 {
     { ProductMainCategoryCodeDefine.PRODUCT, "product-cate" },
     { ProductMainCategoryCodeDefine.MACHINES, "machines-cate" }
 };
+    Func<MenuConfigMenuItemDto, string> getHref = item =>
+    {
+        if (!string.IsNullOrWhiteSpace(item.Url))
+        {
+            return item.Url;
+        }
+        if (!string.IsNullOrWhiteSpace(item.RouteName))
+        {
+            return Url.RouteUrl(item.RouteName) ?? "#";
+        }
+        return "#";
+    };
+    Func<MenuConfigMenuItemDto, string> getActiveClass = item =>
+    {
+        if (!string.IsNullOrWhiteSpace(item.RouteName))
+        {
+            return CommonApp.ActiveMenu(Context.Request, Url.RouteUrl(item.RouteName));
+        }
+        if (!string.IsNullOrWhiteSpace(item.Url))
+        {
+            return Context.Request.Path.Equals(item.Url, StringComparison.OrdinalIgnoreCase) ? "active" : "";
+        }
+        return "";
+    };
 }
 
 <header class="header">
@@ -84,6 +124,34 @@
                                     color: var(--header-menu-hover-color) !important;
                                 }
                             </style>
+                            @if (menuItems.Any())
+                            {
+                                foreach (var item in menuItems)
+                                {
+                                    var hasChildren = item.Children != null && item.Children.Any();
+                                    <li class="@getActiveClass(item)">
+                                        <a href="@getHref(item)">@item.Title</a>
+                                        @if (hasChildren)
+                                        {
+                                            <span class="open-close hidden-lg hidden-md hidden-sm nav-item has-dropdown">
+                                                <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                            </span>
+                                            <div class="dropdown">
+                                                <ul class="sub-menu">
+                                                    @foreach (var child in item.Children)
+                                                    {
+                                                        <li class="@getActiveClass(child)">
+                                                            <a href="@getHref(child)">@child.Title</a>
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            </div>
+                                        }
+                                    </li>
+                                }
+                            }
+                            else
+                            {
                             <li class="@CommonApp.ActiveMenu(Context.Request, Url.RouteUrl("about"))">
                                 <a asp-route="about">Về Cao Gia Construction</a>
                                 <span class="open-close hidden-lg hidden-md hidden-sm nav-item has-dropdown">
@@ -213,6 +281,7 @@
                             <li class="@CommonApp.ActiveMenu(Context.Request, Url.RouteUrl("contact"))">
                                 <a asp-route="contact">Liên hệ</a>
                             </li>
+                            }
                         </ul>
                     </div>
                     <!--/.navbar-collapse -->

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -43,6 +43,8 @@ namespace CaoGiaConstruction.WebClient.Context
         public virtual DbSet<ServiceCategory> ServiceCategories { get; set; }
         public virtual DbSet<Video> Videos { get; set; }
         public virtual DbSet<Project> Projects { get; set; }
+        public virtual DbSet<HomeComponentConfig> HomeComponentConfigs { get; set; }
+        public virtual DbSet<MenuConfig> MenuConfigs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -85,6 +87,9 @@ namespace CaoGiaConstruction.WebClient.Context
           .WithMany(p => p.ProductProperties)
           .HasForeignKey(pp => pp.ProductId)
           .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<HomeComponentConfig>()
+                .ToTable("HomeComponentConfigs");
 
         }
 

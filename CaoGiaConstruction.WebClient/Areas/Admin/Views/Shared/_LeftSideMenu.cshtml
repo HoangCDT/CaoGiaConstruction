@@ -223,31 +223,43 @@
             </li>
             <!-- #endregion -->
 
+            <!-- #region Giao diện -->
+            <li class="side-nav-title">Giao diện</li>
+            <li class="side-nav-item">
+                <a asp-route="admin-slide" class="side-nav-link">
+                    <i class="uil uil-image"></i>
+                    <span> Slide </span>
+                </a>
+            </li>
+            <li class="side-nav-item">
+                <a asp-route="admin-homeconfig" class="side-nav-link">
+                    <i class="uil uil-desktop"></i>
+                    <span> Quản lý trang chủ </span>
+                </a>
+            </li>
+            <li class="side-nav-item">
+                <a asp-route="admin-video" class="side-nav-link">
+                    <i class="uil uil-play-circle"></i>
+                    <span> Video </span>
+                </a>
+            </li>
+            <li class="side-nav-item">
+                <a asp-route="admin-setting" class="side-nav-link">
+                    <i class="uil uil-cog"></i>
+                    <span> Thiết lập </span>
+                </a>
+            </li>
+            <li class="side-nav-item">
+                <a asp-route="admin-menu-config" class="side-nav-link">
+                    <i class="uil uil-list-ul"></i>
+                    <span> Cấu hình menu </span>
+                </a>
+            </li>
+            <!-- #endregion -->
+
             <!-- #region Chức năng khác -->
 
             <li class="side-nav-title">Chức năng khác</li>
-            <li class="side-nav-item">
-                <a data-bs-toggle="collapse" href="#sidebarMedia" aria-expanded="false" aria-controls="sidebarMedia"
-                    class="side-nav-link collapsed">
-                    <i class="uil uil-comment-alt-image"></i>
-                    <span>Media</span>
-                    <span class="menu-arrow"></span>
-                </a>
-                <div class="collapse" id="sidebarMedia">
-                    <ul class="side-nav-second-level">
-                        <li>
-                            <a asp-route="admin-slide" class="side-nav-link">
-                                <span> Slide </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a asp-route="admin-video" class="side-nav-link">
-                                <span> Video </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
             <li class="side-nav-item">
                 <a asp-route="admin-feedback" class="side-nav-link">
                     <i class="uil uil-comments-alt"></i>
@@ -269,12 +281,6 @@
 
 
             <li class="side-nav-title">Hệ thống</li>
-            <li class="side-nav-item">
-                <a asp-route="admin-setting" class="side-nav-link">
-                    <i class="uil uil-cog"></i>
-                    <span> Cấu hình hệ thống </span>
-                </a>
-            </li>
             <li class="side-nav-item">
                 <a asp-route="admin-define-system" class="side-nav-link">
                     <i class="uil uil-code"></i>

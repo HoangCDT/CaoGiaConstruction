@@ -11,11 +11,13 @@ namespace CaoGiaConstruction.WebClient.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IAboutService _aboutService;
+        private readonly IHomeComponentConfigService _homeComponentConfigService;
 
-        public HomeController(ILogger<HomeController> logger, IAboutService aboutService)
+        public HomeController(ILogger<HomeController> logger, IAboutService aboutService, IHomeComponentConfigService homeComponentConfigService)
         {
             _logger = logger;
             _aboutService = aboutService;
+            _homeComponentConfigService = homeComponentConfigService;
         }
 
         [Route("", Name = "default")]
@@ -39,6 +41,7 @@ namespace CaoGiaConstruction.WebClient.Controllers
             ViewBag.Header = SetMetaTags(metaTag);
             #endregion
 
+            ViewBag.HomeComponentConfigs = await _homeComponentConfigService.GetActiveOrderedAsync();
             return View();
         }
 

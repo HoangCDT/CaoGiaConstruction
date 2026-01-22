@@ -1,13 +1,12 @@
-@model Pager<SettingVM>
+@model Pager<MenuConfig>
 @{
-    ViewData["Title"] = "Thiết lập giao diện";
+    ViewData["Title"] = "Cấu hình menu";
     string keyword = ViewBag.Keyword as string;
 }
-<div class="content">
 
+<div class="content">
     <!-- Start Content-->
     <div class="container-fluid">
-
         <!-- start page title -->
         <div class="row">
             <div class="col-12">
@@ -15,10 +14,10 @@
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a asp-route="admin-default">Trang chủ</a></li>
-                            <li class="breadcrumb-item active">Thiết lập giao diện</li>
+                            <li class="breadcrumb-item active">Cấu hình menu</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Thiết lập giao diện</h4>
+                    <h4 class="page-title">Cấu hình menu</h4>
                 </div>
             </div>
         </div>
@@ -30,12 +29,11 @@
                     <div class="card-body">
                         <div class="row mb-2">
                             <div class="col-sm-8 app-search">
-                                <form asp-route="admin-setting"
+                                <form asp-route="admin-menu-config"
                                     class="row gy-2 gx-2 align-items-center justify-content-xl-start justify-content-between">
                                     <div class="col-auto">
                                         @await Html.PartialAsync("_AppSearch", keyword)
                                     </div>
-
                                 </form>
                             </div>
                             <div class="col-sm-4">
@@ -53,19 +51,16 @@
                         </div>
 
                         <div class="table-responsive">
-                            <table class="table table-hover  table-centered w-100 dt-responsive nowrap"
-                                id="table-setting">
+                            <table class="table table-hover table-centered w-100 dt-responsive nowrap"
+                                id="table-menu-config">
                                 <thead class="table-light">
                                     <tr>
                                         <th class="center">STT</th>
-                                        <th class="all">Primary Color</th>
-                                        <th class="all">Secondary Color</th>
-                                        <th class="all">Background footer</th>
-                                        <th class="all">Font family</th>
-                                        <th class="all">Font size</th>
+                                        <th>Tên</th>
+                                        <th>Menu key</th>
+                                        <th>Trạng thái</th>
                                         <th>Người tạo/Ngày tạo</th>
                                         <th>Ngày cập nhật</th>
-                                        <th>Trạng thái</th>
                                         <th style="width: 85px;">#</th>
                                     </tr>
                                 </thead>
@@ -79,46 +74,8 @@
                                                 <td class="center middle" width="20">
                                                     <strong> #@(((Model.CurrentPage - 1) * Model.PageSize + num) + 1)</strong>
                                                 </td>
-                                                <td>
-                                                    <p class="m-0 d-inline-block align-middle font-13">
-                                                        <span class="bg-setting"
-                                                            style="background-color: @item.PrimaryColor"></span>
-                                                    </p>
-                                                </td>
-                                                <td>
-                                                    <p class="m-0 d-inline-block align-middle font-13">
-                                                        <span class="bg-setting"
-                                                            style="background-color: @item.SecondaryColor"></span>
-                                                    </p>
-                                                </td>
-                                                <td>
-                                                    <p class="m-0 d-inline-block align-middle font-13">
-                                                        <span class="bg-setting"
-                                                            style="background-color: @item.FooterBackgroundColor"></span>
-                                                    </p>
-                                                </td>
-                                                <td>
-                                                    <span class="text-muted" style="font-family: @item.FontFamily">
-                                                        @item.FontFamily
-                                                    </span>
-                                                  
-                                                </td>
-                                                <td>
-                                                    <p class="m-0 d-inline-block align-middle font-13">
-                                                        @item.FontSize
-                                                    </p>
-                                                </td>
-                                                <td class="text-nowrap">
-                                                    <h5 class="mb-2 font-13">@item.UserCreated?.FullName</h5>
-                                                   <p class="mb-0 font-13 txt-muted">
-                                                        @item.CreatedDate.ToString("dd/MM/yyyy")
-                                                        <small class="text-muted">@item.CreatedDate.ToString("HH:mm")</small>
-                                                    </p>
-                                                </td>
-                                                <td>
-                                                    <p class="mb-0 font-13 txt-muted"> @item.ModifiedDate.ToString("dd/MM/yyyy")&nbsp;&nbsp;</p>
-                                                    <small class="text-muted">&nbsp;&nbsp;@item.ModifiedDate.ToString("HH:mm")</small>
-                                                </td>
+                                                <td>@item.Name</td>
+                                                <td><code>@item.MenuKey</code></td>
                                                 <td>
                                                     <div>
                                                         <input type="checkbox" id="stauts@(item.Id)" data-id="@item.Id"
@@ -128,32 +85,42 @@
                                                             class="mb-0 d-block"></label>
                                                     </div>
                                                 </td>
-
+                                                <td class="text-nowrap">
+                                                    <h5 class="mb-2 font-13">@item.UserCreated?.FullName</h5>
+                                                    <p class="mb-0 font-13 txt-muted">
+                                                        @item.CreatedDate.ToString("dd/MM/yyyy")
+                                                        <small class="text-muted">@item.CreatedDate.ToString("HH:mm")</small>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p class="mb-0 font-13 txt-muted"> @item.ModifiedDate.ToString("dd/MM/yyyy")&nbsp;&nbsp;</p>
+                                                    <small class="text-muted">&nbsp;&nbsp;@item.ModifiedDate.ToString("HH:mm")</small>
+                                                </td>
                                                 <td class="table-action text-nowrap">
                                                     <a href="javascript:void(0);" data-id="@item.Id"
-                                                        class="action-icon btn-edit" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Delete" data-bs-original-title="Edit"> <i
-                                                            class="mdi mdi-square-edit-outline"></i></a>
+                                                        class="action-icon btn-edit" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Delete" data-bs-original-title="Edit">
+                                                        <i class="mdi mdi-square-edit-outline"></i>
+                                                    </a>
                                                     <a href="javascript:void(0);" data-id="@item.Id"
-                                                        class="action-icon btn-delete" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Delete" data-bs-original-title="Delete"> <i class="mdi mdi-delete"></i></a>
+                                                        class="action-icon btn-delete" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Delete" data-bs-original-title="Delete">
+                                                        <i class="mdi mdi-delete"></i>
+                                                    </a>
                                                 </td>
                                             </tr>
+                                            num++;
                                         }
-                                        num++;
                                     }
                                     else
                                     {
                                         <tr>
-                                            <td colspan="10">
+                                            <td colspan="7">
                                                 <div class="alert alert-warning w-50 m-auto text-center" role="alert">
                                                     Không có dữ liệu trong danh mục này
                                                 </div>
                                             </td>
                                         </tr>
-
                                     }
-
                                 </tbody>
-
                             </table>
 
                             @await Component.InvokeAsync(nameof(vcPagingAdmin), Model)
@@ -165,17 +132,17 @@
         <!-- end row -->
 
     </div> <!-- container -->
-
 </div> <!-- content -->
-@* Modal banner *@
-<partial name="~/Areas/Admin/Views/Setting/_ModalSettingAction.cshtml" />
+
+@* Modal menu config *@
+<partial name="~/Areas/Admin/Views/MenuConfig/_ModalMenuConfigAction.cshtml" />
+
 @section styles {
     <!-- validate css -->
     <link href="~/Admin/assets/vendor/validation/js/jquery.validate.css" rel="stylesheet" />
     <!-- ladda css -->
     <link href="~/Admin/assets/vendor/ladda-master/dist/ladda.min.css" rel="stylesheet" />
     <link href="~/Admin/assets/vendor/ladda-master/dist/ladda-themeless.min.css" rel="stylesheet" />
-
 }
 
 @section scripts {
@@ -184,6 +151,6 @@
     <!-- ladda js -->
     <script src="~/Admin/assets/vendor/ladda-master/dist/spin.min.js"></script>
     <script src="~/Admin/assets/vendor/ladda-master/dist/ladda.jquery.min.js"></script>
-    <!-- Datatable js -->
-    <script src="~/Admin/assets/js/controllers/setting-controller.js" asp-append-version="true"></script>
+    <!-- controller js -->
+    <script src="~/Admin/assets/js/controllers/menu-config-controller.js" asp-append-version="true"></script>
 }
