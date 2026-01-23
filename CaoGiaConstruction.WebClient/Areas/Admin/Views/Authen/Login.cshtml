@@ -1,5 +1,35 @@
-﻿@{
+@inject IAboutService _aboutService;
+@inject ISettingService _settingService;
+@using CaoGiaConstruction.Utilities
+@{
     Layout = null;
+    var about = await _aboutService.GetAboutCacheAsync();
+    var setting = await _settingService.GetSettingCacheAsync();
+    var logoUrl = !string.IsNullOrEmpty(about?.LogoTop) 
+        ? about.LogoTop.ToHostImage() 
+        : Url.Content("~/Admin/assets/images/logo.png");
+    var primaryColor = setting?.PrimaryColor ?? "#007bff";
+    
+    // Convert hex to RGB for CSS variables
+    string primaryRgb = "0, 123, 255"; // Default blue
+    if (!string.IsNullOrEmpty(primaryColor) && primaryColor.StartsWith("#"))
+    {
+        try
+        {
+            var hex = primaryColor.TrimStart('#');
+            if (hex.Length == 6)
+            {
+                var r = Convert.ToInt32(hex.Substring(0, 2), 16);
+                var g = Convert.ToInt32(hex.Substring(2, 2), 16);
+                var b = Convert.ToInt32(hex.Substring(4, 2), 16);
+                primaryRgb = $"{r}, {g}, {b}";
+            }
+        }
+        catch
+        {
+            // Keep default if conversion fails
+        }
+    }
 }
 
 <!DOCTYPE html>
@@ -23,6 +53,32 @@
 
     <!-- Icons css -->
     <link href="~/Admin/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Dynamic Primary Color from Setting -->
+    <style>
+        :root {
+            --ct-primary: @primaryColor !important;
+            --ct-primary-rgb: @primaryRgb !important;
+        }
+        .bg-primary {
+            background-color: @primaryColor !important;
+        }
+        .text-primary {
+            color: @primaryColor !important;
+        }
+        .btn-primary {
+            background-color: @primaryColor !important;
+            border-color: @primaryColor !important;
+        }
+        .btn-primary:hover {
+            background-color: @primaryColor !important;
+            border-color: @primaryColor !important;
+            opacity: 0.9;
+        }
+        .border-primary {
+            border-color: @primaryColor !important;
+        }
+    </style>
 </head>
 
 <body class="authentication-bg position-relative">
@@ -47,7 +103,7 @@
                         <div class="card-header py-4 text-center bg-primary">
                             <a asp-route="home">
                                 <span>
-                                    <img src="~/Admin/assets/images/logo.png" alt="logo" height="22"
+                                    <img src="@logoUrl" alt="logo" height="22"
                                          style="height: 60px;border-radius: 5px;">
                                 </span>
                             </a>
