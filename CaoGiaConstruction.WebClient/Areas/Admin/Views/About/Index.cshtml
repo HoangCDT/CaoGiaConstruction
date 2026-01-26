@@ -1,4 +1,4 @@
-﻿@model AboutVM
+@model AboutVM
 @{
     ViewData["Title"] = "Chỉnh sửa thông tin công ty";
 }
@@ -85,8 +85,10 @@
                                                             Mô tả (Hiển
                                                             thị lên trang chủ) <span class="text-danger">*</span>
                                                         </label>
-                                                        <textarea class="form-control" name="description" rows="3"
-                                                            placeholder="Vui lòng nhập">@Model.Description</textarea>
+                                                        <textarea style="height: 100%; width: 100%" class="tinyeditor"
+                                                            name="description" data-folder="@Commons.FILE_UPLOAD/about/description">
+                                                            @Model.Description
+                                                        </textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">

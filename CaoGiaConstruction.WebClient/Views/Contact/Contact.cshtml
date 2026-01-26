@@ -1,4 +1,4 @@
-﻿@model AboutVM
+@model AboutVM
 
 <div class="main-content about-wrapper">
     <div class="page-header">
@@ -12,57 +12,102 @@
         @await Component.InvokeAsync(nameof(vcBreadcrumb), breadcrumbItems)
     </div>
     <div class="page-content">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-md-push-9">
-                    <div class="sidebar">
-                        <div class="widget">
-                            <div class="widget-inner">
-                                <h3 class="title">Thông tin liên hệ</h3>
-                                <div class="widget-text">
-                                    <p>@Model.AboutUs</p>
-                                    <p>
-                                        Email: <a href="mailto:@Model.Email">@Model.Email</a><br>
-                                        Phone: <a href="tel:@Model.PhoneNumber">@Model.PhoneNumber</a>
-                                    </p>
-                                    <p>
-                                        <address>
-                                            @Model.Address
-                                        </address>
-                                    </p>
-                                </div>
-                            </div>
+        @await Component.InvokeAsync(nameof(vcContactHome))
+        @if (!string.IsNullOrEmpty(Model.MapIFrame))
+        {
+            <div class="maps-section">
+                <div class="container">
+                    <div class="maps-container">
+                        @{
+                            string mapUrl = Model.MapIFrame;
+                            // Nếu MapIFrame chứa thẻ iframe, extract URL từ src
+                            if (mapUrl.Contains("<iframe"))
+                            {
+                                var srcMatch = System.Text.RegularExpressions.Regex.Match(mapUrl, @"src=[""']([^""']+)[""']");
+                                if (srcMatch.Success)
+                                {
+                                    mapUrl = srcMatch.Groups[1].Value;
+                                }
+                            }
+                            // Nếu vẫn chứa thẻ iframe, thử extract từ src= trực tiếp
+                            if (mapUrl.Contains("src="))
+                            {
+                                var srcMatch = System.Text.RegularExpressions.Regex.Match(mapUrl, @"src=[""']([^""']+)[""']");
+                                if (srcMatch.Success)
+                                {
+                                    mapUrl = srcMatch.Groups[1].Value;
+                                }
+                            }
+                        }
+                        <div class="map-wrapper">
+                            <iframe id="googleMapFrame" 
+                                    title="Google Maps - Cao Gia Construction"
+                                    src="@mapUrl" 
+                                    width="100%" 
+                                    height="500" 
+                                    frameborder="0" 
+                                    style="border: 0; border-radius: 12px;" 
+                                    allowfullscreen="" 
+                                    loading="lazy" 
+                                    referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-8 col-md-pull-3">
-                    <div class="contact-content">
-                        <h3 class="title contact-title">
-                            Liên Hệ Với Chúng Tôi
-                        </h3>
-                        <p class="contact-desc">
-                            Cảm ơn bạn đã ghé thăm website
-                            <em>
-                                <strong>
-                                    <a asp-route="home" title="@Model.AboutUs">
-                                        @Model.AboutUs
-                                    </a>
-                                </strong>
-                            </em>. Nếu bạn muốn biết thêm thông tin về chúng tôi,
-                            vui lòng liên hệ theo thông tin bên dưới.
-                        </p>
-                        @await Html.PartialAsync("_ContactForm")
-                    </div>
-                </div>
             </div>
-        </div>
-        <div class="maps">
-            <iframe title="Google maps"
-                    src="@Model.MapIFrame" width="100%" height="450" frameborder="0" style="border: 0"
-                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-        </div>
+        }
     </div>
 </div>
+
+<style>
+    .maps-section {
+        margin-top: 60px;
+        padding: 0;
+    }
+
+    .maps-container {
+        width: 100%;
+        position: relative;
+    }
+
+    .map-wrapper {
+        position: relative;
+        width: 100%;
+        height: 500px;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        background: #f0f0f0;
+    }
+
+    .map-wrapper iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
+    }
+
+    @@media (max-width: 991px) {
+        .maps-section {
+            margin-top: 40px;
+        }
+
+        .map-wrapper {
+            height: 400px;
+        }
+    }
+
+    @@media (max-width: 767px) {
+        .maps-section {
+            margin-top: 30px;
+        }
+
+        .map-wrapper {
+            height: 350px;
+            border-radius: 8px;
+        }
+    }
+</style>
+
 
 

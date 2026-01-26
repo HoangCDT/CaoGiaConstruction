@@ -1,0 +1,318 @@
+/* Contact Home Component Styles */
+.work-process-contact-section {
+    padding: 80px 0 0 0;
+    margin: 0;
+    position: relative;
+    background-color: #f5f5f5;
+}
+
+.work-process-contact-section .container {
+    max-width: var(--content-width, 1400px);
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.contact-section-spacer {
+    height: 80px;
+    background-color: #f5f5f5;
+    width: 100%;
+}
+
+.work-process-contact-section .row {
+    display: flex;
+    align-items: stretch;
+}
+
+/* Cột trái - Quy trình làm việc */
+.work-process-column {
+    background: var(--contact-primary-color, #2e5234);
+    padding: 80px 60px;
+    display: flex;
+    align-items: center;
+    /* height: 100%; */
+}
+
+.work-process-content {
+    width: 100%;
+    color: #fff;
+}
+
+.work-process-subtitle {
+    /* font-size: 0.9rem; */
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+}
+
+.work-process-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 50px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.process-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.step-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #b7c09e;
+    line-height: 1;
+    flex-shrink: 0;
+    min-width: 60px;
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-title {
+    /* font-size: 1rem; */
+    font-weight: 600;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.step-line {
+    width: 100%;
+    height: 2px;
+    background: #b7c09e;
+    margin-top: 8px;
+}
+
+/* Cột phải - Form đăng ký tư vấn */
+.consultation-form-column {
+    background: #fff;
+    padding: 40px 40px;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.consultation-form-wrapper {
+    width: 100%;
+    max-width: 500px;
+}
+
+.consultation-title {
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.consultation-subtitle {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+.work-process-contact-section {
+    font-size: var(--contact-font-size, 14px);
+}
+
+.form-group-underline {
+    margin-bottom: 15px;
+}
+
+.form-label-underline {
+    display: block;
+    font-weight: 600;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.form-input-underline {
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    border-bottom: 1px solid #e0e0e0;
+    background: transparent;
+    font-size: var(--contact-font-size, 14px);
+    color: #333;
+    transition: border-color 0.3s ease;
+    font-family: inherit;
+}
+
+.form-input-underline:focus {
+    outline: none;
+    border-bottom-color: var(--contact-primary-color, #2e5234);
+    border-bottom-width: 2px;
+}
+
+.form-input-underline::placeholder {
+    color: #999;
+}
+
+select.form-input-underline {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0 center;
+    padding-right: 25px;
+}
+
+.form-textarea-underline {
+    resize: vertical;
+    min-height: 100px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.form-submit-underline {
+    margin-top: 40px;
+}
+
+.btn-submit-underline {
+    width: 100%;
+    padding: 16px 30px;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-submit-underline:hover {
+    background: #222;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-submit-underline:active {
+    transform: translateY(0);
+}
+
+.alert-modern {
+    margin-top: 20px;
+    padding: 15px 20px;
+    border-radius: 4px;
+    display: none;
+}
+
+.alert-modern.alert-success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-modern.alert-danger {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Responsive */
+@media (max-width: 1199px) {
+    .work-process-column,
+    .consultation-form-column {
+        padding: 60px 40px;
+    }
+
+    .work-process-title {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 991px) {
+    .work-process-contact-section {
+        padding: 60px 0 0 0;
+    }
+    
+    .contact-section-spacer {
+        height: 60px;
+    }
+    
+    .work-process-contact-section .row {
+        flex-direction: column;
+    }
+    
+    .work-process-column,
+    .consultation-form-column {
+        padding: 50px 30px;
+        height: auto;
+    }
+
+    .work-process-title {
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+    }
+
+
+    .consultation-form-wrapper {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+    .work-process-contact-section {
+        padding: 40px 0 0 0;
+    }
+    
+    .contact-section-spacer {
+        height: 40px;
+    }
+    
+    .work-process-column,
+    .consultation-form-column {
+        padding: 40px 20px;
+        height: auto;
+    }
+
+    .work-process-title {
+        margin-bottom: 30px;
+    }
+
+    .step-number {
+        /* font-size: 1.5rem; */
+        min-width: 50px;
+    }
+
+    /* .step-title {
+        font-size: 0.9rem;
+    } */
+
+    /* .consultation-title {
+        font-size: 1.4rem;
+    } */
+/* 
+    .consultation-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 30px;
+    } */
+
+    .form-group-underline {
+        margin-bottom: 10px;
+    }
+    
+    .form-label-underline {
+        margin-bottom: 3px;
+    }
+}

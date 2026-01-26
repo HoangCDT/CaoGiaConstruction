@@ -13,9 +13,9 @@
                     Hotline:
                     <a href="tel:@Model.About.PhoneNumber">@Model.About.PhoneNumber</a>
                     </div> *@
-                    <span class="about-description">
-                        @Model?.About?.Description
-                    </span>
+                    <div class="about-description">
+                        @Html.Raw(Model?.About?.Description)
+                    </div>
                 </div>
             </div>
             <div class="col-sm-6 module_right">

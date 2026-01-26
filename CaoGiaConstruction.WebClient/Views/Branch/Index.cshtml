@@ -1,4 +1,4 @@
-﻿@model List<Branches>
+@model List<Branches>
 @{
     var initialMapIFrame = Model.OrderBy(x => x.SortOrder).FirstOrDefault();
 }
@@ -42,12 +42,72 @@
                     </div>
                 </div>
                 <div class="col-md-8">
-                    <div class="map">
-                        <iframe id="branchMapFrame" src="@initialMapIFrame.MapIFrame" width="100%" height="420px"
-                            style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    <div class="map-wrapper-modern">
+                        @{
+                            string mapUrl = initialMapIFrame?.MapIFrame ?? "";
+                            // Nếu MapIFrame chứa thẻ iframe, extract URL từ src
+                            if (!string.IsNullOrEmpty(mapUrl) && mapUrl.Contains("<iframe"))
+                            {
+                                var srcMatch = System.Text.RegularExpressions.Regex.Match(mapUrl, @"src=[""']([^""']+)[""']");
+                                if (srcMatch.Success)
+                                {
+                                    mapUrl = srcMatch.Groups[1].Value;
+                                }
+                            }
+                            // Nếu vẫn chứa thẻ iframe, thử extract từ src= trực tiếp
+                            if (!string.IsNullOrEmpty(mapUrl) && mapUrl.Contains("src="))
+                            {
+                                var srcMatch = System.Text.RegularExpressions.Regex.Match(mapUrl, @"src=[""']([^""']+)[""']");
+                                if (srcMatch.Success)
+                                {
+                                    mapUrl = srcMatch.Groups[1].Value;
+                                }
+                            }
+                        }
+                        <iframe id="branchMapFrame" 
+                                src="@mapUrl" 
+                                width="100%" 
+                                height="500px"
+                                style="border:0; border-radius: 12px;" 
+                                allowfullscreen="" 
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<style>
+    .map-wrapper-modern {
+        position: relative;
+        width: 100%;
+        height: 500px;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        background: #f0f0f0;
+    }
+
+    .map-wrapper-modern iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
+    }
+
+    @@media (max-width: 991px) {
+        .map-wrapper-modern {
+            height: 400px;
+        }
+    }
+
+    @@media (max-width: 767px) {
+        .map-wrapper-modern {
+            height: 350px;
+            border-radius: 8px;
+        }
+    }
+</style>

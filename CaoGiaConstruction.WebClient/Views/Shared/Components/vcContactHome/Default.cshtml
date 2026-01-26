@@ -1,0 +1,113 @@
+@model ContactHomeVM
+@using CaoGiaConstruction.Utilities
+
+@{
+    var primaryColor = Model?.Setting?.PrimaryColor ?? "#2e5234";
+    var fontSize = Model?.Setting?.FontSize ?? "14px";
+    var about = Model?.About;
+}
+
+<link rel="stylesheet" href="~/Client/css/contact-home.css" asp-append-version="true" />
+
+<section class="work-process-contact-section" style="--contact-primary-color: @primaryColor; --contact-font-size: @fontSize;">
+    <div class="container">
+        <div class="row g-0">
+            <!-- Cột trái: Quy trình làm việc -->
+            <div class="col-lg-5 work-process-column">
+                <div class="work-process-content">
+                    <h3 class="work-process-subtitle">QUY TRÌNH LÀM VIỆC</h3>
+                    <h1 class="work-process-title">
+                        PHÁC THẢO ĐẾN<br>
+                        HOÀN THIỆN
+                    </h1>
+
+                    <div class="process-steps">
+                        <div class="process-step">
+                            <span class="step-number">01</span>
+                            <div class="step-content">
+                                <h4 class="step-title">KHẢO SÁT & LẬP NHIỆM VỤ</h4>
+                                <div class="step-line"></div>
+                            </div>
+                        </div>
+
+                        <div class="process-step">
+                            <span class="step-number">02</span>
+                            <div class="step-content">
+                                <h4 class="step-title">THIẾT KẾ PHƯƠNG ÁN SƠ BỘ</h4>
+                                <div class="step-line"></div>
+                            </div>
+                        </div>
+
+                        <div class="process-step">
+                            <span class="step-number">03</span>
+                            <div class="step-content">
+                                <h4 class="step-title">PHÁT TRIỂN PHỐI CẢNH 3D</h4>
+                                <div class="step-line"></div>
+                            </div>
+                        </div>
+
+                        <div class="process-step">
+                            <span class="step-number">04</span>
+                            <div class="step-content">
+                                <h4 class="step-title">TRIỂN KHAI HỒ SƠ KỸ THUẬT</h4>
+                                <div class="step-line"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cột phải: Form đăng ký tư vấn -->
+            <div class="col-lg-7 consultation-form-column">
+                <div class="consultation-form-wrapper">
+                    <h2 class="consultation-title">ĐĂNG KÝ TƯ VẤN</h2>
+                    <p class="consultation-subtitle">
+                        Nhận báo giá chi tiết và tư vấn sơ bộ từ kiến trúc sư trưởng của chúng tôi trong vòng 24h.
+                    </p>
+                    
+                    <form method="post" accept-charset="UTF-8" class="consultation-form-modern" id="contact_form_home">
+                        <input type="hidden" name="content" id="content_hidden" value="">
+                        <div class="form-group-underline">
+                            <label class="form-label-underline">HỌ VÀ TÊN <span class="text-danger">*</span></label>
+                            <input type="text" class="form-input-underline" required="required" 
+                                   name="FullName" placeholder="">
+                        </div>
+
+                        <div class="form-group-underline">
+                            <label class="form-label-underline">SỐ ĐIỆN THOẠI <span class="text-danger">*</span></label>
+                            <input type="tel" class="form-input-underline" required="required" 
+                                   name="PhoneNumber" placeholder="">
+                        </div>
+
+                        <div class="form-group-underline">
+                            <label class="form-label-underline">ĐỊA CHỈ EMAIL</label>
+                            <input type="email" class="form-input-underline" 
+                                   name="Email" pattern="[a-z0-9._%+-]+@@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="">
+                        </div>
+
+                        <div class="form-group-underline">
+                            <label class="form-label-underline">LOẠI HÌNH CÔNG TRÌNH</label>
+                            <select class="form-input-underline" name="ProjectType" id="project_type_select">
+                                <option value="">-- Chọn loại hình công trình --</option>
+                                <option value="biet-thu">Biệt thự</option>
+                                <option value="nha-pho">Nhà phố</option>
+                                <option value="chung-cu">Chung cư</option>
+                                <option value="van-phong">Văn phòng</option>
+                                <option value="nha-xuong">Nhà xưởng</option>
+                                <option value="khac">Khác</option>
+                            </select>
+                        </div>
+
+                        <div class="form-submit-underline">
+                            <button class="btn-submit-underline" type="submit" id="submit_home" name="submit">
+                                GỬI YÊU CẦU NGAY
+                            </button>
+                        </div>
+                        <div role="alert" class="alert-modern"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contact-section-spacer"></div>
+</section>

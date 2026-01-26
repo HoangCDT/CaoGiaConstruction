@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using CaoGiaConstruction.WebClient.Dtos;
 using CaoGiaConstruction.WebClient.Services;
 

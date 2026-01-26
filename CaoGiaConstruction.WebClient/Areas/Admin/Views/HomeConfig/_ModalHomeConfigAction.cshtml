@@ -19,9 +19,30 @@
 
                             <div class="mb-3">
                                 <label class="form-label">Component key <span class="text-danger">*</span></label>
-                                <input class="form-control" type="text" name="componentKey"
-                                    placeholder="Ví dụ: vcHotMachine hoặc _SlideTopHome">
-                                <small class="text-muted">Bắt đầu bằng "_" hoặc chứa "/" sẽ render theo Partial View.</small>
+                                <select class="form-control mb-2" id="componentKeySelect">
+                                    <option value="">-- Chọn component có sẵn --</option>
+                                    <optgroup label="View Components">
+                                        <option value="vcAboutHome">vcAboutHome - Giới thiệu công ty</option>
+                                        <option value="vcService">vcService - Dịch vụ</option>
+                                        <option value="vcBlogHome">vcBlogHome - Bài viết</option>
+                                        <option value="vcHotProduct">vcHotProduct - Sản phẩm nổi bật</option>
+                                        <option value="vcHotMachine">vcHotMachine - Máy móc nổi bật</option>
+                                        <option value="vcBranches">vcBranches - Chi nhánh</option>
+                                        <option value="vcBranchesV2">vcBranchesV2 - Chi nhánh V2</option>
+                                        <option value="vcVideo">vcVideo - Video</option>
+                                        <option value="vcFeedback">vcFeedback - Phản hồi</option>
+                                        <option value="vcContactHome">vcContactHome - Form liên hệ trang chủ</option>
+                                    </optgroup>
+                                    <optgroup label="Partial Views">
+                                        <option value="_SlideTopHome">_SlideTopHome - Slide đầu trang</option>
+                                        <option value="_TiktokEmbedContainer">_TiktokEmbedContainer - TikTok embed</option>
+                                    </optgroup>
+                                </select>
+                                <input class="form-control" type="text" id="componentKeyInput" name="componentKey"
+                                    placeholder="Hoặc nhập component key tùy chỉnh (ví dụ: vcHotMachine hoặc _SlideTopHome)">
+                                <small class="text-muted d-block mt-1">
+                                    <i class="mdi mdi-information"></i> Bắt đầu bằng "_" hoặc chứa "/" sẽ render theo Partial View.
+                                </small>
                             </div>
 
                             <div class="mb-3">

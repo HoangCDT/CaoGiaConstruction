@@ -501,6 +501,114 @@ namespace CaoGiaConstruction.WebClient.Context
                 await _context.MenuConfigs.AddAsync(menuConfig);
             }
 
+            // Seed HomeComponentConfig - Cấu hình component trang chủ
+            if (!_context.HomeComponentConfigs.Any())
+            {
+                var homeComponents = new List<HomeComponentConfig>
+                {
+                    new HomeComponentConfig
+                    {
+                        Name = "Slide đầu trang",
+                        ComponentKey = "_SlideTopHome",
+                        SortOrder = 1,
+                        Status = StatusEnum.Active
+                    },
+                    new HomeComponentConfig
+                    {
+                        Name = "Máy móc nổi bật",
+                        ComponentKey = "vcHotMachine",
+                        SortOrder = 2,
+                        Status = StatusEnum.Active
+                    },
+                    new HomeComponentConfig
+                    {
+                        Name = "Sản phẩm nổi bật",
+                        ComponentKey = "vcHotProduct",
+                        SortOrder = 3,
+                        Status = StatusEnum.Active
+                    },
+                    new HomeComponentConfig
+                    {
+                        Name = "Giới thiệu",
+                        ComponentKey = "vcAboutHome",
+                        SortOrder = 4,
+                        Status = StatusEnum.Active
+                    },
+                    new HomeComponentConfig
+                    {
+                        Name = "TikTok",
+                        ComponentKey = "_TiktokEmbedContainer",
+                        Javascript = @"$(function () {
+    var container = $('#tiktok-embed-container');
+    if (container.length === 0) {
+        return;
+    }
+
+    $.ajax({
+        url: '/api/tiktok-embed',
+        method: 'GET',
+        cache: false,
+        timeout: 10000
+    })
+    .done(function (response) {
+        if (response && response.success && response.html) {
+            container.html(response.html);
+        }
+    })
+    .fail(function (xhr, status, error) {
+        console.log('Failed to load TikTok embed:', error);
+    });
+});",
+                        SortOrder = 5,
+                        Status = StatusEnum.Active
+                    },
+                    new HomeComponentConfig
+                    {
+                        Name = "Chi nhánh",
+                        ComponentKey = "vcBranchesV2",
+                        SortOrder = 6,
+                        Status = StatusEnum.Active
+                    },
+                    new HomeComponentConfig
+                    {
+                        Name = "Dịch vụ",
+                        ComponentKey = "vcService",
+                        SortOrder = 7,
+                        Status = StatusEnum.Active
+                    },
+                    new HomeComponentConfig
+                    {
+                        Name = "Blog",
+                        ComponentKey = "vcBlogHome",
+                        SortOrder = 8,
+                        Status = StatusEnum.Active
+                    },
+                    new HomeComponentConfig
+                    {
+                        Name = "Video",
+                        ComponentKey = "vcVideo",
+                        SortOrder = 9,
+                        Status = StatusEnum.Active
+                    },
+                    new HomeComponentConfig
+                    {
+                        Name = "Cảm nhận khách hàng",
+                        ComponentKey = "vcFeedback",
+                        SortOrder = 10,
+                        Status = StatusEnum.Active
+                    },
+                    new HomeComponentConfig
+                    {
+                        Name = "Form liên hệ trang chủ",
+                        ComponentKey = "vcContactHome",
+                        SortOrder = 11,
+                        Status = StatusEnum.Active
+                    }
+                };
+
+                await _context.HomeComponentConfigs.AddRangeAsync(homeComponents);
+            }
+
             try
             {
                 await _context.SaveChangesAsync();

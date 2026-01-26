@@ -42,7 +42,40 @@ var homeConfigController = {
         });
 
         homeConfigController.methods.validateForm(function (dataform) {
+            // Lấy giá trị từ dropdown hoặc input tùy chỉnh
+            const selectValue = $("#componentKeySelect").val();
+            const inputValue = $("#componentKeyInput").val();
+            if (selectValue) {
+                dataform.componentKey = selectValue;
+            } else if (inputValue) {
+                dataform.componentKey = inputValue;
+            }
             homeConfigController.methods.addOrUpdate(dataform);
+        });
+
+        // Xử lý dropdown component key - khi chọn từ dropdown, tự động điền vào input
+        $("#componentKeySelect").change(function() {
+            const value = $(this).val();
+            if (value) {
+                $("#componentKeyInput").val(value);
+            }
+        });
+
+        // Khi mở modal, sync giá trị từ input vào dropdown nếu có
+        $("#modal-home-config").on('show.bs.modal', function() {
+            setTimeout(function() {
+                const currentValue = $("#componentKeyInput").val();
+                if (currentValue) {
+                    const option = $("#componentKeySelect option[value='" + currentValue + "']");
+                    if (option.length > 0) {
+                        $("#componentKeySelect").val(currentValue);
+                    } else {
+                        $("#componentKeySelect").val("");
+                    }
+                } else {
+                    $("#componentKeySelect").val("");
+                }
+            }, 100);
         });
     },
     initDragSort: function () {

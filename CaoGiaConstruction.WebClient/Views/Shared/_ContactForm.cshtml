@@ -1,41 +1,39 @@
-﻿<form method="post" accept-charset="UTF-8" class="contact-form" id="contact_form">
-    <div class="row" id="contact_Form">
-        <div class="col-sm-4">
-            <p class="contact-form-author">
-                <input type="text" required="required" size="30" value=""
-                       name="FullName" placeholder="Họ và tên">
-            </p>
-        </div>
-        <div class="col-sm-4">
-            <p class="contact-form-email">
-                <input type="text" required="required" size="30" value=""
-                       name="PhoneNumber"
-                       placeholder="Số điện thoại">
-            </p>
-        </div>
-        <div class="col-sm-4">
-            <p class="contact-form-email">
-                <input type="email" size="30" value=""
-                       name="Email"
-                       pattern="[a-z0-9._%+-]+@@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Địa chỉ email">
-            </p>
-        </div>
-        <div class="col-sm-12">
-            @if (Model != null)
-            {
-                <input type="hidden" name="ProductId" value="@Model" />
-            }
-            <p class="contact-form-message">
-                <textarea required="required" rows="3" cols="45"
-                          name="content" placeholder="Nội dung liên hệ"></textarea>
-            </p>
-            <p class="form-submit button">
-                <button class="hvr-rectangle-out" type="submit" id="submit"
-                        name="submit">
-                    Gửi liên hệ
-                </button>
-            </p>
-        </div>
+<link rel="stylesheet" href="~/Client/css/contact-home.css" asp-append-version="true" />
+
+<form method="post" accept-charset="UTF-8" class="consultation-form-modern" id="contact_form">
+    @if (Model != null)
+    {
+        <input type="hidden" name="ProductId" value="@Model" />
+    }
+    
+    <div class="form-group-underline">
+        <label class="form-label-underline">HỌ VÀ TÊN <span class="text-danger">*</span></label>
+        <input type="text" class="form-input-underline" required="required" 
+               name="FullName" placeholder="">
     </div>
-    <div role="alert" class="alert"></div>
+
+    <div class="form-group-underline">
+        <label class="form-label-underline">SỐ ĐIỆN THOẠI <span class="text-danger">*</span></label>
+        <input type="tel" class="form-input-underline" required="required" 
+               name="PhoneNumber" placeholder="">
+    </div>
+
+    <div class="form-group-underline">
+        <label class="form-label-underline">ĐỊA CHỈ EMAIL</label>
+        <input type="email" class="form-input-underline" 
+               name="Email" pattern="[a-z0-9._%+-]+@@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="">
+    </div>
+
+    <div class="form-group-underline">
+        <label class="form-label-underline">NỘI DUNG LIÊN HỆ <span class="text-danger">*</span></label>
+        <textarea class="form-input-underline form-textarea-underline" required="required" rows="4"
+                  name="content" placeholder=""></textarea>
+    </div>
+
+    <div class="form-submit-underline">
+        <button class="btn-submit-underline" type="submit" id="submit" name="submit">
+            GỬI LIÊN HỆ
+        </button>
+    </div>
+    <div role="alert" class="alert-modern"></div>
 </form>

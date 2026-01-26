@@ -193,7 +193,21 @@ $(document).ready(function () {
     });
 
     $(".item-branch").click(function (e) {
-        const mapIFrame = $(this).data('map');
+        let mapIFrame = $(this).data('map');
+        // Nếu MapIFrame chứa thẻ iframe, extract URL từ src
+        if (mapIFrame && mapIFrame.includes('<iframe')) {
+            const srcMatch = mapIFrame.match(/src=["']([^"']+)["']/);
+            if (srcMatch && srcMatch[1]) {
+                mapIFrame = srcMatch[1];
+            }
+        }
+        // Nếu vẫn chứa src=, thử extract lại
+        if (mapIFrame && mapIFrame.includes('src=')) {
+            const srcMatch = mapIFrame.match(/src=["']([^"']+)["']/);
+            if (srcMatch && srcMatch[1]) {
+                mapIFrame = srcMatch[1];
+            }
+        }
         $('#branchMapFrame').attr('src', mapIFrame);
         $('.item-branch').removeClass('active');
         $(this).addClass('active');
@@ -263,6 +277,61 @@ $(document).ready(function () {
         $('#open-filters.openf').toggleClass('openf');
     });
 
+    // Submit Form Contact Home
+    $("#contact_form_home").submit(function (event) {
+        event.preventDefault();
+        let $this = $(this);
+        
+        // Lấy giá trị ProjectType và chuyển đổi thành tên tiếng Việt
+        const projectTypeMap = {
+            'biet-thu': 'Biệt thự',
+            'nha-pho': 'Nhà phố',
+            'chung-cu': 'Chung cư',
+            'van-phong': 'Văn phòng',
+            'nha-xuong': 'Nhà xưởng',
+            'khac': 'Khác'
+        };
+        
+        const projectTypeValue = $('#project_type_select').val();
+        let contentValue = '';
+        
+        if (projectTypeValue && projectTypeValue !== '') {
+            const projectTypeName = projectTypeMap[projectTypeValue] || projectTypeValue;
+            contentValue = 'LOẠI HÌNH CÔNG TRÌNH: ' + projectTypeName;
+        }
+        
+        // Cập nhật giá trị content hidden field
+        $('#content_hidden').val(contentValue);
+        
+        $.ajax({
+            type: "POST",
+            data: $this.serialize(),
+            url: '/post-contact',
+            cache: false,
+        }).done(function (res) {
+            showAlert(res?.success, res.message);
+            if (res?.success) {
+                $this.trigger("reset");
+                $('#content_hidden').val(''); // Reset content field
+            }
+        }).fail(function () {
+            showAlert(false, 'Đã xảy ra lỗi với yêu cầu này. Chúng tôi đang cố gắng sửa lỗi sớm nhất có thể.');
+        });
+
+        function showAlert(isSuccess, message) {
+            const alertClass = isSuccess ? 'alert-success' : 'alert-danger';
+            const title = isSuccess ? 'Thành công' : 'Thất bại';
+            const $alert = $this.find('.alert-modern');
+            if ($alert.length < 1) {
+                $this.append('<div role="alert" class="alert-modern ' + alertClass + '"><strong>' + title + '</strong> - <span>' + message + '</span></div>');
+            } else {
+                $alert.removeClass('alert-success alert-danger').addClass(alertClass).html('<strong>' + title + '</strong> - <span>' + message + '</span>');
+            }
+            $alert.css('display', 'block').hide().fadeIn(350).delay(10000).fadeOut(350);
+        }
+        return false;
+    });
+
     // Submit Form Contact
     $("#contact_form").submit(function (event) {
         event.preventDefault(); // Ngăn chặn hành vi gửi form mặc định
@@ -284,10 +353,10 @@ $(document).ready(function () {
         function showAlert(isSuccess, message) {
             const alertClass = isSuccess ? 'alert-success' : 'alert-danger';
             const title = isSuccess ? 'Thành công' : 'Thất bại';
-            const $alert = $this.find('.alert');
+            const $alert = $this.find('.alert-modern');
             if ($alert.length < 1) {
-                $this.append('<div role="alert" class="alert ' + alertClass + '"><strong>' + title + '</strong> - <span>' + message + '</span></div>');
-                $alert = $this.find('.alert');
+                $this.append('<div role="alert" class="alert-modern ' + alertClass + '"><strong>' + title + '</strong> - <span>' + message + '</span></div>');
+                $alert = $this.find('.alert-modern');
             } else {
                 $alert.removeClass('alert-success alert-danger').addClass(alertClass).html('<strong>' + title + '</strong> - <span>' + message + '</span>');
             }
