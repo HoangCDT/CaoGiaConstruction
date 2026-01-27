@@ -93,7 +93,7 @@
 }
 
 .about-home-description {
-    font-size: 1.125rem;
+    font-size: 14px;
     line-height: 1.625;
     color: rgba(8, 28, 21, 0.7);
     margin-bottom: 2.5rem;
@@ -102,7 +102,7 @@
 
 @media (min-width: 768px) {
     .about-home-description {
-        font-size: 1.25rem;
+        font-size: 14px;
     }
 }
 
