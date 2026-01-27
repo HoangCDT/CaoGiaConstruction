@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 namespace CaoGiaConstruction.WebClient.AutoMapper.ViewModels
 {
     public class AboutHomeVM
@@ -6,5 +6,7 @@ namespace CaoGiaConstruction.WebClient.AutoMapper.ViewModels
         public SlideVM? Banner { get; set; }
 
         public AboutVM? About { get; set; }
+
+        public SettingVM? Setting { get; set; }
     }
 }
