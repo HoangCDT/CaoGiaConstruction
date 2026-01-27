@@ -9,13 +9,44 @@
 
 <footer id="footer" style="background-color: @Model?.Setting?.FooterBackgroundColor; --footer-sub-text-color: @(Model?.Setting?.FooterSubTextColor ?? "#CCCCCC");">
     <style>
+        #footer,
+        #footer *,
         #footer .widget-content,
+        #footer .widget-content *,
         #footer .widget-content p,
         #footer .widget-content span,
         #footer .widget-content a,
         #footer .widget-content li,
+        #footer .widget-content ul,
+        #footer .widget-content strong,
+        #footer .widget > .title,
+        #footer .title,
+        #footer h3,
+        #footer h3.title,
+        #footer .footer-info,
+        #footer .footer-info *,
+        #footer .footer-info p,
+        #footer .footer-info span,
+        #footer .footer-info a,
+        #footer .footer-info li,
+        #footer .footer-info strong,
         #footer .copyright,
-        #footer .copyright p {
+        #footer .copyright *,
+        #footer .copyright p,
+        #footer .copyright a,
+        #footer .copyright strong,
+        #footer .contact-us,
+        #footer .contact-us *,
+        #footer .contact-us p,
+        #footer .contact-us span,
+        #footer .contact-us a,
+        #footer .social,
+        #footer .social *,
+        #footer .social li,
+        #footer .social a,
+        #footer button,
+        #footer .btn,
+        #footer .btn * {
             color: var(--footer-sub-text-color) !important;
         }
     </style>
