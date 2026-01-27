@@ -1,0 +1,78 @@
+@model AboutV2VM
+@using CaoGiaConstruction.Utilities
+
+@{
+    var primaryColor = Model?.Setting?.PrimaryColor ?? "#1b4332";
+    var fontSize = Model?.Setting?.FontSize ?? "14px";
+    var fontFamily = Model?.Setting?.FontFamily ?? "Arial, sans-serif";
+    var about = Model?.About;
+    var banner = Model?.Banner;
+    var imageUrl = banner?.Avatar ?? about?.LogoTop;
+}
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet" href="~/Client/css/about-v2.css" asp-append-version="true" />
+
+<section class="about-v2-section" id="about" style="--about-v2-primary-color: @primaryColor; --about-v2-font-size: @fontSize; --about-v2-font-family: @fontFamily;">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <div class="about-v2-image-wrapper">
+                    <div class="about-v2-image-border"></div>
+                    @if (!string.IsNullOrEmpty(imageUrl))
+                    {
+                        <div class="about-v2-image-container">
+                            <img src="@imageUrl.ToHostImage()" alt="@(about?.AboutUs ?? "Về Cao Gia Construction")" class="about-v2-image" />
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="about-v2-content">
+                    <h2 class="about-v2-subtitle">GIỚI THIỆU DOANH NGHIỆP</h2>
+                    <h3 class="about-v2-title">
+                        VỀ XÂY DỰNG<br/>
+                        <span class="about-v2-title-accent">@(about?.AboutUs ?? "CAO GIA")</span>
+                    </h3>
+                    <div class="about-v2-description">
+                        @if (!string.IsNullOrEmpty(about?.Description))
+                        {
+                            @Html.Raw(about.Description)
+                        }
+                       
+                        else
+                        {
+                            <p>Với hơn một thập kỷ kinh nghiệm trong lĩnh vực xây dựng và nội thất, Xây Dựng Cao Gia tự hào là đơn vị tiên phong mang đến những giải pháp kiến trúc tối ưu. Chúng tôi không chỉ xây dựng những ngôi nhà, mà còn kiến tạo những tổ ấm bền vững, nơi giá trị thẩm mỹ và công năng hòa quyện làm một.</p>
+                        }
+                    </div>
+                    <div class="about-v2-features">
+                        <div class="about-v2-feature-item">
+                            <div class="about-v2-feature-icon">
+                                <span class="material-symbols-outlined">verified</span>
+                            </div>
+                            <h4 class="about-v2-feature-label">KINH NGHIỆM</h4>
+                        </div>
+                        <div class="about-v2-feature-item">
+                            <div class="about-v2-feature-icon">
+                                <span class="material-symbols-outlined">architecture</span>
+                            </div>
+                            <h4 class="about-v2-feature-label">CHẤT LƯỢNG</h4>
+                        </div>
+                        <div class="about-v2-feature-item">
+                            <div class="about-v2-feature-icon">
+                                <span class="material-symbols-outlined">handshake</span>
+                            </div>
+                            <h4 class="about-v2-feature-label">TẬN TÂM</h4>
+                        </div>
+                    </div>
+                    <div class="about-v2-button-wrapper">
+                        <a asp-route="about" class="about-v2-button">
+                            Xem thêm
+                            <span class="material-symbols-outlined">trending_flat</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

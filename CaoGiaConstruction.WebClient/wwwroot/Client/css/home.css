@@ -3,5 +3,5 @@
 }
 
 .home-wrapper .home-component:nth-child(even) > [class$='-section'] {
-    background-color: color-mix(in srgb, var(--caogia-primary-color) 20%, transparent);
+    background-color: color-mix(in srgb, var(--caogia-primary-color) 10%, transparent);
 }

@@ -670,6 +670,13 @@ namespace CaoGiaConstruction.WebClient.Context
                         ComponentKey = "vcProcessStep",
                         SortOrder = 12,
                         Status = StatusEnum.Active
+                    },
+                    new HomeComponentConfig
+                    {
+                        Name = "Giới thiệu V2",
+                        ComponentKey = "vcAboutV2",
+                        SortOrder = 13,
+                        Status = StatusEnum.Active
                     }
                 };
 
