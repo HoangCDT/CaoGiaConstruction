@@ -3,6 +3,7 @@
     Func<string, bool> isPartial = key =>
         !string.IsNullOrWhiteSpace(key) &&
         (key.StartsWith("_") || key.Contains("/") || key.EndsWith(".cshtml", StringComparison.OrdinalIgnoreCase));
+    var componentIndex = 0;
 }
 
 <div class="main-content home-wrapper">
@@ -14,27 +15,31 @@
                 continue;
             }
 
-            if (isPartial(component.ComponentKey))
-            {
-                @await Html.PartialAsync(component.ComponentKey)
-            }
-            else
-            {
-                @await Component.InvokeAsync(component.ComponentKey)
-            }
+            componentIndex++;
+            <div class="home-component" data-index="@componentIndex">
+                @if (isPartial(component.ComponentKey))
+                {
+                    @await Html.PartialAsync(component.ComponentKey)
+                }
+                else
+                {
+                    @await Component.InvokeAsync(component.ComponentKey)
+                }
 
-            if (!string.IsNullOrWhiteSpace(component.Javascript))
-            {
-                <script>
+                @if (!string.IsNullOrWhiteSpace(component.Javascript))
+                {
+                    <script>
 @Html.Raw(component.Javascript)
-                </script>
-            }
+                    </script>
+                }
+            </div>
         }
     </div>
 </div>
 
 @section styles {
     <link rel="stylesheet" href="~/Client/css/nivo-slider.css">
+    <link rel="stylesheet" href="~/Client/css/home.css" asp-append-version="true">
 }
 
 @section scripts {

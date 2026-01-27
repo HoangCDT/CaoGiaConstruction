@@ -663,6 +663,13 @@ namespace CaoGiaConstruction.WebClient.Context
                         ComponentKey = "vcContactHome",
                         SortOrder = 11,
                         Status = StatusEnum.Active
+                    },
+                    new HomeComponentConfig
+                    {
+                        Name = "Quy trình",
+                        ComponentKey = "vcProcessStep",
+                        SortOrder = 12,
+                        Status = StatusEnum.Active
                     }
                 };
 

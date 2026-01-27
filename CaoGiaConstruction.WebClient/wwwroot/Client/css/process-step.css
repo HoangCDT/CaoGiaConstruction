@@ -1,5 +1,5 @@
 .process-step-section {
-    padding: 80px 0;
+    padding: 40px 0;
     background-color: #ffffff;
     font-family: var(--process-font-family, Arial, sans-serif);
     font-size: var(--process-font-size, 14px);
@@ -15,7 +15,7 @@
     font-weight: 600;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    font-size: 0.875rem;
+    font-size: 0.18px;
     margin-bottom: 1rem;
 }
 
@@ -85,7 +85,7 @@
 }
 
 .process-step-card-title {
-    font-size: 1.125rem;
+    font-size: 40px;
     font-weight: 900;
     color: color-mix(in srgb, var(--process-primary-color, #1b4332) 80%, black);
     text-transform: uppercase;
@@ -96,12 +96,12 @@
 
 @media (min-width: 768px) {
     .process-step-card-title {
-        font-size: 1.25rem;
+        font-size: 40px;
     }
 }
 
 .process-step-card-description {
-    font-size: 0.9375rem;
+    font-size: 14px;
     color: #666666;
     line-height: 1.625;
     margin: 0;
@@ -110,14 +110,14 @@
 
 @media (min-width: 768px) {
     .process-step-card-description {
-        font-size: 1rem;
+        font-size: 14px;
     }
 }
 
 /* Responsive adjustments */
 @media (max-width: 767px) {
     .process-step-section {
-        padding: 60px 0;
+        padding: 40px 0;
     }
     
     .process-step-header {

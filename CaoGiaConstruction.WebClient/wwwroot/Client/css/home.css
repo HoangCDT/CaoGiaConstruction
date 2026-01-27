@@ -1,0 +1,7 @@
+.home-wrapper .home-component {
+    display: block;
+}
+
+.home-wrapper .home-component:nth-child(even) > [class$='-section'] {
+    background-color: color-mix(in srgb, var(--caogia-primary-color) 20%, transparent);
+}

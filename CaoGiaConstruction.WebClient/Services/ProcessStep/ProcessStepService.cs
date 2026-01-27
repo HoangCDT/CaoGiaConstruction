@@ -54,6 +54,12 @@ namespace CaoGiaConstruction.WebClient.Services
         {
             var data = _mapper.Map<ProcessStep>(model);
 
+            if (data.SortOrder == null)
+            {
+                var maxPosition = await _context.ProcessSteps.MaxAsync(x => (int?)x.SortOrder);
+                data.SortOrder = (maxPosition ?? 0) + 1;
+            }
+
             if (model.Id != Guid.Empty)
             {
                 var exist = await _context.ProcessSteps.AsNoTracking().Where(x => x.Id == model.Id).FirstOrDefaultAsync();
@@ -73,11 +79,6 @@ namespace CaoGiaConstruction.WebClient.Services
             }
             else
             {
-                if (data.SortOrder == null)
-                {
-                    var maxPosition = await _context.ProcessSteps.MaxAsync(x => (int?)x.SortOrder);
-                    data.SortOrder = (maxPosition ?? 0) + 1;
-                }
                 _context.ProcessSteps.Add(data);
             }
             try
