@@ -1,0 +1,63 @@
+@model ProfessionalServiceDto
+@using CaoGiaConstruction.Utilities
+
+@{
+    var primaryColor = Model?.Setting?.PrimaryColor ?? "#1b4332";
+    var secondaryColor = Model?.Setting?.SecondaryColor ?? "#40916c";
+    var fontSize = Model?.Setting?.FontSize ?? "14px";
+    var fontFamily = Model?.Setting?.FontFamily ?? "Arial, sans-serif";
+}
+
+<link rel="stylesheet" href="~/Client/css/professional-service.css" asp-append-version="true" />
+
+<section class="professional-service-section" id="services" style="--professional-primary-color: @primaryColor; --professional-secondary-color: @secondaryColor; --professional-font-size: @fontSize; --professional-font-family: @fontFamily;">
+    <div class="container">
+        <div class="professional-service-header">
+            <div>
+                <h2 class="professional-service-subtitle">Lĩnh vực hoạt động</h2>
+                <h3 class="professional-service-title">Dịch vụ chuyên nghiệp</h3>
+            </div>
+            <div class="professional-service-divider"></div>
+        </div>
+        <div class="professional-service-grid">
+            @if (Model != null && Model.Services != null && Model.Services.Any())
+            {
+                @foreach (var item in Model.Services)
+                {
+                    <div class="professional-service-item">
+                        <a asp-route="service-detail" asp-route-category="@(item.ServiceCategory?.Code ?? "service-general")" asp-route-code="@item.Code" class="professional-service-link">
+                            <div class="professional-service-icon-wrapper">
+                                <span class="material-symbols-outlined professional-service-icon">@(item.Brand ?? "construction")</span>
+                            </div>
+                            <h4 class="professional-service-item-title">@item.Title</h4>
+                            <p class="professional-service-item-description">@item.Description</p>
+                        </a>
+                    </div>
+                }
+            }
+            @if (Model != null && Model.FeaturedProject != null && !string.IsNullOrEmpty(Model.FeaturedProject.ImageList))
+            {
+                var firstImage = Model.FeaturedProject.ImageList.Split(';').FirstOrDefault();
+                <div class="professional-service-banner">
+                    <div class="professional-service-banner-background" style="background-image: url('@firstImage.ToHostImage()');"></div>
+                    <div class="professional-service-banner-overlay"></div>
+                    <div class="professional-service-banner-content">
+                        <span class="professional-service-banner-label">Dịch vụ mũi nhọn</span>
+                        <a asp-route="service-detail" asp-route-category="@(Model.FeaturedProject.ServiceCategory?.Code ?? "service-general")" asp-route-code="@Model.FeaturedProject.Code" class="professional-service-banner-title-link">
+                            <h4 class="professional-service-banner-title">
+                                @Model.FeaturedProject.Title<br/>
+                                <span class="professional-service-banner-title-accent">ĐẲNG CẤP KIẾN TRÚC – VỊ THẾ GIA CHỦ</span>
+                            </h4>
+                        </a>
+                        <p class="professional-service-banner-description">
+                            @Model.FeaturedProject.Description
+                        </p>
+                        <a asp-route="contact" class="professional-service-banner-button">
+                            Nhận tư vấn chuyên sâu
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

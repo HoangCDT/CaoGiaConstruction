@@ -387,6 +387,66 @@ namespace CaoGiaConstruction.WebClient.Context
                 await _context.ServiceCategories.AddRangeAsync(serviceCategories);
             }
 
+            // Seed Professional Services
+            if (!_context.Services.Any(x => x.Code == "phan-phoi-vlxd-keo-tong-hop-chuyen-dung"))
+            {
+                var serviceCategory = await _context.ServiceCategories
+                    .FirstOrDefaultAsync(x => x.Code == "service-general");
+
+                if (serviceCategory != null)
+                {
+                    var services = new List<Service>
+                    {
+                        new Service
+                        {
+                            Title = "Phân phối VLXD & Keo tổng hợp chuyên dụng",
+                            Code = "phan-phoi-vlxd-keo-tong-hop-chuyen-dung",
+                            Description = "Cung ứng vật tư xây dựng chính hãng và các dòng keo dán gạch, keo silicone chuyên dụng cho công trình hiện đại.",
+                            ServiceCategoryId = serviceCategory.Id,
+                            Status = StatusEnum.Active,
+                            SortOrder = 1,
+                            Brand = "inventory_2",
+                            CreatedDate = DateTime.UtcNow
+                        },
+                        new Service
+                        {
+                            Title = "Sản xuất Nhôm Xingfa & Nội thất",
+                            Code = "san-xuat-nhom-xingfa-noi-that",
+                            Description = "Xưởng sản xuất trực tiếp hệ cửa nhôm Xingfa cao cấp và nội thất may đo theo tiêu chuẩn xuất khẩu.",
+                            ServiceCategoryId = serviceCategory.Id,
+                            Status = StatusEnum.Active,
+                            SortOrder = 2,
+                            Brand = "window",
+                            CreatedDate = DateTime.UtcNow
+                        },
+                        new Service
+                        {
+                            Title = "Thiết kế & Thi công Hoàn thiện trọn gói",
+                            Code = "thiet-ke-thi-cong-hoan-thien-tron-goi",
+                            Description = "Giải pháp chìa khóa trao tay từ ý tưởng sơ bộ đến hoàn thiện nội thất, đảm bảo thẩm mỹ và công năng tuyệt đối.",
+                            ServiceCategoryId = serviceCategory.Id,
+                            Status = StatusEnum.Active,
+                            SortOrder = 3,
+                            Brand = "format_paint",
+                            CreatedDate = DateTime.UtcNow
+                        },
+                        new Service
+                        {
+                            Title = "No1Service",
+                            Code = "no1-service",
+                            Description = "Dịch vụ chuyên nghiệp hàng đầu với đội ngũ giàu kinh nghiệm và công nghệ hiện đại.",
+                            ServiceCategoryId = serviceCategory.Id,
+                            Status = StatusEnum.Active,
+                            SortOrder = 4,
+                            Brand = "construction",
+                            CreatedDate = DateTime.UtcNow
+                        }
+                    };
+
+                    await _context.Services.AddRangeAsync(services);
+                }
+            }
+
             // Seed Setting - Cài đặt mặc định
             if (!_context.Settings.Any())
             {

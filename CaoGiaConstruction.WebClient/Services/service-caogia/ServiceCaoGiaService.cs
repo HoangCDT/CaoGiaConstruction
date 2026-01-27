@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using CaoGiaConstruction.Utilities;
 using CaoGiaConstruction.Utilities.Constants;
@@ -37,6 +37,8 @@ namespace CaoGiaConstruction.WebClient.Services
         Task<List<ServiceNoContentVM>> GetServiceRelatedsync(Guid catId, Guid id);
 
         Task<List<ServiceGroupByCategoryVM>> GetGroupedServiceByCategoriesAsync(SearchServiceClientDto model);
+
+        Task<OperationResult> UpdateSortOrderAsync(List<Areas.Admin.Dtos.ServiceSortDto> items);
     }
 
     public class ServiceCaoGiaService : BaseService<Service>, IServiceCaoGiaService, ITransientService
@@ -68,7 +70,9 @@ namespace CaoGiaConstruction.WebClient.Services
             var query = _context.Services.AsNoTracking()
                 .Include(x => x.ServiceCategory)
                 .Include(x => x.UserCreated)
-                .OrderByDescending(x => x.CreatedDate).AsQueryable();
+                .OrderBy(x => x.SortOrder)
+                .ThenByDescending(x => x.CreatedDate)
+                .AsQueryable();
             if (!model.Keyword.IsNullOrEmpty())
             {
                 model.Keyword = model.Keyword.ToLower().Trim();
@@ -390,6 +394,29 @@ namespace CaoGiaConstruction.WebClient.Services
 
             // Assuming you have a method to paginate the result
             return groupedData;
+        }
+
+        public async Task<OperationResult> UpdateSortOrderAsync(List<Areas.Admin.Dtos.ServiceSortDto> items)
+        {
+            if (items == null || items.Count == 0)
+            {
+                return new OperationResult(StatusCodes.Status400BadRequest, MessageReponse.NOT_FOUND_DATA);
+            }
+
+            var ids = items.Select(x => x.Id).ToList();
+            var entities = await _context.Services.Where(x => ids.Contains(x.Id)).ToListAsync();
+
+            foreach (var entity in entities)
+            {
+                var item = items.FirstOrDefault(x => x.Id == entity.Id);
+                if (item != null)
+                {
+                    entity.SortOrder = item.SortOrder;
+                }
+            }
+
+            await _context.SaveChangesAsync();
+            return new OperationResult(StatusCodes.Status200OK, MessageReponse.UPDATE_SUCCESS);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model Pager<ServiceNoContentVM>
+@model Pager<ServiceNoContentVM>
 @{
     ViewData["Title"] = "Sản phẩm";
     var serviceCategories = ViewBag.ServiceCategories as List<ServiceCategory>;
@@ -69,12 +69,14 @@
                             <table class="table table-centered w-100 dt-responsive nowrap" id="table-service">
                                 <thead class="table-light">
                                     <tr>
+                                        <th class="center" width="20"></th>
                                         <th class="all" style="width: 20px;">
                                             ID
                                         </th>
                                         <th>Ảnh đại diện</th>
                                         <th class="all">Tên dịch vụ</th>
                                         <th>Loại danh mục</th>
+                                        <th>Sắp xếp</th>
                                         <th>Giá</th>
                                         <th>Người tạo/Ngày tạo</th>
                                         <th>Ngày cập nhật</th>
@@ -82,13 +84,16 @@
                                         <th style="width: 85px;">#</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="service-sortable">
                                     @if (Model.Result.Any())
                                     {
                                         int num = 0;
                                         foreach (var item in Model.Result)
                                         {
-                                            <tr>
+                                            <tr class="service-item" data-id="@item.Id">
+                                                <td class="center middle" width="20">
+                                                    <i class="mdi mdi-drag drag-handle"></i>
+                                                </td>
                                                 <td class="center middle" width="20">
                                                     <strong> #@(((Model.CurrentPage - 1) * Model.PageSize + num) + 1)</strong>
                                                 </td>
@@ -119,7 +124,9 @@
                                                 <td class="text-nowrap">
                                                     <strong>  @item.ServiceCategory?.Title</strong>
                                                 </td>
-
+                                                <td>
+                                                    <strong>@item.SortOrder</strong>
+                                                </td>
                                                 <td class="text-nowrap">
                                                     @item.Price.ToString("0,00 đ", true)
                                                 </td>
@@ -162,7 +169,7 @@
                                     else
                                     {
                                         <tr>
-                                            <td colspan="9">
+                                            <td colspan="11">
                                                 <div class="alert alert-warning w-50 m-auto text-center" role="alert">
                                                     Không có dữ liệu trong danh mục này
                                                 </div>
@@ -185,12 +192,32 @@
 @section styles {
     <!-- Select2 css -->
     <link href="~/Admin/assets/vendor/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
-
+    <!-- dragula css -->
+    <link href="~/Admin/assets/vendor/dragula/dragula.min.css" rel="stylesheet" />
+    <style>
+        .drag-handle {
+            cursor: move;
+            font-size: 18px;
+            color: #6c757d;
+        }
+        .drag-handle:hover {
+            color: #495057;
+        }
+        .service-item {
+            cursor: default;
+        }
+        .gu-mirror {
+            cursor: move;
+            opacity: 0.8;
+        }
+    </style>
 }
 
 @section scripts {
     <!--  Select2 Js -->
     <script src="~/Admin/assets/vendor/select2/js/select2.min.js"></script>
+    <!-- dragula js -->
+    <script src="~/Admin/assets/vendor/dragula/dragula.min.js"></script>
     <!-- Datatable js -->
     <script src="~/Admin/assets/js/controllers/service-controller.js" asp-append-version="true"></script>
 

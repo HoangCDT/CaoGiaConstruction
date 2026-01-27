@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using CaoGiaConstruction.WebClient.Areas.Admin.Dtos;
 using CaoGiaConstruction.WebClient.AutoMapper.ViewModels;
 using CaoGiaConstruction.WebClient.Services;
@@ -59,6 +59,14 @@ namespace CaoGiaConstruction.WebClient.Areas.Admin.Controllers
         public async Task<JsonResult> FindById(Guid id)
         {
             var result = await _productCategoryService.FindByIdAsync(id);
+            return Json(result);
+        }
+
+        [HttpPost]
+        [Route("/{area}/service-category/sort")]
+        public async Task<JsonResult> UpdateSort([FromBody] List<ServiceCategorySortDto> items)
+        {
+            var result = await _productCategoryService.UpdateSortOrderAsync(items);
             return Json(result);
         }
     }

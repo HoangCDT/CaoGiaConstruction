@@ -1,4 +1,4 @@
-﻿<div class="modal fade" id="modal-service-cat" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+<div class="modal fade" id="modal-service-cat" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-scrollable">
         <form id="form-service-category">
@@ -34,9 +34,10 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="billing-first-name" class="form-label">Vị trí sắp xếp </label>
-                                        <input class="form-control" type="number" name="sortOrder"
-                                            placeholder="Vui lòng nhập">
+                                        <label for="sort-order" class="form-label">Vị trí sắp xếp (SortOrder)</label>
+                                        <input class="form-control" type="number" id="sort-order" name="sortOrder"
+                                            placeholder="Vui lòng nhập số thứ tự" min="1">
+                                        <small class="text-muted">Số càng nhỏ, hiển thị càng trước. Có thể để trống để tự động gán.</small>
                                     </div>
                                 </div>
                                 <div class="col-md-6">

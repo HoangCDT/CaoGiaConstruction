@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using CaoGiaConstruction.WebClient.Areas.Admin.Dtos;
 using CaoGiaConstruction.WebClient.AutoMapper.ViewModels;
 using CaoGiaConstruction.WebClient.Context.Entities;
@@ -96,6 +96,14 @@ namespace CaoGiaConstruction.WebClient.Areas.Admin.Controllers
         public async Task<JsonResult> FindById(Guid id)
         {
             var result = await _serviceService.FindByIdAsync(id);
+            return Json(result);
+        }
+
+        [HttpPost]
+        [Route("/{area}/service/sort")]
+        public async Task<JsonResult> UpdateSort([FromBody] List<ServiceSortDto> items)
+        {
+            var result = await _serviceService.UpdateSortOrderAsync(items);
             return Json(result);
         }
     }

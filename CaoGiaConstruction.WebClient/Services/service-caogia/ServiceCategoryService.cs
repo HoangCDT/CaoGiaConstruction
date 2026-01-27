@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using CaoGiaConstruction.Utilities;
 using CaoGiaConstruction.Utilities.Constants;
@@ -23,9 +23,11 @@ namespace CaoGiaConstruction.WebClient.Services
 
         Task<List<ServiceCategory>> GetTopAsync(int count);
 
-        Task<List<ServiceCategorySortDto>> GetServiceCategorySortAsync();
+        Task<List<Dtos.ServiceCategorySortDto>> GetServiceCategorySortAsync();
 
         Task<ServiceCategory> FindServiceCatgoryByCodeAsync(string code);
+
+        Task<OperationResult> UpdateSortOrderAsync(List<Areas.Admin.Dtos.ServiceCategorySortDto> items);
     }
 
     public class ServiceCategoryService : BaseService<ServiceCategory>, IServiceCategoryService, ITransientService
@@ -169,20 +171,43 @@ namespace CaoGiaConstruction.WebClient.Services
             return data;
         }
 
-        public async Task<List<ServiceCategorySortDto>> GetServiceCategorySortAsync()
+        public async Task<List<Dtos.ServiceCategorySortDto>> GetServiceCategorySortAsync()
         {
             var data = await _context.ServiceCategories
                .AsNoTracking()
                .Include(x => x.Services.Where(x => x.Status == StatusEnum.Active))
                .Where(x => x.Status == StatusEnum.Active)
                  .OrderBy(x => x.SortOrder)
-               .Select(x => new ServiceCategorySortDto
+               .Select(x => new Dtos.ServiceCategorySortDto
                {
                    CountCategory = x.Services.Count(),
                    ServiceCategory = x
                }).ToListAsync();
 
             return data;
+        }
+
+        public async Task<OperationResult> UpdateSortOrderAsync(List<Areas.Admin.Dtos.ServiceCategorySortDto> items)
+        {
+            if (items == null || items.Count == 0)
+            {
+                return new OperationResult(StatusCodes.Status400BadRequest, MessageReponse.NOT_FOUND_DATA);
+            }
+
+            var ids = items.Select(x => x.Id).ToList();
+            var entities = await _context.ServiceCategories.Where(x => ids.Contains(x.Id)).ToListAsync();
+
+            foreach (var entity in entities)
+            {
+                var item = items.FirstOrDefault(x => x.Id == entity.Id);
+                if (item != null)
+                {
+                    entity.SortOrder = item.SortOrder;
+                }
+            }
+
+            await _context.SaveChangesAsync();
+            return new OperationResult(StatusCodes.Status200OK, MessageReponse.UPDATE_SUCCESS);
         }
 
     }

@@ -1,10 +1,25 @@
-﻿var serviceCatController = {
+var serviceCatController = {
     data: {
         entity: null,
-        validateFormInstan: null
+        validateFormInstan: null,
+        dragInstance: null
     },
     init: function () {
         this.register();
+        this.initDragSort();
+    },
+    initDragSort: function () {
+        var container = document.getElementById('service-cat-sortable');
+        if (!container || typeof dragula === "undefined") {
+            return;
+        }
+        serviceCatController.data.dragInstance = dragula([container], {
+            moves: function (el, source, handle) {
+                return $(handle).hasClass('drag-handle');
+            }
+        }).on('drop', function () {
+            serviceCatController.methods.updateSortOrder();
+        });
     },
     register: function () {
         $("#table-service-cat .switch-status").change(function (e) {
@@ -166,6 +181,38 @@
                         data.status = 0;
                     }
                     onOkSubmit(data);
+                }
+            });
+        },
+        updateSortOrder: function () {
+            var items = [];
+            $("#service-cat-sortable .service-cat-item").each(function (index) {
+                var id = $(this).data("id");
+                var sortOrder = index + 1;
+                items.push({
+                    id: id,
+                    sortOrder: sortOrder
+                });
+                // Cập nhật hiển thị SortOrder trong cột thứ 5 (sau drag handle, STT, Ảnh, Tên)
+                $(this).find("td:nth-child(5) strong").text(sortOrder);
+            });
+            if (items.length === 0) {
+                return;
+            }
+            $.ajax({
+                url: `/admin/service-category/sort`,
+                type: 'POST',
+                data: JSON.stringify(items),
+                contentType: "application/json; charset=utf-8",
+                success: function (result) {
+                    if (result.success) {
+                        showToastSuccess("Cập nhật thứ tự thành công");
+                    } else {
+                        showToastError(result.message);
+                    }
+                },
+                error: function (request) {
+                    showToastError(request.responseText);
                 }
             });
         },
