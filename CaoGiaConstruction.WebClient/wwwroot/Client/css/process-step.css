@@ -1,0 +1,135 @@
+.process-step-section {
+    padding: 80px 0;
+    background-color: #ffffff;
+    font-family: var(--process-font-family, Arial, sans-serif);
+    font-size: var(--process-font-size, 14px);
+}
+
+.process-step-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.process-step-subtitle {
+    color: var(--process-primary-color, #1b4332);
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+.process-step-title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: color-mix(in srgb, var(--process-primary-color, #1b4332) 80%, black);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+    .process-step-title {
+        font-size: 3.5rem;
+    }
+}
+
+.process-step-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .process-step-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 992px) {
+    .process-step-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+.process-step-card {
+    border: 2px solid var(--process-primary-color, #1b4332);
+    padding: 2rem 1.5rem;
+    background-color: #ffffff;
+    position: relative;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.process-step-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.process-step-number {
+    font-size: 4rem;
+    font-weight: 300;
+    color: #e0e0e0;
+    line-height: 1;
+    margin-bottom: 1rem;
+    font-family: 'Arial', sans-serif;
+}
+
+@media (min-width: 768px) {
+    .process-step-number {
+        font-size: 5rem;
+    }
+}
+
+.process-step-card-title {
+    font-size: 1.125rem;
+    font-weight: 900;
+    color: color-mix(in srgb, var(--process-primary-color, #1b4332) 80%, black);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+    letter-spacing: 0.05em;
+}
+
+@media (min-width: 768px) {
+    .process-step-card-title {
+        font-size: 1.25rem;
+    }
+}
+
+.process-step-card-description {
+    font-size: 0.9375rem;
+    color: #666666;
+    line-height: 1.625;
+    margin: 0;
+    flex-grow: 1;
+}
+
+@media (min-width: 768px) {
+    .process-step-card-description {
+        font-size: 1rem;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .process-step-section {
+        padding: 60px 0;
+    }
+    
+    .process-step-header {
+        margin-bottom: 3rem;
+    }
+    
+    .process-step-card {
+        min-height: 240px;
+        padding: 1.5rem 1.25rem;
+    }
+    
+    .process-step-number {
+        font-size: 3.5rem;
+    }
+}

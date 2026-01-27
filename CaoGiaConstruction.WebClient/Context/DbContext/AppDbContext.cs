@@ -45,6 +45,7 @@ namespace CaoGiaConstruction.WebClient.Context
         public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<HomeComponentConfig> HomeComponentConfigs { get; set; }
         public virtual DbSet<MenuConfig> MenuConfigs { get; set; }
+        public virtual DbSet<ProcessStep> ProcessSteps { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -1,0 +1,202 @@
+@model Pager<ProcessStep>
+@using CaoGiaConstruction.WebClient.Context.Enums
+@{
+    ViewData["Title"] = "Quy trình làm việc";
+    var keyword = ViewBag.Keyword as string;
+}
+<div class="content">
+    <!-- Start Content-->
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a asp-route="admin-default">Trang chủ</a></li>
+                            <li class="breadcrumb-item active">Quy trình làm việc</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">Quy trình làm việc</h4>
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row mb-2">
+                            <div class="col-sm-8 app-search">
+                                <form asp-route="admin-process-step"
+                                    class="row gy-2 gx-2 align-items-center justify-content-xl-start justify-content-between">
+                                    <div class="col-auto">
+                                        @await Html.PartialAsync("_AppSearch", keyword)
+                                    </div>
+
+                                </form>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="text-sm-end">
+                                    <button type="button" class="btn btn-success btn-add mb-2 me-2">
+                                        <i class="mdi mdi-plus-circle"></i>&nbsp;
+                                        Thêm mới
+                                    </button>
+                                    <a href="javascript:window.location.reload();" class="btn btn-light mb-2">
+                                        <i class="mdi mdi-sync"></i>&nbsp;
+                                        Làm mới
+                                    </a>
+                                </div>
+                            </div><!-- end col-->
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-hover  table-centered w-100 dt-responsive nowrap"
+                                id="table-process-step">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="center" width="20"></th>
+                                        <th class="center">STT</th>
+                                        <th class="all">Tiêu đề</th>
+                                        <th>Mô tả</th>
+                                        <th>Sắp xếp</th>
+                                        <th>Người tạo/Ngày tạo</th>
+                                        <th>Ngày cập nhật</th>
+                                        <th>Trạng thái</th>
+                                        <th style="width: 120px;">#</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="process-step-sortable">
+                                    @if (Model.Result.Any())
+                                    {
+                                        int num = 0;
+                                        foreach (var item in Model.Result)
+                                        {
+                                            <tr class="process-step-item" data-id="@item.Id">
+                                                <td class="center middle" width="20">
+                                                    <i class="mdi mdi-drag drag-handle"></i>
+                                                </td>
+                                                <td class="center middle" width="20">
+                                                    <strong> #@(((Model.CurrentPage - 1) * Model.PageSize + num) + 1)</strong>
+                                                </td>
+                                                <td>
+                                                    <p class="m-0 d-inline-block align-middle font-13">
+                                                        <strong>@item.Title</strong>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p class="m-0 font-13 text-muted">
+                                                        @(item.Description != null && item.Description.Length > 100 ? item.Description.Substring(0, 100) + "..." : item.Description)
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <strong>@item.SortOrder</strong>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <h5 class="mb-2 font-13">@item.UserCreated?.FullName</h5>
+                                                   <p class="mb-0 font-13 txt-muted">
+                                                        @item.CreatedDate?.ToString("dd/MM/yyyy")
+                                                        <small class="text-muted">@item.CreatedDate?.ToString("HH:mm")</small>
+                                                    </p>
+                                                </td>
+                                                <td>
+                                                    <p class="mb-0 font-13 txt-muted"> @item.ModifiedDate?.ToString("dd/MM/yyyy")&nbsp;&nbsp;</p>
+                                                    <small class="text-muted">&nbsp;&nbsp;@item.ModifiedDate?.ToString("HH:mm")</small>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        <input type="checkbox" id="stauts@(item.Id)" data-id="@item.Id"
+                                                        @(item.Status == StatusEnum.Active ? "checked" : "")
+                                                            class="switch-status" data-switch="success">
+                                                        <label for="stauts@(item.Id)" data-on-label="Yes" data-off-label="No"
+                                                            class="mb-0 d-block"></label>
+                                                    </div>
+                                                </td>
+
+                                                <td class="table-action text-nowrap">
+                                                    <a href="javascript:void(0);" data-id="@item.Id"
+                                                        class="action-icon btn-edit" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Edit" data-bs-original-title="Edit"> <i
+                                                            class="mdi mdi-square-edit-outline"></i></a>
+                                                    <a href="javascript:void(0);" data-id="@item.Id"
+                                                        class="action-icon btn-delete" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Delete" data-bs-original-title="Delete"> <i class="mdi mdi-delete"></i></a>
+                                                    <a asp-route="admin-process-step-action" asp-route-id="@item.Id"
+                                                        asp-route-type="copy" data-id="@item.Id" class="action-icon btn-copy"
+                                                        data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy"
+                                                        data-bs-original-title="Copy">
+                                                        <i class="mdi mdi-content-copy"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            num++;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="9">
+                                                <div class="alert alert-warning w-50 m-auto text-center" role="alert">
+                                                    Không có dữ liệu trong danh mục này
+                                                </div>
+                                            </td>
+                                        </tr>
+
+
+                                    }
+
+                                </tbody>
+
+                            </table>
+
+                            @await Component.InvokeAsync(nameof(vcPagingAdmin), Model)
+                        </div>
+                    </div> <!-- end card-body-->
+                </div> <!-- end card-->
+            </div> <!-- end col -->
+        </div>
+        <!-- end row -->
+
+    </div> <!-- container -->
+
+</div> <!-- content -->
+@* Modal *@
+<partial name="~/Areas/Admin/Views/ProcessStep/_ModalProcessStepAction.cshtml" />
+@section styles {
+    <!-- validate css -->
+    <link href="~/Admin/assets/vendor/validation/js/jquery.validate.css" rel="stylesheet" />
+    <!-- ladda css -->
+    <link href="~/Admin/assets/vendor/ladda-master/dist/ladda.min.css" rel="stylesheet" />
+    <link href="~/Admin/assets/vendor/ladda-master/dist/ladda-themeless.min.css" rel="stylesheet" />
+    <!-- dragula css -->
+    <link href="~/Admin/assets/vendor/dragula/dragula.min.css" rel="stylesheet" />
+    <style>
+        .drag-handle {
+            cursor: move;
+            font-size: 18px;
+            color: #6c757d;
+        }
+        .drag-handle:hover {
+            color: #495057;
+        }
+        .process-step-item {
+            cursor: default;
+        }
+        .gu-mirror {
+            cursor: move;
+            opacity: 0.8;
+        }
+    </style>
+}
+
+@section scripts {
+    <!-- validate js -->
+    <script src="~/Admin/assets/vendor/validation/js/jquery.validate.min.js"></script>
+    <!-- ladda js -->
+    <script src="~/Admin/assets/vendor/ladda-master/dist/spin.min.js"></script>
+    <script src="~/Admin/assets/vendor/ladda-master/dist/ladda.jquery.min.js"></script>
+    <!-- dragula js -->
+    <script src="~/Admin/assets/vendor/dragula/dragula.min.js"></script>
+    <!-- Datatable js -->
+    <script src="~/Admin/assets/js/controllers/process-step-controller.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,72 @@
+<div class="modal fade" id="modal-process-step" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <form id="form-process-step">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myLargeModalLabel">Thêm / Chỉnh sửa quy trình</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="mb-3"><i>Lưu ý: </i>(<span class="text-danger">*</span>) là trường bắt
+                                        buộc nhập</div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label for="title" class="form-label">Tiêu đề <span
+                                                class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" name="title"
+                                            placeholder="Ví dụ: TƯ VẤN, THIẾT KẾ, THI CÔNG, BÀN GIAO">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label for="description" class="form-label">Mô tả <span
+                                                class="text-danger">*</span></label>
+                                        <textarea class="form-control" name="description" rows="4"
+                                            placeholder="Vui lòng nhập mô tả chi tiết"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="sort-order" class="form-label">Vị trí sắp xếp (SortOrder)</label>
+                                        <input class="form-control" type="number" id="sort-order" name="sortOrder"
+                                            placeholder="Vui lòng nhập số thứ tự" min="1">
+                                        <small class="text-muted">Số càng nhỏ, hiển thị càng trước. Có thể để trống để tự động gán.</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="billing-email-address" class="form-label">Trạng thái: &nbsp;</label>
+                                        <br />
+                                        <div>
+                                            <input type="checkbox" id="status-active" checked name="status"
+                                                class="switch-status" data-switch="success">
+                                            <label for="status-active" data-on-label="Yes" data-off-label="No"
+                                                class="mb-0 d-block"></label>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div> <!-- end row -->
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-success ladda-button" id="btn-save"
+                        data-style="expand-right"><i class="mdi mdi-content-save"></i> Lưu lại</button>
+                </div>
+
+            </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal-dialog -->
+</div>

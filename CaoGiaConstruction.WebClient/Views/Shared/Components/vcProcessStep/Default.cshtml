@@ -1,0 +1,34 @@
+@model ProcessStepDto
+@using CaoGiaConstruction.Utilities
+
+@{
+    var primaryColor = Model?.Setting?.PrimaryColor ?? "#1b4332";
+    var fontSize = Model?.Setting?.FontSize ?? "14px";
+    var fontFamily = Model?.Setting?.FontFamily ?? "Arial, sans-serif";
+}
+
+<link rel="stylesheet" href="~/Client/css/process-step.css" asp-append-version="true" />
+
+<section class="process-step-section" id="process-steps" style="--process-primary-color: @primaryColor; --process-font-size: @fontSize; --process-font-family: @fontFamily;">
+    <div class="container">
+        <div class="process-step-header">
+            <h3 class="process-step-subtitle">CÁCH CHÚNG TÔI LÀM VIỆC</h3>
+            <h2 class="process-step-title">QUY TRÌNH @Model.TotalSteps BƯỚC</h2>
+        </div>
+        
+        @if (Model != null && Model.Steps != null && Model.Steps.Any())
+        {
+            <div class="process-step-grid">
+                @foreach (var step in Model.Steps)
+                {
+                    var stepNumber = (step.SortOrder ?? 0).ToString("00");
+                    <div class="process-step-card">
+                        <div class="process-step-number">@stepNumber</div>
+                        <h4 class="process-step-card-title">@step.Title</h4>
+                        <p class="process-step-card-description">@step.Description</p>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</section>

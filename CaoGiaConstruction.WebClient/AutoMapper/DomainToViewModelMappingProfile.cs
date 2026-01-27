@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using CaoGiaConstruction.WebClient.AutoMapper.ViewModels;
 using CaoGiaConstruction.WebClient.Context.Entities;
 
@@ -42,6 +42,9 @@ namespace CaoGiaConstruction.WebClient.AutoMapper
 
             CreateMap<Project, ProjectVM>();
             CreateMap<Project, ProjectNoContentVM>();
+
+            CreateMap<ProcessStep, ProcessStepVM>();
+            CreateMap<ProcessStep, ProcessStepActionVM>();
         }
     }
 }
