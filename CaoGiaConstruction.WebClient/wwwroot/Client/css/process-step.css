@@ -3,6 +3,12 @@
     background-color: #ffffff;
     font-family: var(--process-font-family, Arial, sans-serif);
     font-size: var(--process-font-size, 14px);
+    width: 100%;
+    max-width: 100vw;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .process-step-header {

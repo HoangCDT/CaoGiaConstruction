@@ -3,6 +3,12 @@
     background-color: #ffffff;
     font-family: var(--about-home-font-family, Arial, sans-serif);
     font-size: var(--about-home-font-size, 14px);
+    width: 100%;
+    max-width: 100vw;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .about-home-image-wrapper {

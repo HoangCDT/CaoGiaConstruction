@@ -226,7 +226,39 @@ h1, h2, h3, h4, h5, h6 {
 
 #wrap {
     overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
 }
+
+/* Full-width sections pattern */
+html, body {
+    width: 100%;
+    max-width: 100vw;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* Ensure all sections are full-width */
+.section,
+[class*="-section"] {
+    width: 100%;
+    max-width: 100vw;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* Container inside sections maintains content width */
+.section .container,
+[class*="-section"] .container {
+    max-width: var(--content-width, 1400px);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
 /*********************
 ======= Header =======
 *********************/
@@ -523,13 +555,28 @@ h1, h2, h3, h4, h5, h6 {
 /*********************
 ======= Main =======
 *********************/
+.main-content {
+    width: 100%;
+    max-width: 100vw;
+    margin-left: 0;
+    margin-right: 0;
+}
+
 .page-content {
     padding-top: 25px;
+    width: 100%;
+    max-width: 100vw;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .section {
     padding: 50px 0 50px;
     overflow: hidden;
+    width: 100%;
+    max-width: 100vw;
+    margin-left: 0;
+    margin-right: 0;
 }
 
     .section.menu-item {
@@ -963,6 +1010,10 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     position: relative;
     border: 0;
+    width: 100%;
+    max-width: 100vw;
+    margin-left: 0;
+    margin-right: 0;
 }
 
     .page-header .post-thumbnail {
