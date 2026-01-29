@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using CaoGiaConstruction.WebClient.AutoMapper.ViewModels;
 using CaoGiaConstruction.WebClient.Services;
 

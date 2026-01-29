@@ -1,0 +1,237 @@
+@model CaoGiaConstruction.WebClient.ViewModels.AboutViewModel
+@using CaoGiaConstruction.WebClient.Dtos
+@{
+    var about = Model.AboutSettings;
+    var primaryColor = "#1b4332"; // Default color, can be overridden with Setting if needed
+}
+
+@section styles {
+    <meta name="description" content="@(about?.SeoDescription ?? "Về Chúng Tôi | Xây Dựng Cao Gia")">
+    <meta name="keywords" content="@(about?.SeoKeywords ?? "Cao Gia, Xây dựng")">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;600;800;900&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Client/css/about-v2-page.css" asp-append-version="true" />
+    
+    <style>
+        .about-v2-page {
+            --about-v2-primary-color: @primaryColor;
+        }
+    </style>
+}
+
+<div class="main-content">
+    <div class="page-header">
+        @{
+            var breadcrumbItems = new List<BreadcrumbDto>
+            {
+                new BreadcrumbDto { Url = "home", Title = "Trang chủ", IsActive = false },
+                new BreadcrumbDto { Url = string.Empty, Title = "Về chúng tôi", IsActive = true },
+            };
+        }
+        @await Component.InvokeAsync(nameof(vcBreadcrumb), breadcrumbItems)
+    </div>
+
+    <div class="about-v2-page">
+        <!-- Founder & Story Section -->
+        <section class="about-v2-section-padding about-v2-founder-story">
+            <div class="container">
+                <div class="row">
+                    <!-- Founder Image -->
+                    <div class="col-12 col-lg-6">
+                        <div class="about-v2-founder-image-wrapper">
+                            <div class="about-v2-founder-bg"></div>
+                             @if (Model.AboutSlide != null && !string.IsNullOrEmpty(Model.AboutSlide.Avatar))
+                             {
+                                <img alt="@(Model.AboutSlide.Title ?? "About")" class="about-v2-founder-image" src="@Model.AboutSlide.Avatar"/>
+                             }
+                             else if (Model.Founder != null && !string.IsNullOrEmpty(Model.Founder.Avatar))
+                             {
+                                <img alt="@Model.Founder.FullName" class="about-v2-founder-image" src="@Model.Founder.Avatar"/>
+                             }
+                             else
+                             {
+                                 <img alt="Founder" class="about-v2-founder-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0ei0sbmCAz-Gl1wcxGezvuMXhgJeDmb-bE_ZDFIW4c50dWflHNCJPgGHzgBb1IeP01Y1iN1tOoxfQG4sjs2tQRYIHChTdJMS_DiYG4kJEFYCBWk4IiLiXTo-xujOPKfDiXUcjRt6PVk3Ggk1C8JUG6b67Tlu0CmFdrWmJSQofQvQY5x5ClvQRIBlgFHFRG4atqJnVs4L6e4lPF3kPNxYMXCjNBZs_y_SCWAT_dXocL9fTPvNKHWWTvuy1KPp5Hr9oMKVozyOUdRqs"/>
+                             }
+                            
+                            @if (Model.Founder != null && !string.IsNullOrEmpty(Model.Founder.Quote))
+                            {
+                                <div class="about-v2-founder-quote">
+                                    <span class="material-symbols-outlined about-v2-founder-quote-icon">format_quote</span>
+                                    <p class="about-v2-founder-quote-text">"@Model.Founder.Quote"</p>
+                                    <p class="about-v2-founder-quote-author">@Model.Founder.FullName — @Model.Founder.Position</p>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Story Content -->
+                    <div class="col-12 col-lg-6">
+                        <h2 class="about-v2-story-subtitle">Câu chuyện của chúng tôi</h2>
+                        <h3 class="about-v2-story-title">Hành trình 10 năm <br /> <span class="about-v2-story-title-accent">Khát vọng &amp; Sáng tạo</span></h3>
+                        <div class="about-v2-story-content">
+                            @if (!string.IsNullOrEmpty(about?.Content))
+                            {
+                                @Html.Raw(about.Content)
+                            }
+                            else
+                            {
+                                <p>Được thành lập từ niềm đam mê với nghệ thuật kiến trúc, Xây Dựng Cao Gia đã trải qua một hành trình đầy thử thách để khẳng định vị thế của mình trong ngành xây dựng Việt Nam.</p>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Values Section -->
+        <section class="about-v2-section-padding about-v2-core-values">
+            <div class="container">
+                <div class="about-v2-core-values-header">
+                    <h2 class="about-v2-core-values-subtitle">Giá trị cốt lõi</h2>
+                    <h3 class="about-v2-core-values-title">Kim chỉ nam của Cao Gia</h3>
+                </div>
+                @if(Model.CoreValues != null && Model.CoreValues.Any())
+                {
+                   <div class="row">
+                       @foreach(var item in Model.CoreValues)
+                       {
+                            <div class="col-12 col-md-4">
+                                <div class="about-v2-core-value-card">
+                                    <div class="about-v2-core-value-icon-wrapper">
+                                        <span class="material-symbols-outlined about-v2-core-value-icon">@(item.Code ?? "diamond")</span>
+                                    </div>
+                                    <h4 class="about-v2-core-value-title">@item.Title</h4>
+                                    <p class="about-v2-core-value-description">@item.Description</p>
+                                </div>
+                            </div>
+                       }
+                   </div>
+                }
+                else
+                {
+                    <!-- Fallback Values -->
+                    <div class="row">
+                        <div class="col-12 col-md-4">
+                            <div class="about-v2-core-value-card">
+                                <div class="about-v2-core-value-icon-wrapper">
+                                    <span class="material-symbols-outlined about-v2-core-value-icon">visibility</span>
+                                </div>
+                                <h4 class="about-v2-core-value-title">Tầm nhìn</h4>
+                                <p class="about-v2-core-value-description">Trở thành biểu tượng niềm tin hàng đầu Việt Nam trong lĩnh vực thiết kế và thi công kiến trúc hiện đại, bền vững.</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+
+        <!-- Milestones Section (History) -->
+        <section class="about-v2-section-padding about-v2-milestones">
+            <div class="container">
+                <div class="about-v2-milestones-header">
+                    <div>
+                        <h2 class="about-v2-milestones-subtitle">Lịch sử phát triển</h2>
+                        <h3 class="about-v2-milestones-title">Cột mốc đáng nhớ</h3>
+                    </div>
+                    <div class="about-v2-milestones-divider"></div>
+                </div>
+                
+                <div class="about-v2-milestone-line">
+                     @if(Model.Milestones != null && Model.Milestones.Any())
+                     {
+                        var index = 0;
+                        foreach(var item in Model.Milestones)
+                        {
+                            var isLeft = index % 2 == 0;
+                            <div class="about-v2-milestone-item">
+                                <!-- Content -->
+                                <div class="about-v2-milestone-content @(isLeft ? "" : "order-1")">
+                                    @if(isLeft)
+                                    {
+                                        <div class="about-v2-milestone-date">@item.EventDate</div>
+                                        <h4 class="about-v2-milestone-item-title">@item.Title</h4>
+                                        <p class="about-v2-milestone-item-description">@item.Description</p>
+                                    }
+                                </div>
+
+                                <!-- Center Dot -->
+                                <div class="about-v2-milestone-dot"></div>
+
+                                <!-- Right Side Content -->
+                                <div class="about-v2-milestone-content @(isLeft ? "" : "order-3")">
+                                     @if(!isLeft)
+                                    {
+                                        <div class="about-v2-milestone-date">@item.EventDate</div>
+                                        <h4 class="about-v2-milestone-item-title">@item.Title</h4>
+                                        <p class="about-v2-milestone-item-description">@item.Description</p>
+                                    }
+                                </div>
+                            </div>
+                            index++;
+                        }
+                     }
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="about-v2-section-padding about-v2-team">
+            <div class="container">
+                <div class="about-v2-team-header">
+                    <h2 class="about-v2-team-subtitle">Ban lãnh đạo</h2>
+                    <h3 class="about-v2-team-title">Đội ngũ chuyên gia</h3>
+                </div>
+                @if(Model.TeamMembers != null && Model.TeamMembers.Any())
+                {
+                    <div class="row">
+                        @foreach(var item in Model.TeamMembers)
+                        {
+                            <div class="col-12 col-sm-6 col-lg-3">
+                                <div class="about-v2-team-member-card">
+                                    <div class="about-v2-team-member-image-wrapper">
+                                        <img alt="@item.FullName" class="about-v2-team-member-image" src="@item.Avatar" />
+                                    </div>
+                                    <div class="about-v2-team-member-info">
+                                        <h5 class="about-v2-team-member-name">@item.FullName</h5>
+                                        <p class="about-v2-team-member-position">@item.Position</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </section>
+
+        <!-- Partners Section -->
+        <section class="about-v2-partners">
+            <div class="container">
+                <div class="about-v2-partners-grid row">
+                   @if(Model.Partners != null)
+                   {
+                       foreach(var item in Model.Partners)
+                       {
+                            <div class="col-6 col-md-3 col-lg-2">
+                                <div class="about-v2-partner-item">
+                                    @if(!string.IsNullOrEmpty(item.Avatar))
+                                    {
+                                        <img src="@item.Avatar" alt="@item.Title" class="about-v2-partner-image" />
+                                    }
+                                    else 
+                                    {
+                                        <span class="about-v2-partner-text">@item.Title</span>
+                                    }
+                                </div>
+                            </div>
+                       }
+                   }
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact CTA Section -->
+        @await Component.InvokeAsync(nameof(vcContactHome))
+    </div>
+</div>
+

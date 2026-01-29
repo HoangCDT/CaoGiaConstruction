@@ -1,4 +1,4 @@
-﻿@model Pager<Branches>
+@model Pager<Branches>
 @{
     ViewData["Title"] = "Hệ thống chi nhánh";
     string keyword = ViewBag.Keyword as string;
@@ -134,6 +134,11 @@
                                                     </a>
                                                     <a href="javascript:void(0);" data-id="@item.Id"
                                                        class="action-icon btn-delete" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Delete" data-bs-original-title="Delete"> <i class="mdi mdi-delete"></i></a>
+                                                    <a href="javascript:void(0);" data-id="@item.Id"
+                                                        class="action-icon btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy"
+                                                        data-bs-original-title="Copy">
+                                                        <i class="mdi mdi-content-copy"></i>
+                                                    </a>
                                                 </td>
                                             </tr>
                                             num++;

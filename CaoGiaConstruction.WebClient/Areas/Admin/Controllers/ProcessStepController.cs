@@ -24,21 +24,6 @@ namespace CaoGiaConstruction.WebClient.Areas.Admin.Controllers
             return View(processSteps);
         }
 
-        [Route("/{area}/process-step/action", Name = "admin-process-step-action-add")]
-        [Route("/{area}/process-step/{id}/action", Name = "admin-process-step-action")]
-        public async Task<IActionResult> Action(Guid id, string type)
-        {
-            if (id != Guid.Empty)
-            {
-                var data = await _processStepService.FindByIdAsync(id);
-                if (type == "copy")
-                {
-                    data.Id = Guid.Empty;
-                }
-                return View(data);
-            }
-            return View(new ProcessStep());
-        }
 
         [HttpPut]
         [Route("/{area}/process-step/{id}/status")]

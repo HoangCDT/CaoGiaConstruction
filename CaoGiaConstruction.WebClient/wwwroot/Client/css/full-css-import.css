@@ -6,10 +6,10 @@
 @import url('hover.css');
 @import url('flickity.min.css');
 @import url('main.css');
-@import url('responsive.css');
 @import url('color/default.css');
 @import url('../lib/owlcarousel/assets/owl.carousel.min.css');
 @import url('../lib/owlcarousel/assets/owl.theme.default.min.css');
 @import url('../lib/fancybox/fancybox.css');
 @import url('my-styles.css');
 @import url('commons.css');
+@import url('responsive.css');

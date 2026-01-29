@@ -427,6 +427,53 @@ namespace CaoGiaConstruction.WebClient.Migrations
                     b.ToTable("Contacts");
                 });
 
+            modelBuilder.Entity("CaoGiaConstruction.WebClient.Context.Entities.CoreValue", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Code")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Title")
+                        .HasMaxLength(512)
+                        .HasColumnType("character varying(512)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedBy");
+
+                    b.HasIndex("ModifiedBy");
+
+                    b.ToTable("CoreValues");
+                });
+
             modelBuilder.Entity("CaoGiaConstruction.WebClient.Context.Entities.DefineSystem", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1729,6 +1776,61 @@ namespace CaoGiaConstruction.WebClient.Migrations
                     b.ToTable("SlideCategories");
                 });
 
+            modelBuilder.Entity("CaoGiaConstruction.WebClient.Context.Entities.TeamMember", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Avatar")
+                        .HasMaxLength(512)
+                        .HasColumnType("character varying(512)");
+
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("FullName")
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
+                    b.Property<bool?>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("IsFounder")
+                        .HasColumnType("boolean");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Position")
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
+                    b.Property<string>("Quote")
+                        .HasMaxLength(1024)
+                        .HasColumnType("character varying(1024)");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("Status")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedBy");
+
+                    b.HasIndex("ModifiedBy");
+
+                    b.ToTable("TeamMembers");
+                });
+
             modelBuilder.Entity("CaoGiaConstruction.WebClient.Context.Entities.TimeLine", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1758,8 +1860,15 @@ namespace CaoGiaConstruction.WebClient.Migrations
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("integer");
+
                     b.Property<int?>("Status")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Title")
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
 
                     b.HasKey("Id");
 
@@ -2190,6 +2299,23 @@ namespace CaoGiaConstruction.WebClient.Migrations
                     b.Navigation("UserModified");
                 });
 
+            modelBuilder.Entity("CaoGiaConstruction.WebClient.Context.Entities.CoreValue", b =>
+                {
+                    b.HasOne("CaoGiaConstruction.WebClient.Context.Entities.User", "UserCreated")
+                        .WithMany()
+                        .HasForeignKey("CreatedBy")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("CaoGiaConstruction.WebClient.Context.Entities.User", "UserModified")
+                        .WithMany()
+                        .HasForeignKey("ModifiedBy")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("UserCreated");
+
+                    b.Navigation("UserModified");
+                });
+
             modelBuilder.Entity("CaoGiaConstruction.WebClient.Context.Entities.DefineSystem", b =>
                 {
                     b.HasOne("CaoGiaConstruction.WebClient.Context.Entities.User", "UserCreated")
@@ -2606,6 +2732,23 @@ namespace CaoGiaConstruction.WebClient.Migrations
                 });
 
             modelBuilder.Entity("CaoGiaConstruction.WebClient.Context.Entities.SlideCategory", b =>
+                {
+                    b.HasOne("CaoGiaConstruction.WebClient.Context.Entities.User", "UserCreated")
+                        .WithMany()
+                        .HasForeignKey("CreatedBy")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("CaoGiaConstruction.WebClient.Context.Entities.User", "UserModified")
+                        .WithMany()
+                        .HasForeignKey("ModifiedBy")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("UserCreated");
+
+                    b.Navigation("UserModified");
+                });
+
+            modelBuilder.Entity("CaoGiaConstruction.WebClient.Context.Entities.TeamMember", b =>
                 {
                     b.HasOne("CaoGiaConstruction.WebClient.Context.Entities.User", "UserCreated")
                         .WithMany()

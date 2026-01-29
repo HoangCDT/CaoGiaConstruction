@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using CaoGiaConstruction.WebClient.Areas.Admin.Controllers;
 using CaoGiaConstruction.WebClient.Areas.Admin.Dtos;
 using CaoGiaConstruction.WebClient.Context.Entities;
 using CaoGiaConstruction.WebClient.Services;
 
-public class TimeLineController : BaseController
+namespace CaoGiaConstruction.WebClient.Areas.Admin.Controllers
+{
+    public class TimeLineController : BaseController
 {
     private readonly ITimeLineService _service;
 
@@ -22,12 +24,6 @@ public class TimeLineController : BaseController
         return View(blogCategories);
     }
 
-    [Route("/{area}/timeline/action", Name = "admin-timeline-action-add")]
-    [Route("/{area}/timeline/{id}/action", Name = "admin-timeline-action")]
-    public IActionResult Action()
-    {
-        return View();
-    }
 
     [HttpPut]
     [Route("/{area}/timeline/{id}/status")]
@@ -53,11 +49,20 @@ public class TimeLineController : BaseController
         return Json(result);
     }
 
-    [HttpGet]
-    [Route("/{area}/timeline/{id}")]
-    public async Task<JsonResult> FindById(Guid id)
-    {
-        var result = await _service.FindByIdAsync(id);
-        return Json(result);
+        [HttpGet]
+        [Route("/{area}/timeline/{id}")]
+        public async Task<JsonResult> FindById(Guid id)
+        {
+            var result = await _service.FindByIdAsync(id);
+            return Json(result);
+        }
+
+        [HttpPost]
+        [Route("/{area}/timeline/sort")]
+        public async Task<JsonResult> UpdateSort([FromBody] List<TimeLineSortDto> items)
+        {
+            var result = await _service.UpdateSortOrderAsync(items);
+            return Json(result);
+        }
     }
 }

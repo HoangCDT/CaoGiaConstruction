@@ -44,6 +44,18 @@ var processStepController = {
             });
         })
 
+        $("#table-process-step .btn-copy").click(function (e) {
+            e.preventDefault();
+            $("#modal-process-step").modal('show');
+            const id = $(this).data("id");
+            processStepController.methods.findById(id, function (data) {
+                // Set Id to empty for copy
+                data.id = null;
+                processStepController.data.entity = null;
+                bindingDataToFormHTML("#form-process-step", data);
+            });
+        })
+
         $(".btn-add").click(function (e) {
             processStepController.data.entity = null;
             $("#modal-process-step").modal('show');

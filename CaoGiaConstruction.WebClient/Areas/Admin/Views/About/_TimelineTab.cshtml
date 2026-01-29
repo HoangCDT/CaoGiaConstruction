@@ -1,0 +1,93 @@
+@model List<CaoGiaConstruction.WebClient.Context.Entities.TimeLine>
+@using CaoGiaConstruction.WebClient.Context.Enums
+
+<div class="timeline-section">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5>Lịch sử phát triển</h5>
+        <button type="button" class="btn btn-success btn-add-timeline mb-2">
+            <i class="mdi mdi-plus-circle"></i> Thêm mới
+        </button>
+    </div>
+    <div class="table-responsive">
+        <table id="table-timeline-about" class="table table-hover table-centered w-100 dt-responsive nowrap">
+            <thead class="table-light">
+                <tr>
+                    <th class="center" style="width: 30px;"></th>
+                    <th class="center">STT</th>
+                    <th class="all">Thời gian</th>
+                    <th class="all">Tiêu đề</th>
+                    <th>Mô tả</th>
+                    <th>Sort Order</th>
+                    <th>Trạng thái</th>
+                    <th style="width: 85px;">#</th>
+                </tr>
+            </thead>
+            <tbody id="timeline-about-sortable">
+                @if (Model != null && Model.Any())
+                {
+                    int num = 0;
+                    foreach (var item in Model.OrderBy(x => x.SortOrder))
+                    {
+                        <tr class="timeline-item" data-id="@item.Id">
+                            <td class="center middle" width="30">
+                                <i class="mdi mdi-drag drag-handle" style="cursor: move;"></i>
+                            </td>
+                            <td class="center middle" width="20">
+                                <strong>#@(++num)</strong>
+                            </td>
+                            <td>
+                                <p class="m-0 d-inline-block align-middle font-13 badge badge-success-lighten">
+                                    @item.EventDate
+                                </p>
+                            </td>
+                            <td>
+                                <p class="m-0 d-inline-block align-middle font-13">
+                                    <strong>@item.Title</strong>
+                                </p>
+                            </td>
+                            <td>
+                                <p class="m-0 d-inline-block align-middle font-13">
+                                    @(string.IsNullOrEmpty(item.Description) ? "-" : (item.Description.Length > 50 ? item.Description.Substring(0, 50) + "..." : item.Description))
+                                </p>
+                            </td>
+                            <td>
+                                <strong>@item.SortOrder</strong>
+                            </td>
+                            <td>
+                                <div>
+                                    <input type="checkbox" id="status-timeline-@(item.Id)" data-id="@item.Id"
+                                           @(item.Status == StatusEnum.Active ? "checked" : "")
+                                           class="switch-status" data-switch="success">
+                                    <label for="status-timeline-@(item.Id)" data-on-label="Yes" data-off-label="No"
+                                           class="mb-0 d-block"></label>
+                                </div>
+                            </td>
+                            <td class="table-action text-nowrap">
+                                <a href="javascript:void(0);" data-id="@item.Id"
+                                   class="action-icon btn-edit" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Edit" data-bs-original-title="Edit">
+                                    <i class="mdi mdi-square-edit-outline"></i>
+                                </a>
+                                <a href="javascript:void(0);" data-id="@item.Id"
+                                   class="action-icon btn-delete" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Delete" data-bs-original-title="Delete">
+                                    <i class="mdi mdi-delete"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="8">
+                            <div class="alert alert-warning w-50 m-auto text-center" role="alert">
+                                Không có dữ liệu trong danh mục này
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@await Html.PartialAsync("~/Areas/Admin/Views/TimeLine/_ModalTimeLineAction.cshtml")

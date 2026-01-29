@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/CaoGiaConstruction.WebClient/CaoGiaConstruction.WebClient.csproj",
+                "${workspaceFolder}/CaoGiaConstruction.WebClient.sln",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/CaoGiaConstruction.WebClient/CaoGiaConstruction.WebClient.csproj",
+                "${workspaceFolder}/CaoGiaConstruction.WebClient.sln",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/CaoGiaConstruction.WebClient/CaoGiaConstruction.WebClient.csproj"
+                "${workspaceFolder}/CaoGiaConstruction.WebClient.sln"
             ],
             "problemMatcher": "$msCompile"
         }

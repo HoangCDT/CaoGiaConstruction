@@ -64,6 +64,10 @@ namespace CaoGiaConstruction.WebClient.AutoMapper
 
             CreateMap<ProcessStepActionVM, ProcessStep>();
 
+            CreateMap<TeamMemberActionVM, TeamMember>();
+
+            CreateMap<CoreValueActionVM, CoreValue>();
+
         }
     }
 }

@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using CaoGiaConstruction.WebClient.Areas.Admin.Controllers;
 using CaoGiaConstruction.WebClient.Areas.Admin.Dtos;
 using CaoGiaConstruction.WebClient.AutoMapper.ViewModels;
 using CaoGiaConstruction.WebClient.Context.Entities;
 using CaoGiaConstruction.WebClient.Services;
 
-public class BranchesController : BaseController
+namespace CaoGiaConstruction.WebClient.Areas.Admin.Controllers
+{
+    public class BranchesController : BaseController
 {
     private readonly IBranchesService _service;
 
@@ -23,12 +25,6 @@ public class BranchesController : BaseController
         return View(blogCategories);
     }
 
-    [Route("/{area}/branches/action", Name = "admin-branches-action-add")]
-    [Route("/{area}/branches/{id}/action", Name = "admin-branches-action")]
-    public IActionResult Action()
-    {
-        return View();
-    }
 
     [HttpPut]
     [Route("/{area}/branches/{id}/status")]
@@ -60,5 +56,6 @@ public class BranchesController : BaseController
     {
         var result = await _service.FindByIdAsync(id);
         return Json(result);
+    }
     }
 }

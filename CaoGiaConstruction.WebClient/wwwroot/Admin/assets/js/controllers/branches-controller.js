@@ -1,4 +1,4 @@
-﻿var branchesController = {
+var branchesController = {
     data: {
         entity: null,
         validateFormInstan: null
@@ -24,6 +24,24 @@
             const id = $(this).data("id");
             branchesController.methods.findById(id, function (data) {
                 branchesController.data.entity = data;
+                bindingDataToFormHTML("#form-branches", data);
+                if (data.avatar != null && data.avatar != "") {
+                    $(".upload-file-wrap .image-preview").attr("src", "/" + data.avatar);
+                }
+                else {
+                    $(".upload-file-wrap .image-preview").attr("src", "/Admin/assets/images/no_image.png");
+                }
+            });
+        })
+
+        $("#table-branches .btn-copy").click(function (e) {
+            e.preventDefault();
+            $("#modal-branches").modal('show');
+            const id = $(this).data("id");
+            branchesController.methods.findById(id, function (data) {
+                // Set Id to empty for copy
+                data.id = null;
+                branchesController.data.entity = null;
                 bindingDataToFormHTML("#form-branches", data);
                 if (data.avatar != null && data.avatar != "") {
                     $(".upload-file-wrap .image-preview").attr("src", "/" + data.avatar);
