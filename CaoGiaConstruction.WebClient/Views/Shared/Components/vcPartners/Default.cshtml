@@ -1,0 +1,36 @@
+@model List<CaoGiaConstruction.WebClient.Context.Entities.Slide>
+@using CaoGiaConstruction.WebClient.Context.Entities
+@using CaoGiaConstruction.WebClient.AutoMapper.ViewModels
+
+@{
+    var setting = ViewBag.Setting as SettingVM;
+    var primaryColor = setting?.PrimaryColor ?? "#1b4332";
+}
+
+<link rel="stylesheet" href="~/Client/css/about-v2-page.css" asp-append-version="true" />
+
+
+<section class="about-v2-partners partners-section">
+    <div class="container">
+        <div class="about-v2-partners-grid row">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var item in Model)
+                {
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <div class="about-v2-partner-item">
+                            @if (!string.IsNullOrEmpty(item.Avatar))
+                            {
+                                <img src="@item.Avatar" alt="@item.Title" class="about-v2-partner-image" />
+                            }
+                            else
+                            {
+                                <span class="about-v2-partner-text">@item.Title</span>
+                            }
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>

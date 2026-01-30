@@ -15,11 +15,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="~/Client/css/about-v2-page.css" asp-append-version="true" />
     
-    <style>
-        .about-v2-page {
-            --about-v2-primary-color: var(--theme-primary-color, @primaryColor);
-        }
-    </style>
 }
 
 <div class="main-content">
@@ -207,30 +202,7 @@
         </section>
 
         <!-- Partners Section -->
-        <section class="about-v2-partners">
-            <div class="container">
-                <div class="about-v2-partners-grid row">
-                   @if(Model.Partners != null)
-                   {
-                       foreach(var item in Model.Partners)
-                       {
-                            <div class="col-6 col-md-3 col-lg-2">
-                                <div class="about-v2-partner-item">
-                                    @if(!string.IsNullOrEmpty(item.Avatar))
-                                    {
-                                        <img src="@item.Avatar" alt="@item.Title" class="about-v2-partner-image" />
-                                    }
-                                    else 
-                                    {
-                                        <span class="about-v2-partner-text">@item.Title</span>
-                                    }
-                                </div>
-                            </div>
-                       }
-                   }
-                </div>
-            </div>
-        </section>
+        @await Component.InvokeAsync(nameof(vcPartners))
 
         <!-- Contact CTA Section -->
         @await Component.InvokeAsync(nameof(vcContactHome))

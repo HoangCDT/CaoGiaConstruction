@@ -35,7 +35,7 @@
 
 /* Cột trái - Quy trình làm việc */
 .work-process-column {
-    background: var(--contact-primary-color, #2e5234);
+    background: var(--theme-primary-color, #2e5234);
     padding: 80px 60px;
     display: flex;
     align-items: center;
@@ -53,20 +53,20 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 }
 
 .work-process-title {
     font-size: 3.5rem;
     font-weight: 700;
     line-height: 1.2;
-    margin-bottom: 50px;
+    /* margin-bottom: 50px; */
     color: #fff;
     text-transform: uppercase;
 }
 
 .process-steps {
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     gap: 30px;
 }
@@ -104,7 +104,7 @@
     width: 100%;
     height: 2px;
     background: #b7c09e;
-    margin-top: 8px;
+    margin: 8px 0;
 }
 
 /* Cột phải - Form đăng ký tư vấn */
@@ -124,7 +124,7 @@
 .consultation-title {
     font-weight: 700;
     color: #333;
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; */
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -132,11 +132,12 @@
 .consultation-subtitle {
     color: #666;
     line-height: 1.6;
-    margin-bottom: 40px;
+    /* margin-bottom: 40px; */
+    font-size: 14px;
 }
 
 .work-process-contact-section {
-    font-size: var(--contact-font-size, 14px);
+    font-size: var(--theme-font-size, var(--theme-font-size, 14px));
 }
 
 .form-group-underline {
@@ -150,15 +151,16 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin-bottom: 4px;
+    font-size: 14px;
 }
 
 .form-input-underline {
     width: 100%;
-    padding: 10px 0;
+    /* padding: 10px 0; */
     border: none;
     border-bottom: 1px solid #e0e0e0;
     background: transparent;
-    font-size: var(--contact-font-size, 14px);
+    font-size: 14px;
     color: #333;
     transition: border-color 0.3s ease;
     font-family: inherit;
@@ -166,7 +168,7 @@
 
 .form-input-underline:focus {
     outline: none;
-    border-bottom-color: var(--contact-primary-color, #2e5234);
+    border-bottom-color: var(--theme-primary-color, #2e5234);
     border-bottom-width: 2px;
 }
 

@@ -9,13 +9,12 @@
 }
 
 .about-v2-page *:focus {
-    outline: 2px solid var(--about-v2-primary-color, #1b4332);
+    outline: 2px solid var(--theme-primary-color, #1b4332);
     outline-offset: 2px;
 }
 
-/* CSS Variables */
+/* CSS Variables - Design System Variables (kept for about-v2 page specific styling) */
 .about-v2-page {
-    --about-v2-primary-color: #1b4332;
     --about-v2-primary-light: #2d6a4f;
     --about-v2-accent: #40916c;
     --about-v2-flat-bg: #ffffff;
@@ -120,8 +119,8 @@
 
 /* Section Padding */
 .about-v2-section-padding {
-    padding-top: 8rem;
-    padding-bottom: 8rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
 }
 
 @media (max-width: 767px) {
@@ -169,7 +168,7 @@
     position: absolute;
     bottom: 2rem;
     right: 2rem;
-    background-color: var(--about-v2-primary-color, #1b4332);
+    background-color: var(--theme-primary-color, #1b4332);
     color: #ffffff;
     padding: 2rem;
     max-width: 20rem;
@@ -195,7 +194,7 @@
 }
 
 .about-v2-story-subtitle {
-    color: var(--about-v2-primary-color, #1b4332);
+    color: var(--theme-primary-color, #1b4332);
     font-weight: 900;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -220,7 +219,7 @@
 }
 
 .about-v2-story-title-accent {
-    color: var(--about-v2-primary-color, #1b4332);
+    color: var(--theme-primary-color, #1b4332);
 }
 
 .about-v2-story-content {
@@ -249,7 +248,7 @@
 }
 
 .about-v2-core-values-subtitle {
-    color: var(--about-v2-primary-color, #1b4332);
+    color: var(--theme-primary-color, #1b4332);
     font-weight: 900;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -274,7 +273,7 @@
 .about-v2-core-value-card {
     background-color: #ffffff;
     padding: 3rem;
-    border-bottom: 8px solid var(--about-v2-primary-color, #1b4332);
+    border-bottom: 8px solid var(--theme-primary-color, #1b4332);
     transition: transform 0.3s ease;
     margin-bottom: 2rem;
 }
@@ -286,7 +285,7 @@
 .about-v2-core-value-icon-wrapper {
     width: 4rem;
     height: 4rem;
-    background-color: var(--about-v2-primary-color, #1b4332);
+    background-color: var(--theme-primary-color, #1b4332);
     color: #ffffff;
     display: flex;
     align-items: center;
@@ -334,7 +333,7 @@
 }
 
 .about-v2-milestones-subtitle {
-    color: var(--about-v2-primary-color, #1b4332);
+    color: var(--theme-primary-color, #1b4332);
     font-weight: 900;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -359,7 +358,7 @@
 .about-v2-milestones-divider {
     height: 8px;
     width: 8rem;
-    background-color: var(--about-v2-primary-color, #1b4332);
+    background-color: var(--theme-primary-color, #1b4332);
 }
 
 .about-v2-milestone-line {
@@ -441,7 +440,7 @@
 .about-v2-milestone-date {
     font-size: 3rem;
     font-weight: 900;
-    color: var(--about-v2-primary-color, #1b4332);
+    color: var(--theme-primary-color, #1b4332);
     margin-bottom: 0.5rem;
 }
 
@@ -461,7 +460,7 @@
     width: 1.5rem;
     height: 1.5rem;
     border-radius: 50%;
-    background-color: var(--about-v2-primary-color, #1b4332);
+    background-color: var(--theme-primary-color, #1b4332);
     border: 4px solid #ffffff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     z-index: 10;
@@ -498,10 +497,11 @@
 
 .about-v2-team-header {
     margin-bottom: 5rem;
+    text-align: center;
 }
 
 .about-v2-team-subtitle {
-    color: var(--about-v2-primary-color, #1b4332);
+    color: var(--theme-primary-color, #1b4332);
     font-weight: 900;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -523,10 +523,23 @@
     }
 }
 
+.about-v2-team .row {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.about-v2-team .row > [class*="col-"] {
+    display: flex;
+    justify-content: center;
+}
+
 .about-v2-team-member-card {
     background-color: #ffffff;
-    border: 2px solid var(--about-v2-primary-color, #1b4332);
+    border: 2px solid var(--theme-primary-color, #1b4332);
     margin-bottom: 2rem;
+    width: 100%;
+    max-width: 100%;
 }
 
 .about-v2-team-member-image-wrapper {
@@ -549,20 +562,21 @@
 
 .about-v2-team-member-info {
     padding: 1.5rem;
+    text-align: center;
 }
 
 .about-v2-team-member-name {
     font-weight: 900;
     text-transform: uppercase;
-    font-size: 1.125rem;
+    font-size: 18px;
     margin-bottom: 0.25rem;
     color: var(--about-v2-flat-text, #081c15);
 }
 
 .about-v2-team-member-position {
-    font-size: 0.75rem;
+    font-size: 14px;
     font-weight: 700;
-    color: var(--about-v2-primary-color, #1b4332);
+    color: var(--theme-primary-color, #1b4332);
     text-transform: uppercase;
     letter-spacing: 0.1em;
 }
@@ -570,9 +584,9 @@
 /* Partners Section */
 .about-v2-partners {
     background-color: #ffffff;
-    border-bottom: 4px solid var(--about-v2-primary-color, #1b4332);
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+    border-bottom: 4px solid var(--theme-primary-color, #1b4332);
+    /* padding-top: 6rem; */
+    /* padding-bottom: 6rem; */
 }
 
 .about-v2-partners-grid {
@@ -594,7 +608,7 @@
 }
 
 .about-v2-partner-image {
-    max-height: 4rem;
+    max-height: 200px;
     width: auto;
 }
 
@@ -608,7 +622,7 @@
 
 /* Contact CTA Section */
 .about-v2-contact {
-    background-color: var(--about-v2-primary-color, #1b4332);
+    background-color: var(--theme-primary-color, #1b4332);
     color: #ffffff;
     padding-top: 8rem;
     padding-bottom: 8rem;
@@ -651,7 +665,7 @@
     width: 3rem;
     height: 3rem;
     background-color: #ffffff;
-    color: var(--about-v2-primary-color, #1b4332);
+    color: var(--theme-primary-color, #1b4332);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -679,7 +693,7 @@
 }
 
 .about-v2-contact-form-title {
-    color: var(--about-v2-primary-color, #1b4332);
+    color: var(--theme-primary-color, #1b4332);
     font-size: 1.5rem;
     font-weight: 900;
     text-transform: uppercase;
@@ -701,7 +715,7 @@
 
 .about-v2-contact-form-input:focus,
 .about-v2-contact-form-textarea:focus {
-    border-color: var(--about-v2-primary-color, #1b4332);
+    border-color: var(--theme-primary-color, #1b4332);
     outline: none;
     box-shadow: none;
 }
@@ -716,7 +730,7 @@
 
 .about-v2-contact-form-button {
     width: 100%;
-    background-color: var(--about-v2-primary-color, #1b4332);
+    background-color: var(--theme-primary-color, #1b4332);
     color: #ffffff;
     font-weight: 900;
     text-transform: uppercase;
