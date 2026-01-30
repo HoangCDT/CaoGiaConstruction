@@ -4,6 +4,9 @@
 @{
   var about = await aboutService.GetAboutCacheAsync() ?? new AboutVM();
   var setting = await _settingService.GetSettingCacheAsync() ?? new SettingVM();
+  
+  // Set ViewBag.Setting for Views and ViewComponents to access
+  ViewBag.Setting = setting;
 
   var systemDto = new SystemDto
       {
@@ -33,13 +36,8 @@
   }
   <link href="~/Client/css/full-css-import.css" rel="stylesheet" />
 
-  <!-- Dynamic Color Variables from Setting -->
-  <style>
-    :root {
-      --caogia-primary-color: @(setting?.PrimaryColor ?? "#007bff");
-      --caogia-secondary-color: @(setting?.SecondaryColor ?? "#6c757d");
-    }
-  </style>
+  <!-- Theme Settings CSS Variables -->
+  @await Component.InvokeAsync(nameof(vcThemeSettings))
 
   <script src="~/Client/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 
@@ -258,7 +256,7 @@
 
 </head>
 
-<body class="loadpage home style-v2" style="font-family: @setting.FontFamily">
+<body class="loadpage home style-v2">
   <!-- Google Tag Manager (noscript) -->
   <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MK8K9GN9" height="0" width="0"

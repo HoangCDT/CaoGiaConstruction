@@ -1,9 +1,11 @@
 @model ContactHomeVM
 @using CaoGiaConstruction.Utilities
+@using CaoGiaConstruction.WebClient.AutoMapper.ViewModels
 
 @{
-    var primaryColor = Model?.Setting?.PrimaryColor ?? "#2e5234";
-    var fontSize = Model?.Setting?.FontSize ?? "14px";
+    var setting = Model?.Setting ?? ViewBag.Setting as SettingVM;
+    var primaryColor = setting?.PrimaryColor ?? "#2e5234";
+    var fontSize = setting?.FontSize ?? "14px";
     var about = Model?.About;
 }
 

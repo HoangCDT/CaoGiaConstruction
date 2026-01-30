@@ -78,7 +78,7 @@ body,
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
     transition: all .3s ease 0s;
-    border-top: 2px solid var(--caogia-secondary-color);
+    border-top: 2px solid var(--theme-secondary-color);
     -webkit-animation: scale-in-ver-top-exit .2s ease-in-out;
     animation: scale-in-ver-top-exit .2s ease-in-out;
     background: #fff;
@@ -133,7 +133,7 @@ article.post .entry-left .social a {
 h3.widgettitle,
 .sidebar .recent-comment-author,
 .style-v2 .header-inner {
-    color: var(--caogia-text-color);
+    color: var(--theme-text-color);
 }
 
     .featured-color-text,
@@ -157,12 +157,12 @@ h3.widgettitle,
     .navbar-nav > li .mega-menu-inner a:hover,
     .navbar-nav > li .dropdown a:hover,
     .galleries-v1 .gallery-v1 .close {
-        color: var(--caogia-primary-color);
+        color: var(--theme-primary-color);
     }
 
         .flickity-prev-next-button:hover .arrow,
         .flickity-prev-next-button:focus .arrow {
-            fill: var(--caogia-primary-color);
+            fill: var(--theme-primary-color);
         }
 
 .entry-meta {
@@ -212,7 +212,7 @@ input:focus,
 .comment-form textarea:focus,
 .contact-form input:focus,
 .contact-form textarea:focus {
-    border-color: var(--caogia-secondary-color);
+    border-color: var(--theme-secondary-color);
     outline: none;
     border-radius: 3px;
 }
@@ -227,7 +227,7 @@ input:focus,
     .galleries .filter .button:hover,
     .menus .filter .button.active,
     .menus .filter .button:hover {
-        border-color: var(--caogia-secondary-color);
+        border-color: var(--theme-secondary-color);
     }
 
 .comment-form input,
@@ -239,7 +239,7 @@ input:focus,
 }
 
 .contact-form button {
-    border: 1px solid var(--caogia-secondary-color);
+    border: 1px solid var(--theme-secondary-color);
     border-radius: 3px;
 }
 

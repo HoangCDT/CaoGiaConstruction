@@ -1,0 +1,48 @@
+@using CaoGiaConstruction.WebClient.AutoMapper.ViewModels
+@model SettingVM
+
+@{
+    var setting = Model ?? new SettingVM();
+    
+    // Fallback values
+    var primaryColor = setting?.PrimaryColor ?? "#007bff";
+    var secondaryColor = setting?.SecondaryColor ?? "#6c757d";
+    var footerBackgroundColor = setting?.FooterBackgroundColor ?? "#FFFFFF";
+    var headerMenuTextColor = setting?.HeaderMenuTextColor ?? "#333333";
+    var headerMenuTextSelectedColor = setting?.HeaderMenuTextSelectedColor ?? "#007bff";
+    var footerSubTextColor = setting?.FooterSubTextColor ?? "#CCCCCC";
+    var headerMenuHoverColor = setting?.HeaderMenuHoverColor ?? "#007bff";
+    var subMenuTextColor = setting?.SubMenuTextColor ?? "#333333";
+    var subMenuBorderTopColor = setting?.SubMenuBorderTopColor ?? "#cdcdcd";
+    var fontFamily = setting?.FontFamily ?? "Arial, sans-serif";
+    var fontSize = setting?.FontSize ?? "14px";
+}
+
+<!-- Theme Settings CSS Variables -->
+<style>
+    :root {
+        /* Colors */
+        --theme-primary-color: @primaryColor;
+        --theme-secondary-color: @secondaryColor;
+        --theme-footer-background-color: @footerBackgroundColor;
+        --theme-header-menu-text-color: @headerMenuTextColor;
+        --theme-header-menu-text-selected-color: @headerMenuTextSelectedColor;
+        --theme-footer-sub-text-color: @footerSubTextColor;
+        --theme-header-menu-hover-color: @headerMenuHoverColor;
+        --theme-sub-menu-text-color: @subMenuTextColor;
+        --theme-sub-menu-border-top-color: @subMenuBorderTopColor;
+        
+        /* Fonts */
+        --theme-font-family: @fontFamily;
+        --theme-font-size: @fontSize; /* Chỉ áp dụng cho body/content, không cho headings */
+    }
+    
+    /* Áp dụng font-family và font-size cho body và content text, không cho headings */
+    body {
+        font-family: var(--theme-font-family, Arial, sans-serif);
+        font-size: var(--theme-font-size, 14px);
+    }
+    
+    /* Headings giữ nguyên font-size hiện tại để có visual hierarchy tốt */
+    /* Font-size của headings được định nghĩa riêng trong CSS files, không override */
+</style>

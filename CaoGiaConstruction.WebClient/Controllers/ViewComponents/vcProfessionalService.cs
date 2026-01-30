@@ -14,14 +14,12 @@ namespace CaoGiaConstruction.WebClient.Controllers.ViewComponents
         private readonly AppDbContext _context;
         private readonly IMapper _mapper;
         private readonly IProjectService _projectService;
-        private readonly ISettingService _settingService;
 
-        public vcProfessionalService(AppDbContext context, IMapper mapper, IProjectService projectService, ISettingService settingService)
+        public vcProfessionalService(AppDbContext context, IMapper mapper, IProjectService projectService)
         {
             _context = context;
             _mapper = mapper;
             _projectService = projectService;
-            _settingService = settingService;
         }
 
         public async Task<IViewComponentResult> InvokeAsync()
@@ -38,13 +36,12 @@ namespace CaoGiaConstruction.WebClient.Controllers.ViewComponents
             var servicesVM = _mapper.Map<List<ServiceNoContentVM>>(services);
 
             var projects = await _projectService.GetHotProjectsAsync(1);
-            var setting = await _settingService.GetSettingCacheAsync();
 
             var result = new ProfessionalServiceDto
             {
                 Services = servicesVM.Skip(1).Take(3).ToList(),
                 FeaturedProject = servicesVM.FirstOrDefault(),
-                Setting = setting
+                Setting = ViewBag.Setting as SettingVM
             };
 
             return View(result);

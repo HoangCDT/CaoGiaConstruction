@@ -9,20 +9,17 @@ namespace CaoGiaConstruction.WebClient.Controllers.ViewComponents
     public class vcProcessStep : ViewComponent
     {
         private readonly IProcessStepService _processStepService;
-        private readonly ISettingService _settingService;
         private readonly IMapper _mapper;
 
-        public vcProcessStep(IProcessStepService processStepService, ISettingService settingService, IMapper mapper)
+        public vcProcessStep(IProcessStepService processStepService, IMapper mapper)
         {
             _processStepService = processStepService;
-            _settingService = settingService;
             _mapper = mapper;
         }
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var processSteps = await _processStepService.GetActiveProcessStepsAsync();
-            var setting = await _settingService.GetSettingCacheAsync();
             
             var stepsVM = _mapper.Map<List<ProcessStepVM>>(processSteps);
             var totalSteps = stepsVM.Count;
@@ -31,7 +28,7 @@ namespace CaoGiaConstruction.WebClient.Controllers.ViewComponents
             {
                 Steps = stepsVM,
                 TotalSteps = totalSteps,
-                Setting = setting
+                Setting = ViewBag.Setting as SettingVM
             };
 
             return View(result);

@@ -405,7 +405,7 @@
     }
 
     .header a {
-        color: var(--caogia-primary-color) !important
+        color: var(--theme-primary-color) !important
     }
 
     .style-v2 .header-right {
@@ -647,7 +647,7 @@
 
     .navbar-nav > li .mega-menu-inner,
     .navbar-nav > li .dropdown {
-        color: var(--caogia-primary-color) !important;
+        color: var(--theme-primary-color) !important;
         box-shadow: none !important;
         border-top: none !important
     }

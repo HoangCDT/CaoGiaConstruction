@@ -1,10 +1,12 @@
 @model AboutHomeVM
 @using CaoGiaConstruction.Utilities
+@using CaoGiaConstruction.WebClient.AutoMapper.ViewModels
 
 @{
-    var primaryColor = Model?.Setting?.PrimaryColor ?? "#1b4332";
-    var fontSize = Model?.Setting?.FontSize ?? "14px";
-    var fontFamily = Model?.Setting?.FontFamily ?? "Arial, sans-serif";
+    var setting = Model?.Setting ?? ViewBag.Setting as SettingVM;
+    var primaryColor = setting?.PrimaryColor ?? "#1b4332";
+    var fontSize = setting?.FontSize ?? "14px";
+    var fontFamily = setting?.FontFamily ?? "Arial, sans-serif";
     var about = Model?.About;
     var banner = Model?.Banner;
     var imageUrl = banner?.Avatar ?? about?.LogoTop;

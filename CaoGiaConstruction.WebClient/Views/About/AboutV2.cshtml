@@ -1,8 +1,10 @@
 @model CaoGiaConstruction.WebClient.ViewModels.AboutViewModel
 @using CaoGiaConstruction.WebClient.Dtos
+@using CaoGiaConstruction.WebClient.AutoMapper.ViewModels
 @{
     var about = Model.AboutSettings;
-    var primaryColor = "#1b4332"; // Default color, can be overridden with Setting if needed
+    var setting = ViewBag.Setting as SettingVM;
+    var primaryColor = setting?.PrimaryColor ?? "#1b4332";
 }
 
 @section styles {
@@ -15,7 +17,7 @@
     
     <style>
         .about-v2-page {
-            --about-v2-primary-color: @primaryColor;
+            --about-v2-primary-color: var(--theme-primary-color, @primaryColor);
         }
     </style>
 }

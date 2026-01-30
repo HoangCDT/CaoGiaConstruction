@@ -3,7 +3,7 @@
 }
 
 :root {
-    --caogia-text-color: #0c3133;
-    --caogia-secondary-color: #ebab33;
-    --caogia-primary-color: #be8a60;
+    --theme-text-color: #0c3133;
+    --theme-secondary-color: #ebab33;
+    --theme-primary-color: #be8a60;
 }

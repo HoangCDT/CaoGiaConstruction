@@ -7,23 +7,20 @@ namespace CaoGiaConstruction.WebClient.Controllers.ViewComponents
     public class vcContactHome : ViewComponent
     {
         private readonly IAboutService _aboutService;
-        private readonly ISettingService _settingService;
 
-        public vcContactHome(IAboutService aboutService, ISettingService settingService)
+        public vcContactHome(IAboutService aboutService)
         {
             _aboutService = aboutService;
-            _settingService = settingService;
         }
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var about = await _aboutService.GetAboutCacheAsync();
-            var setting = await _settingService.GetSettingCacheAsync();
 
             var model = new ContactHomeVM
             {
                 About = about,
-                Setting = setting
+                Setting = ViewBag.Setting as SettingVM
             };
 
             return View(model);

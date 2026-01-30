@@ -9,13 +9,11 @@ namespace CaoGiaConstruction.WebClient.Controllers.ViewComponents
     {
         private readonly IAboutService _aboutService;
         private readonly ISlideService _slideService;
-        private readonly ISettingService _settingService;
 
-        public vcAboutV2(IAboutService aboutService, ISlideService slideService, ISettingService settingService)
+        public vcAboutV2(IAboutService aboutService, ISlideService slideService)
         {
             _aboutService = aboutService;
             _slideService = slideService;
-            _settingService = settingService;
         }
 
         public async Task<IViewComponentResult> InvokeAsync()
@@ -24,7 +22,7 @@ namespace CaoGiaConstruction.WebClient.Controllers.ViewComponents
             {
                 About = await _aboutService.GetAboutCacheAsync(),
                 Banner = await _slideService.GetActiveSlideByCategoryCodeAsync(SlideCategoryCodeDefine.HOME_BANNER_ABOUT),
-                Setting = await _settingService.GetSettingCacheAsync()
+                Setting = ViewBag.Setting as SettingVM
             };
 
             return View(model);

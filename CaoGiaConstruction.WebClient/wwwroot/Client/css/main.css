@@ -77,11 +77,11 @@ Content Tabel
     --global-font-subtitle: #2a3cb7;
     --border-color-light: #e9e9e9;
     --border-color-dark: #262f48;
-    --color-link: var(--caogia-primary-color);
-    --color-link-visited: var(--caogia-primary-color);
-    --color-link-active: var(--caogia-primary-color);
+    --color-link: var(--theme-primary-color);
+    --color-link-visited: var(--theme-primary-color);
+    --color-link-active: var(--theme-primary-color);
     --global-border-color: #d7d7d7;
-    --color-theme-primary: var(--caogia-primary-color);
+    --color-theme-primary: var(--theme-primary-color);
     --color-theme-primary-dark: #ab7c56;
     --color-theme-primary-light: #e9e9e9;
     --color-theme-secondary: #252627;
@@ -1740,7 +1740,7 @@ h3.widgettitle {
 .sidebar .widget .title {
     padding-left: 15px;
     padding-bottom: 8px;
-    border-bottom: 1px solid var(--caogia-secondary-color);
+    border-bottom: 1px solid var(--theme-secondary-color);
     position: relative;
     font-size: 17px;
     text-transform: uppercase;
@@ -1751,7 +1751,7 @@ h3.widgettitle {
         position: absolute;
         left: 0;
         top: 0px;
-        background-color: var(--caogia-primary-color);
+        background-color: var(--theme-primary-color);
         width: 3px;
         height: 20px;
     }
@@ -2069,7 +2069,7 @@ h3.widgettitle {
     }
 
     .breadCrumbs .wrap-content .breadcrumb-item a:hover {
-        color: var(--caogia-primary-color);
+        color: var(--theme-primary-color);
     }
 
 /*Content detail*/
@@ -2081,7 +2081,7 @@ h3.widgettitle {
 .archive-count {
     border-radius: 3px;
     float: right;
-    color: var(--caogia-primary-color);
+    color: var(--theme-primary-color);
     background: #fff;
     width: 30px;
     height: 30px;
@@ -2136,7 +2136,7 @@ h3.widgettitle {
         padding: 1ch 1.5ch;
         border-radius: .3ch;
         box-shadow: 0 1em 2em -.5em rgba(0, 0, 0, 0.35);
-        background: var(--caogia-text-color);
+        background: var(--theme-text-color);
         color: #fff;
         z-index: 1000; /* absurdity 2 */
     }
@@ -2158,7 +2158,7 @@ h3.widgettitle {
 [tooltip][flow^="up"]::before {
     bottom: 100%;
     border-bottom-width: 0;
-    border-top-color: var(--caogia-text-color);
+    border-top-color: var(--theme-text-color);
 }
 
 [tooltip]:not([flow])::after,
@@ -2178,7 +2178,7 @@ h3.widgettitle {
 [tooltip][flow^="down"]::before {
     top: 100%;
     border-top-width: 0;
-    border-bottom-color: var(--caogia-text-color);
+    border-bottom-color: var(--theme-text-color);
 }
 
 [tooltip][flow^="down"]::after {
@@ -2195,7 +2195,7 @@ h3.widgettitle {
 [tooltip][flow^="left"]::before {
     top: 50%;
     border-right-width: 0;
-    border-left-color: var(--caogia-text-color);
+    border-left-color: var(--theme-text-color);
     left: calc(0em - 5px);
     transform: translate(-.5em, -50%);
 }
@@ -2210,7 +2210,7 @@ h3.widgettitle {
 [tooltip][flow^="right"]::before {
     top: 50%;
     border-left-width: 0;
-    border-right-color: var(--caogia-text-color);
+    border-right-color: var(--theme-text-color);
     right: calc(0em - 5px);
     transform: translate(.5em, -50%);
 }

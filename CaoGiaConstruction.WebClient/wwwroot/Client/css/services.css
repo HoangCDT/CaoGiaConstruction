@@ -4,7 +4,7 @@
 }
 
     .service-wrapper a:hover {
-        color: var(--caogia-primary-color);
+        color: var(--theme-primary-color);
     }
 
 .hot-blog {
@@ -21,7 +21,7 @@
         margin-bottom: 0px;
         padding-bottom: 15px;
         padding-top: 15px;
-        background: var(--caogia-primary-color);
+        background: var(--theme-primary-color);
         color: #fff;
         padding-left: 10px;
         line-height: 1;
@@ -268,7 +268,7 @@
     align-items: center;
     justify-content: space-between;
     position: relative;
-    border-top: 1px solid var(--caogia-secondary-color);
+    border-top: 1px solid var(--theme-secondary-color);
     padding-top: 10px;
     margin-top: 10px;
     margin-bottom: 0px
@@ -279,7 +279,7 @@
         font-size: 14px;
         line-height: 20px;
         z-index: 1;
-        color: var(--caogia-text-color)
+        color: var(--theme-text-color)
     }
 
         .item-blog .block-content .time-post a svg {
@@ -292,13 +292,13 @@
             }
 
     .item-blog .block-content .time-post a:hover svg path {
-        fill: var(--caogia-primary-color)
+        fill: var(--theme-primary-color)
     }
 
 .item-blog .block-content p.justify {
     text-align: center;
     font-size: 14px;
-    color: var(--caogia-text-color);
+    color: var(--theme-text-color);
     font-weight: 400;
     margin-bottom: 0px;
     display: -webkit-box;
