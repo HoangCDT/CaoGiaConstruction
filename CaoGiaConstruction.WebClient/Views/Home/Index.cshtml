@@ -16,7 +16,7 @@
             }
 
             componentIndex++;
-            <div class="home-component" data-index="@componentIndex">
+            <div class="home-component home-component-animate" data-index="@componentIndex">
                 @if (isPartial(component.ComponentKey))
                 {
                     @await Html.PartialAsync(component.ComponentKey)
@@ -84,6 +84,44 @@
                 }
             }, 2000); // Delay 2s để đảm bảo Nivo Slider đã khởi tạo xong
             
+            // Animation cho các home-component khi scroll vào viewport
+            if (typeof Waypoint !== 'undefined') {
+                $('.home-component-animate').each(function() {
+                    const $component = $(this);
+                    const index = parseInt($component.attr('data-index')) || 0;
+                    
+                    new Waypoint({
+                        element: this,
+                        handler: function(direction) {
+                            if (direction === 'down') {
+                                $component.addClass('animate-in');
+                            }
+                        },
+                        offset: '75%'
+                    });
+                });
+            } else {
+                // Fallback: Sử dụng Intersection Observer nếu Waypoint không có
+                if ('IntersectionObserver' in window) {
+                    const observerOptions = {
+                        threshold: 0.2,
+                        rootMargin: '0px 0px -100px 0px'
+                    };
+                    
+                    const observer = new IntersectionObserver(function(entries) {
+                        entries.forEach(function(entry) {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('animate-in');
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    }, observerOptions);
+                    
+                    document.querySelectorAll('.home-component-animate').forEach(function(el) {
+                        observer.observe(el);
+                    });
+                }
+            }
         });
     </script>
 }
