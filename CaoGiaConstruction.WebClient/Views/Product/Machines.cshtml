@@ -22,7 +22,7 @@
     <div class="page-content">
         <div class="container-fluid">
             <div class="row d-flex flex-wrap">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <aside class="sidebar">
                         @await Html.PartialAsync("_SearchForm", new SearchFormDto { Placeholder = "Tìm máy móc tại đây...", SearchAction = routeName, Value = param.Keyword })
 
@@ -31,7 +31,7 @@
                         @await Html.PartialAsync("_FilterSidebar", new FilterSideBarDto { SearchParams = param, RouteValues = routeName })
                     </aside>
                 </div>
-                <div class="col-sm-8">
+                <div class="col-sm-9">
                     @if (Model.Any())
                     {
                         @foreach (var cate in Model)

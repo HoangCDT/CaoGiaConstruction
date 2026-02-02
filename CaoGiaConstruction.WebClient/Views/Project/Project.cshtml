@@ -14,9 +14,9 @@
         @await Component.InvokeAsync(nameof(vcBreadcrumb), breadcrumbItems)
     </div>
     <div class="page-content">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="sidebar">
                         @await Html.PartialAsync("_SearchForm", new SearchFormDto
                    {
@@ -30,7 +30,7 @@
                         @await Html.PartialAsync("_HotProject")
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-9">
                     @if (Model != null && Model.Result.Count() > 0)
                     {
                         <div class="row">

@@ -327,3 +327,47 @@ select.form-input-underline {
         margin-bottom: 3px;
     }
 }
+
+/* Map Section for Contact Page */
+.contact-map {
+    margin-top: 60px;
+    padding: 0;
+}
+
+.contact-map .map-wrapper {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    background: #f0f0f0;
+}
+
+.contact-map .map-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+@media (max-width: 991px) {
+    .contact-map {
+        margin-top: 40px;
+    }
+
+    .contact-map .map-wrapper {
+        height: 400px;
+    }
+}
+
+@media (max-width: 767px) {
+    .contact-map {
+        margin-top: 30px;
+    }
+
+    .contact-map .map-wrapper {
+        height: 350px;
+        border-radius: 8px;
+    }
+}
