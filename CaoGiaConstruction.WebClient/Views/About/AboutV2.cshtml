@@ -31,12 +31,12 @@
 
     <div class="about-v2-page">
         <!-- Founder & Story Section -->
-        <section class="about-v2-section-padding about-v2-founder-story">
+        <section class="about-v2-section-padding about-v2-founder-story about-v2-animate">
             <div class="container">
                 <div class="row">
                     <!-- Founder Image -->
                     <div class="col-12 col-lg-6">
-                        <div class="about-v2-founder-image-wrapper">
+                        <div class="about-v2-founder-image-wrapper about-v2-animate">
                             <div class="about-v2-founder-bg"></div>
                              @if (Model.AboutSlide != null && !string.IsNullOrEmpty(Model.AboutSlide.Avatar))
                              {
@@ -63,7 +63,7 @@
                     </div>
 
                     <!-- Story Content -->
-                    <div class="col-12 col-lg-6">
+                    <div class="col-12 col-lg-6 about-v2-animate">
                         <h2 class="about-v2-story-subtitle">Câu chuyện của chúng tôi</h2>
                         <h3 class="about-v2-story-title">Hành trình 10 năm <br /> <span class="about-v2-story-title-accent">Khát vọng &amp; Sáng tạo</span></h3>
                         <div class="about-v2-story-content">
@@ -82,9 +82,9 @@
         </section>
 
         <!-- Core Values Section -->
-        <section class="about-v2-section-padding about-v2-core-values">
+        <section class="about-v2-section-padding about-v2-core-values about-v2-animate">
             <div class="container">
-                <div class="about-v2-core-values-header">
+                <div class="about-v2-core-values-header about-v2-animate">
                     <h2 class="about-v2-core-values-subtitle">Giá trị cốt lõi</h2>
                     <h3 class="about-v2-core-values-title">Kim chỉ nam của Cao Gia</h3>
                 </div>
@@ -94,7 +94,7 @@
                        @foreach(var item in Model.CoreValues)
                        {
                             <div class="col-12 col-md-4">
-                                <div class="about-v2-core-value-card">
+                                <div class="about-v2-core-value-card about-v2-animate">
                                     <div class="about-v2-core-value-icon-wrapper">
                                         <span class="material-symbols-outlined about-v2-core-value-icon">@(item.Code ?? "diamond")</span>
                                     </div>
@@ -124,9 +124,9 @@
         </section>
 
         <!-- Milestones Section (History) -->
-        <section class="about-v2-section-padding about-v2-milestones">
+        <section class="about-v2-section-padding about-v2-milestones about-v2-animate">
             <div class="container">
-                <div class="about-v2-milestones-header">
+                <div class="about-v2-milestones-header about-v2-animate">
                     <div>
                         <h2 class="about-v2-milestones-subtitle">Lịch sử phát triển</h2>
                         <h3 class="about-v2-milestones-title">Cột mốc đáng nhớ</h3>
@@ -141,7 +141,7 @@
                         foreach(var item in Model.Milestones)
                         {
                             var isLeft = index % 2 == 0;
-                            <div class="about-v2-milestone-item">
+                            <div class="about-v2-milestone-item about-v2-animate">
                                 <!-- Content -->
                                 <div class="about-v2-milestone-content @(isLeft ? "" : "order-1")">
                                     @if(isLeft)
@@ -173,9 +173,9 @@
         </section>
 
         <!-- Team Section -->
-        <section class="about-v2-section-padding about-v2-team">
+        <section class="about-v2-section-padding about-v2-team about-v2-animate">
             <div class="container">
-                <div class="about-v2-team-header">
+                <div class="about-v2-team-header about-v2-animate">
                     <h2 class="about-v2-team-subtitle">Ban lãnh đạo</h2>
                     <h3 class="about-v2-team-title">Đội ngũ chuyên gia</h3>
                 </div>
@@ -185,7 +185,7 @@
                         @foreach(var item in Model.TeamMembers)
                         {
                             <div class="col-12 col-sm-6 col-lg-3">
-                                <div class="about-v2-team-member-card">
+                                <div class="about-v2-team-member-card about-v2-animate">
                                     <div class="about-v2-team-member-image-wrapper">
                                         <img alt="@item.FullName" class="about-v2-team-member-image" src="@item.Avatar" />
                                     </div>
@@ -211,4 +211,48 @@
         @await Component.InvokeAsync(nameof(vcMap))
     </div>
 </div>
+
+@section scripts {
+    <script>
+        $(document).ready(function() {
+            // Animation cho các about-v2-animate khi scroll vào viewport
+            if (typeof Waypoint !== 'undefined') {
+                $('.about-v2-animate').each(function() {
+                    const $element = $(this);
+                    
+                    new Waypoint({
+                        element: this,
+                        handler: function(direction) {
+                            if (direction === 'down') {
+                                $element.addClass('animate-in');
+                            }
+                        },
+                        offset: '75%'
+                    });
+                });
+            } else {
+                // Fallback: Sử dụng Intersection Observer nếu Waypoint không có
+                if ('IntersectionObserver' in window) {
+                    const observerOptions = {
+                        threshold: 0.2,
+                        rootMargin: '0px 0px -100px 0px'
+                    };
+                    
+                    const observer = new IntersectionObserver(function(entries) {
+                        entries.forEach(function(entry) {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('animate-in');
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    }, observerOptions);
+                    
+                    document.querySelectorAll('.about-v2-animate').forEach(function(el) {
+                        observer.observe(el);
+                    });
+                }
+            }
+        });
+    </script>
+}
 
