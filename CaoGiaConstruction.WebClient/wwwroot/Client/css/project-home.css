@@ -93,7 +93,7 @@
 .project-home-card {
     width: 100%;
     background-color: #ffffff;
-    border-bottom: 8px solid var(--theme-primary-color, #1b4332);
+    border-bottom: 4px solid var(--theme-primary-color, #1b4332);
     transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, border-bottom-width 0.3s ease;
     display: flex;
     flex-direction: column;
