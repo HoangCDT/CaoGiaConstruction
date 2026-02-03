@@ -38,7 +38,7 @@
         if ($slider.length > 0) {
             $slider.imagesLoaded(function () {
                 $slider.find('.nivoSlider').nivoSlider({
-                    pauseTime: 10000,
+                    pauseTime: 3000,
                     beforeChange: function () {
                     },
                     afterChange: function () {
