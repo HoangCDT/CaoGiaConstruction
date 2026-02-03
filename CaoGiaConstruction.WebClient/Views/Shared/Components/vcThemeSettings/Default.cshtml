@@ -16,6 +16,13 @@
     var subMenuBorderTopColor = setting?.SubMenuBorderTopColor ?? "#cdcdcd";
     var fontFamily = setting?.FontFamily ?? "Arial, sans-serif";
     var fontSize = setting?.FontSize ?? "14px";
+    var fs = fontSize?.Trim() ?? "";
+    if (string.IsNullOrEmpty(fs)) { fontSize = "14px"; }
+    else if (!fs.EndsWith("px", StringComparison.OrdinalIgnoreCase) && !fs.EndsWith("em", StringComparison.OrdinalIgnoreCase) && !fs.EndsWith("rem", StringComparison.OrdinalIgnoreCase))
+    {
+        fontSize = fs + "px";
+    }
+    else { fontSize = fs; }
 }
 
 <!-- Theme Settings CSS Variables -->
