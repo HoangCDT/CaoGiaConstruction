@@ -1,0 +1,112 @@
+@model ProjectHomeDto
+@using CaoGiaConstruction.Utilities
+@using CaoGiaConstruction.WebClient.AutoMapper.ViewModels
+@using CaoGiaConstruction.WebClient.Dtos
+
+@{
+    var setting = ViewBag.Setting as SettingVM;
+    var hasProjects = Model != null && Model.Projects != null && Model.Projects.Any();
+    var hasServices = Model != null && Model.Services != null && Model.Services.Any();
+}
+
+@if (hasServices && hasProjects)
+{
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="~/Client/css/project-home.css" asp-append-version="true" />
+
+    <section class="project-home-section" id="projects">
+        <div class="container">
+            <div class="project-home-header">
+                <div>
+                    <h2 class="project-home-subtitle">Dự án tiêu biểu</h2>
+                    <div class="project-home-title-wrapper">
+                        <h3 class="project-home-title">Công trình đã thực hiện</h3>
+                        @if (hasServices)
+                        {
+                            <div class="project-home-filters">
+                                <button class="project-home-filter-btn active" data-filter-service-id="" type="button">
+                                    Tất cả
+                                </button>
+                                @foreach (var service in Model.Services)
+                                {
+                                    <button class="project-home-filter-btn" data-filter-service-id="@service.Id" type="button">
+                                        @service.Title
+                                    </button>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="project-home-grid">
+                @foreach (var project in Model.Projects)
+                {
+                    <div class="project-home-card" data-service-id="@project.ServiceId">
+                        <div class="project-home-image-wrapper">
+                            <a asp-route="project-detail" asp-route-code="@project.Code" asp-route-category="@project.Service?.Code">
+                                <img src="@project.Avatar.ToHostImage()?w=600" alt="@project.Title" class="project-home-image" />
+                            </a>
+                        </div>
+                        <div class="project-home-card-content">
+                            <p class="project-home-location">@project.Address</p>
+                            <h5 class="project-home-card-title">@project.Title</h5>
+                            <a asp-route="project-detail" asp-route-code="@project.Code" asp-route-category="@project.Service?.Code" class="project-home-link">
+                                Xem chi tiết <span class="material-symbols-outlined">arrow_forward</span>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+
+    <script type="text/javascript">
+        (function() {
+            document.addEventListener('DOMContentLoaded', function() {
+                const filterButtons = document.querySelectorAll('.project-home-filter-btn');
+                const projectCards = document.querySelectorAll('.project-home-card');
+                
+                if (filterButtons.length === 0 || projectCards.length === 0) {
+                    return;
+                }
+                
+                filterButtons.forEach(function(button) {
+                    button.addEventListener('click', function() {
+                        // Remove active class from all buttons
+                        filterButtons.forEach(function(btn) {
+                            btn.classList.remove('active');
+                        });
+                        
+                        // Add active class to clicked button
+                        this.classList.add('active');
+                        
+                        // Get filter service ID
+                        const filterServiceId = this.getAttribute('data-filter-service-id');
+                        
+                        // Filter projects
+                        projectCards.forEach(function(card) {
+                            const cardServiceId = card.getAttribute('data-service-id');
+                            
+                            // Show all if no filter or filter matches
+                            if (!filterServiceId || filterServiceId === '' || cardServiceId === filterServiceId) {
+                                card.style.display = '';
+                                card.offsetHeight; // Force reflow
+                                card.style.opacity = '1';
+                                card.style.transform = 'scale(1)';
+                            } else {
+                                // Hide card with animation
+                                card.style.opacity = '0';
+                                card.style.transform = 'scale(0.95)';
+                                setTimeout(function() {
+                                    if (card.style.opacity === '0') {
+                                        card.style.display = 'none';
+                                    }
+                                }, 300);
+                            }
+                        });
+                    });
+                });
+            });
+        })();
+    </script>
+}

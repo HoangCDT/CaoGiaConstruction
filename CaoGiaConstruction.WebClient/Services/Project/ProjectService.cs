@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using CaoGiaConstruction.Utilities;
 using CaoGiaConstruction.Utilities.Constants;
@@ -34,6 +34,10 @@ namespace CaoGiaConstruction.WebClient.Services
         Task<List<ProjectNoContentVM>> GetHotProjectsAsync(int count);
 
         Task<List<ProjectNoContentVM>> GetProjectRelatedsync(Guid catId, Guid id, int count = 10);
+
+        Task<List<ProjectNoContentVM>> GetProjectsForHomeAsync(int? count = null, Guid? serviceId = null);
+
+        Task<List<ServiceNoContentVM>> GetServicesWithProjectsAsync();
 
     }
 
@@ -327,6 +331,47 @@ namespace CaoGiaConstruction.WebClient.Services
                 .ToListAsync();
 
             return _mapper.Map<List<ProjectNoContentVM>>(data);
+        }
+
+        public async Task<List<ProjectNoContentVM>> GetProjectsForHomeAsync(int? count = null, Guid? serviceId = null)
+        {
+            var query = _context.Projects
+                .Include(x => x.Service)
+                .Where(x => x.IsDeleted != true && x.Status == StatusEnum.Active)
+                .AsNoTracking()
+                .AsQueryable();
+            
+            // Filter theo ServiceId nếu có
+            if (serviceId.HasValue)
+            {
+                query = query.Where(x => x.ServiceId == serviceId.Value);
+            }
+            
+            query = query.OrderByDescending(x => x.SortOrder ?? int.MaxValue)
+                         .ThenByDescending(x => x.CreatedDate);
+            
+            if (count.HasValue)
+            {
+                query = query.Take(count.Value);
+            }
+            
+            var projects = await query.AsSplitQuery().ToListAsync();
+            return _mapper.Map<List<ProjectNoContentVM>>(projects);
+        }
+
+        public async Task<List<ServiceNoContentVM>> GetServicesWithProjectsAsync()
+        {
+            var services = await _context.Services
+                .AsNoTracking()
+                .Include(x => x.Projects.Where(p => p.IsDeleted != true && p.Status == StatusEnum.Active))
+                .Where(x => x.IsDeleted != true 
+                    && x.Status == StatusEnum.Active 
+                    && x.Projects.Any(p => p.IsDeleted != true && p.Status == StatusEnum.Active))
+                .OrderBy(x => x.SortOrder)
+                .AsSplitQuery()
+                .ToListAsync();
+            
+            return _mapper.Map<List<ServiceNoContentVM>>(services);
         }
     }
 }
