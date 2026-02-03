@@ -38,7 +38,7 @@
 .about-home-image-container {
     position: relative;
     z-index: 2;
-    aspect-ratio: 4 / 3;
+    /* aspect-ratio: 4 / 3; */
     overflow: hidden;
     border-radius: 4px;
 }
