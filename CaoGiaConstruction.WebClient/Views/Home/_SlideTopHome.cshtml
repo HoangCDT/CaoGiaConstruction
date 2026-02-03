@@ -11,7 +11,7 @@
             <div class="nivoSlider">
                 @foreach (var slide in slides.OrderBy(x => x.SortOrder))
                 {
-                    <img src="@slide.Avatar.ToHostImage()?w=1500" alt="@slide.Title" title="#caogia-@slide.Id" />
+                    <img src="@slide.Avatar.ToHostImage()?w=5000" alt="@slide.Title" title="#caogia-@slide.Id" />
                 }
             </div>
             @foreach (var slide in slides.OrderBy(x => x.SortOrder))
