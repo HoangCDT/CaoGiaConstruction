@@ -1,4 +1,4 @@
-﻿namespace CaoGiaConstruction.WebClient.Const
+namespace CaoGiaConstruction.WebClient.Const
 {
     public static class SlideCategoryCodeDefine
     {
@@ -8,6 +8,7 @@
         public static readonly string HOME_SLIDE_PARTNER = "HOME_SLIDE_PARTNER";
         public static readonly string HOME_SLIDE_BRANCHES = "HOME_SLIDE_BRANCHES";
         public static readonly string HOME_BANNER_ABOUT = "HOME_BANNER_ABOUT";
+        public static readonly string HOME_BANNER_ABOUT_HOME = "HOME_BANNER_ABOUT_HOME";
         public static readonly string HOME_BANNER_BLOG = "HOME_BANNER_BLOG";
     }
 }

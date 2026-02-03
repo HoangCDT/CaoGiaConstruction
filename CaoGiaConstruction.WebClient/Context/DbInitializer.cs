@@ -282,13 +282,23 @@ namespace CaoGiaConstruction.WebClient.Context
                     Status = StatusEnum.Active
                 });
 
+                // HOME_BANNER_ABOUT_HOME - Banner giới thiệu Home (slider trang chủ)
+                slideCategories.Add(new SlideCategory
+                {
+                    Code = SlideCategoryCodeDefine.HOME_BANNER_ABOUT_HOME,
+                    Title = "Banner Giới thiệu Home",
+                    Description = "Banner giới thiệu hiển thị trang chủ",
+                    SortOrder = 7,
+                    Status = StatusEnum.Active
+                });
+
                 // HOME_BANNER_BLOG - Banner blog
                 slideCategories.Add(new SlideCategory
                 {
                     Code = SlideCategoryCodeDefine.HOME_BANNER_BLOG,
                     Title = "Banner Blog",
                     Description = "Banner hiển thị phần blog",
-                    SortOrder = 7,
+                    SortOrder = 8,
                     Status = StatusEnum.Active
                 });
 

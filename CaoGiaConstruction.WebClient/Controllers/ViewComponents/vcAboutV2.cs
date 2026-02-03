@@ -21,7 +21,7 @@ namespace CaoGiaConstruction.WebClient.Controllers.ViewComponents
             var model = new AboutV2VM
             {
                 About = await _aboutService.GetAboutCacheAsync(),
-                Banner = await _slideService.GetActiveSlideByCategoryCodeAsync(SlideCategoryCodeDefine.HOME_BANNER_ABOUT),
+                Banner = await _slideService.GetActiveSlideByCategoryCodeAsync(SlideCategoryCodeDefine.HOME_BANNER_ABOUT_HOME),
                 Setting = ViewBag.Setting as SettingVM
             };
 

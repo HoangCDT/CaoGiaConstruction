@@ -20,7 +20,7 @@ namespace CaoGiaConstruction.WebClient.Controllers.ViewComponents
         {
             var model = new AboutHomeVM
             {
-                Banner = await _slideService.GetActiveSlideByCategoryCodeAsync(SlideCategoryCodeDefine.HOME_BANNER_ABOUT),
+                Banner = await _slideService.GetActiveSlideByCategoryCodeAsync(SlideCategoryCodeDefine.HOME_BANNER_ABOUT_HOME),
                 About = await _aboutService.GetAboutCacheAsync(),
                 Setting = ViewBag.Setting as SettingVM
             };
