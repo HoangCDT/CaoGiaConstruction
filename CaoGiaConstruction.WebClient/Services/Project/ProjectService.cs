@@ -37,6 +37,8 @@ namespace CaoGiaConstruction.WebClient.Services
 
         Task<List<ProjectNoContentVM>> GetProjectsForHomeAsync(int? count = null, Guid? serviceId = null);
 
+        Task<Pager<ProjectNoContentVM>> GetProjectsForHomePagedAsync(int page, int pageSize = 3, Guid? serviceId = null);
+
         Task<List<ServiceNoContentVM>> GetServicesWithProjectsAsync();
 
     }
@@ -357,6 +359,44 @@ namespace CaoGiaConstruction.WebClient.Services
             
             var projects = await query.AsSplitQuery().ToListAsync();
             return _mapper.Map<List<ProjectNoContentVM>>(projects);
+        }
+
+        public async Task<Pager<ProjectNoContentVM>> GetProjectsForHomePagedAsync(int page, int pageSize = 3, Guid? serviceId = null)
+        {
+            var query = _context.Projects
+                .Include(x => x.Service)
+                .Where(x => x.IsDeleted != true && x.Status == StatusEnum.Active)
+                .OrderByDescending(x => x.SortOrder)
+                .AsNoTracking()
+                .AsQueryable();
+
+            if (serviceId.HasValue)
+            {
+                query = query.Where(x => x.ServiceId == serviceId.Value);
+            }
+
+            query = query.OrderByDescending(x => x.SortOrder ?? int.MaxValue)
+                .ThenByDescending(x => x.CreatedDate);
+
+            var param = new SearchPaginationDto { Page = page, PageSize = pageSize };
+            var pager = await query.ToPaginationAsync(param);
+            return new Pager<ProjectNoContentVM>
+            {
+                Result = _mapper.Map<List<ProjectNoContentVM>>(pager.Result),
+                TotalItems = pager.TotalItems,
+                CurrentPage = pager.CurrentPage,
+                PageSize = pager.PageSize,
+                TotalPages = pager.TotalPages,
+                StartPage = pager.StartPage,
+                EndPage = pager.EndPage,
+                StartIndex = pager.StartIndex,
+                EndIndex = pager.EndIndex,
+                PageNext = pager.PageNext,
+                PagePrev = pager.PagePrev,
+                PageFirst = pager.PageFirst,
+                PageLast = pager.PageLast,
+                Pages = pager.Pages
+            };
         }
 
         public async Task<List<ServiceNoContentVM>> GetServicesWithProjectsAsync()

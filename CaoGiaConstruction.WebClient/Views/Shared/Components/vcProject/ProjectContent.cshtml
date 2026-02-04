@@ -1,0 +1,68 @@
+@model ProjectHomeDto
+@using CaoGiaConstruction.Utilities
+@using CaoGiaConstruction.WebClient.AutoMapper.ViewModels
+@using CaoGiaConstruction.WebClient.Dtos
+
+@{
+    var hasServices = Model != null && Model.Services != null && Model.Services.Any();
+    var hasProjects = Model != null && Model.Projects != null && Model.Projects.Any();
+    var hasPager = Model?.ProjectsPager != null && Model.ProjectsPager.TotalPages > 0;
+}
+
+@if (hasServices && (hasProjects || hasPager))
+{
+    <section class="project-home-section" id="projects">
+        <div class="container">
+            <div class="project-home-header">
+                <div>
+                    <h2 class="project-home-subtitle">Dự án tiêu biểu</h2>
+                    <div class="project-home-title-wrapper">
+                        <h3 class="project-home-title">Công trình đã thực hiện</h3>
+                        @if (hasServices)
+                        {
+                            <div class="project-home-filters">
+                                <button class="project-home-filter-btn active" data-filter-service-id="" type="button">
+                                    Tất cả
+                                </button>
+                                @foreach (var service in Model!.Services!)
+                                {
+                                    <button class="project-home-filter-btn" data-filter-service-id="@service.Id" type="button">
+                                        @service.Title
+                                    </button>
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="project-home-grid">
+                @if (hasProjects)
+                {
+                    @foreach (var project in Model!.Projects!)
+                    {
+                        <div class="project-home-card" data-service-id="@project.ServiceId">
+                            <div class="project-home-image-wrapper">
+                                <a asp-route="project-detail" asp-route-code="@project.Code" asp-route-category="@project.Service?.Code">
+                                    <img src="@project.Avatar.ToHostImage()?w=600" alt="@project.Title" class="project-home-image" />
+                                </a>
+                            </div>
+                            <div class="project-home-card-content">
+                                <p class="project-home-location">@project.Address</p>
+                                <h5 class="project-home-card-title">@project.Title</h5>
+                                <a asp-route="project-detail" asp-route-code="@project.Code" asp-route-category="@project.Service?.Code" class="project-home-link">
+                                    Xem chi tiết <span class="material-symbols-outlined">arrow_forward</span>
+                                </a>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+            @if (Model!.ProjectsPager != null)
+            {
+                <div class="project-home-pagination">
+                    @await Component.InvokeAsync(nameof(vcPaging), Model.ProjectsPager)
+                </div>
+            }
+        </div>
+    </section>
+}

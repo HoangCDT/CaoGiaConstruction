@@ -90,6 +90,35 @@
     justify-content: center;
 }
 
+.project-home-pagination {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: center;
+}
+
+#project-home-ajax-wrapper.project-home-loading {
+    position: relative;
+    min-height: 200px;
+}
+
+#project-home-ajax-wrapper.project-home-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+    border: 3px solid var(--theme-primary-color, #1b4332);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: project-home-spin 0.8s linear infinite;
+}
+
+@keyframes project-home-spin {
+    to { transform: rotate(360deg); }
+}
+
 .project-home-card {
     width: 100%;
     background-color: #ffffff;
