@@ -287,7 +287,7 @@ namespace CaoGiaConstruction.WebClient.Services
                 .AsSplitQuery()
                 .FirstOrDefaultAsync();
 
-            return _mapper.Map<ProjectVM>(data);
+            return _mapper.Map<ProjectVM>(data); 
         }
 
         public async Task<List<ProjectCategoryWithCountDto>> GetProjectCategoriesWithCountsAsync()

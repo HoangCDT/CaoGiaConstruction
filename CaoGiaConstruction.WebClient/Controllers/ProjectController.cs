@@ -76,7 +76,7 @@ namespace CaoGiaConstruction.WebClient.Controllers
                 updateTime: project.ModifiedDate?.ToString("yyyy-MM-ddTHH:mm:ssZ"), // Current update time in ISO format
                 tag: !string.IsNullOrEmpty(project.SeoKeywords) ? project.SeoKeywords : "Dự án Cao Gia Construction, công trình xây dựng, dự án thi công, giải pháp xây dựng" // Tags related to the product
             );
-            // Set meta tags for the product detail page
+            // Set meta tags for the product detail page 
             ViewBag.Header = SetMetaTags(metaTag);
             #endregion
 
