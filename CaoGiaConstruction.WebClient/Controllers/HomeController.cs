@@ -46,13 +46,6 @@ namespace CaoGiaConstruction.WebClient.Controllers
         }
 
         [HttpGet]
-        [Route("trang-chu/projects-partial", Name = "home-projects-partial")]
-        public IActionResult ProjectsPartial(int page = 1, Guid? serviceId = null)
-        {
-            return ViewComponent("vcProject", new { page, serviceId, partial = true });
-        }
-
-        [HttpGet]
         [Route("api/tiktok-embed")]
         public async Task<IActionResult> GetTiktokEmbedAsync()
         {

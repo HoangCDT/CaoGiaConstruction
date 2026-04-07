@@ -1,0 +1,1187 @@
+version=1
+
+# This file caches language service data to improve the performance of C# Dev Kit.
+# It is not intended for manual editing. It can safely be deleted and will be
+# regenerated automatically.
+#
+# To exclude from version control, add *.lscache to your .gitignore file.
+#
+# To disable caching, add the following to your VS Code settings:
+#   "dotnet.projectsystem.enableLanguageServiceCache": false
+
+[project]
+language=C#
+primary
+lastDtbSucceeded
+
+[properties]
+AssemblyName=CaoGiaConstruction.WebClient
+CommandLineArgsForDesignTimeEvaluation=-langversion:12.0 -define:TRACE
+CompilerGeneratedFilesOutputPath=
+MaxSupportedLangVersion=12.0
+ProjectAssetsFile=<PATH>obj/project.assets.json
+RootNamespace=CaoGiaConstruction.WebClient
+RunAnalyzers=
+RunAnalyzersDuringLiveAnalysis=
+SolutionPath=<PATH>../CaoGiaConstruction.WebClient.sln
+TargetFrameworkIdentifier=.NETCoreApp
+TargetPath=<PATH>bin/Debug/net8.0/CaoGiaConstruction.WebClient.dll
+TargetRefPath=<PATH>obj/Debug/net8.0/ref/CaoGiaConstruction.WebClient.dll
+TemporaryDependencyNodeTargetIdentifier=net8.0
+
+[commandLineArguments]
+/noconfig
+/unsafe-
+/checked-
+/nowarn:1701,1702,CS8632,1701,1702
+/fullpaths
+/nostdlib+
+/errorreport:prompt
+/warn:8
+/define:TRACE;DEBUG;NET;NET8_0;NETCOREAPP;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP1_0_OR_GREATER;NETCOREAPP1_1_OR_GREATER;NETCOREAPP2_0_OR_GREATER;NETCOREAPP2_1_OR_GREATER;NETCOREAPP2_2_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER
+/highentropyva+
+/debug+
+/debug:portable
+/filealign:512
+/optimize-
+/out:obj/Debug/net8.0/CaoGiaConstruction.WebClient.dll
+/refout:obj/Debug/net8.0/refint/CaoGiaConstruction.WebClient.dll
+/target:exe
+/warnaserror-
+/utf8output
+/deterministic+
+/langversion:12.0
+/warnaserror+:NU1605,SYSLIB0011
+
+[sourceFiles]
+Areas/Admin/Controllers/
+ AboutController.cs
+ AuthenController.cs
+ BaseController.cs
+ BlogCategoryController.cs
+ BlogController.cs
+ BranchesController.cs
+ ContactController.cs
+ CoreValueController.cs
+ DefineSystemController.cs
+ ErrorController.cs
+ EventCategoryController.cs
+ EventController.cs
+ Extensions/ControllerExtensions.cs
+ FeedbackController.cs
+ FileController.cs
+ FormulaCategoryController.cs
+ FormulaController.cs
+ HomeConfigController.cs
+ HomeController.cs
+ MenuConfigController.cs
+ ProcessStepController.cs
+ ProductCategoryController.cs
+ ProductCategoryPropertiesController.cs
+ ProductController.cs
+ ProductMainCategoryController.cs
+ ProjectController.cs
+ PropertiesController.cs
+ ServiceCategoryController.cs
+ ServiceController.cs
+ SettingController.cs
+ SlideController.cs
+ TeamMemberController.cs
+ TimeLineController.cs
+ UserController.cs
+ VideoController.cs
+ ViewComponents/vcPagingAdmin.cs
+Areas/Admin/Dtos/
+ CoreValueSortDto.cs
+ HomeComponentConfigSortDto.cs
+ ProcessStepSortDto.cs
+ SearchKeywordPagination.cs
+ ServiceCategorySortDto.cs
+ ServiceSortDto.cs
+ TeamMemberSortDto.cs
+ TimeLineSortDto.cs
+AutoMapper/
+ AutoMapperConfig.cs
+ DomainToViewModelMappingProfile.cs
+ ViewModels/About/
+  AboutActionVM.cs
+  AboutHomeVM.cs
+  AboutV2VM.cs
+  AboutVM.cs
+ ViewModels/
+  BaseVM/EntityBaseVM.cs
+  Blog/
+   BlogActionVM.cs
+   BlogCategoryActionVM.cs
+   BlogCategoryVM.cs
+   BlogNoContentVM.cs
+   BlogVM.cs
+  Branches/
+   BranchesActionVM.cs
+   BranchesVM.cs
+  Contact/ContactVM.cs
+  CoreValue/
+   CoreValueActionVM.cs
+   CoreValueVM.cs
+  Feedback/
+   FeedbackActionVM.cs
+   FeedbackVM.cs
+  Home/HomeVM.cs
+  ProcessStep/
+   ProcessStepActionVM.cs
+   ProcessStepVM.cs
+  Product/
+   ProductActionVM.cs
+   ProductCategoryActionVM.cs
+   ProductCategoryVM.cs
+   ProductGroupByCategoryVM.cs
+   ProductMainCategoryGroupVM.cs
+   ProductMainCategoryVM.cs
+   ProductNoContentVM.cs
+   ProductPriceVN.cs
+   ProductVM.cs
+   PropertiesVM.cs
+  Project/
+   ProjectActionVM.cs
+   ProjectNoContentVM.cs
+   ProjectVM.cs
+  Roles/RoleVM.cs
+  Service/
+   ServiceActionVM.cs
+   ServiceCategoryActionVM.cs
+   ServiceCategoryVM.cs
+   ServiceGroupByCategoryVM.cs
+   ServiceNoContentVM.cs
+   ServiceVM.cs
+  Slide/
+   SlideActionVM.cs
+   SlideCategoryVM.cs
+   SlideVM.cs
+  System/
+   ConfigVM.cs
+   DefineSystemVM.cs
+   PermissionVM.cs
+   SettingVM.cs
+  Team/TeamMemberActionVM.cs
+  TimeLine/TimeLineVM.cs
+  User/
+   UserActionVM.cs
+   UserVM.cs
+  Video/
+   VideoActionVM.cs
+   VideoVM.cs
+ ViewModelToDomainMappingProfile.cs
+ ViewModelToViewModelProfile.cs
+Configurations/JwtSettings.cs
+Const/
+ CacheConst.cs
+ ClaimTypeConst.cs
+ CodePage.cs
+ MessageReponse.cs
+ ProductMainCategoryCodeDefine.cs
+ RoleConst.cs
+ SlideCategoryCodeDefine.cs
+ SortOrderConst.cs
+Context/
+ DbContext/AppDbContext.cs
+ DbInitializer.cs
+ Entities/
+  About/About.cs
+  AppUser/
+   Role.cs
+   User.cs
+  Blog/
+   Blog.cs
+   BlogCategory.cs
+  Branches/Branches.cs
+  Contact/Contact.cs
+  CoreValue/CoreValue.cs
+  EntityBase/EntityBase.cs
+  Feedback/Feedback.cs
+  Home/HomeComponentConfig.cs
+  Menu/MenuConfig.cs
+  ProcessStep/ProcessStep.cs
+  Product/
+   Product.cs
+   ProductCategory.cs
+   ProductMainCategory.cs
+   ProductPrice.cs
+   Properties.cs
+  Project/Project.cs
+  Service/
+   Service.cs
+   ServiceCategory.cs
+  Settings/Setting.cs
+  Slide/
+   Slide.cs
+   SlideCategory.cs
+  System/DefineSystem.cs
+  Team/TeamMember.cs
+  TimeLine/TimeLine.cs
+  Video/Video.cs
+ Enums/
+  AccountStatus.cs
+  ActionTypeEnum.cs
+  BlogTypeEnum.cs
+  StatusEnum.cs
+ Interface/
+  IActiveTracking.cs
+  IDateTracking.cs
+  IEntityBase.cs
+  ISeoImageData.cs
+  ISeoMetaData.cs
+  IUserTracking.cs
+Controllers/
+ AboutController.cs
+ APIs/ProductCategoryController.cs
+ BaseController.cs
+ BlogController.cs
+ BranchController.cs
+ ContactController.cs
+ HomeController.cs
+ ProductController.cs
+ ProjectController.cs
+ ServiceController.cs
+ ViewComponents/
+  vcAboutHome.cs
+  vcAboutV2.cs
+  vcBlogHome.cs
+  vcBranches.cs
+  vcBranchesV2.cs
+  vcBreadcrumb.cs
+  vcContactHome.cs
+  vcFeedback.cs
+  vcFooter.cs
+  vcHeader.cs
+  vcHotMachine.cs
+  vcHotProduct.cs
+  vcMap.cs
+  vcPaging.cs
+  vcPartners.cs
+  vcProcessStep.cs
+  vcProfessionalService.cs
+  vcProject.cs
+  vcService.cs
+  vcThemeSettings.cs
+  vcVideo.cs
+Dtos/
+ BlogCategoryWithCountDto.cs
+ BreadcrumbDto.cs
+ CategoryWithCountDto.cs
+ ErrorDto.cs
+ FilterSideBarDto.cs
+ LoginDto.cs
+ MenuConfigMenuItemDto.cs
+ ProcessStepDto.cs
+ ProductCategoryDto.cs
+ ProductCategoryWithCountDto.cs
+ ProfessionalServiceDto.cs
+ ProjectCategoryWithCountDto.cs
+ ProjectHomeDto.cs
+ RegisterRequestDto.cs
+ ReportHomeDto.cs
+ SearchBlogClientDto.cs
+ SearchFormDto.cs
+ SearchPaginationDto.cs
+ SearchProductClientDto.cs
+ SearchServiceClientDto.cs
+ ServiceCategorySortDto.cs
+ ServiceHomeDto.cs
+ SystemDto.cs
+Extensions/
+ ClaimsPrincipleExtensions.cs
+ Commons.cs
+ CommonServiceUtils.cs
+ CustomClaimsPrincipalFactory.cs
+ CustomIdentityErrorDescriber.cs
+ ImageExtension/ImageResizerMiddlewareExtensions.cs
+ ImageExtensionsIntaller.cs
+ LambdaExtensions.cs
+ Middleware/
+  ImageNotFoundMiddleware.cs
+  ImageResizerMiddleware.cs
+ MinResponseExtensions.cs
+ UrlExtendtion.cs
+Installers/
+ AuthenticationInstaller.cs
+ DbInstaller.cs
+ IInstaller.cs
+ InstallerExtensions.cs
+ IScopeService.cs
+ ITransientService.cs
+ JwtInstaller.cs
+ MvcInstaller.cs
+ SystemInstaller.cs
+Migrations/
+ 20260120011244_initDB.cs
+ 20260120011244_initDB.Designer.cs
+ 20260120012304_initDB2.cs
+ 20260120012304_initDB2.Designer.cs
+ 20260121055815_alterSettingTable.cs
+ 20260121055815_alterSettingTable.Designer.cs
+ 20260121061314_alterSettingTable1.cs
+ 20260121061314_alterSettingTable1.Designer.cs
+ 20260121071757_alterSettingTable2.cs
+ 20260121071757_alterSettingTable2.Designer.cs
+ 20260121120000_addHomeComponentConfig.cs
+ 20260121130000_addMenuConfig.cs
+ 20260127033436_addProcessStep.cs
+ 20260127033436_addProcessStep.Designer.cs
+ 20260128062300_AddTeamMemberAndVerifyTimeLine.cs
+ 20260128062300_AddTeamMemberAndVerifyTimeLine.Designer.cs
+ 20260129052518_AddSortOrderToTimeLine.cs
+ 20260129052518_AddSortOrderToTimeLine.Designer.cs
+ 20260129055853_alterCoreValueAddStatus.cs
+ 20260129055853_alterCoreValueAddStatus.Designer.cs
+ 20260203061432_alterProjectTable.cs
+ 20260203061432_alterProjectTable.Designer.cs
+ 20260203100000_AddSlideCategoryBannerAboutHome.cs
+ AppDbContextModelSnapshot.cs
+obj/Debug/net8.0/
+ .NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+ CaoGiaConstruction.WebClient.AssemblyInfo.cs
+ CaoGiaConstruction.WebClient.GlobalUsings.g.cs
+ CaoGiaConstruction.WebClient.RazorAssemblyInfo.cs
+Program.cs
+Services/
+ About/AboutService.cs
+ BaseService.cs
+ Blog/
+  BlogCategoryService.cs
+  BlogService.cs
+ Branches/BranchesService.cs
+ Cache/DistributedCacheService.cs
+ Contact/ContactService.cs
+ CoreValue/CoreValueService.cs
+ FeedBack/FeedBackService.cs
+ File/FileService.cs
+ Home/HomeComponentConfigService.cs
+ Menu/MenuConfigService.cs
+ ProcessStep/ProcessStepService.cs
+ Product/
+  ProductCategoryService.cs
+  ProductMainCategoryService.cs
+  ProductPrice/
+   ProductPriceService.cs
+   ProductTypeService.cs
+   WeightService.cs
+  ProductService.cs
+  Properties/
+   ProductCategoryPropertiesService.cs
+   ProductPropertiesService.cs
+   PropertiesService.cs
+ Project/ProjectService.cs
+ Report/ReportService.cs
+ service-caogia/
+  ServiceCaoGiaService.cs
+  ServiceCategoryService.cs
+ Session/SessionService.cs
+ Setting/SettingService.cs
+ Slide/
+  SlideCategoryService.cs
+  SlideService.cs
+ System/DefineSystemService.cs
+ Team/TeamMemberService.cs
+ TimeLine/TimeLineService.cs
+ UserService/
+  AuthenService.cs
+  RoleService.cs
+  UserService.cs
+ Video/VideoService.cs
+Startup.cs
+TagHelpers/MessageTagHelper.cs
+ViewModels/AboutViewModel.cs
+
+[metadataReferences]
+../CaoGiaConstruction.Utilities/obj/Debug/net8.0/ref/CaoGiaConstruction.Utilities.dll
+<NUGET>/
+ advancedstringbuilder/0.1.1/lib/netstandard2.0/AdvancedStringBuilder.dll
+ automapper.extensions.microsoft.dependencyinjection/12.0.1/lib/netstandard2.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+ automapper/12.0.1/lib/netstandard2.1/AutoMapper.dll
+ humanizer.core/2.14.1/lib/net6.0/Humanizer.dll
+ microsoft.aspnetcore.app.ref/8.0.15/ref/net8.0/
+  Microsoft.AspNetCore.Antiforgery.dll
+  Microsoft.AspNetCore.Authentication.Abstractions.dll
+  Microsoft.AspNetCore.Authentication.BearerToken.dll
+  Microsoft.AspNetCore.Authentication.Cookies.dll
+  Microsoft.AspNetCore.Authentication.Core.dll
+  Microsoft.AspNetCore.Authentication.dll
+  Microsoft.AspNetCore.Authentication.OAuth.dll
+  Microsoft.AspNetCore.Authorization.dll
+  Microsoft.AspNetCore.Authorization.Policy.dll
+  Microsoft.AspNetCore.Components.Authorization.dll
+  Microsoft.AspNetCore.Components.dll
+  Microsoft.AspNetCore.Components.Endpoints.dll
+  Microsoft.AspNetCore.Components.Forms.dll
+  Microsoft.AspNetCore.Components.Server.dll
+  Microsoft.AspNetCore.Components.Web.dll
+  Microsoft.AspNetCore.Connections.Abstractions.dll
+  Microsoft.AspNetCore.CookiePolicy.dll
+  Microsoft.AspNetCore.Cors.dll
+  Microsoft.AspNetCore.Cryptography.Internal.dll
+  Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+  Microsoft.AspNetCore.DataProtection.Abstractions.dll
+  Microsoft.AspNetCore.DataProtection.dll
+  Microsoft.AspNetCore.DataProtection.Extensions.dll
+  Microsoft.AspNetCore.Diagnostics.Abstractions.dll
+  Microsoft.AspNetCore.Diagnostics.dll
+  Microsoft.AspNetCore.Diagnostics.HealthChecks.dll
+  Microsoft.AspNetCore.dll
+  Microsoft.AspNetCore.HostFiltering.dll
+  Microsoft.AspNetCore.Hosting.Abstractions.dll
+  Microsoft.AspNetCore.Hosting.dll
+  Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
+  Microsoft.AspNetCore.Html.Abstractions.dll
+  Microsoft.AspNetCore.Http.Abstractions.dll
+  Microsoft.AspNetCore.Http.Connections.Common.dll
+  Microsoft.AspNetCore.Http.Connections.dll
+  Microsoft.AspNetCore.Http.dll
+  Microsoft.AspNetCore.Http.Extensions.dll
+  Microsoft.AspNetCore.Http.Features.dll
+  Microsoft.AspNetCore.Http.Results.dll
+  Microsoft.AspNetCore.HttpLogging.dll
+  Microsoft.AspNetCore.HttpOverrides.dll
+  Microsoft.AspNetCore.HttpsPolicy.dll
+  Microsoft.AspNetCore.Identity.dll
+  Microsoft.AspNetCore.Localization.dll
+  Microsoft.AspNetCore.Localization.Routing.dll
+  Microsoft.AspNetCore.Metadata.dll
+  Microsoft.AspNetCore.Mvc.Abstractions.dll
+  Microsoft.AspNetCore.Mvc.ApiExplorer.dll
+  Microsoft.AspNetCore.Mvc.Core.dll
+  Microsoft.AspNetCore.Mvc.Cors.dll
+  Microsoft.AspNetCore.Mvc.DataAnnotations.dll
+  Microsoft.AspNetCore.Mvc.dll
+  Microsoft.AspNetCore.Mvc.Formatters.Json.dll
+  Microsoft.AspNetCore.Mvc.Formatters.Xml.dll
+  Microsoft.AspNetCore.Mvc.Localization.dll
+  Microsoft.AspNetCore.Mvc.Razor.dll
+  Microsoft.AspNetCore.Mvc.RazorPages.dll
+  Microsoft.AspNetCore.Mvc.TagHelpers.dll
+  Microsoft.AspNetCore.Mvc.ViewFeatures.dll
+  Microsoft.AspNetCore.OutputCaching.dll
+  Microsoft.AspNetCore.RateLimiting.dll
+  Microsoft.AspNetCore.Razor.dll
+  Microsoft.AspNetCore.Razor.Runtime.dll
+  Microsoft.AspNetCore.RequestDecompression.dll
+  Microsoft.AspNetCore.ResponseCaching.Abstractions.dll
+  Microsoft.AspNetCore.ResponseCaching.dll
+  Microsoft.AspNetCore.ResponseCompression.dll
+  Microsoft.AspNetCore.Rewrite.dll
+  Microsoft.AspNetCore.Routing.Abstractions.dll
+  Microsoft.AspNetCore.Routing.dll
+  Microsoft.AspNetCore.Server.HttpSys.dll
+  Microsoft.AspNetCore.Server.IIS.dll
+  Microsoft.AspNetCore.Server.IISIntegration.dll
+  Microsoft.AspNetCore.Server.Kestrel.Core.dll
+  Microsoft.AspNetCore.Server.Kestrel.dll
+  Microsoft.AspNetCore.Server.Kestrel.Transport.NamedPipes.dll
+  Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.dll
+  Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.dll
+  Microsoft.AspNetCore.Session.dll
+  Microsoft.AspNetCore.SignalR.Common.dll
+  Microsoft.AspNetCore.SignalR.Core.dll
+  Microsoft.AspNetCore.SignalR.dll
+  Microsoft.AspNetCore.SignalR.Protocols.Json.dll
+  Microsoft.AspNetCore.StaticFiles.dll
+  Microsoft.AspNetCore.WebSockets.dll
+  Microsoft.AspNetCore.WebUtilities.dll
+  Microsoft.Extensions.Caching.Abstractions.dll
+  Microsoft.Extensions.Caching.Memory.dll
+  Microsoft.Extensions.Configuration.Abstractions.dll
+  Microsoft.Extensions.Configuration.Binder.dll
+  Microsoft.Extensions.Configuration.CommandLine.dll
+  Microsoft.Extensions.Configuration.dll
+  Microsoft.Extensions.Configuration.EnvironmentVariables.dll
+  Microsoft.Extensions.Configuration.FileExtensions.dll
+  Microsoft.Extensions.Configuration.Ini.dll
+  Microsoft.Extensions.Configuration.Json.dll
+  Microsoft.Extensions.Configuration.KeyPerFile.dll
+  Microsoft.Extensions.Configuration.UserSecrets.dll
+  Microsoft.Extensions.Configuration.Xml.dll
+  Microsoft.Extensions.DependencyInjection.Abstractions.dll
+  Microsoft.Extensions.DependencyInjection.dll
+  Microsoft.Extensions.Diagnostics.Abstractions.dll
+  Microsoft.Extensions.Diagnostics.dll
+  Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll
+  Microsoft.Extensions.Diagnostics.HealthChecks.dll
+  Microsoft.Extensions.Features.dll
+  Microsoft.Extensions.FileProviders.Abstractions.dll
+  Microsoft.Extensions.FileProviders.Composite.dll
+  Microsoft.Extensions.FileProviders.Embedded.dll
+  Microsoft.Extensions.FileProviders.Physical.dll
+  Microsoft.Extensions.FileSystemGlobbing.dll
+  Microsoft.Extensions.Hosting.Abstractions.dll
+  Microsoft.Extensions.Hosting.dll
+  Microsoft.Extensions.Http.dll
+  Microsoft.Extensions.Identity.Core.dll
+  Microsoft.Extensions.Identity.Stores.dll
+  Microsoft.Extensions.Localization.Abstractions.dll
+  Microsoft.Extensions.Localization.dll
+  Microsoft.Extensions.Logging.Abstractions.dll
+  Microsoft.Extensions.Logging.Configuration.dll
+  Microsoft.Extensions.Logging.Console.dll
+  Microsoft.Extensions.Logging.Debug.dll
+  Microsoft.Extensions.Logging.dll
+  Microsoft.Extensions.Logging.EventLog.dll
+  Microsoft.Extensions.Logging.EventSource.dll
+  Microsoft.Extensions.Logging.TraceSource.dll
+  Microsoft.Extensions.ObjectPool.dll
+  Microsoft.Extensions.Options.ConfigurationExtensions.dll
+  Microsoft.Extensions.Options.DataAnnotations.dll
+  Microsoft.Extensions.Options.dll
+  Microsoft.Extensions.Primitives.dll
+  Microsoft.Extensions.WebEncoders.dll
+  Microsoft.JSInterop.dll
+  Microsoft.Net.Http.Headers.dll
+  System.Diagnostics.EventLog.dll
+  System.IO.Pipelines.dll
+  System.Security.Cryptography.Xml.dll
+  System.Threading.RateLimiting.dll
+ microsoft.aspnetcore.authentication.jwtbearer/8.0.7/lib/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+ microsoft.aspnetcore.components.quickgrid.entityframeworkadapter/8.0.7/lib/net8.0/Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter.dll
+ microsoft.aspnetcore.components.quickgrid/8.0.7/lib/net8.0/Microsoft.AspNetCore.Components.QuickGrid.dll
+ microsoft.aspnetcore.diagnostics.entityframeworkcore/8.0.7/lib/net8.0/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
+ microsoft.aspnetcore.identity.entityframeworkcore/8.0.7/lib/net8.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+ microsoft.aspnetcore.jsonpatch/8.0.7/lib/net8.0/Microsoft.AspNetCore.JsonPatch.dll
+ microsoft.aspnetcore.mvc.newtonsoftjson/8.0.7/lib/net8.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+ microsoft.aspnetcore.razor.language/6.0.24/lib/netstandard2.0/Microsoft.AspNetCore.Razor.Language.dll
+ microsoft.bcl.asyncinterfaces/7.0.0/lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll
+ microsoft.build.framework/17.8.3/ref/net8.0/Microsoft.Build.Framework.dll
+ microsoft.build/17.8.3/ref/net8.0/Microsoft.Build.dll
+ microsoft.codeanalysis.analyzerutilities/3.3.0/lib/netstandard2.0/Microsoft.CodeAnalysis.AnalyzerUtilities.dll
+ microsoft.codeanalysis.common/4.8.0/lib/net7.0/Microsoft.CodeAnalysis.dll
+ microsoft.codeanalysis.csharp.features/4.8.0/lib/net7.0/Microsoft.CodeAnalysis.CSharp.Features.dll
+ microsoft.codeanalysis.csharp.workspaces/4.8.0/lib/net7.0/Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+ microsoft.codeanalysis.csharp/4.8.0/lib/net7.0/Microsoft.CodeAnalysis.CSharp.dll
+ microsoft.codeanalysis.elfie/1.0.0/lib/netstandard2.0/Microsoft.CodeAnalysis.Elfie.dll
+ microsoft.codeanalysis.features/4.8.0/lib/net7.0/Microsoft.CodeAnalysis.Features.dll
+ microsoft.codeanalysis.razor/6.0.24/lib/netstandard2.0/Microsoft.CodeAnalysis.Razor.dll
+ microsoft.codeanalysis.scripting.common/4.8.0/lib/net7.0/Microsoft.CodeAnalysis.Scripting.dll
+ microsoft.codeanalysis.workspaces.common/4.8.0/lib/net7.0/Microsoft.CodeAnalysis.Workspaces.dll
+ microsoft.diasymreader/2.0.0/lib/netstandard2.0/Microsoft.DiaSymReader.dll
+ microsoft.dotnet.scaffolding.shared/8.0.4/lib/netstandard2.0/Microsoft.DotNet.Scaffolding.Shared.dll
+ microsoft.entityframeworkcore.abstractions/8.0.8/lib/net8.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+ microsoft.entityframeworkcore.design/8.0.7/lib/net8.0/Microsoft.EntityFrameworkCore.Design.dll
+ microsoft.entityframeworkcore.relational/8.0.8/lib/net8.0/Microsoft.EntityFrameworkCore.Relational.dll
+ microsoft.entityframeworkcore/8.0.8/lib/net8.0/Microsoft.EntityFrameworkCore.dll
+ microsoft.extensions.dependencymodel/8.0.1/lib/net8.0/Microsoft.Extensions.DependencyModel.dll
+ microsoft.identitymodel.abstractions/7.1.2/lib/net8.0/Microsoft.IdentityModel.Abstractions.dll
+ microsoft.identitymodel.jsonwebtokens/7.1.2/lib/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
+ microsoft.identitymodel.logging/7.1.2/lib/net8.0/Microsoft.IdentityModel.Logging.dll
+ microsoft.identitymodel.protocols.openidconnect/7.1.2/lib/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+ microsoft.identitymodel.protocols/7.1.2/lib/net8.0/Microsoft.IdentityModel.Protocols.dll
+ microsoft.identitymodel.tokens/7.1.2/lib/net8.0/Microsoft.IdentityModel.Tokens.dll
+ microsoft.net.stringtools/17.8.3/ref/net8.0/Microsoft.NET.StringTools.dll
+ microsoft.netcore.app.ref/8.0.15/ref/net8.0/
+  Microsoft.CSharp.dll
+  Microsoft.VisualBasic.Core.dll
+  Microsoft.VisualBasic.dll
+  Microsoft.Win32.Primitives.dll
+  Microsoft.Win32.Registry.dll
+  mscorlib.dll
+  netstandard.dll
+  System.AppContext.dll
+  System.Buffers.dll
+  System.Collections.Concurrent.dll
+  System.Collections.dll
+  System.Collections.Immutable.dll
+  System.Collections.NonGeneric.dll
+  System.Collections.Specialized.dll
+  System.ComponentModel.Annotations.dll
+  System.ComponentModel.DataAnnotations.dll
+  System.ComponentModel.dll
+  System.ComponentModel.EventBasedAsync.dll
+  System.ComponentModel.Primitives.dll
+  System.ComponentModel.TypeConverter.dll
+  System.Configuration.dll
+  System.Console.dll
+  System.Core.dll
+  System.Data.Common.dll
+  System.Data.DataSetExtensions.dll
+  System.Data.dll
+  System.Diagnostics.Contracts.dll
+  System.Diagnostics.Debug.dll
+  System.Diagnostics.DiagnosticSource.dll
+  System.Diagnostics.FileVersionInfo.dll
+  System.Diagnostics.Process.dll
+  System.Diagnostics.StackTrace.dll
+  System.Diagnostics.TextWriterTraceListener.dll
+  System.Diagnostics.Tools.dll
+  System.Diagnostics.TraceSource.dll
+  System.Diagnostics.Tracing.dll
+  System.dll
+  System.Drawing.dll
+  System.Drawing.Primitives.dll
+  System.Dynamic.Runtime.dll
+  System.Formats.Asn1.dll
+  System.Formats.Tar.dll
+  System.Globalization.Calendars.dll
+  System.Globalization.dll
+  System.Globalization.Extensions.dll
+  System.IO.Compression.Brotli.dll
+  System.IO.Compression.dll
+  System.IO.Compression.FileSystem.dll
+  System.IO.Compression.ZipFile.dll
+  System.IO.dll
+  System.IO.FileSystem.AccessControl.dll
+  System.IO.FileSystem.dll
+  System.IO.FileSystem.DriveInfo.dll
+  System.IO.FileSystem.Primitives.dll
+  System.IO.FileSystem.Watcher.dll
+  System.IO.IsolatedStorage.dll
+  System.IO.MemoryMappedFiles.dll
+  System.IO.Pipes.AccessControl.dll
+  System.IO.Pipes.dll
+  System.IO.UnmanagedMemoryStream.dll
+  System.Linq.dll
+  System.Linq.Expressions.dll
+  System.Linq.Parallel.dll
+  System.Linq.Queryable.dll
+  System.Memory.dll
+  System.Net.dll
+  System.Net.Http.dll
+  System.Net.Http.Json.dll
+  System.Net.HttpListener.dll
+  System.Net.Mail.dll
+  System.Net.NameResolution.dll
+  System.Net.NetworkInformation.dll
+  System.Net.Ping.dll
+  System.Net.Primitives.dll
+  System.Net.Quic.dll
+  System.Net.Requests.dll
+  System.Net.Security.dll
+  System.Net.ServicePoint.dll
+  System.Net.Sockets.dll
+  System.Net.WebClient.dll
+  System.Net.WebHeaderCollection.dll
+  System.Net.WebProxy.dll
+  System.Net.WebSockets.Client.dll
+  System.Net.WebSockets.dll
+  System.Numerics.dll
+  System.Numerics.Vectors.dll
+  System.ObjectModel.dll
+  System.Reflection.DispatchProxy.dll
+  System.Reflection.dll
+  System.Reflection.Emit.dll
+  System.Reflection.Emit.ILGeneration.dll
+  System.Reflection.Emit.Lightweight.dll
+  System.Reflection.Extensions.dll
+  System.Reflection.Metadata.dll
+  System.Reflection.Primitives.dll
+  System.Reflection.TypeExtensions.dll
+  System.Resources.Reader.dll
+  System.Resources.ResourceManager.dll
+  System.Resources.Writer.dll
+  System.Runtime.CompilerServices.Unsafe.dll
+  System.Runtime.CompilerServices.VisualC.dll
+  System.Runtime.dll
+  System.Runtime.Extensions.dll
+  System.Runtime.Handles.dll
+  System.Runtime.InteropServices.dll
+  System.Runtime.InteropServices.JavaScript.dll
+  System.Runtime.InteropServices.RuntimeInformation.dll
+  System.Runtime.Intrinsics.dll
+  System.Runtime.Loader.dll
+  System.Runtime.Numerics.dll
+  System.Runtime.Serialization.dll
+  System.Runtime.Serialization.Formatters.dll
+  System.Runtime.Serialization.Json.dll
+  System.Runtime.Serialization.Primitives.dll
+  System.Runtime.Serialization.Xml.dll
+  System.Security.AccessControl.dll
+  System.Security.Claims.dll
+  System.Security.Cryptography.Algorithms.dll
+  System.Security.Cryptography.Cng.dll
+  System.Security.Cryptography.Csp.dll
+  System.Security.Cryptography.dll
+  System.Security.Cryptography.Encoding.dll
+  System.Security.Cryptography.OpenSsl.dll
+  System.Security.Cryptography.Primitives.dll
+  System.Security.Cryptography.X509Certificates.dll
+  System.Security.dll
+  System.Security.Principal.dll
+  System.Security.Principal.Windows.dll
+  System.Security.SecureString.dll
+  System.ServiceModel.Web.dll
+  System.ServiceProcess.dll
+  System.Text.Encoding.CodePages.dll
+  System.Text.Encoding.dll
+  System.Text.Encoding.Extensions.dll
+  System.Text.Encodings.Web.dll
+  System.Text.Json.dll
+  System.Text.RegularExpressions.dll
+  System.Threading.Channels.dll
+  System.Threading.dll
+  System.Threading.Overlapped.dll
+  System.Threading.Tasks.Dataflow.dll
+  System.Threading.Tasks.dll
+  System.Threading.Tasks.Extensions.dll
+  System.Threading.Tasks.Parallel.dll
+  System.Threading.Thread.dll
+  System.Threading.ThreadPool.dll
+  System.Threading.Timer.dll
+  System.Transactions.dll
+  System.Transactions.Local.dll
+  System.ValueTuple.dll
+  System.Web.dll
+  System.Web.HttpUtility.dll
+  System.Windows.dll
+  System.Xml.dll
+  System.Xml.Linq.dll
+  System.Xml.ReaderWriter.dll
+  System.Xml.Serialization.dll
+  System.Xml.XDocument.dll
+  System.Xml.XmlDocument.dll
+  System.Xml.XmlSerializer.dll
+  System.Xml.XPath.dll
+  System.Xml.XPath.XDocument.dll
+  WindowsBase.dll
+ microsoft.openapi/1.2.3/lib/netstandard2.0/Microsoft.OpenApi.dll
+ microsoft.visualstudio.web.codegeneration.core/8.0.4/lib/net8.0/Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
+ microsoft.visualstudio.web.codegeneration.design/8.0.4/lib/net8.0/dotnet-aspnet-codegenerator-design.dll
+ microsoft.visualstudio.web.codegeneration.entityframeworkcore/8.0.4/lib/net8.0/Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll
+ microsoft.visualstudio.web.codegeneration.templating/8.0.4/lib/net8.0/Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
+ microsoft.visualstudio.web.codegeneration.utils/8.0.4/lib/net8.0/Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
+ microsoft.visualstudio.web.codegeneration/8.0.4/lib/net8.0/Microsoft.VisualStudio.Web.CodeGeneration.dll
+ microsoft.visualstudio.web.codegenerators.mvc/8.0.4/lib/net8.0/Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
+ microsoft.win32.systemevents/7.0.0/lib/net7.0/Microsoft.Win32.SystemEvents.dll
+ mono.texttemplating/2.3.1/lib/netcoreapp3.1/Mono.TextTemplating.dll
+ newtonsoft.json.bson/1.0.2/lib/netstandard2.0/Newtonsoft.Json.Bson.dll
+ newtonsoft.json/13.0.3/lib/net6.0/Newtonsoft.Json.dll
+ npgsql.entityframeworkcore.postgresql/8.0.8/lib/net8.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+ npgsql/8.0.4/lib/net8.0/Npgsql.dll
+ nuget.common/6.9.1/lib/netstandard2.0/NuGet.Common.dll
+ nuget.configuration/6.9.1/lib/netstandard2.0/NuGet.Configuration.dll
+ nuget.dependencyresolver.core/6.9.1/lib/net5.0/NuGet.DependencyResolver.Core.dll
+ nuget.frameworks/6.9.1/lib/netstandard2.0/NuGet.Frameworks.dll
+ nuget.librarymodel/6.9.1/lib/netstandard2.0/NuGet.LibraryModel.dll
+ nuget.packaging/6.9.1/lib/net5.0/NuGet.Packaging.dll
+ nuget.projectmodel/6.9.1/lib/net5.0/NuGet.ProjectModel.dll
+ nuget.protocol/6.9.1/lib/net5.0/NuGet.Protocol.dll
+ nuget.versioning/6.9.1/lib/netstandard2.0/NuGet.Versioning.dll
+ nuglify/1.21.9/lib/net5.0/NUglify.dll
+ skiasharp/3.0.0-preview.4.1/ref/net7.0/SkiaSharp.dll
+ swashbuckle.aspnetcore.swagger/6.2.3/lib/net6.0/Swashbuckle.AspNetCore.Swagger.dll
+ swashbuckle.aspnetcore.swaggergen/6.2.3/lib/net6.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+ swashbuckle.aspnetcore.swaggerui/6.2.3/lib/net6.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+ system.codedom/5.0.0/ref/netstandard2.0/System.CodeDom.dll
+ system.composition.attributedmodel/7.0.0/lib/net7.0/System.Composition.AttributedModel.dll
+ system.composition.convention/7.0.0/lib/net7.0/System.Composition.Convention.dll
+ system.composition.hosting/7.0.0/lib/net7.0/System.Composition.Hosting.dll
+ system.composition.runtime/7.0.0/lib/net7.0/System.Composition.Runtime.dll
+ system.composition.typedparts/7.0.0/lib/net7.0/System.Composition.TypedParts.dll
+ system.configuration.configurationmanager/7.0.0/lib/net7.0/System.Configuration.ConfigurationManager.dll
+ system.drawing.common/7.0.0/lib/net7.0/System.Drawing.Common.dll
+ system.identitymodel.tokens.jwt/7.1.2/lib/net8.0/System.IdentityModel.Tokens.Jwt.dll
+ system.reflection.metadataloadcontext/7.0.0/lib/net7.0/System.Reflection.MetadataLoadContext.dll
+ system.security.cryptography.pkcs/6.0.4/lib/net6.0/System.Security.Cryptography.Pkcs.dll
+ system.security.cryptography.protecteddata/7.0.0/lib/net7.0/System.Security.Cryptography.ProtectedData.dll
+ system.security.permissions/7.0.0/lib/net7.0/System.Security.Permissions.dll
+ system.windows.extensions/7.0.0/lib/net7.0/System.Windows.Extensions.dll
+ webmarkupmin.aspnet.common/2.17.0/lib/netstandard2.1/WebMarkupMin.AspNet.Common.dll
+ webmarkupmin.aspnetcore8/2.17.0/lib/net8.0/WebMarkupMin.AspNetCore8.dll
+ webmarkupmin.core/2.17.0/lib/netstandard2.1/WebMarkupMin.Core.dll
+ webmarkupmin.nuglify/2.17.0/lib/netstandard2.0/WebMarkupMin.NUglify.dll
+
+[analyzerReferences]
+../../../../../../usr/local/share/dotnet/sdk/9.0.203/Sdks/Microsoft.NET.Sdk.Razor/source-generators/
+ Microsoft.AspNetCore.Razor.Utilities.Shared.dll
+ Microsoft.CodeAnalysis.Razor.Compiler.dll
+ Microsoft.Extensions.ObjectPool.dll
+ System.Collections.Immutable.dll
+../../../../../../usr/local/share/dotnet/sdk/9.0.203/Sdks/Microsoft.NET.Sdk.Web/analyzers/cs/
+ Microsoft.AspNetCore.Analyzers.dll
+ Microsoft.AspNetCore.Mvc.Analyzers.dll
+../../../../../../usr/local/share/dotnet/sdk/9.0.203/Sdks/Microsoft.NET.Sdk/analyzers/
+ Microsoft.CodeAnalysis.CSharp.NetAnalyzers.dll
+ Microsoft.CodeAnalysis.NetAnalyzers.dll
+<NUGET>/microsoft.aspnetcore.app.ref/8.0.15/analyzers/dotnet/cs/
+ Microsoft.AspNetCore.App.Analyzers.dll
+ Microsoft.AspNetCore.App.CodeFixes.dll
+ Microsoft.AspNetCore.Components.Analyzers.dll
+<NUGET>/microsoft.aspnetcore.app.ref/8.0.15/analyzers/dotnet/roslyn4.4/cs/
+ Microsoft.Extensions.Logging.Generators.dll
+ Microsoft.Extensions.Options.SourceGeneration.dll
+<NUGET>/microsoft.codeanalysis.analyzers/3.3.4/analyzers/dotnet/cs/
+ Microsoft.CodeAnalysis.Analyzers.dll
+ Microsoft.CodeAnalysis.CSharp.Analyzers.dll
+<NUGET>/
+ microsoft.entityframeworkcore.analyzers/8.0.8/analyzers/dotnet/cs/Microsoft.EntityFrameworkCore.Analyzers.dll
+ microsoft.netcore.app.ref/8.0.15/analyzers/dotnet/cs/
+  Microsoft.Interop.ComInterfaceGenerator.dll
+  Microsoft.Interop.JavaScript.JSImportGenerator.dll
+  Microsoft.Interop.LibraryImportGenerator.dll
+  Microsoft.Interop.SourceGeneration.dll
+  System.Text.Json.SourceGeneration.dll
+  System.Text.RegularExpressions.Generator.dll
+
+[analyzerConfigFiles]
+../../../../../../usr/local/share/dotnet/sdk/9.0.203/Sdks/Microsoft.NET.Sdk/analyzers/build/config/analysislevel_8_default.globalconfig
+obj/Debug/net8.0/CaoGiaConstruction.WebClient.GeneratedMSBuildEditorConfig.editorconfig
+
+[additionalFiles]
+Areas/Admin/Views/About/
+ Index.cshtml
+ _ModalTeamMemberAction.cshtml
+ _TeamMembersTab.cshtml
+ _TimelineTab.cshtml
+Areas/Admin/Views/Authen/
+ Login.cshtml
+ Logout.cshtml
+Areas/Admin/Views/Blog/
+ Action.cshtml
+ Index.cshtml
+Areas/Admin/Views/BlogCategory/
+ Index.cshtml
+ _ModalBlogCategoryAction.cshtml
+Areas/Admin/Views/Branches/
+ Index.cshtml
+ _ModalBranchesAction.cshtml
+Areas/Admin/Views/Contact/
+ Index.cshtml
+ _ModalContact.cshtml
+Areas/Admin/Views/CoreValue/
+ Index.cshtml
+ _ModalCoreValueAction.cshtml
+Areas/Admin/Views/DefineSystem/
+ Index.cshtml
+ _ModalDefineSystemAction.cshtml
+Areas/Admin/Views/
+ Error/Index.cshtml
+ Event/
+  Action.cshtml
+  Index.cshtml
+ EventCategory/
+  Index.cshtml
+  _ModalEventCategoryAction.cshtml
+ Feedback/
+  Index.cshtml
+  _ModalFeedbackAction.cshtml
+ Formula/
+  Action.cshtml
+  Index.cshtml
+ FormulaCategory/
+  Index.cshtml
+  _ModalFormulaCategoryAction.cshtml
+ Home/Index.cshtml
+ HomeConfig/
+  Index.cshtml
+  _ModalHomeConfigAction.cshtml
+ MenuConfig/
+  Index.cshtml
+  _ModalMenuConfigAction.cshtml
+ ProcessStep/
+  Action.cshtml
+  Index.cshtml
+  _ModalProcessStepAction.cshtml
+ Product/
+  Action.cshtml
+  Index.cshtml
+  _ActionPropertiesTab.cshtml
+  _ModalProductPropertiesAction.cshtml
+ ProductCategory/
+  Index.cshtml
+  _ModalProductCategoryAction.cshtml
+ ProductMainCategory/
+  Index.cshtml
+  _ModalProductCategoryAction.cshtml
+ Project/
+  Action.cshtml
+  Index.cshtml
+ Properties/
+  Index.cshtml
+  _ModalPropertiesAction.cshtml
+ Service/
+  Action.cshtml
+  Index.cshtml
+ ServiceCategory/
+  Index.cshtml
+  _ModalServiceCategoryAction.cshtml
+ Setting/
+  Index.cshtml
+  _ModalSettingAction.cshtml
+ Shared/
+  Components/vcPagingAdmin/Default.cshtml
+  _AppSearch.cshtml
+  _Footer.cshtml
+  _Layout.cshtml
+  _LeftSideMenu.cshtml
+  _ThemeSetting.cshtml
+  _TopBarMenu.cshtml
+ Slide/
+  Index.cshtml
+  _ModalSlideAction.cshtml
+ TeamMember/
+  Index.cshtml
+  _ModalTeamMemberAction.cshtml
+ TimeLine/
+  Index.cshtml
+  _ModalTimeLineAction.cshtml
+ User/
+  Index.cshtml
+  _ModalUserAction.cshtml
+ Video/
+  Index.cshtml
+  _ModalVideoAction.cshtml
+ _ViewImports.cshtml
+ _ViewStart.cshtml
+Views/About/
+ About.cshtml
+ AboutV2.cshtml
+Views/Blog/
+ Detail.cshtml
+ Formula.cshtml
+ Index.cshtml
+ Know.cshtml
+ _BlogCategoriesCounts.cshtml
+ _BlogItem.cshtml
+ _HotBlog.cshtml
+ _KnowItem.cshtml
+Views/
+ Branch/Index.cshtml
+ Contact/Contact.cshtml
+ Home/
+  Index.cshtml
+  _SlideTopHome.cshtml
+  _TiktokEmbedContainer.cshtml
+ Product/
+  Detail.cshtml
+  Grinder.cshtml
+  Index.cshtml
+  Machines.cshtml
+  _ProductItem.cshtml
+ Project/
+  Detail.cshtml
+  Project.cshtml
+  _HotProject.cshtml
+  _ProjectCategoriesCounts.cshtml
+  _ProjectItem.cshtml
+ Service/
+  Detail.cshtml
+  Service.cshtml
+  _NewServiceSideBar.cshtml
+  _ServiceCategorySideBar.cshtml
+  _ServiceItem.cshtml
+ Shared/Components/
+  vcAboutHome/Default.cshtml
+  vcAboutV2/Default.cshtml
+  vcBlogHome/Default.cshtml
+  vcBranches/Default.cshtml
+  vcBranchesV2/Default.cshtml
+  vcBreadcrumb/Default.cshtml
+  vcContactHome/Default.cshtml
+  vcFeedback/Default.cshtml
+  vcFooter/Default.cshtml
+  vcHeader/Default.cshtml
+  vcHotMachine/Default.cshtml
+  vcHotProduct/Default.cshtml
+  vcMap/Default.cshtml
+  vcPaging/Default.cshtml
+  vcPartners/Default.cshtml
+  vcProcessStep/Default.cshtml
+  vcProfessionalService/Default.cshtml
+  vcProject/
+   Default.cshtml
+   ProjectContent.cshtml
+  vcService/Default.cshtml
+  vcThemeSettings/Default.cshtml
+  vcVideo/Default.cshtml
+ Shared/
+  _AlertMessage.cshtml
+  _BranchSidebar.cshtml
+  _ContactForm.cshtml
+  _ContactSidebar.cshtml
+  _FilterSidebar.cshtml
+  _Layout.cshtml
+  _ProductCategorySideBar.cshtml
+  _ProductMainCategorySideBar.cshtml
+  _SearchForm.cshtml
+  _SideBarTimeLine.cshtml
+  _TiktokEmbed.cshtml
+  _ValidationScriptsPartial.cshtml
+ _ViewImports.cshtml
+ _ViewStart.cshtml
+
+[dynamicFiles]
+Areas/Admin/Views/About/
+ Index.cshtml
+ _ModalTeamMemberAction.cshtml
+ _TeamMembersTab.cshtml
+ _TimelineTab.cshtml
+Areas/Admin/Views/Authen/
+ Login.cshtml
+ Logout.cshtml
+Areas/Admin/Views/Blog/
+ Action.cshtml
+ Index.cshtml
+Areas/Admin/Views/BlogCategory/
+ Index.cshtml
+ _ModalBlogCategoryAction.cshtml
+Areas/Admin/Views/Branches/
+ Index.cshtml
+ _ModalBranchesAction.cshtml
+Areas/Admin/Views/Contact/
+ Index.cshtml
+ _ModalContact.cshtml
+Areas/Admin/Views/CoreValue/
+ Index.cshtml
+ _ModalCoreValueAction.cshtml
+Areas/Admin/Views/DefineSystem/
+ Index.cshtml
+ _ModalDefineSystemAction.cshtml
+Areas/Admin/Views/
+ Error/Index.cshtml
+ Event/
+  Action.cshtml
+  Index.cshtml
+ EventCategory/
+  Index.cshtml
+  _ModalEventCategoryAction.cshtml
+ Feedback/
+  Index.cshtml
+  _ModalFeedbackAction.cshtml
+ Formula/
+  Action.cshtml
+  Index.cshtml
+ FormulaCategory/
+  Index.cshtml
+  _ModalFormulaCategoryAction.cshtml
+ Home/Index.cshtml
+ HomeConfig/
+  Index.cshtml
+  _ModalHomeConfigAction.cshtml
+ MenuConfig/
+  Index.cshtml
+  _ModalMenuConfigAction.cshtml
+ ProcessStep/
+  Action.cshtml
+  Index.cshtml
+  _ModalProcessStepAction.cshtml
+ Product/
+  Action.cshtml
+  Index.cshtml
+  _ActionPropertiesTab.cshtml
+  _ModalProductPropertiesAction.cshtml
+ ProductCategory/
+  Index.cshtml
+  _ModalProductCategoryAction.cshtml
+ ProductMainCategory/
+  Index.cshtml
+  _ModalProductCategoryAction.cshtml
+ Project/
+  Action.cshtml
+  Index.cshtml
+ Properties/
+  Index.cshtml
+  _ModalPropertiesAction.cshtml
+ Service/
+  Action.cshtml
+  Index.cshtml
+ ServiceCategory/
+  Index.cshtml
+  _ModalServiceCategoryAction.cshtml
+ Setting/
+  Index.cshtml
+  _ModalSettingAction.cshtml
+ Shared/
+  Components/vcPagingAdmin/Default.cshtml
+  _AppSearch.cshtml
+  _Footer.cshtml
+  _Layout.cshtml
+  _LeftSideMenu.cshtml
+  _ThemeSetting.cshtml
+  _TopBarMenu.cshtml
+ Slide/
+  Index.cshtml
+  _ModalSlideAction.cshtml
+ TeamMember/
+  Index.cshtml
+  _ModalTeamMemberAction.cshtml
+ TimeLine/
+  Index.cshtml
+  _ModalTimeLineAction.cshtml
+ User/
+  Index.cshtml
+  _ModalUserAction.cshtml
+ Video/
+  Index.cshtml
+  _ModalVideoAction.cshtml
+ _ViewImports.cshtml
+ _ViewStart.cshtml
+Views/About/
+ About.cshtml
+ AboutV2.cshtml
+Views/Blog/
+ Detail.cshtml
+ Formula.cshtml
+ Index.cshtml
+ Know.cshtml
+ _BlogCategoriesCounts.cshtml
+ _BlogItem.cshtml
+ _HotBlog.cshtml
+ _KnowItem.cshtml
+Views/
+ Branch/Index.cshtml
+ Contact/Contact.cshtml
+ Home/
+  Index.cshtml
+  _SlideTopHome.cshtml
+  _TiktokEmbedContainer.cshtml
+ Product/
+  Detail.cshtml
+  Grinder.cshtml
+  Index.cshtml
+  Machines.cshtml
+  _ProductItem.cshtml
+ Project/
+  Detail.cshtml
+  Project.cshtml
+  _HotProject.cshtml
+  _ProjectCategoriesCounts.cshtml
+  _ProjectItem.cshtml
+ Service/
+  Detail.cshtml
+  Service.cshtml
+  _NewServiceSideBar.cshtml
+  _ServiceCategorySideBar.cshtml
+  _ServiceItem.cshtml
+ Shared/Components/
+  vcAboutHome/Default.cshtml
+  vcAboutV2/Default.cshtml
+  vcBlogHome/Default.cshtml
+  vcBranches/Default.cshtml
+  vcBranchesV2/Default.cshtml
+  vcBreadcrumb/Default.cshtml
+  vcContactHome/Default.cshtml
+  vcFeedback/Default.cshtml
+  vcFooter/Default.cshtml
+  vcHeader/Default.cshtml
+  vcHotMachine/Default.cshtml
+  vcHotProduct/Default.cshtml
+  vcMap/Default.cshtml
+  vcPaging/Default.cshtml
+  vcPartners/Default.cshtml
+  vcProcessStep/Default.cshtml
+  vcProfessionalService/Default.cshtml
+  vcProject/
+   Default.cshtml
+   ProjectContent.cshtml
+  vcService/Default.cshtml
+  vcThemeSettings/Default.cshtml
+  vcVideo/Default.cshtml
+ Shared/
+  _AlertMessage.cshtml
+  _BranchSidebar.cshtml
+  _ContactForm.cshtml
+  _ContactSidebar.cshtml
+  _FilterSidebar.cshtml
+  _Layout.cshtml
+  _ProductCategorySideBar.cshtml
+  _ProductMainCategorySideBar.cshtml
+  _SearchForm.cshtml
+  _SideBarTimeLine.cshtml
+  _TiktokEmbed.cshtml
+  _ValidationScriptsPartial.cshtml
+ _ViewImports.cshtml
+ _ViewStart.cshtml
