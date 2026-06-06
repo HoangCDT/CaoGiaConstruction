@@ -4,5 +4,6 @@ namespace CaoGiaConstruction.WebClient.Dtos
 {
     public class BlogCategoryWithCountDto : CategoryWithCountDto<BlogCategory>
     {
+        
     }
 }
